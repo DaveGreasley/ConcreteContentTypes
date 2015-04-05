@@ -1,0 +1,34 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+		private <#=_typeName#> _<#=_propertyAlias#> = null;
+		public <#=_typeName#> <#=_propertyAlias#>
+		{
+			get 
+			{
+				if (_<#=_propertyAlias#> == null)
+				{
+					int? contentId = Content.GetPropertyValue<int?>("<#=_propertyAlias#>");
+
+					if (contentId.HasValue)
+					{
+					<# if (_typeName == "IPublishedContent") { #>
+
+						_<#=_propertyAlias#> = _helper.TypedContent(contentId.Value);
+				
+						<# } else { #>
+
+						_<#=_propertyAlias#> = new <#=_typeName#>(contentId.Value);
+
+					<# } #>
+
+					}	
+				}
+
+				return _<#=_propertyAlias#>;
+			}
+		}

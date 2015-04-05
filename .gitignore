@@ -1,0 +1,9 @@
+*.suo
+bin
+obj
+/packages
+*.user
+/ConcreteDocTypes.Sandbox/App_Data/Logs
+/ConcreteDocTypes.Sandbox/App_Data/umbraco.config
+/ConcreteDocTypes.Sandbox/App_Data/cache
+/ConcreteDocTypes.Sandbox/App_Data/TEMP/PluginCache
