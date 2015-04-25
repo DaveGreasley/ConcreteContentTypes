@@ -9,6 +9,8 @@ using ConcreteContentTypes.Core.Configuration;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 using System.Web;
+using ConcreteContentTypes.Core.PropertyTypeResolution;
+using ConcreteContentTypes.Core.Templates;
 
 namespace ConcreteContentTypes.Core.Compiler
 {
@@ -59,12 +61,31 @@ namespace ConcreteContentTypes.Core.Compiler
 
 		private void CreateCSharp(IEnumerable<IContentType> contentTypes)
 		{
+			CreateBaseClass();
+
 			foreach (IContentType contentType in contentTypes)
 			{
-				ClassDefinition classDefinition = new ClassDefinition(contentType, Settings.Current.Namespace);
+				ClassDefinition classDefinition = new ClassDefinition(contentType, Settings.Current.Namespace, Settings.Current.BaseClassName);
 				CSharpWriter writer = new CSharpWriter(classDefinition);
 				writer.WriteFile(Settings.Current.CSharpOutputFolder);
 			}
+		}
+
+		private void CreateBaseClass()
+		{
+			UmbracoContentClassTemplate baseClassTemplate = new UmbracoContentClassTemplate(Settings.Current.Namespace, Settings.Current.BaseClassName);
+			string cs = baseClassTemplate.TransformText();
+
+			string fileName = string.Format("{0}.cs", Settings.Current.BaseClassName);
+
+			string folder = Settings.Current.CSharpOutputFolder;
+
+			if (!folder.EndsWith(@"\"))
+				folder += @"\";
+
+			string fullPath = string.Format("{0}{1}", folder, fileName);
+
+			System.IO.File.WriteAllText(fullPath, cs);
 		}
 
 		private void BuildAssembly()

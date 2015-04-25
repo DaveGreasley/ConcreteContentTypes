@@ -8,21 +8,10 @@ using System.Web;
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class BlogPost 	{
-				protected UmbracoHelper _helper;
-		
-		public IPublishedContent Content { get; set; }
-		public string Name { get; set; }
-		public int Id { get; set; }
-		public DateTime CreateDate { get; set; }
-		public DateTime UpdateDate { get; set; }
-		public string Url { get; set; }
-
-		
+	public partial class BlogPost : UmbracoContent
+	{
 				
-		public string introduction { get; set; }
-
-				
+		public string introduction { get; set; } 		
 		
 		private BlogAuthor _author = null;
 		public BlogAuthor author
@@ -36,17 +25,11 @@ namespace ConcreteContentTypes.Sandbox.Models
 					if (contentId.HasValue)
 					{
 					
-						_author = new BlogAuthor(contentId.Value);
-
-					
-					}	
+						_author = new BlogAuthor(contentId.Value); 					}	
 				}
-
 				return _author;
 			}
-		}
-
-				
+		} 		
 		
 		private IPublishedContent _linkedPage = null;
 		public IPublishedContent linkedPage
@@ -60,46 +43,32 @@ namespace ConcreteContentTypes.Sandbox.Models
 					if (contentId.HasValue)
 					{
 					
-						_linkedPage = _helper.TypedContent(contentId.Value);
+						_linkedPage = UmbracoContext.Current.ContentCache.GetById(contentId.Value);
 				
-						
-					}	
+											}	
 				}
-
 				return _linkedPage;
 			}
-		}
+		} 
 
-		
 		public BlogPost()
+			: base()
 		{
-			
 		}
 
 		public BlogPost(int contentId)
+			: base(contentId)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = _helper.TypedContent(contentId);
-
-			Init();
 		}
 
 		public BlogPost(IPublishedContent content)
+			: base(content)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = content;
-
-			Init();
 		}
 
-		private void Init()
+		protected override void Init()
 		{
-			this.Name = this.Content.Name;
-			this.Id = this.Content.Id;
-			this.CreateDate = this.Content.CreateDate;
-			this.UpdateDate = this.Content.UpdateDate;
-			this.Url = this.Content.Url;
-
+			base.Init();
 						
 			this.introduction = Content.GetPropertyValue<string>("introduction");
 			

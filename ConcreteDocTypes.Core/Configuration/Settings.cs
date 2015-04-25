@@ -69,6 +69,22 @@ namespace ConcreteContentTypes.Core.Configuration
 		}
 
 		/// <summary>
+		/// The name of the base class that all our classes will inherit from. 
+		/// </summary>
+		[ConfigurationProperty("BaseClassName")]
+		public string BaseClassName
+		{
+			get
+			{
+				return this["BaseClassName"].ToString();
+			}
+			set
+			{
+				this["BaseClassName"] = value;
+			}
+		}
+
+		/// <summary>
 		/// The namespace applied to all classes created
 		/// </summary>
 		[ConfigurationProperty("Namespace")]

@@ -272,6 +272,7 @@
     <Compile Include="Models\TextPage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\UmbracoContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

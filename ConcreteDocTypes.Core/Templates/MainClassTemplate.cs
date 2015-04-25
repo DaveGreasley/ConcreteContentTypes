@@ -45,13 +45,6 @@ namespace ConcreteContentTypes.Core.Templates
             
             #line default
             #line hidden
-            this.Write(" ");
-            
-            #line 19 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
- if (_classDefinition.HasBaseClass) { 
-            
-            #line default
-            #line hidden
             this.Write(" : ");
             
             #line 19 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
@@ -59,99 +52,52 @@ namespace ConcreteContentTypes.Core.Templates
             
             #line default
             #line hidden
-            this.Write(" ");
-            
-            #line 19 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t{\r\n\t\t");
+            this.Write("\r\n\t{\r\n\t\t");
             
             #line 21 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
- if (!_classDefinition.HasBaseClass) { 
-            
-            #line default
-            #line hidden
-            this.Write(@"		protected UmbracoHelper _helper;
-		
-		public IPublishedContent Content { get; set; }
-		public string Name { get; set; }
-		public int Id { get; set; }
-		public DateTime CreateDate { get; set; }
-		public DateTime UpdateDate { get; set; }
-		public string Url { get; set; }
-
-		");
-            
-            #line 31 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t");
-            
-            #line 33 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
  foreach(PropertyTypeResolverBase p in _classDefinition.Properties) { 
             
             #line default
             #line hidden
             this.Write("\t\t\r\n\t\t");
             
-            #line 35 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+            #line 23 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.GetPropertyDefinition()));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n\t\t");
+            this.Write(" ");
             
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+            #line 23 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\r\n\t\tpublic ");
+            this.Write("\r\n\r\n\t\tpublic ");
             
-            #line 39 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
-            this.Write("()\r\n\t\t{\r\n\t\t\t\r\n\t\t}\r\n\r\n\t\tpublic ");
+            this.Write("()\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
+            
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(int contentId)\r\n\t\t\t: base(contentId)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
+            
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(IPublishedContent content)\r\n\t\t\t: base(content)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tprotected override" +
+                    " void Init()\r\n\t\t{\r\n\t\t\tbase.Init();\r\n\t\t\t");
             
             #line 44 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(int contentId)\r\n\t\t{\r\n\t\t\t_helper = new UmbracoHelper(UmbracoContext.Current);\r\n\t\t" +
-                    "\tthis.Content = _helper.TypedContent(contentId);\r\n\r\n\t\t\tInit();\r\n\t\t}\r\n\r\n\t\tpublic " +
-                    "");
-            
-            #line 52 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write(@"(IPublishedContent content)
-		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = content;
-
-			Init();
-		}
-
-		private void Init()
-		{
-			this.Name = this.Content.Name;
-			this.Id = this.Content.Id;
-			this.CreateDate = this.Content.CreateDate;
-			this.UpdateDate = this.Content.UpdateDate;
-			this.Url = this.Content.Url;
-
-			");
-            
-            #line 68 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
  foreach(PropertyTypeResolverBase p in _classDefinition.Properties) {
 				if (!string.IsNullOrEmpty(p.GetValueString())) { 
             
@@ -159,16 +105,15 @@ namespace ConcreteContentTypes.Core.Templates
             #line hidden
             this.Write("\t\t\t\r\n\t\t\t");
             
-            #line 71 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+            #line 47 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.GetValueString()));
             
             #line default
             #line hidden
             this.Write("\r\n\t\t\t");
             
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
- }
-			} 
+            #line 48 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\MainClassTemplate.tt"
+ } } 
             
             #line default
             #line hidden

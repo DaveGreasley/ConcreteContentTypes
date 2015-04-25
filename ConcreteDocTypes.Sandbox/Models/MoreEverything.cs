@@ -8,9 +8,35 @@ using System.Web;
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class MoreEverything  : Everything 	{
-		
+	public partial class MoreEverything : Everything
+	{
 				
+		public string approvedcolour { get; set; } 		
+		
+		private BlogAuthor _blogAuthor = null;
+		public BlogAuthor blogAuthor
+		{
+			get 
+			{
+				if (_blogAuthor == null)
+				{
+					int? contentId = Content.GetPropertyValue<int?>("blogAuthor");
+
+					if (contentId.HasValue)
+					{
+					
+						_blogAuthor = new BlogAuthor(contentId.Value); 					}	
+				}
+				return _blogAuthor;
+			}
+		} 		
+		public DateTime dateTimePicker { get; set; } 		
+		public string myLabel { get; set; } 		
+		public int myNumeric { get; set; } 		
+		public IHtmlString myRichtextEditor { get; set; } 		
+		public string multipleTextBox { get; set; } 		
+		public string textString { get; set; } 		
+		public bool yesOrNo { get; set; } 		
 		
 		private List<IPublishedContent> _multipleNodes = null;
 		public List<IPublishedContent> multipleNodes
@@ -28,20 +54,15 @@ namespace ConcreteContentTypes.Sandbox.Models
 						string[] contentIds = val.Split(',');
 
 						foreach (string id in contentIds)
-						{
-							
-								_multipleNodes.Add(_helper.TypedContent(id));
-				
-								
-						}
+						{ 
+							_multipleNodes.Add(UmbracoContext.Current.ContentCache.GetById(int.Parse(id)));
+					    }
 					}	
 				}
 
 				return _multipleNodes;
 			}
-		}
-
-				
+		} 		
 		
 		private List<BlogAuthor> _blogAuthors = null;
 		public List<BlogAuthor> blogAuthors
@@ -59,49 +80,50 @@ namespace ConcreteContentTypes.Sandbox.Models
 						string[] contentIds = val.Split(',');
 
 						foreach (string id in contentIds)
-						{
-							
-								_blogAuthors.Add(new BlogAuthor(int.Parse(id)));
-
-							
-						}
+						{ 
+							_blogAuthors.Add(new BlogAuthor(int.Parse(id))); 
+					    }
 					}	
 				}
 
 				return _blogAuthors;
 			}
-		}
+		} 
 
-		
 		public MoreEverything()
+			: base()
 		{
-			
 		}
 
 		public MoreEverything(int contentId)
+			: base(contentId)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = _helper.TypedContent(contentId);
-
-			Init();
 		}
 
 		public MoreEverything(IPublishedContent content)
+			: base(content)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = content;
-
-			Init();
 		}
 
-		private void Init()
+		protected override void Init()
 		{
-			this.Name = this.Content.Name;
-			this.Id = this.Content.Id;
-			this.CreateDate = this.Content.CreateDate;
-			this.UpdateDate = this.Content.UpdateDate;
-			this.Url = this.Content.Url;
-
+			base.Init();
+						
+			this.approvedcolour = Content.GetPropertyValue<string>("approvedcolour");
+						
+			this.dateTimePicker = Content.GetPropertyValue<DateTime>("dateTimePicker");
+						
+			this.myLabel = Content.GetPropertyValue<string>("myLabel");
+						
+			this.myNumeric = Content.GetPropertyValue<int>("myNumeric");
+						
+			this.myRichtextEditor = Content.GetPropertyValue<IHtmlString>("myRichtextEditor");
+						
+			this.multipleTextBox = Content.GetPropertyValue<string>("multipleTextBox");
+						
+			this.textString = Content.GetPropertyValue<string>("textString");
+						
+			this.yesOrNo = Content.GetPropertyValue<bool>("yesOrNo");
 			
 		}
 	}

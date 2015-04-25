@@ -85,54 +85,51 @@ namespace ConcreteContentTypes.Core.Templates
             #line default
             #line hidden
             this.Write("\");\r\n\r\n\t\t\t\t\tif (!string.IsNullOrEmpty(val))\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tstring[] contentIds = " +
-                    "val.Split(\',\');\r\n\r\n\t\t\t\t\t\tforeach (string id in contentIds)\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t");
+                    "val.Split(\',\');\r\n\r\n\t\t\t\t\t\tforeach (string id in contentIds)\r\n\t\t\t\t\t\t{ ");
             
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+            #line 24 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
  if (_typeName == "List<IPublishedContent>") { 
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t\t\t\t\t\t\t_");
+            this.Write("\r\n\t\t\t\t\t\t\t_");
             
-            #line 27 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
-            this.Write(".Add(_helper.TypedContent(id));\r\n\t\t\t\t\r\n\t\t\t\t\t\t\t\t");
+            this.Write(".Add(UmbracoContext.Current.ContentCache.GetById(int.Parse(id)));\r\n\t\t\t\t\t   ");
             
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
- } else { 
-						
-									string typeNameSingle = _typeName.Replace("List<", "").Replace(">", "");
-								
+            #line 27 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+ } else { string typeNameSingle = _typeName.Replace("List<", "").Replace(">", ""); 
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t\t\t\t\t\t\t_");
+            this.Write("\r\n\t\t\t\t\t\t\t_");
             
-            #line 34 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
             this.Write(".Add(new ");
             
-            #line 34 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeNameSingle));
             
             #line default
             #line hidden
-            this.Write("(int.Parse(id)));\r\n\r\n\t\t\t\t\t\t\t");
+            this.Write("(int.Parse(id))); \r\n\t\t\t\t\t   ");
             
-            #line 36 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+            #line 30 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\t\r\n\t\t\t\t}\r\n\r\n\t\t\t\treturn _");
+            this.Write(" }\r\n\t\t\t\t\t}\t\r\n\t\t\t\t}\r\n\r\n\t\t\t\treturn _");
             
-            #line 42 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
+            #line 34 "C:\Users\Dave\Source\Repos\ConcreteDocTypes\ConcreteDocTypes.Core\Templates\LazyLoadedPropertyCollectionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default

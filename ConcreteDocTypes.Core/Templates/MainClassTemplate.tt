@@ -16,61 +16,36 @@ using System.Web;
 
 namespace <#= _classDefinition.Namespace #>
 {
-	public partial class <#= _classDefinition.Name #> <# if (_classDefinition.HasBaseClass) { #> : <#= _classDefinition.BaseClass #> <# } #>
+	public partial class <#= _classDefinition.Name #> : <#= _classDefinition.BaseClass #>
 	{
-		<# if (!_classDefinition.HasBaseClass) { #>
-		protected UmbracoHelper _helper;
-		
-		public IPublishedContent Content { get; set; }
-		public string Name { get; set; }
-		public int Id { get; set; }
-		public DateTime CreateDate { get; set; }
-		public DateTime UpdateDate { get; set; }
-		public string Url { get; set; }
-
-		<# } #>
-
 		<# foreach(PropertyTypeResolverBase p in _classDefinition.Properties) { #>
 		
-		<#=p.GetPropertyDefinition()#>
+		<#=p.GetPropertyDefinition()#> <# } #>
 
-		<# } #>
 
 		public <#= _classDefinition.Name #>()
+			: base()
 		{
-			
 		}
 
 		public <#= _classDefinition.Name #>(int contentId)
+			: base(contentId)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = _helper.TypedContent(contentId);
-
-			Init();
 		}
 
 		public <#=_classDefinition.Name#>(IPublishedContent content)
+			: base(content)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = content;
-
-			Init();
 		}
 
-		private void Init()
+		protected override void Init()
 		{
-			this.Name = this.Content.Name;
-			this.Id = this.Content.Id;
-			this.CreateDate = this.Content.CreateDate;
-			this.UpdateDate = this.Content.UpdateDate;
-			this.Url = this.Content.Url;
-
+			base.Init();
 			<# foreach(PropertyTypeResolverBase p in _classDefinition.Properties) {
 				if (!string.IsNullOrEmpty(p.GetValueString())) { #>
 			
 			<#=p.GetValueString()#>
-			<# }
-			} #>
+			<# } } #>
 
 		}
 	}

@@ -19,11 +19,19 @@ namespace ConcreteContentTypes.Core.Compiler
 
 		public List<PropertyTypeResolverBase> Properties { get; set; }
 
-		public ClassDefinition(IContentType contentType, string nameSpace)
+		public ClassDefinition(List<PropertyTypeResolverBase> properties, string className, string nameSpace, string baseClass = "")
+		{
+			this.Namespace = nameSpace;
+			this.Name = className;
+			this.BaseClass = baseClass;
+			this.Properties = properties;
+		}
+
+		public ClassDefinition(IContentType contentType, string nameSpace, string defaultBaseClass = "")
 		{
 			this.Namespace = nameSpace;
 			this.Name = contentType.Alias;
-			this.BaseClass = GetBaseClass(contentType);
+			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
 			Properties = new List<PropertyTypeResolverBase>();
 
 			CreateDefinition(contentType);
@@ -44,10 +52,10 @@ namespace ConcreteContentTypes.Core.Compiler
 			}
 		}
 
-		private string GetBaseClass(IContentType contentType)
+		private string GetBaseClass(IContentType contentType, string defaultBaseClass = "")
 		{
 			if (contentType.ParentId == -1)
-				return "";
+				return defaultBaseClass;
 
 			var parent = UmbracoContext.Current.Application.Services.ContentTypeService.GetContentType(contentType.ParentId);
 

@@ -219,9 +219,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="Templates\Partials\LazyLoadedPropertyCollectionTemplate.cs" />
-    <Compile Include="Templates\Partials\LazyLoadedPropertyTemplate.cs" />
-    <Compile Include="Templates\Partials\MainClassTemplate.cs" />
+    <Compile Include="Templates\Models\LazyLoadedPropertyCollectionTemplate.cs" />
+    <Compile Include="Templates\Models\LazyLoadedPropertyTemplate.cs" />
+    <Compile Include="Templates\Models\MainClassTemplate.cs" />
+    <Compile Include="Templates\Models\UmbracoContentClassTemplate.cs" />
+    <Compile Include="Templates\UmbracoContentClassTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UmbracoContentClassTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="WebApi\ConcreteContentTypesApiController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +244,10 @@
     <None Include="Templates\MainClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>MainClassTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="Templates\UmbracoContentClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>UmbracoContentClassTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

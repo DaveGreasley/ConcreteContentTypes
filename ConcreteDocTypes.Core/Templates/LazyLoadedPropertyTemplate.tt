@@ -18,17 +18,13 @@
 					{
 					<# if (_typeName == "IPublishedContent") { #>
 
-						_<#=_propertyAlias#> = _helper.TypedContent(contentId.Value);
+						_<#=_propertyAlias#> = UmbracoContext.Current.ContentCache.GetById(contentId.Value);
 				
 						<# } else { #>
 
-						_<#=_propertyAlias#> = new <#=_typeName#>(contentId.Value);
-
-					<# } #>
-
+						_<#=_propertyAlias#> = new <#=_typeName#>(contentId.Value); <# } #>
 					}	
 				}
-
 				return _<#=_propertyAlias#>;
 			}
 		}

@@ -8,47 +8,28 @@ using System.Web;
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class TextPage 	{
-				protected UmbracoHelper _helper;
+	public partial class TextPage : UmbracoContent
+	{
 		
-		public IPublishedContent Content { get; set; }
-		public string Name { get; set; }
-		public int Id { get; set; }
-		public DateTime CreateDate { get; set; }
-		public DateTime UpdateDate { get; set; }
-		public string Url { get; set; }
 
-		
-		
 		public TextPage()
+			: base()
 		{
-			
 		}
 
 		public TextPage(int contentId)
+			: base(contentId)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = _helper.TypedContent(contentId);
-
-			Init();
 		}
 
 		public TextPage(IPublishedContent content)
+			: base(content)
 		{
-			_helper = new UmbracoHelper(UmbracoContext.Current);
-			this.Content = content;
-
-			Init();
 		}
 
-		private void Init()
+		protected override void Init()
 		{
-			this.Name = this.Content.Name;
-			this.Id = this.Content.Id;
-			this.CreateDate = this.Content.CreateDate;
-			this.UpdateDate = this.Content.UpdateDate;
-			this.Url = this.Content.Url;
-
+			base.Init();
 			
 		}
 	}

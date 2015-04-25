@@ -21,21 +21,13 @@
 						string[] contentIds = val.Split(',');
 
 						foreach (string id in contentIds)
-						{
-							<# if (_typeName == "List<IPublishedContent>") { #>
+						{ <# if (_typeName == "List<IPublishedContent>") { #>
 
-								_<#=_propertyAlias#>.Add(_helper.TypedContent(id));
-				
-								<# } else { 
-						
-									string typeNameSingle = _typeName.Replace("List<", "").Replace(">", "");
-								#>
+							_<#=_propertyAlias#>.Add(UmbracoContext.Current.ContentCache.GetById(int.Parse(id)));
+					   <# } else { string typeNameSingle = _typeName.Replace("List<", "").Replace(">", ""); #>
 
-								_<#=_propertyAlias#>.Add(new <#=typeNameSingle#>(int.Parse(id)));
-
-							<# } #>
-
-						}
+							_<#=_propertyAlias#>.Add(new <#=typeNameSingle#>(int.Parse(id))); 
+					   <# } #> }
 					}	
 				}
 
