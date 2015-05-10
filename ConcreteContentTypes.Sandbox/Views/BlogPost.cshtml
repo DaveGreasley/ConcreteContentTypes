@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+
+	BlogPost currentPost = new BlogPost(Model.Content);
+}
+
+@*@currentPost.introduction*@
+
+<br />
+
+<div class="light">
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div>
+					Author: <a href="@currentPost.author.Url">@currentPost.author.Name</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@Html.Raw(currentPost.content)
+

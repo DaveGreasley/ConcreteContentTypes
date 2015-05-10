@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Sandbox", "ConcreteDocTypes.Sandbox\ConcreteContentTypes.Sandbox.csproj", "{2ADE8CCE-E52D-41E6-B269-4686F1AB0157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Sandbox", "ConcreteContentTypes.Sandbox\ConcreteContentTypes.Sandbox.csproj", "{2ADE8CCE-E52D-41E6-B269-4686F1AB0157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Core", "ConcreteDocTypes.Core\ConcreteContentTypes.Core.csproj", "{1B3D21DD-FB60-4A6B-A94A-5608C5154FA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Core", "ConcreteContentTypes.Core\ConcreteContentTypes.Core.csproj", "{1B3D21DD-FB60-4A6B-A94A-5608C5154FA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
