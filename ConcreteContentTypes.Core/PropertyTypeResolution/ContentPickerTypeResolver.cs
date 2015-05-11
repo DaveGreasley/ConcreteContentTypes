@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Exceptions;
+﻿using ConcreteContentTypes.Core.Compiler;
+using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 {
 	public class ContentPickerTypeResolver : TypeResolverBase
 	{
-		public ContentPickerTypeResolver(PropertyType propertyType)
+		public ContentPickerTypeResolver(PropertyDefinition propertyType)
 			: base(propertyType)
 		{
 		}

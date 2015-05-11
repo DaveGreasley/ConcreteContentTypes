@@ -9,6 +9,7 @@ using ConcreteContentTypes.Core.Configuration;
 using System.Threading;
 using Umbraco.Core.Models;
 using Umbraco.Core.Logging;
+using ConcreteContentTypes.Core.Compiler;
 
 namespace ConcreteContentTypes.Core.PropertyTypeResolution
 {
@@ -31,7 +32,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 				string typeName = typeResolverConfig.Type.Split(',')[0];
 				string assemblyName = typeResolverConfig.Type.Split(',')[1].Trim();
 
-				var handle = Activator.CreateInstance(assemblyName, typeName, false, BindingFlags.CreateInstance, null, new object[] { propertyType }, Thread.CurrentThread.CurrentCulture, null);
+				var handle = Activator.CreateInstance(assemblyName, typeName, false, BindingFlags.CreateInstance, null, new object[] { new PropertyDefinition(propertyType) }, Thread.CurrentThread.CurrentCulture, null);
 				return handle.Unwrap() as TypeResolverBase;
 			}
 			catch (Exception ex)

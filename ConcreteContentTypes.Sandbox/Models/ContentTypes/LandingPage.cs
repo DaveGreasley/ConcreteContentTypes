@@ -17,19 +17,6 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 		public bool umbracoNaviHide { get; set; } 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 
-		private IEnumerable<TextPage> _children = null;
-		public new IEnumerable<TextPage> Children
-		{
-			get
-			{
-				if (_children == null)
-				{
-					_children = this.Content.Children.Select(x => new TextPage(x));
-				}
-
-				return _children;
-			}
-		}
 		
 		public LandingPage()
 			: base()

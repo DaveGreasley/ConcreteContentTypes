@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Templates;
+﻿using ConcreteContentTypes.Core.Compiler;
+using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 		PickerType _pickerType;
 
 
-		public MultiNodeTreePickerTypeResolver(PropertyType propertyType)
+		public MultiNodeTreePickerTypeResolver(PropertyDefinition propertyType)
 			: base(propertyType)
 		{
 		}

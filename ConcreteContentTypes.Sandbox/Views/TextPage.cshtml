@@ -1,6 +1,6 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits ConcreteContentTypes.Core.ViewTemplates.ConcreteViewPage<TextPage>
 @{
     Layout = "Master.cshtml";
 }
 
-@CurrentPage.GetGridHtml("content", "fanoe")
+@TypedContent.content.GetGridHtml("fanoe")

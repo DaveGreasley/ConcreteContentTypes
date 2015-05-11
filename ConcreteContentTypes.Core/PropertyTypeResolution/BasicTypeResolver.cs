@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Exceptions;
+﻿using ConcreteContentTypes.Core.Compiler;
+using ConcreteContentTypes.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 {
 	public class BasicTypeResolver : TypeResolverBase
 	{
-		public BasicTypeResolver(PropertyType propertyType)
+		public BasicTypeResolver(PropertyDefinition propertyType)
 			: base(propertyType)
 		{
 		}

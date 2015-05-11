@@ -188,6 +188,7 @@
     <Compile Include="Compiler\AssemblyBuilder.cs" />
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Compiler\CSharpWriter.cs" />
+    <Compile Include="Compiler\PropertyDefinition.cs" />
     <Compile Include="Configuration\TypeResolverConfiguration.cs" />
     <Compile Include="Configuration\TypeResolverConfigurationCollection.cs" />
     <Compile Include="Configuration\SupportedTypeConfiguration.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="DataTypeResolution\DataTypeResolverBase.cs" />
     <Compile Include="DataTypeResolution\DataTypeResolverFactory.cs" />
     <Compile Include="Models\GridContent.cs" />
+    <Compile Include="Models\UmbracoContent.cs" />
     <Compile Include="PropertyTypeResolution\ArchetypeTypeResolver.cs" />
     <Compile Include="PropertyTypeResolution\ContentPickerTypeResolver.cs" />
     <Compile Include="PropertyTypeResolution\MultiNodeTreePickerTypeResolver.cs" />
@@ -234,6 +236,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UmbracoContentClassTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewTemplates\ConcreteViewPage.cs" />
     <Compile Include="WebApi\ConcreteContentTypesApiController.cs" />
   </ItemGroup>
   <ItemGroup>

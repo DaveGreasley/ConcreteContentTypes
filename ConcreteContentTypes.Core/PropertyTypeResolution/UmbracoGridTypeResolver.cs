@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConcreteContentTypes.Core.Compiler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 {
 	public class UmbracoGridTypeResolver : TypeResolverBase
 	{
-		public UmbracoGridTypeResolver(PropertyType propertType)
+		public UmbracoGridTypeResolver(PropertyDefinition propertType)
 			: base(propertType)
 		{
 

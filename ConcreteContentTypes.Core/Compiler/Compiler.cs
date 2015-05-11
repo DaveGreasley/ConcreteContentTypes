@@ -109,7 +109,7 @@ namespace ConcreteContentTypes.Core.Compiler
 
 		private void CreateCSharp(IEnumerable<IContentType> contentTypes)
 		{
-			CreateBaseClass();
+			//CreateBaseClass();
 
 			foreach (IContentType contentType in contentTypes)
 			{

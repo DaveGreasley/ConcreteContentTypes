@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Exceptions;
+﻿using ConcreteContentTypes.Core.Compiler;
+using ConcreteContentTypes.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,13 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 		public string PropertyEditorAlias { get; set; }
 		public string PropertyAlias { get; set; }
 		public Dictionary<string, string> SupportedTypes { get; set; }
-		public PropertyType PropertyType { get; set; }
+		public PropertyDefinition PropertyType { get; set; }
 
-		public TypeResolverBase(PropertyType propertyType)
+		public TypeResolverBase(PropertyDefinition propertyType)
 		{
 			this.PropertyType = propertyType;
 			this.PropertyEditorAlias = propertyType.PropertyEditorAlias;
-			this.PropertyAlias = propertyType.Alias;
+			this.PropertyAlias = propertyType.PropertyTypeAlias;
 			this.SupportedTypes = GetSupportedTypes();
 
 			if (!this.SupportedTypes.ContainsKey(PropertyEditorAlias))

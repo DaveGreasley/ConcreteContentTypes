@@ -1,8 +1,6 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits ConcreteContentTypes.Core.ViewTemplates.ConcreteViewPage<BlogPostRepository>
 @{
     Layout = "Master.cshtml";
-
-	BlogPostRepository repo = new BlogPostRepository(Model.Content);
 }
 
 <div role="content">
@@ -11,7 +9,7 @@
 		<div class="container">
 
 			<div class="row">
-				@foreach(var post in repo.Children) 
+				@foreach(var post in TypedContent.Children) 
 				{
 					<div class="col-sm-6">
 						<div class="content equal">

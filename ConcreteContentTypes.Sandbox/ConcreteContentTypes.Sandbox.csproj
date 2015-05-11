@@ -240,6 +240,10 @@
     <Content Include="Views\Partials\MainNavigation.cshtml" />
     <Content Include="Views\TextPage.cshtml" />
     <Content Include="Config\ConcreteContentTypes.config" />
+    <Content Include="Views\BlogAuthor.cshtml" />
+    <Content Include="Views\Everything.cshtml" />
+    <Content Include="Views\MoreEverything.cshtml" />
+    <Content Include="Views\EverythingMaster.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -263,7 +267,6 @@
     <Compile Include="Models\ContentTypes\LandingPage.cs" />
     <Compile Include="Models\ContentTypes\MoreEverything.cs" />
     <Compile Include="Models\ContentTypes\TextPage.cs" />
-    <Compile Include="Models\ContentTypes\UmbracoContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,26 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits ConcreteContentTypes.Core.ViewTemplates.ConcreteViewPage<MoreEverything>
 @{
-    Layout = null;
+	Layout = "EverythingMaster.cshtml";
+}
+
+@section more {
+
+	Umbraco Navi Hide: @TypedContent.umbracoNaviHide <br />
+
+	Blog Authors: <br />
+	<ul>
+		@foreach (var author in TypedContent.blogAuthors)
+		{
+			<li><a href="@author.Url">@author.Name</a></li>
+		}
+	</ul>
+	<br />
+	Multiple Nodes: <br />
+	<ul>
+		@foreach (var node in TypedContent.multipleNodes)
+		{
+			<li><a href="@node.Url">@node.Name</a></li>
+		}
+	</ul>
+
 }
