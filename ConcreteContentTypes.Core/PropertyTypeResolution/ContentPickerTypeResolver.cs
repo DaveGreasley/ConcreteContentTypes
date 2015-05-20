@@ -17,14 +17,9 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 		{
 		}
 
-		public override string GetValueString()
-		{
-			return "";
-		}
-
 		public override string GetPropertyDefinition()
 		{
-			LazyLoadedPropertyTemplate template = new LazyLoadedPropertyTemplate(this.PropertyAlias, GetTypeName());
+			LazyLoadedPropertyTemplate template = new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName());
 			return template.TransformText();
 		}
 

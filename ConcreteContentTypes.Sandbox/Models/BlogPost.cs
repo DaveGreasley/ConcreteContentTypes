@@ -5,21 +5,27 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 using System.Web;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
 
-namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
+namespace ConcreteContentTypes.Sandbox.Models
 {
 	public partial class BlogPost : UmbracoContent
 	{
 				
 		[JsonIgnore]
 		public GridContent content { get; set; } 		
-		public string introduction { get; set; } 		
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		
+		public string Introduction { get; set; } 		
 		
 		private BlogAuthor _author = null;
-		public BlogAuthor author
+		public BlogAuthor Author
 		{
 			get 
 			{
@@ -38,7 +44,7 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 		} 		
 		
 		private IPublishedContent _linkedPage = null;
-		public IPublishedContent linkedPage
+		public IPublishedContent LinkedPage
 		{
 			get 
 			{
@@ -57,6 +63,19 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 				return _linkedPage;
 			}
 		} 
+		private IEnumerable<BlogComment> _children = null;
+		public new IEnumerable<BlogComment> Children
+		{
+			get
+			{
+				if (_children == null)
+				{
+					_children = this.Content.Children.Select(x => new BlogComment(x));
+				}
+
+				return _children;
+			}
+		}
 		
 		public BlogPost()
 			: base()
@@ -79,8 +98,16 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 						
 			this.content = new GridContent("content", this.Content);
 						
-			this.introduction = Content.GetPropertyValue<string>("introduction");
+			this.Introduction = Content.GetPropertyValue<string>("introduction");
 			
+		}
+
+		public override IContent SetProperties(IContent dbContent)
+		{
+						
+			dbContent.SetValue("introduction", this.Introduction);
+			
+			return base.SetProperties(dbContent);
 		}
 	}
 }

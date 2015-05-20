@@ -3,29 +3,7 @@
     Layout = null;
 }
 
-Approved Colour: @TypedContent.approvedcolour <br />
-<br />
-Blog Author: <a href="@TypedContent.blogAuthor.Url">@TypedContent.blogAuthor.Name</a><br />
-<br />
-Children: <br />
-@foreach (var child in TypedContent.Children)
-{
-	<a href="@child.Url">@child.Name</a> <br />
-}
-<br />
-Create Date: @TypedContent.CreateDate <br />
-Date Time Picker: @TypedContent.dateTimePicker.ToLongDateString() <br />
-Id: @TypedContent.Id <br />
-Multiple Text Box: @TypedContent.multipleTextBox <br />
-<br />
-My Numeric: @TypedContent.myNumeric <br/>
-rich Text Editor: @TypedContent.myRichtextEditor <br />
-<br />
-Name: @TypedContent.Name <br />
-Text String: @TypedContent.textString <br />
-Update Date: @TypedContent.UpdateDate <br />
-Url: <a href="@TypedContent.Url">@TypedContent.Url</a><br />
-Yes or No: @TypedContent.yesOrNo <br />
+@Html.Partial("Everything", Model);
 
 @RenderSection("more", false)
 

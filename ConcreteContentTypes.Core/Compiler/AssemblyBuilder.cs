@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Compiler
 {
+	/// <summary>
+	/// This is a silly idea.
+	/// </summary>
 	public class AssemblyBuilder
 	{
 		public AssemblyBuilder()
@@ -27,6 +30,10 @@ namespace ConcreteContentTypes.Core.Compiler
 				string[] sourceFilePaths = sourceFiles.Select(x => x.FullName).ToArray();
 
 				outputFolderPath = outputFolderPath.TrimEnd('\\');
+
+				if (!Directory.Exists(outputFolderPath))
+					Directory.CreateDirectory(outputFolderPath);
+
 				string assemblyOutputPath = string.Format("{0}\\{1}", outputFolderPath, assemblyName);
 
 				var csc = new CSharpCodeProvider(new Dictionary<string, string>() { { "CompilerVersion", "v4.0" } });

@@ -6,7 +6,7 @@
 <#@ output extension=".cs" #>
 
 		private <#=_typeName#> _<#=_propertyAlias#> = null;
-		public <#=_typeName#> <#=_propertyAlias#>
+		public <#=_typeName#> <#=_nicePropertyAlias#>
 		{
 			get 
 			{

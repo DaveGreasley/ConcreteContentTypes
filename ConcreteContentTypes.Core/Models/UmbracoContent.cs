@@ -1,21 +1,28 @@
-
 using System;
 using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 using System.Web;
 using Newtonsoft.Json;
-using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Core.Services;
+using Umbraco.Core;
+using System.Reflection;
 
 namespace ConcreteContentTypes.Core.Models
 {
 	public class UmbracoContent
 	{
+		#region Properties
 		[JsonIgnore]
 		public IPublishedContent Content { get; set; }
 
+		[JsonIgnore]
+		protected IContentService ContentService { get { return UmbracoContext.Current.Application.Services.ContentService; } }
+
 		public string Name { get; set; }
 		public int Id { get; set; }
+		public int ParentId { get; set; }
+		public string Path { get; set; }
 		public DateTime CreateDate { get; set; }
 		public DateTime UpdateDate { get; set; }
 		public string Url { get; set; }
@@ -25,12 +32,20 @@ namespace ConcreteContentTypes.Core.Models
 		{
 			get
 			{
+				if (this.Content == null)
+					return null;
+
 				return this.Content.Children;
 			}
-		 }
+		}
+
+		#endregion
+
+		#region Constructors + Init
 
 		public UmbracoContent()
 		{
+			this.Id = -1;
 		}
 
 		public UmbracoContent(int contentId)
@@ -59,138 +74,70 @@ namespace ConcreteContentTypes.Core.Models
 		{
 			this.Name = this.Content.Name;
 			this.Id = this.Content.Id;
+			this.ParentId = this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //TODO: Not sure about this, means we always grab the parent IPublishedContent too...
+			this.Path = this.Content.Path;
 			this.CreateDate = this.Content.CreateDate;
 			this.UpdateDate = this.Content.UpdateDate;
 			this.Url = this.Content.Url;
 		}
 
-		//[JsonIgnore]
-		//public IEnumerable<IPublishedContent> ContentSet
-		//{
-		//	get { return this.Content.ContentSet; }
-		//}
+		#endregion
 
-		//[JsonIgnore]
-		//public Umbraco.Core.Models.PublishedContent.PublishedContentType ContentType
-		//{
-		//	get { return this.Content.ContentType; }
-		//}
+		#region Public Methods
 
-		//[JsonIgnore]
-		//public int CreatorId
-		//{
-		//	get { return this.Content.CreatorId; }
-		//}
+		/// <summary>
+		/// Retrieves the IContent object from the database or creates a new one. In order to create a new object in the DB
+		/// ParentId must be set.
+		/// </summary>
+		public IContent GetIContent()
+		{
+			if (this.Id != -1)
+			{
+				var content = ContentService.GetById(this.Id);
 
-		//[JsonIgnore]
-		//public string CreatorName
-		//{
-		//	get { return this.Content.CreatorName; }
-		//}
+				if (content != null)
+					return content;
 
-		//[JsonIgnore]
-		//public string DocumentTypeAlias
-		//{
-		//	get { return this.Content.DocumentTypeAlias; }
-		//}
+				throw new Exception("Content Id " + this.Id + " not found.");
+			}
 
-		//[JsonIgnore]
-		//public int DocumentTypeId
-		//{
-		//	get { return this.Content.DocumentTypeId; }
-		//}
+			return ContentService.CreateContent(this.Name, this.ParentId, this.GetType().Name);
+		}
 
-		//public int GetIndex()
-		//{
-		//	return this.Content.GetIndex();
-		//}
+		/// <summary>
+		/// Maps all the properties on this class to the passed IContent object
+		/// </summary>
+		public virtual IContent SetProperties(IContent dbContent)
+		{
+			dbContent.Name = this.Name;
+			dbContent.CreateDate = this.CreateDate;
+			dbContent.UpdateDate = this.UpdateDate;
 
-		//public IPublishedProperty GetProperty(string alias, bool recurse)
-		//{
-		//	return this.Content.GetProperty(alias, recurse);
-		//}
+			return dbContent;
+		}
 
-		//public IPublishedProperty GetProperty(string alias)
-		//{
-		//	return this.Content.GetProperty(alias);
-		//}
+		/// <summary>
+		/// Persists the current Concrete object to the DB using Save method on the Umbraco ContentService.
+		/// If the current object is a new object it will be created in the database (ParentId and Name must be set for this to work).
+		/// </summary>
+		public void Save(int userId = 0, bool raiseEvents = true)
+		{
+			IContent dbContent = SetProperties(GetIContent());
 
-		//[JsonIgnore]
-		//public bool IsDraft
-		//{
-		//	get { return this.Content.IsDraft; }
-		//}
+			ContentService.Save(dbContent, userId, raiseEvents);
+		}
 
-		//[JsonIgnore]
-		//public PublishedItemType ItemType
-		//{
-		//	get { return this.Content.ItemType; }
-		//}
+		/// <summary>
+		/// Persists the current Concrete object to the DB using SaveAndPublishWithStatus method on the Umbraco ContentService.
+		/// If the current object is a new object it will be created in the database (ParentId and Name must be set for this to work).
+		/// </summary>
+		public Attempt<Umbraco.Core.Publishing.PublishStatus> SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)
+		{
+			IContent dbContent = SetProperties(GetIContent());
 
-		//[JsonIgnore]
-		//public int Level
-		//{
-		//	get { return this.Content.Level; }
-		//}
+			return ContentService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);
+		}
 
-		//[JsonIgnore]
-		//public IPublishedContent Parent
-		//{
-		//	get { return this.Content.Parent; }
-		//}
-
-		//[JsonIgnore]
-		//public string Path
-		//{
-		//	get { return this.Content.Path; }
-		//}
-
-		//[JsonIgnore]
-		//public ICollection<IPublishedProperty> Properties
-		//{
-		//	get { return this.Content.Properties; }
-		//}
-
-		//[JsonIgnore]
-		//public int SortOrder
-		//{
-		//	get { return this.Content.SortOrder; }
-		//}
-
-		//[JsonIgnore]
-		//public int TemplateId
-		//{
-		//	get { return this.Content.TemplateId; }
-		//}
-
-		//[JsonIgnore]
-		//public string UrlName
-		//{
-		//	get { return this.Content.UrlName; }
-		//}
-
-		//[JsonIgnore]
-		//public Guid Version
-		//{
-		//	get { return this.Content.Version; }
-		//}
-
-		//[JsonIgnore]
-		//public int WriterId
-		//{
-		//	get { return this.Content.WriterId; }
-		//}
-
-		//[JsonIgnore]
-		//public string WriterName
-		//{
-		//	get { return this.Content.WriterName; }
-		//}
-
-		//[JsonIgnore]
-		//public object this[string alias]
-		//{
-		//	get { return this.Content[alias]; }
-		//}
+		#endregion
 	}
 }

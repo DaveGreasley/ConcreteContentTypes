@@ -5,11 +5,11 @@
 
 @section more {
 
-	Umbraco Navi Hide: @TypedContent.umbracoNaviHide <br />
+	Umbraco Navi Hide: @Model.HideInBottomNavigation <br />
 
 	Blog Authors: <br />
 	<ul>
-		@foreach (var author in TypedContent.blogAuthors)
+		@foreach (var author in Model.BlogAuthors)
 		{
 			<li><a href="@author.Url">@author.Name</a></li>
 		}
@@ -17,10 +17,12 @@
 	<br />
 	Multiple Nodes: <br />
 	<ul>
-		@foreach (var node in TypedContent.multipleNodes)
+		@foreach (var node in Model.MultipleNodes)
 		{
 			<li><a href="@node.Url">@node.Name</a></li>
 		}
 	</ul>
 
+	<br /><br />
+	Names Check Box: @Model.NamesCheckBox
 }

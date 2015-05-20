@@ -25,15 +25,6 @@ namespace ConcreteContentTypes.Core.Configuration
 
 		#endregion
 
-		[ConfigurationProperty("DataTypeResolvers", IsRequired = false)]
-		public TypeResolverConfigurationCollection DataTypeResolvers
-		{
-			get
-			{
-				return (TypeResolverConfigurationCollection)this["DataTypeResolvers"];
-			}
-		}
-
 		[ConfigurationProperty("TypeResolvers", IsRequired=true)]
 		public TypeResolverConfigurationCollection TypeResolvers
 		{

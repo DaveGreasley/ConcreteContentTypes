@@ -11,12 +11,16 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div>
-					Author: <a href="@TypedContent.author.Url">@TypedContent.author.Name</a>
+					Author: <a href="@Model.Author.Url">@Model.Author.Name</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-@Html.Raw(TypedContent.content)
+@Html.Raw(Model.content)
 
+
+@Html.Partial("BlogSubmitComment", new BlogComment() { ParentId = Model.Id })
+
+@Html.Partial("BlogComments", Model.Children.ToList())

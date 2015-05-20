@@ -35,18 +35,13 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 			{
 				case PickerType.SingleKnownObject:
 				case PickerType.SingleIPublishedContent:
-					return new LazyLoadedPropertyTemplate(this.PropertyAlias, GetTypeName()).TransformText();
+					return new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName()).TransformText();
 
 				case PickerType.MultipleIPublishedContent:
 				case PickerType.MultipleKnownObject:
-					return new LazyLoadedPropertyCollectionTemplate(this.PropertyAlias, GetTypeName()).TransformText();
+					return new LazyLoadedPropertyCollectionTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName()).TransformText();
 			}
 
-			return "";
-		}
-
-		public override string GetValueString()
-		{
 			return "";
 		}
 
@@ -61,7 +56,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 
 		protected string DetermineTypeName()
 		{
-			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this.PropertyType.DataTypeDefinitionId);
+			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this.Property.DataTypeDefinitionId);
 
 			int maxNumber = -1;
 			int.TryParse(prevalues.PreValuesAsDictionary["maxNumber"].Value, out maxNumber);

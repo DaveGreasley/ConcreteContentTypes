@@ -1,0 +1,35 @@
+﻿@model BlogComment
+
+<script type="text/javascript">
+
+	function CommentSubmitSuccess() {
+		$("#commentSubmitForm").hide();
+		$("#commentSuccess").show();
+	}
+</script>
+
+<div id="commentSubmitForm">
+	@using (Ajax.BeginForm(new AjaxOptions() 
+		{ 
+			Url = "/umbraco/api/BlogCommentApi/SubmitBlogComment",
+			HttpMethod = "Post", 
+			OnSuccess = "CommentSubmitSuccess"
+		}))
+	{
+		@Html.HiddenFor(x => x.ParentId)
+	 
+		<label>Your Name</label>
+		@Html.TextBoxFor(x => x.FullName)
+		@Html.ValidationMessageFor(x => x.FullName)
+		<br /><br />
+		<label>Comment</label>
+		@Html.TextAreaFor(x => x.Comment);
+		@Html.ValidationMessageFor(x => x.Comment)
+		<br /><br />
+		
+		<input type="submit" value="Submit" />
+	}
+</div>
+<div id="commentSuccess" style="display:none">
+	Thanks for your comment!
+</div>

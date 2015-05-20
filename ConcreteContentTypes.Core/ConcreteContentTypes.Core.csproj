@@ -194,12 +194,10 @@
     <Compile Include="Configuration\SupportedTypeConfiguration.cs" />
     <Compile Include="Configuration\SupportedTypesConfigurationCollection.cs" />
     <Compile Include="Configuration\TypeResolverSettings.cs" />
-    <Compile Include="DataTypeResolution\ArchetypeDataTypeResolver.cs" />
-    <Compile Include="DataTypeResolution\DataTypeResolverBase.cs" />
-    <Compile Include="DataTypeResolution\DataTypeResolverFactory.cs" />
+    <Compile Include="Helpers\NamingConventionHelper.cs" />
+    <Compile Include="Models\ConcreteRenderModel.cs" />
     <Compile Include="Models\GridContent.cs" />
     <Compile Include="Models\UmbracoContent.cs" />
-    <Compile Include="PropertyTypeResolution\ArchetypeTypeResolver.cs" />
     <Compile Include="PropertyTypeResolution\ContentPickerTypeResolver.cs" />
     <Compile Include="PropertyTypeResolution\MultiNodeTreePickerTypeResolver.cs" />
     <Compile Include="PropertyTypeResolution\TypeResolverBase.cs" />
@@ -217,6 +215,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Templates\BasicPropertyTypeDefinitionTemplate.cs">
+      <DependentUpon>BasicPropertyTypeDefinitionTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Templates\LazyLoadedPropertyTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,6 +230,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainClassTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="Templates\Models\BasicPropertyTypeDefinitionTemplate.cs" />
     <Compile Include="Templates\Models\LazyLoadedPropertyCollectionTemplate.cs" />
     <Compile Include="Templates\Models\LazyLoadedPropertyTemplate.cs" />
     <Compile Include="Templates\Models\MainClassTemplate.cs" />
@@ -245,6 +249,10 @@
     <None Include="Templates\LazyLoadedPropertyCollectionTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>LazyLoadedPropertyCollectionTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="Templates\BasicPropertyTypeDefinitionTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BasicPropertyTypeDefinitionTemplate.cs</LastGenOutput>
     </None>
     <None Include="Templates\LazyLoadedPropertyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

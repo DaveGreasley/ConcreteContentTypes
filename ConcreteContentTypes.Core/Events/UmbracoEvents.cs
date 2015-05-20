@@ -17,16 +17,6 @@ namespace ConcreteContentTypes.Core.Events
 			base.ApplicationStarted(umbracoApplication, applicationContext);
 
 			ContentTypeService.SavedContentType += ContentTypeService_SavedContentType;
-			DataTypeService.Saved += DataTypeService_Saved;
-		}
-
-		void DataTypeService_Saved(IDataTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IDataTypeDefinition> e)
-		{
-			if (Settings.Current.GenerateOnDataTypeSave)
-			{
-				Compiler.Compiler c = new Compiler.Compiler();
-				c.BuildDataTypes();
-			}
 		}
 
 		void ContentTypeService_SavedContentType(IContentTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IContentType> e)
@@ -34,7 +24,6 @@ namespace ConcreteContentTypes.Core.Events
 			if (Settings.Current.GenerateOnContentTypeSave)
 			{
 				Compiler.Compiler c = new Compiler.Compiler();
-				c.BuildDataTypes();
 				c.BuildContentTypes();
 			}
 		}

@@ -10,11 +10,13 @@ namespace ConcreteContentTypes.Core.Templates
 	{
 		protected string _propertyAlias;
 		protected string _typeName;
+		protected string _nicePropertyAlias;
 
-		public LazyLoadedPropertyCollectionTemplate(string propertyAlias, string typeName)
+		public LazyLoadedPropertyCollectionTemplate(string propertyAlias, string nicePropertyAlias, string typeName)
 		{
 			_propertyAlias = propertyAlias;
 			_typeName = typeName;
+			_nicePropertyAlias = nicePropertyAlias;
 		}
 	}
 }

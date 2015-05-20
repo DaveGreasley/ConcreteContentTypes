@@ -18,12 +18,12 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 
 		public override string GetPropertyDefinition()
 		{
-			return string.Format("[JsonIgnore]{2}\t\tpublic {0} {1} {{ get; set; }}", GetTypeName(), this.PropertyAlias, Environment.NewLine);
+			return string.Format("[JsonIgnore]{2}\t\tpublic {0} {1} {{ get; set; }}", GetTypeName(), this.Property.NicePropertyName, Environment.NewLine);
 		}
 
 		public override string GetValueString()
 		{
-			return string.Format("this.{0} = new {1}(\"{0}\", this.Content);", this.PropertyAlias, GetTypeName());
+			return string.Format("this.{0} = new {1}(\"{2}\", this.Content);", this.Property.NicePropertyName, GetTypeName(), this.Property.PropertyTypeAlias);
 		}
 
 		protected override Dictionary<string, string> GetSupportedTypes()

@@ -5,19 +5,25 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 using System.Web;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
 
-namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
+namespace ConcreteContentTypes.Sandbox.Models
 {
 	public partial class MoreEverything : Everything
 	{
 				
-		public bool umbracoNaviHide { get; set; } 		
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		
+		public bool HideInBottomNavigation { get; set; } 		
 		
 		private List<IPublishedContent> _multipleNodes = null;
-		public List<IPublishedContent> multipleNodes
+		public List<IPublishedContent> MultipleNodes
 		{
 			get 
 			{
@@ -43,7 +49,7 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 		} 		
 		
 		private List<BlogAuthor> _blogAuthors = null;
-		public List<BlogAuthor> blogAuthors
+		public List<BlogAuthor> BlogAuthors
 		{
 			get 
 			{
@@ -66,7 +72,13 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 
 				return _blogAuthors;
 			}
-		} 
+		} 		
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Required]
+		public string NamesCheckBox { get; set; } 
 		
 		public MoreEverything()
 			: base()
@@ -87,8 +99,20 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 		{
 			base.Init();
 						
-			this.umbracoNaviHide = Content.GetPropertyValue<bool>("umbracoNaviHide");
+			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
+						
+			this.NamesCheckBox = Content.GetPropertyValue<string>("namesCheckBox");
 			
+		}
+
+		public override IContent SetProperties(IContent dbContent)
+		{
+						
+			dbContent.SetValue("umbracoNaviHide", this.HideInBottomNavigation);
+						
+			dbContent.SetValue("namesCheckBox", this.NamesCheckBox);
+			
+			return base.SetProperties(dbContent);
 		}
 	}
 }

@@ -5,16 +5,22 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 using System.Web;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
 
-namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
+namespace ConcreteContentTypes.Sandbox.Models
 {
 	public partial class BlogPostRepository : UmbracoContent
 	{
 				
-		public bool umbracoNaviHide { get; set; } 
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		
+		public bool HideInBottomNavigation { get; set; } 
 		private IEnumerable<BlogPost> _children = null;
 		public new IEnumerable<BlogPost> Children
 		{
@@ -48,8 +54,16 @@ namespace ConcreteContentTypes.Sandbox.Models.ContentTypes
 		{
 			base.Init();
 						
-			this.umbracoNaviHide = Content.GetPropertyValue<bool>("umbracoNaviHide");
+			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
 			
+		}
+
+		public override IContent SetProperties(IContent dbContent)
+		{
+						
+			dbContent.SetValue("umbracoNaviHide", this.HideInBottomNavigation);
+			
+			return base.SetProperties(dbContent);
 		}
 	}
 }

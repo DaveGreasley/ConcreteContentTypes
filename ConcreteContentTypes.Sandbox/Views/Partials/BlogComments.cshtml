@@ -1,0 +1,8 @@
+﻿@model List<BlogComment>
+
+@foreach (var comment in Model)
+{
+	<span>Name: @comment.FullName</span><br />
+	<span>Comment: @comment.Comment</span><br />
+	<hr />
+}

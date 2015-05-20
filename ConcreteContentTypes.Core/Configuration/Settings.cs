@@ -42,22 +42,6 @@ namespace ConcreteContentTypes.Core.Configuration
 		}
 
 		/// <summary>
-		/// Determines if we should regenerate our C# when a DataType is created / saved
-		/// </summary>
-		[ConfigurationProperty("GenerateOnDataTypeSave")]
-		public bool GenerateOnDataTypeSave
-		{
-			get
-			{
-				return (bool)this["GenerateOnDataTypeSave"];
-			}
-			set
-			{
-				this["GenerateOnDataTypeSave"] = value;
-			}
-		}
-
-		/// <summary>
 		/// Determines if we should regenerate our C# when a Doc type is created / saved
 		/// </summary>
 		[ConfigurationProperty("GenerateOnContentTypeSave")]
@@ -74,7 +58,7 @@ namespace ConcreteContentTypes.Core.Configuration
 		}
 
 		/// <summary>
-		/// The full path of the folder to write .cs files to
+		/// The path of the folder to write .cs files to relative to the website root
 		/// </summary>
 		[ConfigurationProperty("CSharpOutputFolder")]
 		public string CSharpOutputFolder
@@ -86,22 +70,6 @@ namespace ConcreteContentTypes.Core.Configuration
 			set
 			{
 				this["CSharpOutputFolder"] = value;
-			}
-		}
-
-		/// <summary>
-		/// The name of the base class that all our classes will inherit from. 
-		/// </summary>
-		[ConfigurationProperty("BaseClassName")]
-		public string BaseClassName
-		{
-			get
-			{
-				return this["BaseClassName"].ToString();
-			}
-			set
-			{
-				this["BaseClassName"] = value;
 			}
 		}
 
@@ -170,7 +138,7 @@ namespace ConcreteContentTypes.Core.Configuration
 		}
 
 		/// <summary>
-		/// The folder to create the compiled assembly in
+		/// The folder to create the compiled assembly in relative to the website root
 		/// </summary>
 		[ConfigurationProperty("AssemblyOutputFolder")]
 		public string AssemblyOutputFolder

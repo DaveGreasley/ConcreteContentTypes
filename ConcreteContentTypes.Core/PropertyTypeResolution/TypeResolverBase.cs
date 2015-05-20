@@ -11,33 +11,37 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 {
 	public abstract class TypeResolverBase
 	{
-		public string PropertyEditorAlias { get; set; }
-		public string PropertyAlias { get; set; }
 		public Dictionary<string, string> SupportedTypes { get; set; }
-		public PropertyDefinition PropertyType { get; set; }
+		public PropertyDefinition Property { get; set; }
 
 		public TypeResolverBase(PropertyDefinition propertyType)
 		{
-			this.PropertyType = propertyType;
-			this.PropertyEditorAlias = propertyType.PropertyEditorAlias;
-			this.PropertyAlias = propertyType.PropertyTypeAlias;
+			this.Property = propertyType;
 			this.SupportedTypes = GetSupportedTypes();
 
-			if (!this.SupportedTypes.ContainsKey(PropertyEditorAlias))
-				throw new UnknownPropertyTypeException(PropertyEditorAlias);
+			if (!this.SupportedTypes.ContainsKey(Property.PropertyEditorAlias))
+				throw new UnknownPropertyTypeException(Property.PropertyEditorAlias);
 		}
 
 		public abstract string GetPropertyDefinition();
 
 		public virtual string GetTypeName()
 		{
-			if (this.SupportedTypes.ContainsKey(PropertyEditorAlias))
-				return this.SupportedTypes[PropertyEditorAlias];
+			if (this.SupportedTypes.ContainsKey(Property.PropertyEditorAlias))
+				return this.SupportedTypes[Property.PropertyEditorAlias];
 
-			throw new UnknownPropertyTypeException(PropertyEditorAlias);
+			throw new UnknownPropertyTypeException(Property.PropertyEditorAlias);
 		}
 
-		public abstract string GetValueString();
+		public virtual string GetValueString()
+		{
+			return "";
+		}
+
+		public virtual string GetPersistString()
+		{
+			return "";
+		}
 
 		protected abstract Dictionary<string, string> GetSupportedTypes();
 	}
