@@ -3,8 +3,8 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="ConcreteContentTypes.Core.Compiler" #>
-<#@ import namespace="ConcreteContentTypes.Core.PropertyTypeResolution" #>
+<#@ import namespace="ConcreteContentTypes.Core.Models" #>
+<#@ import namespace="ConcreteContentTypes.Core.PropertyTypeCSharpWriters" #>
 <#@ output extension=".cs" #>
 
 using System;

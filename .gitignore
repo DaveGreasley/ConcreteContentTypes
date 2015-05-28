@@ -7,3 +7,6 @@ obj
 /ConcreteDocTypes.Sandbox/App_Data/umbraco.config
 /ConcreteDocTypes.Sandbox/App_Data/cache
 /ConcreteDocTypes.Sandbox/App_Data/TEMP/PluginCache
+/ConcreteContentTypes.Sandbox/App_Data/TEMP
+/ConcreteContentTypes.Sandbox/App_Data/Logs
+/ConcreteContentTypes.Sandbox/App_Data/cache

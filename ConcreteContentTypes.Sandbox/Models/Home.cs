@@ -26,9 +26,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
-		public string SiteTitle { get; set; } 		
-		[JsonIgnore]
-		public GridContent content { get; set; } 
+		public string SiteTitle { get; set; } 
 		
 		public Home()
 			: base()
@@ -52,8 +50,6 @@ namespace ConcreteContentTypes.Sandbox.Models
 			this.SiteDescription = Content.GetPropertyValue<string>("siteDescription");
 						
 			this.SiteTitle = Content.GetPropertyValue<string>("siteTitle");
-						
-			this.content = new GridContent("content", this.Content);
 			
 		}
 

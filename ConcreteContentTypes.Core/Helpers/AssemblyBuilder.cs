@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.Compiler
+namespace ConcreteContentTypes.Core.Helpers
 {
 	/// <summary>
 	/// This is a silly idea.

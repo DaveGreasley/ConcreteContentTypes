@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.Compiler
+namespace ConcreteContentTypes.Core.Models
 {
 	public class PropertyDefinition
 	{

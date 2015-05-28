@@ -29,21 +29,14 @@ namespace ConcreteContentTypes.Sandbox.Models
 			{
 				if (_multipleNodes == null)
 				{
-					_multipleNodes = new List<IPublishedContent>();
+					int? contentId = Content.GetPropertyValue<int?>("multipleNodes");
 
-					string val = Content.GetPropertyValue<string>("multipleNodes");
-
-					if (!string.IsNullOrEmpty(val))
+					if (contentId.HasValue)
 					{
-						string[] contentIds = val.Split(',');
-
-						foreach (string id in contentIds)
-						{ 
-							_multipleNodes.Add(UmbracoContext.Current.ContentCache.GetById(int.Parse(id)));
-					    }
+					
+						_multipleNodes = new List<IPublishedContent>(contentId.Value); 
 					}	
 				}
-
 				return _multipleNodes;
 			}
 		} 		
@@ -55,21 +48,14 @@ namespace ConcreteContentTypes.Sandbox.Models
 			{
 				if (_blogAuthors == null)
 				{
-					_blogAuthors = new List<BlogAuthor>();
+					int? contentId = Content.GetPropertyValue<int?>("blogAuthors");
 
-					string val = Content.GetPropertyValue<string>("blogAuthors");
-
-					if (!string.IsNullOrEmpty(val))
+					if (contentId.HasValue)
 					{
-						string[] contentIds = val.Split(',');
-
-						foreach (string id in contentIds)
-						{ 
-							_blogAuthors.Add(new BlogAuthor(int.Parse(id))); 
-					    }
+					
+						_blogAuthors = new List<BlogAuthor>(contentId.Value); 
 					}	
 				}
-
 				return _blogAuthors;
 			}
 		} 		

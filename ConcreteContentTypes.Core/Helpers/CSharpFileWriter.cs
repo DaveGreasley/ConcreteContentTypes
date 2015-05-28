@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Templates;
+﻿using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.Compiler
+namespace ConcreteContentTypes.Core.Helpers
 {
-	public class CSharpWriter
+	public class CSharpFileWriter
 	{
 		ClassDefinition _classDefinition;
 
-		public CSharpWriter(ClassDefinition classDefinition)
+		public CSharpFileWriter(ClassDefinition classDefinition)
 		{
 			_classDefinition = classDefinition;
 		}

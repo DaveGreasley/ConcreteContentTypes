@@ -7,34 +7,34 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Configuration
 {
-	[ConfigurationCollection(typeof(TypeResolverConfigurationCollection), AddItemName="TypeResolver")]
-	public class TypeResolverConfigurationCollection : ConfigurationElementCollection, IEnumerable<TypeResolverConfiguration>
+	[ConfigurationCollection(typeof(CSharpWriterConfigurationCollection), AddItemName="CSWriter")]
+	public class CSharpWriterConfigurationCollection : ConfigurationElementCollection, IEnumerable<CSharpWriterConfiguration>
 	{
 		protected override ConfigurationElement CreateNewElement()
 		{
-			return new TypeResolverConfiguration();
+			return new CSharpWriterConfiguration();
 		}
 
 		protected override object GetElementKey(ConfigurationElement element)
 		{
-			var l_configElement = element as TypeResolverConfiguration;
+			var l_configElement = element as CSharpWriterConfiguration;
 			if (l_configElement != null)
 				return l_configElement.Type;
 			else
 				return null;
 		}
 
-		public TypeResolverConfiguration this[int index]
+		public CSharpWriterConfiguration this[int index]
 		{
 			get
 			{
-				return BaseGet(index) as TypeResolverConfiguration;
+				return BaseGet(index) as CSharpWriterConfiguration;
 			}
 		}
 
 		#region IEnumerable<ConfigElement> Members
 
-		IEnumerator<TypeResolverConfiguration> IEnumerable<TypeResolverConfiguration>.GetEnumerator()
+		IEnumerator<CSharpWriterConfiguration> IEnumerable<CSharpWriterConfiguration>.GetEnumerator()
 		{
 			return (from i in Enumerable.Range(0, this.Count)
 					select this[i])

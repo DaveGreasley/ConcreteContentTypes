@@ -18,7 +18,20 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 			set
 			{
-				base["alis"] = value;
+				base["alias"] = value;
+			}
+		}
+
+		[ConfigurationProperty("clrType", IsKey = true, IsRequired = false)]
+		public string ClrType
+		{
+			get
+			{
+				return base["clrType"] as string;
+			}
+			set
+			{
+				base["clrType"] = value;
 			}
 		}
 	}

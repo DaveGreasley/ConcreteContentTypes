@@ -1,5 +1,4 @@
-﻿using ConcreteContentTypes.Core.Compiler;
-using ConcreteContentTypes.Core.PropertyTypeResolution;
+﻿using ConcreteContentTypes.Core.PropertyTypeCSharpWriters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace ConcreteContentTypes.Core.Compiler
+namespace ConcreteContentTypes.Core.Models
 {
 	public class ClassDefinition
 	{
@@ -19,9 +18,9 @@ namespace ConcreteContentTypes.Core.Compiler
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent";  } }
 
-		public List<TypeResolverBase> Properties { get; set; }
+		public List<PropetyTypeCSharpWriterBase> Properties { get; set; }
 
-		public ClassDefinition(List<TypeResolverBase> properties, string className, string nameSpace, string baseClass = "")
+		public ClassDefinition(List<PropetyTypeCSharpWriterBase> properties, string className, string nameSpace, string baseClass = "")
 		{
 			this.Namespace = nameSpace;
 			this.Name = className;
@@ -34,7 +33,7 @@ namespace ConcreteContentTypes.Core.Compiler
 			this.Namespace = nameSpace;
 			this.Name = contentType.Alias;
 			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
-			Properties = new List<TypeResolverBase>();
+			Properties = new List<PropetyTypeCSharpWriterBase>();
 
 			CreateDefinition(contentType, parent);
 		}
@@ -43,7 +42,7 @@ namespace ConcreteContentTypes.Core.Compiler
 		{
 			this.Namespace = nameSpace;
 			this.Name = dataType.Name;
-			this.Properties = new List<TypeResolverBase>();
+			this.Properties = new List<PropetyTypeCSharpWriterBase>();
 
 			CreateDefinition(dataType);
 		}
@@ -63,7 +62,7 @@ namespace ConcreteContentTypes.Core.Compiler
 			{
 				try
 				{
-					var propertyTypeResolver = TypeResolverFactory.GetResolver(propertyType);
+					var propertyTypeResolver = PropertyTypeCSharpWriterFactory.GetResolver(propertyType);
 
 					if (propertyTypeResolver != null)
 						this.Properties.Add(propertyTypeResolver);

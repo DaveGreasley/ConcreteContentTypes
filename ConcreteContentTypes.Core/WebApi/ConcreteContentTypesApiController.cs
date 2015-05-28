@@ -12,7 +12,7 @@ namespace ConcreteContentTypes.Core.WebApi
 		[HttpGet]
 		public void Compile()
 		{
-			Compiler.Compiler c = new Compiler.Compiler();
+			Concrete c = new Concrete();
 			c.BuildContentTypes();
 		}
 	}

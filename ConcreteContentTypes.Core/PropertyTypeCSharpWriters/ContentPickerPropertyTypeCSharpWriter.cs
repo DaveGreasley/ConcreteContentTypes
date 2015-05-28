@@ -1,5 +1,6 @@
-﻿using ConcreteContentTypes.Core.Compiler;
+﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Exceptions;
+using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyTypeResolution
+namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public class ContentPickerTypeResolver : TypeResolverBase
+	public class ContentPickerPropertyTypeCSharpWriter : PropetyTypeCSharpWriterBase
 	{
-		public ContentPickerTypeResolver(PropertyDefinition propertyType)
-			: base(propertyType)
+		public ContentPickerPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+			: base(propertyType, config)
 		{
 		}
 
@@ -23,13 +24,9 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 			return template.TransformText();
 		}
 
-		protected override Dictionary<string, string> GetSupportedTypes()
+		public override string GetTypeName()
 		{
-			Dictionary<string, string> supportedTypes = new Dictionary<string, string>();
-
-			supportedTypes.Add("Umbraco.ContentPickerAlias", "IPublishedContent");
-
-			return supportedTypes;
+			return "IPublishedContent";
 		}
 	}
 }

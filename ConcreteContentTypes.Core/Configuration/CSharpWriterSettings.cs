@@ -7,30 +7,30 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Configuration
 {
-	public class TypeResolverSettings : ConfigurationSection
+	public class CSharpWriterSettings : ConfigurationSection
 	{
 		#region Singleton
 
-		public static TypeResolverSettings Current { get; set; }
+		public static CSharpWriterSettings Current { get; set; }
 
-		static TypeResolverSettings()
+		static CSharpWriterSettings()
 		{
 			var configPath = string.Format(@"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
 			ExeConfigurationFileMap map = new ExeConfigurationFileMap();
 			map.ExeConfigFilename = configPath;
 
 			var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-			Current = (TypeResolverSettings)config.GetSection("ConcreteContentTypeResolvers");
+			Current = (CSharpWriterSettings)config.GetSection("ConcreteContentTypeCSharpWriterSettings");
 		}
 
 		#endregion
 
-		[ConfigurationProperty("TypeResolvers", IsRequired=true)]
-		public TypeResolverConfigurationCollection TypeResolvers
+		[ConfigurationProperty("CSharpWriters", IsRequired=true)]
+		public CSharpWriterConfigurationCollection TypeResolvers
 		{
 			get
 			{
-				return (TypeResolverConfigurationCollection)this["TypeResolvers"];
+				return (CSharpWriterConfigurationCollection)this["CSharpWriters"];
 			}
 		}
 	}

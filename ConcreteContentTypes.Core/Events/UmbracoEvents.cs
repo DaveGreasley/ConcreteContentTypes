@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core;
 using Umbraco.Core.Services;
-using ConcreteContentTypes.Core.Compiler;
 using ConcreteContentTypes.Core.Configuration;
 
 namespace ConcreteContentTypes.Core.Events
@@ -23,7 +22,7 @@ namespace ConcreteContentTypes.Core.Events
 		{
 			if (Settings.Current.GenerateOnContentTypeSave)
 			{
-				Compiler.Compiler c = new Compiler.Compiler();
+				Concrete c = new Concrete();
 				c.BuildContentTypes();
 			}
 		}

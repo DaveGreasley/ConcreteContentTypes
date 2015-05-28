@@ -9,13 +9,15 @@ using ConcreteContentTypes.Core.Configuration;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 using System.Web;
-using ConcreteContentTypes.Core.PropertyTypeResolution;
+using ConcreteContentTypes.Core.PropertyTypeCSharpWriters;
 using ConcreteContentTypes.Core.Templates;
 using System.IO;
+using ConcreteContentTypes.Core.Helpers;
+using ConcreteContentTypes.Core.Models;
 
-namespace ConcreteContentTypes.Core.Compiler
+namespace ConcreteContentTypes.Core
 {
-	public class Compiler
+	public class Concrete
 	{
 		#region Private Variables
 
@@ -30,7 +32,7 @@ namespace ConcreteContentTypes.Core.Compiler
 
 		#region Constructor
 
-		public Compiler()
+		public Concrete()
 		{
 			_contentTypeService = UmbracoContext.Current.Application.Services.ContentTypeService;
 
@@ -88,7 +90,7 @@ namespace ConcreteContentTypes.Core.Compiler
 				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
 
 				ClassDefinition classDefinition = new ClassDefinition(contentType, parent, _contentTypeNameSpace, "UmbracoContent");
-				CSharpWriter writer = new CSharpWriter(classDefinition);
+				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
 				writer.WriteFile(_contentTypeCSharpOutputFolder);
 			}
 		}

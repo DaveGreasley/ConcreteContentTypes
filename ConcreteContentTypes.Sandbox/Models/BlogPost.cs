@@ -15,8 +15,6 @@ namespace ConcreteContentTypes.Sandbox.Models
 	public partial class BlogPost : UmbracoContent
 	{
 				
-		[JsonIgnore]
-		public GridContent content { get; set; } 		
 		
 		/// <summary>
 		/// 
@@ -95,8 +93,6 @@ namespace ConcreteContentTypes.Sandbox.Models
 		protected override void Init()
 		{
 			base.Init();
-						
-			this.content = new GridContent("content", this.Content);
 						
 			this.Introduction = Content.GetPropertyValue<string>("introduction");
 			

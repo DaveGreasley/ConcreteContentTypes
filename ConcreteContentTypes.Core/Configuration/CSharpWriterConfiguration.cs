@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Configuration
 {
-	public class TypeResolverConfiguration : ConfigurationElement
+	public class CSharpWriterConfiguration : ConfigurationElement
 	{
 		[ConfigurationProperty("type", IsKey = true, IsRequired = true)]
 		public string Type

@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Compiler;
+﻿using ConcreteContentTypes.Core.Configuration;
+using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Xml.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace ConcreteContentTypes.Core.PropertyTypeResolution
+namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public class MultiNodeTreePickerTypeResolver : TypeResolverBase
+	public class MNTPPropertyTypeCSharpWriter : PropetyTypeCSharpWriterBase
 	{
 		enum PickerType : int
 		{
@@ -24,8 +25,8 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 		PickerType _pickerType;
 
 
-		public MultiNodeTreePickerTypeResolver(PropertyDefinition propertyType)
-			: base(propertyType)
+		public MNTPPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+			: base(propertyType, config)
 		{
 		}
 
@@ -45,16 +46,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 			return "";
 		}
 
-		protected override Dictionary<string, string> GetSupportedTypes()
-		{
-			Dictionary<string, string> supportedTypes = new Dictionary<string, string>();
-
-			supportedTypes.Add("Umbraco.MultiNodeTreePicker", DetermineTypeName());
-
-			return supportedTypes;
-		}
-
-		protected string DetermineTypeName()
+		public override string GetTypeName()
 		{
 			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this.Property.DataTypeDefinitionId);
 
@@ -84,5 +76,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeResolution
 			_pickerType = PickerType.MultipleIPublishedContent;
 			return "List<IPublishedContent>";
 		}
+
+		
 	}
 }
