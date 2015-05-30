@@ -13,10 +13,10 @@ namespace ConcreteContentTypes.Sandbox.Models
 
 	public class BlogCommentMetaData
 	{
-		[Required]
+		[Phone]
 		public string FullName { get; set; }
 
-		[Required]
+		[EmailAddress]
 		public string Comment { get; set; } 
 	}
 }

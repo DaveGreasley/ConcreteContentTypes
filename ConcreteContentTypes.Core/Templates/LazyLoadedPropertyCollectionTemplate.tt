@@ -28,7 +28,7 @@
 
 							_<#=_propertyAlias#>.Add(new <#=typeNameSingle#>(int.Parse(id))); 
 					   <# } #> }
-					}	
+					}
 				}
 
 				return _<#=_propertyAlias#>;

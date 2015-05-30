@@ -14,7 +14,9 @@ namespace ConcreteContentTypes.Sandbox.Models
 {
 	public partial class TextPage : UmbracoContent
 	{
-		
+				
+		[JsonIgnore]
+		public GridContent content { get; set; } 
 		
 		public TextPage()
 			: base()
@@ -34,6 +36,8 @@ namespace ConcreteContentTypes.Sandbox.Models
 		protected override void Init()
 		{
 			base.Init();
+						
+			this.content = new GridContent("content", this.Content);
 			
 		}
 

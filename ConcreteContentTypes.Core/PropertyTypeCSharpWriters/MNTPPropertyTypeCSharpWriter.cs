@@ -32,15 +32,17 @@ namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 
 		public override string GetPropertyDefinition()
 		{
+			string typeName = GetTypeName();
+
 			switch (_pickerType)
 			{
 				case PickerType.SingleKnownObject:
 				case PickerType.SingleIPublishedContent:
-					return new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName()).TransformText();
+					return new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, typeName).TransformText();
 
 				case PickerType.MultipleIPublishedContent:
 				case PickerType.MultipleKnownObject:
-					return new LazyLoadedPropertyCollectionTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName()).TransformText();
+					return new LazyLoadedPropertyCollectionTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, typeName).TransformText();
 			}
 
 			return "";

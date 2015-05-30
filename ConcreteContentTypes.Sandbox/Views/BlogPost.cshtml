@@ -1,7 +1,6 @@
 ﻿@inherits ConcreteContentTypes.Core.ViewTemplates.ConcreteViewPage<BlogPost>
 @{
 	Layout = "Master.cshtml";
-
 }
 
 <br />
@@ -18,7 +17,7 @@
 	</div>
 </div>
 
-@Html.Raw(Model.content)
+	@Html.Raw(Model.content)
 
 
 @Html.Partial("BlogSubmitComment", new BlogComment() { ParentId = Model.Id })

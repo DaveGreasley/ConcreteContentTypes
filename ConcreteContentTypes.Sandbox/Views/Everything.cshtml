@@ -1,4 +1,6 @@
-﻿@inherits ConcreteContentTypes.Core.ViewTemplates.ConcreteViewPage<Everything>
-@{
-    Layout = "EverythingMaster.cshtml";
-}
+﻿	@model Everything
+	@{
+		Layout = "";
+	}
+
+@Html.Partial("Everything", Model)

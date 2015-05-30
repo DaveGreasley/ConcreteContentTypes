@@ -20,7 +20,9 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
-		public bool HideInBottomNavigation { get; set; } 
+		public bool HideInBottomNavigation { get; set; } 		
+		[JsonIgnore]
+		public GridContent content { get; set; } 
 		
 		public LandingPage()
 			: base()
@@ -42,6 +44,8 @@ namespace ConcreteContentTypes.Sandbox.Models
 			base.Init();
 						
 			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
+						
+			this.content = new GridContent("content", this.Content);
 			
 		}
 

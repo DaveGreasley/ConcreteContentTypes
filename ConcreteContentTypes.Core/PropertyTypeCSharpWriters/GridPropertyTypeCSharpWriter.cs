@@ -9,9 +9,9 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public class UmbracoGridTypeResolver : PropetyTypeCSharpWriterBase
+	public class GridPropertyTypeCSharpWriter : PropetyTypeCSharpWriterBase
 	{
-		public UmbracoGridTypeResolver(PropertyDefinition propertType, CSharpWriterConfiguration config)
+		public GridPropertyTypeCSharpWriter(PropertyDefinition propertType, CSharpWriterConfiguration config)
 			: base(propertType, config)
 		{
 

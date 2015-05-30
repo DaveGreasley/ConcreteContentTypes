@@ -33,7 +33,7 @@ namespace ConcreteContentTypes.Core.Models
 			get
 			{
 				if (this.Content == null)
-					return null;
+					return new List<IPublishedContent>();
 
 				return this.Content.Children;
 			}

@@ -13,7 +13,7 @@ namespace ConcreteContentTypes.Sandbox.Controllers
 	{
 		public ActionResult Index(ConcreteRenderModel<Everything> model)
 		{
-			return PartialView("Everything", model.TypedContent);
+			return View("Everything", model.TypedContent);
 		}
 	}
 }
