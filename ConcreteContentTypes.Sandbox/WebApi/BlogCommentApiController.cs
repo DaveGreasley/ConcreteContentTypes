@@ -17,12 +17,7 @@ namespace ConcreteContentTypes.Sandbox.WebApi
 
 			var result = comment.SaveAndPublishWithStatus();
 
-			if (result.Success)
-			{
-				return true;
-			}
-
-			return false;
+			return result.Success;
 		}
 
 		[HttpGet]

@@ -89,19 +89,14 @@ namespace ConcreteContentTypes.Core.Models
 		/// Retrieves the IContent object from the database or creates a new one. In order to create a new object in the DB
 		/// ParentId must be set.
 		/// </summary>
-		public IContent GetIContent()
+		public IContent GetOrCreatingIContent()
 		{
 			if (this.Id != -1)
 			{
-				var content = ContentService.GetById(this.Id);
-
-				if (content != null)
-					return content;
-
-				throw new Exception("Content Id " + this.Id + " not found.");
+				return GetIContent();
 			}
 
-			return ContentService.CreateContent(this.Name, this.ParentId, this.GetType().Name);
+			return CreateIContent();
 		}
 
 		/// <summary>
@@ -122,7 +117,7 @@ namespace ConcreteContentTypes.Core.Models
 		/// </summary>
 		public void Save(int userId = 0, bool raiseEvents = true)
 		{
-			IContent dbContent = SetProperties(GetIContent());
+			IContent dbContent = SetProperties(GetOrCreatingIContent());
 
 			ContentService.Save(dbContent, userId, raiseEvents);
 		}
@@ -133,11 +128,40 @@ namespace ConcreteContentTypes.Core.Models
 		/// </summary>
 		public Attempt<Umbraco.Core.Publishing.PublishStatus> SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)
 		{
-			IContent dbContent = SetProperties(GetIContent());
+			IContent dbContent = SetProperties(GetOrCreatingIContent());
 
 			return ContentService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);
 		}
 
+		/// <summary>
+		/// Deletes the associated content object from the database. 
+		/// </summary>
+		/// <param name="userId"></param>
+		public void Delete(int userId = 0)
+		{
+			IContent dbContent = GetIContent();
+
+			ContentService.Delete(dbContent, userId);
+		}
+
 		#endregion
+
+		private IContent GetIContent()
+		{
+			var content = ContentService.GetById(this.Id);
+
+			if (content != null)
+				return content;
+
+			throw new InvalidOperationException("Content Id " + this.Id + " not found.");
+		}
+
+		private IContent CreateIContent()
+		{
+			if (string.IsNullOrEmpty(this.Name) || this.ParentId < 1)
+				throw new InvalidOperationException("Either Name or ParentId is not set. These must be set in order to create a content item.");
+
+			return ContentService.CreateContent(this.Name, this.ParentId, this.GetType().Name);
+		}
 	}
 }
