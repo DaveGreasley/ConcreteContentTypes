@@ -14,6 +14,7 @@ using ConcreteContentTypes.Core.Templates;
 using System.IO;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Events;
 
 namespace ConcreteContentTypes.Core
 {
@@ -26,8 +27,6 @@ namespace ConcreteContentTypes.Core
 		string _contentTypeNameSpace;
 		string _contentTypeCSharpOutputFolder;
 
-		string _assemblyOutputFolder;
-
 		#endregion
 
 		#region Constructor
@@ -38,8 +37,6 @@ namespace ConcreteContentTypes.Core
 
 			_contentTypeNameSpace = Settings.Current.Namespace;
 			_contentTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + Settings.Current.CSharpOutputFolder;
-
-			_assemblyOutputFolder = AppDomain.CurrentDomain.BaseDirectory + Settings.Current.AssemblyOutputFolder;
 		}
 
 		#endregion
@@ -67,18 +64,6 @@ namespace ConcreteContentTypes.Core
 			}
 		}
 
-		/// <summary>
-		/// Compiles the generated C# files into a DLL. Doesn't really work, not sure why I wrote this...
-		/// </summary>
-		public void BuildAssembly()
-		{
-			AssemblyBuilder assemblyBuilder = new AssemblyBuilder();
-			assemblyBuilder.CreateAssembly(
-				_contentTypeCSharpOutputFolder,
-				_assemblyOutputFolder,
-				Settings.Current.AssemblyName);
-		}
-
 		#endregion
 
 		#region Private Methods
@@ -90,6 +75,9 @@ namespace ConcreteContentTypes.Core
 				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
 
 				ClassDefinition classDefinition = new ClassDefinition(contentType, parent, _contentTypeNameSpace, "UmbracoContent");
+				
+				ConcreteEvents.RaiseGenerated(classDefinition);
+				
 				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
 				writer.WriteFile(_contentTypeCSharpOutputFolder);
 			}

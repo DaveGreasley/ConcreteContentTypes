@@ -185,6 +185,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Helpers\AssemblyBuilder.cs" />
     <Compile Include="Concrete.cs" />
     <Compile Include="Helpers\CSharpFileWriter.cs" />
