@@ -10,12 +10,12 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public abstract class PropetyTypeCSharpWriterBase
+	public abstract class PropertyTypeCSharpWriterBase
 	{
 		public SupportedTypesConfigurationCollection SupportedTypes { get; set; }
 		public PropertyDefinition Property { get; set; }
 
-		public PropetyTypeCSharpWriterBase(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+		public PropertyTypeCSharpWriterBase(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 		{
 			this.Property = propertyType;
 			this.SupportedTypes = config.SupportedTypes;

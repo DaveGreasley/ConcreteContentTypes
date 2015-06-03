@@ -12,7 +12,7 @@ using Umbraco.Web;
 
 namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public class MNTPPropertyTypeCSharpWriter : PropetyTypeCSharpWriterBase
+	public class MNTPPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
 	{
 		enum PickerType : int
 		{

@@ -247,7 +247,9 @@
     <Content Include="Views\Partials\Grid\Fanoe.cshtml" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
     <Content Include="Views\TextPage.cshtml" />
-    <Content Include="Config\ConcreteContentTypes.config" />
+    <Content Include="Config\ConcreteContentTypes.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\BlogAuthor.cshtml" />
     <Content Include="Views\Everything.cshtml" />
     <Content Include="Views\MoreEverything.cshtml" />
@@ -270,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\EverythingController.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BlogAuthor.cs" />
     <Compile Include="Models\BlogAuthorRepository.cs" />
     <Compile Include="Models\BlogComment.cs" />

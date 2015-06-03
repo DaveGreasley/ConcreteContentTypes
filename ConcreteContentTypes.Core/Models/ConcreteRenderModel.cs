@@ -10,19 +10,19 @@ namespace ConcreteContentTypes.Core.Models
 {
 	public class ConcreteRenderModel<T> : RenderModel where T : UmbracoContent, new()
 	{
-		public T TypedContent { get; set; }
+		public new T Model { get; set; }
 
 		public ConcreteRenderModel()
 			: base(UmbracoContext.Current.PublishedContentRequest.PublishedContent)
 		{
-			this.TypedContent = new T();
-			this.TypedContent.Init(this.Content);
+			this.Model = new T();
+			this.Model.Init(this.Content);
 		}
 
 		public ConcreteRenderModel(T content)
 			: base (content.Content)
 		{
-			this.TypedContent = content;
+			this.Model = content;
 		}
 	}
 }

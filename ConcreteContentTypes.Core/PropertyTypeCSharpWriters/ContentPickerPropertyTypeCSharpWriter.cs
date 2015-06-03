@@ -11,7 +11,7 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public class ContentPickerPropertyTypeCSharpWriter : PropetyTypeCSharpWriterBase
+	public class ContentPickerPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
 	{
 		public ContentPickerPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)

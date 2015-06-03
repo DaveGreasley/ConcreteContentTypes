@@ -12,40 +12,39 @@ using Newtonsoft.Json;
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class BlogAuthor : UmbracoContent
+	public partial class Address : UmbracoContent
 	{
 				
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		
-		public string JobTitle { get; set; } 		
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		
-		public string ShortBio { get; set; } 		
+		[Required]
+		public string AddressLine1 { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
+		[Required]
+		public string City { get; set; } 		
 		
-		public IHtmlString BioFull { get; set; } 		
-		 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Required]
+		public string PostCode { get; set; } 
 		
-		public BlogAuthor()
+		public Address()
 			: base()
 		{
 		}
 
-		public BlogAuthor(int contentId)
+		public Address(int contentId)
 			: base(contentId)
 		{
 		}
 
-		public BlogAuthor(IPublishedContent content)
+		public Address(IPublishedContent content)
 			: base(content)
 		{
 		}
@@ -54,22 +53,22 @@ namespace ConcreteContentTypes.Sandbox.Models
 		{
 			base.Init();
 						
-			this.JobTitle = Content.GetPropertyValue<string>("jobTitle");
+			this.AddressLine1 = Content.GetPropertyValue<string>("addressLine1");
 						
-			this.ShortBio = Content.GetPropertyValue<string>("shortBio");
+			this.City = Content.GetPropertyValue<string>("city");
 						
-			this.BioFull = Content.GetPropertyValue<IHtmlString>("bioFull");
+			this.PostCode = Content.GetPropertyValue<string>("postCode");
 			
 		}
 
 		public override IContent SetProperties(IContent dbContent)
 		{
 						
-			dbContent.SetValue("jobTitle", this.JobTitle);
+			dbContent.SetValue("addressLine1", this.AddressLine1);
 						
-			dbContent.SetValue("shortBio", this.ShortBio);
+			dbContent.SetValue("city", this.City);
 						
-			dbContent.SetValue("bioFull", this.BioFull);
+			dbContent.SetValue("postCode", this.PostCode);
 			
 			return base.SetProperties(dbContent);
 		}

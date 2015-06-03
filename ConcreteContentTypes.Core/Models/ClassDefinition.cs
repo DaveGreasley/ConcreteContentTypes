@@ -18,9 +18,9 @@ namespace ConcreteContentTypes.Core.Models
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent";  } }
 
-		public List<PropetyTypeCSharpWriterBase> Properties { get; set; }
+		public List<PropertyTypeCSharpWriterBase> Properties { get; set; }
 
-		public ClassDefinition(List<PropetyTypeCSharpWriterBase> properties, string className, string nameSpace, string baseClass = "")
+		public ClassDefinition(List<PropertyTypeCSharpWriterBase> properties, string className, string nameSpace, string baseClass = "")
 		{
 			this.Namespace = nameSpace;
 			this.Name = className;
@@ -33,7 +33,7 @@ namespace ConcreteContentTypes.Core.Models
 			this.Namespace = nameSpace;
 			this.Name = contentType.Alias;
 			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
-			Properties = new List<PropetyTypeCSharpWriterBase>();
+			Properties = new List<PropertyTypeCSharpWriterBase>();
 
 			CreateDefinition(contentType, parent);
 		}
@@ -42,7 +42,7 @@ namespace ConcreteContentTypes.Core.Models
 		{
 			this.Namespace = nameSpace;
 			this.Name = dataType.Name;
-			this.Properties = new List<PropetyTypeCSharpWriterBase>();
+			this.Properties = new List<PropertyTypeCSharpWriterBase>();
 
 			CreateDefinition(dataType);
 		}

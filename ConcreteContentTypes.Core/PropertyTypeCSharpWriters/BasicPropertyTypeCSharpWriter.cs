@@ -11,7 +11,7 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 {
-	public class BasicPropertyTypeCSharpWriter : PropetyTypeCSharpWriterBase
+	public class BasicPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
 	{
 		public BasicPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)

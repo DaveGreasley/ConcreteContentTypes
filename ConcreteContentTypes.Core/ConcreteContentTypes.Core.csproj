@@ -189,6 +189,7 @@
     <Compile Include="Helpers\AssemblyBuilder.cs" />
     <Compile Include="Concrete.cs" />
     <Compile Include="Helpers\CSharpFileWriter.cs" />
+    <Compile Include="Models\AttributeDefinition.cs" />
     <Compile Include="Models\PropertyDefinition.cs" />
     <Compile Include="Configuration\CSharpWriterConfiguration.cs" />
     <Compile Include="Configuration\CSharpWriterConfigurationCollection.cs" />
@@ -201,7 +202,8 @@
     <Compile Include="Models\UmbracoContent.cs" />
     <Compile Include="PropertyTypeCSharpWriters\ContentPickerPropertyTypeCSharpWriter.cs" />
     <Compile Include="PropertyTypeCSharpWriters\MNTPPropertyTypeCSharpWriter.cs" />
-    <Compile Include="PropertyTypeCSharpWriters\PropetyTypeCSharpWriterBase.cs" />
+    <Compile Include="PropertyTypeCSharpWriters\NestedContentCSharpWriter.cs" />
+    <Compile Include="PropertyTypeCSharpWriters\PropertyTypeCSharpWriterBase.cs" />
     <Compile Include="PropertyTypeCSharpWriters\PropertyTypeCSharpWriterFactory.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Events\UmbracoEvents.cs" />

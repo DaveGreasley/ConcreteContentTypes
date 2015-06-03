@@ -19,7 +19,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 		{
 		}
 		
-		public static PropetyTypeCSharpWriterBase GetResolver(PropertyType propertyType)
+		public static PropertyTypeCSharpWriterBase GetResolver(PropertyType propertyType)
 		{
 			try
 			{
@@ -41,7 +41,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 					Thread.CurrentThread.CurrentCulture, 
 					null);
 
-				return handle.Unwrap() as PropetyTypeCSharpWriterBase;
+				return handle.Unwrap() as PropertyTypeCSharpWriterBase;
 			}
 			catch (Exception ex)
 			{

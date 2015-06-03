@@ -76,7 +76,7 @@ namespace ConcreteContentTypes.Core
 
 				ClassDefinition classDefinition = new ClassDefinition(contentType, parent, _contentTypeNameSpace, "UmbracoContent");
 				
-				ConcreteEvents.RaiseGenerated(classDefinition);
+				ConcreteEvents.RaiseGenerating(classDefinition);
 				
 				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
 				writer.WriteFile(_contentTypeCSharpOutputFolder);
