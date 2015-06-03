@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
+namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
-	public class BasicPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
+	public class BasicUmbracoPropertyCSharpWriter : PropertyCSharpWriterBase
 	{
-		public BasicPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+		public BasicUmbracoPropertyCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)
 		{
 		}

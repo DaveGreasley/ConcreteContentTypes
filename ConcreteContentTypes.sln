@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Sandbo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Core", "ConcreteContentTypes.Core\ConcreteContentTypes.Core.csproj", "{1B3D21DD-FB60-4A6B-A94A-5608C5154FA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.LinqToExamine", "ConcreteContentTypes.LinqToExamine\ConcreteContentTypes.LinqToExamine.csproj", "{11CE168C-3A47-4383-B5F4-33FD91348164}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B3D21DD-FB60-4A6B-A94A-5608C5154FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B3D21DD-FB60-4A6B-A94A-5608C5154FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B3D21DD-FB60-4A6B-A94A-5608C5154FA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CE168C-3A47-4383-B5F4-33FD91348164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CE168C-3A47-4383-B5F4-33FD91348164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CE168C-3A47-4383-B5F4-33FD91348164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CE168C-3A47-4383-B5F4-33FD91348164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

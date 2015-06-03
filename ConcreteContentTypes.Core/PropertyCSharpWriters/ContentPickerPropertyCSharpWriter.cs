@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
+namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
-	public class ContentPickerPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
+	public class ContentPickerPropertyCSharpWriter : PropertyCSharpWriterBase
 	{
-		public ContentPickerPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+		public ContentPickerPropertyCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)
 		{
 		}

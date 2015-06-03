@@ -9,7 +9,7 @@ using ConcreteContentTypes.Core.Configuration;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 using System.Web;
-using ConcreteContentTypes.Core.PropertyTypeCSharpWriters;
+using ConcreteContentTypes.Core.PropertyCSharpWriters;
 using ConcreteContentTypes.Core.Templates;
 using System.IO;
 using ConcreteContentTypes.Core.Helpers;
@@ -35,8 +35,8 @@ namespace ConcreteContentTypes.Core
 		{
 			_contentTypeService = UmbracoContext.Current.Application.Services.ContentTypeService;
 
-			_contentTypeNameSpace = Settings.Current.Namespace;
-			_contentTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + Settings.Current.CSharpOutputFolder;
+			_contentTypeNameSpace = ConcreteSettings.Current.Namespace;
+			_contentTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder;
 		}
 
 		#endregion
@@ -58,7 +58,7 @@ namespace ConcreteContentTypes.Core
 		/// </summary>
 		public void BuildContentTypes(IEnumerable<IContentType> contentTypes)
 		{
-			if (Settings.Current.Enabled)
+			if (ConcreteSettings.Current.Enabled)
 			{
 				CreateCSharp(contentTypes);
 			}

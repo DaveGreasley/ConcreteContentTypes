@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
+namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
-	public class GridPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
+	public class GridPropertyCSharpWriter : PropertyCSharpWriterBase
 	{
-		public GridPropertyTypeCSharpWriter(PropertyDefinition propertType, CSharpWriterConfiguration config)
+		public GridPropertyCSharpWriter(PropertyDefinition propertType, CSharpWriterConfiguration config)
 			: base(propertType, config)
 		{
 

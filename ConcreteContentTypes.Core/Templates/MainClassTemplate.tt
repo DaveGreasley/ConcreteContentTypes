@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="ConcreteContentTypes.Core.Models" #>
-<#@ import namespace="ConcreteContentTypes.Core.PropertyTypeCSharpWriters" #>
+<#@ import namespace="ConcreteContentTypes.Core.PropertyCSharpWriters" #>
 <#@ output extension=".cs" #>
 
 using System;
@@ -22,7 +22,7 @@ namespace <#= _classDefinition.Namespace #>
 {
 	public partial class <#= _classDefinition.Name #> : <#= _classDefinition.BaseClass #>
 	{
-		<# foreach(TypeResolverBase p in _classDefinition.Properties) { #>
+		<# foreach(PropertyCSharpWriterBase p in _propertyWriters) { #>
 		
 		<#=p.GetPropertyDefinition()#> <# } #>
 
@@ -60,7 +60,7 @@ private IEnumerable<<#=_classDefinition.ChildType#>> _children = null;
 		protected override void Init()
 		{
 			base.Init();
-			<# foreach(TypeResolverBase p in _classDefinition.Properties) {
+			<# foreach(PropertyCSharpWriterBase p in _propertyWriters) {
 				if (!string.IsNullOrEmpty(p.GetValueString())) { #>
 			
 			<#=p.GetValueString()#>
@@ -70,7 +70,7 @@ private IEnumerable<<#=_classDefinition.ChildType#>> _children = null;
 
 		public override IContent SetProperties(IContent dbContent)
 		{
-			<# foreach(TypeResolverBase p in _classDefinition.Properties) {
+			<# foreach(PropertyCSharpWriterBase p in _propertyWriters) {
 				if (!string.IsNullOrEmpty(p.GetPersistString())) { #>
 			
 			<#=p.GetPersistString()#>

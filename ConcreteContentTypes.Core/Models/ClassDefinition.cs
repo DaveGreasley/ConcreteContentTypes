@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.PropertyTypeCSharpWriters;
+﻿using ConcreteContentTypes.Core.PropertyCSharpWriters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +17,17 @@ namespace ConcreteContentTypes.Core.Models
 		public bool HasBaseClass { get { return !string.IsNullOrEmpty(this.BaseClass); } }
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent";  } }
+		
+		public List<AttributeDefinition> Attributes { get; set; }
+		public List<PropertyDefinition> Properties { get; set; }
 
-		public List<PropertyTypeCSharpWriterBase> Properties { get; set; }
-
-		public ClassDefinition(List<PropertyTypeCSharpWriterBase> properties, string className, string nameSpace, string baseClass = "")
+		public ClassDefinition(List<PropertyDefinition> properties, string className, string nameSpace, string baseClass = "")
 		{
 			this.Namespace = nameSpace;
 			this.Name = className;
 			this.BaseClass = baseClass;
 			this.Properties = properties;
+			this.Attributes = new List<AttributeDefinition>();
 		}
 
 		public ClassDefinition(IContentType contentType, IContentType parent, string nameSpace, string defaultBaseClass = "")
@@ -33,19 +35,11 @@ namespace ConcreteContentTypes.Core.Models
 			this.Namespace = nameSpace;
 			this.Name = contentType.Alias;
 			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
-			Properties = new List<PropertyTypeCSharpWriterBase>();
+			Properties = new List<PropertyDefinition>();
 
 			CreateDefinition(contentType, parent);
 		}
 
-		public ClassDefinition(IDataTypeDefinition dataType, PreValueCollection preValues, string nameSpace)
-		{
-			this.Namespace = nameSpace;
-			this.Name = dataType.Name;
-			this.Properties = new List<PropertyTypeCSharpWriterBase>();
-
-			CreateDefinition(dataType);
-		}
 
 		private void CreateDefinition(IDataTypeDefinition dataType)
 		{
@@ -62,10 +56,7 @@ namespace ConcreteContentTypes.Core.Models
 			{
 				try
 				{
-					var propertyTypeResolver = PropertyTypeCSharpWriterFactory.GetResolver(propertyType);
-
-					if (propertyTypeResolver != null)
-						this.Properties.Add(propertyTypeResolver);
+					this.Properties.Add(new PropertyDefinition(propertyType));
 				}
 				catch { }
 			}

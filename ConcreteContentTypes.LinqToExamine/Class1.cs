@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.Logging
+namespace ConcreteContentTypes.LinqToExamine
 {
-	public class Logger
-	{
-	}
+    public class Class1
+    {
+    }
 }

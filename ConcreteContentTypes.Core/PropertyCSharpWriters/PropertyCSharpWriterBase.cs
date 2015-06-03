@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
+namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
-	public abstract class PropertyTypeCSharpWriterBase
+	public abstract class PropertyCSharpWriterBase
 	{
 		public SupportedTypesConfigurationCollection SupportedTypes { get; set; }
 		public PropertyDefinition Property { get; set; }
 
-		public PropertyTypeCSharpWriterBase(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+		public PropertyCSharpWriterBase(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 		{
 			this.Property = propertyType;
 			this.SupportedTypes = config.SupportedTypes;

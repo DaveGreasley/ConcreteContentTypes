@@ -4,25 +4,43 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Logging;
 
 namespace ConcreteContentTypes.Core.Configuration
 {
-	public class Settings : ConfigurationSection
+	public class ConcreteSettings : ConfigurationSection
 	{
 		#region Singleton
 
-		public static Settings Current { get; set; }
-
-		static Settings()
+		private static ConcreteSettings _settings = null;
+		public static ConcreteSettings Current
 		{
-			var configPath = string.Format(@"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
-			ExeConfigurationFileMap map = new ExeConfigurationFileMap();
-			map.ExeConfigFilename = configPath;
+			get
+			{
+				if (_settings == null)
+					_settings = LoadSettings();
 
-			var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-			Current = (Settings)config.GetSection("ConcreteContentTypesSettings");
+				return _settings;
+			}
 		}
 
+		private static ConcreteSettings LoadSettings()
+		{
+			try
+			{
+				var configPath = string.Format(@"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
+				ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+				map.ExeConfigFilename = configPath;
+
+				var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+				return (ConcreteSettings)config.GetSection("ConcreteSettings");
+			}
+			catch (Exception ex)
+			{
+				LogHelper.Error<ConcreteSettings>("Error loading Concrete Settings.", ex);
+				return null;
+			}
+		}
 		#endregion
 
 		/// <summary>
@@ -89,7 +107,7 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
-		public Settings()
+		public ConcreteSettings()
 		{
 
 		}

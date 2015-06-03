@@ -1,4 +1,5 @@
 ﻿using ConcreteContentTypes.Core.Helpers;
+using ConcreteContentTypes.Core.PropertyCSharpWriters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace ConcreteContentTypes.Core.Models
 		public string Description { get; set; }
 		public bool Required { get; set; }
 
+		public List<AttributeDefinition> Attributes { get; set; }
+
 		public string NicePropertyName { get { return NamingConventionHelper.GetConventionalName(this.PropertyName); } }
 
 		public PropertyDefinition(PropertyType propertyType)
@@ -27,6 +30,8 @@ namespace ConcreteContentTypes.Core.Models
 			this.PropertyName = propertyType.Name;
 			this.Description = propertyType.Description;
 			this.Required = propertyType.Mandatory;
+
+			this.Attributes = new List<AttributeDefinition>();
 		}
 	}
 }

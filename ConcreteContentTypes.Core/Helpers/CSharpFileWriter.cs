@@ -1,4 +1,5 @@
 ﻿using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.PropertyCSharpWriters;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,32 @@ namespace ConcreteContentTypes.Core.Helpers
 	public class CSharpFileWriter
 	{
 		ClassDefinition _classDefinition;
+		List<PropertyCSharpWriterBase> _propertyWriters;
 
 		public CSharpFileWriter(ClassDefinition classDefinition)
 		{
 			_classDefinition = classDefinition;
+
+			LoadAttributeWriters();
+			LoadPropertyWriters();
+		}
+
+		private void LoadAttributeWriters()
+		{
+			
+		}
+
+		private void LoadPropertyWriters()
+		{
+			_propertyWriters = new List<PropertyCSharpWriterBase>();
+
+			foreach (var property in _classDefinition.Properties)
+			{
+				var writer = PropertyCSharpWriterFactory.GetWriter(property);
+
+				if (writer != null)
+					_propertyWriters.Add(writer);
+			}
 		}
 
 		/// <summary>
@@ -28,7 +51,7 @@ namespace ConcreteContentTypes.Core.Helpers
 			if (!Directory.Exists(folder))
 				Directory.CreateDirectory(folder);
 
-			MainClassTemplate classTemplate = new MainClassTemplate(_classDefinition);
+			MainClassTemplate classTemplate = new MainClassTemplate(_classDefinition, _propertyWriters);
 			string cs = classTemplate.TransformText();
 
 			string fileName = string.Format("{0}.cs", _classDefinition.Name);

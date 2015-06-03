@@ -10,9 +10,9 @@ using System.Xml.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
+namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
-	public class MNTPPropertyTypeCSharpWriter : PropertyTypeCSharpWriterBase
+	public class MNTPPropertyCSharpWriter : PropertyCSharpWriterBase
 	{
 		enum PickerType : int
 		{
@@ -25,7 +25,7 @@ namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 		PickerType _pickerType;
 
 
-		public MNTPPropertyTypeCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
+		public MNTPPropertyCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)
 		{
 		}

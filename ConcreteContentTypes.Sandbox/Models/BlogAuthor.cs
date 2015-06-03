@@ -33,7 +33,25 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// </summary>
 		
 		public IHtmlString BioFull { get; set; } 		
-		 
+		
+		private Address _address = null;
+		public Address Address
+		{
+			get 
+			{
+				if (_address == null)
+				{
+					int? contentId = Content.GetPropertyValue<int?>("address");
+
+					if (contentId.HasValue)
+					{
+					
+						_address = new Address(contentId.Value); 
+					}	
+				}
+				return _address;
+			}
+		} 
 		
 		public BlogAuthor()
 			: base()

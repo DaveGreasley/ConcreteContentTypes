@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Logging;
 
 namespace ConcreteContentTypes.Core.Configuration
 {
@@ -11,16 +12,34 @@ namespace ConcreteContentTypes.Core.Configuration
 	{
 		#region Singleton
 
-		public static CSharpWriterSettings Current { get; set; }
-
-		static CSharpWriterSettings()
+		private static CSharpWriterSettings _settings = null;
+		public static CSharpWriterSettings Current
 		{
-			var configPath = string.Format(@"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
-			ExeConfigurationFileMap map = new ExeConfigurationFileMap();
-			map.ExeConfigFilename = configPath;
+			get
+			{
+				if (_settings == null)
+					_settings = LoadSettings();
 
-			var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-			Current = (CSharpWriterSettings)config.GetSection("ConcreteContentTypeCSharpWriterSettings");
+				return _settings;
+			}
+		}
+
+		private static CSharpWriterSettings LoadSettings()
+		{
+			try
+			{
+				var configPath = string.Format(@"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
+				ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+				map.ExeConfigFilename = configPath;
+
+				var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+				return (CSharpWriterSettings)config.GetSection("ConcreteCSharpWriterSettings");
+			}
+			catch (Exception ex)
+			{
+				LogHelper.Error<CSharpWriterSettings>("Error loading CSharpWriterSettings.", ex);
+				return null;
+			}
 		}
 
 		#endregion

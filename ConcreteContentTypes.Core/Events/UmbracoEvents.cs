@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 using ConcreteContentTypes.Core.Configuration;
+using Umbraco.Core.Logging;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -20,10 +21,17 @@ namespace ConcreteContentTypes.Core.Events
 
 		void ContentTypeService_SavedContentType(IContentTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IContentType> e)
 		{
-			if (Settings.Current.GenerateOnContentTypeSave)
+			try
 			{
-				Concrete c = new Concrete();
-				c.BuildContentTypes();
+				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
+				{
+					Concrete c = new Concrete();
+					c.BuildContentTypes();
+				}
+			}
+			catch (Exception ex)
+			{
+				LogHelper.Error<UmbracoEvents>("Error generating Concrete models on ContentType save", ex);
 			}
 		}
 	}

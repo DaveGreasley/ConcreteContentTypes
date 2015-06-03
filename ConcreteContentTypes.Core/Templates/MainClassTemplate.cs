@@ -13,7 +13,7 @@ namespace ConcreteContentTypes.Core.Templates
     using System.Text;
     using System.Collections.Generic;
     using ConcreteContentTypes.Core.Models;
-    using ConcreteContentTypes.Core.PropertyTypeCSharpWriters;
+    using ConcreteContentTypes.Core.PropertyCSharpWriters;
     using System;
     
     /// <summary>
@@ -66,7 +66,7 @@ namespace ");
             this.Write("\r\n\t{\r\n\t\t");
             
             #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(PropertyTypeCSharpWriterBase p in _classDefinition.Properties) { 
+ foreach(PropertyCSharpWriterBase p in _propertyWriters) { 
             
             #line default
             #line hidden
@@ -145,7 +145,7 @@ namespace ");
                     " void Init()\r\n\t\t{\r\n\t\t\tbase.Init();\r\n\t\t\t");
             
             #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(PropertyTypeCSharpWriterBase p in _classDefinition.Properties) {
+ foreach(PropertyCSharpWriterBase p in _propertyWriters) {
 				if (!string.IsNullOrEmpty(p.GetValueString())) { 
             
             #line default
@@ -167,7 +167,7 @@ namespace ");
             this.Write("\r\n\t\t}\r\n\r\n\t\tpublic override IContent SetProperties(IContent dbContent)\r\n\t\t{\r\n\t\t\t");
             
             #line 73 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(PropertyTypeCSharpWriterBase p in _classDefinition.Properties) {
+ foreach(PropertyCSharpWriterBase p in _propertyWriters) {
 				if (!string.IsNullOrEmpty(p.GetPersistString())) { 
             
             #line default

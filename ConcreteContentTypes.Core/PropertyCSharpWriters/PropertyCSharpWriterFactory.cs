@@ -11,20 +11,20 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Logging;
 using ConcreteContentTypes.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
+namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
-	public static class PropertyTypeCSharpWriterFactory
+	public static class PropertyCSharpWriterFactory
 	{
-		static PropertyTypeCSharpWriterFactory()
+		static PropertyCSharpWriterFactory()
 		{
 		}
 		
-		public static PropertyTypeCSharpWriterBase GetResolver(PropertyType propertyType)
+		public static PropertyCSharpWriterBase GetWriter(PropertyDefinition property)
 		{
 			try
 			{
 				var typeResolverConfig = CSharpWriterSettings.Current.TypeResolvers
-					.FirstOrDefault(x => x.SupportedTypes.Any(p => p.Alias == propertyType.PropertyEditorAlias));
+					.FirstOrDefault(x => x.SupportedTypes.Any(p => p.Alias == property.PropertyEditorAlias));
 
 				if (typeResolverConfig == null)
 					return null;
@@ -37,15 +37,15 @@ namespace ConcreteContentTypes.Core.PropertyTypeCSharpWriters
 					false, 
 					BindingFlags.CreateInstance, 
 					null, 
-					new object[] { new PropertyDefinition(propertyType), typeResolverConfig }, 
+					new object[] { property, typeResolverConfig }, 
 					Thread.CurrentThread.CurrentCulture, 
 					null);
 
-				return handle.Unwrap() as PropertyTypeCSharpWriterBase;
+				return handle.Unwrap() as PropertyCSharpWriterBase;
 			}
 			catch (Exception ex)
 			{
-				LogHelper.Error(typeof(PropertyTypeCSharpWriterFactory), "Error getting TypeResolverBase for PropertyType - " + propertyType.Alias, ex);
+				LogHelper.Error(typeof(PropertyCSharpWriterFactory), "Error getting CSharpWriter for PropertyType - " + property.PropertyTypeAlias, ex);
 				return null;
 			}
 		}
