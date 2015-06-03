@@ -1,0 +1,13 @@
+﻿@model BlogAuthor
+@{
+    Layout = null;
+}
+
+Name: @Model.Name <br />
+Job Title: @Model.JobTitle <br />
+Bio: <br />
+@Model.BioFull <br /><br/>
+
+Address Line 1: @Model.Address.AddressLine1 <br />
+City: @Model.Address.City <br />
+Post Code: @Model.Address.PostCode

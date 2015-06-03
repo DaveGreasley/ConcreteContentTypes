@@ -104,6 +104,32 @@ namespace ConcreteContentTypes.Sandbox.Models
 
 				return _addresses;
 			}
+		} 		
+		
+		private List<BlogAuthor> _nestedBlogAuthor = null;
+		public List<BlogAuthor> NestedBlogAuthor
+		{
+			get 
+			{
+				if (_nestedBlogAuthor == null)
+				{
+									
+					_nestedBlogAuthor = new List<BlogAuthor>();
+
+					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("nestedBlogAuthor");
+
+					if (content != null)
+					{
+						foreach (var item in content)
+						{
+							_nestedBlogAuthor.Add(new BlogAuthor(item));
+						}
+					}
+
+				}
+
+				return _nestedBlogAuthor;
+			}
 		} 
 		
 		public MoreEverything()

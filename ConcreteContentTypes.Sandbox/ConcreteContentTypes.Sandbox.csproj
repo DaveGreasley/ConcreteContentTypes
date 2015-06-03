@@ -258,6 +258,7 @@
     <Content Include="Views\Partials\Everything.cshtml" />
     <Content Include="Views\Partials\BlogSubmitComment.cshtml" />
     <Content Include="Views\Partials\BlogComments.cshtml" />
+    <Content Include="Views\Partials\BlogAuthor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

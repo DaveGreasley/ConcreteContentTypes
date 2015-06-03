@@ -37,4 +37,14 @@
 			<br />
 		</div>
 	}
+
+	<hr />
+
+	Nested Blog Authors:<br /> <br />
+
+	@foreach (var author in Model.NestedBlogAuthor)
+	{
+		@Html.Partial("BlogAuthor", author)
+		<hr />
+	}
 }
