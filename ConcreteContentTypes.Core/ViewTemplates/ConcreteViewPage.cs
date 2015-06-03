@@ -15,11 +15,6 @@ namespace ConcreteContentTypes.Core.ViewTemplates
 		public new T Model { get; set; }
 
 		/// <summary>
-		/// Don't allow access to Dynamic object!
-		/// </summary>
-		public new T CurrentPage { get; set; }
-
-		/// <summary>
 		/// Access the the Umbraco Render Model.
 		/// </summary>
 		public RenderModel RenderModel { get { return base.Model; } }
@@ -34,8 +29,6 @@ namespace ConcreteContentTypes.Core.ViewTemplates
 
 			this.Model = new T();
 			this.Model.Init(base.Model.Content);
-
-			this.CurrentPage = Model;
 		}
 
 
