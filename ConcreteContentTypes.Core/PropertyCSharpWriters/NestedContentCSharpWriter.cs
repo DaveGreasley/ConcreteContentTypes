@@ -15,6 +15,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
 	public class NestedContentCSharpWriter : PropertyCSharpWriterBase
 	{
+		private bool _isCollection = true;
 
 		public NestedContentCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)
@@ -27,12 +28,19 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 			var contentTypeAlias = ApplicationContext.Current.Services.ContentTypeService.GetAliasByGuid(Guid.Parse(prevalues.PreValuesAsDictionary["docTypeGuid"].Value));
 
+			int minItems, maxItems;
+			if (prevalues.PreValuesAsDictionary.ContainsKey("minItems") && int.TryParse(prevalues.PreValuesAsDictionary["minItems"].Value, out minItems) && minItems == 1
+				&& prevalues.PreValuesAsDictionary.ContainsKey("maxItems") && int.TryParse(prevalues.PreValuesAsDictionary["maxItems"].Value, out maxItems) && maxItems == 1)
+			{
+				_isCollection = false;
+			}
+
 			return contentTypeAlias;
 		}
 
 		public override string GetPropertyDefinition()
 		{
-			return new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName()).TransformText();
+			return new NestedContentPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName(), _isCollection).TransformText();
 		}
 	}
 }

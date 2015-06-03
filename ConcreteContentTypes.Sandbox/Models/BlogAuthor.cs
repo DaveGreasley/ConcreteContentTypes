@@ -41,14 +41,15 @@ namespace ConcreteContentTypes.Sandbox.Models
 			{
 				if (_address == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("address");
+								
+					var content = this.Content.GetPropertyValue<IPublishedContent>("address");
 
-					if (contentId.HasValue)
-					{
-					
-						_address = new Address(contentId.Value); 
-					}	
+					if (content == null)
+						return new Address();
+
+					_address = new Address(content);
 				}
+
 				return _address;
 			}
 		} 

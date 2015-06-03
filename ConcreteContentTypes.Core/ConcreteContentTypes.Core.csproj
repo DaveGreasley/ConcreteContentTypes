@@ -223,6 +223,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Templates\Models\NestedContentPropertyTemplate.cs" />
+    <Compile Include="Templates\NestedContentPropertyTemplate.cs">
+      <DependentUpon>NestedContentPropertyTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Templates\LazyLoadedPropertyTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -251,6 +257,10 @@
     <None Include="Templates\BasicPropertyTypeDefinitionTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>BasicPropertyTypeDefinitionTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="Templates\NestedContentPropertyTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>NestedContentPropertyTemplate.cs</LastGenOutput>
     </None>
     <None Include="Templates\LazyLoadedPropertyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

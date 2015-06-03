@@ -25,4 +25,16 @@
 
 	<br /><br />
 	Names Check Box: @Model.NamesCheckBox
+	<br />
+	<br />
+	Addresses: <br /><br />
+	@foreach (var address in Model.Addresses)
+	{
+		<div>
+			Address Line 1: @address.AddressLine1;<br />
+			City: @address.City; <br />
+			PostCode: @address.PostCode;<br />
+			<br />
+		</div>
+	}
 }

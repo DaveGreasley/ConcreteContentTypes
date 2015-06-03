@@ -78,7 +78,33 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		[Required]
-		public string NamesCheckBox { get; set; } 
+		public string NamesCheckBox { get; set; } 		
+		
+		private List<Address> _addresses = null;
+		public List<Address> Addresses
+		{
+			get 
+			{
+				if (_addresses == null)
+				{
+									
+					_addresses = new List<Address>();
+
+					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("addresses");
+
+					if (content != null)
+					{
+						foreach (var item in content)
+						{
+							_addresses.Add(new Address(item));
+						}
+					}
+
+				}
+
+				return _addresses;
+			}
+		} 
 		
 		public MoreEverything()
 			: base()
