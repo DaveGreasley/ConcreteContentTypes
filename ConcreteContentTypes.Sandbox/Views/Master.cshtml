@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = null;
-	var home = @CurrentPage.Site();
+	Home home = new Home(Model.Content.AncestorOrSelf(1));
 	
 }
 
@@ -40,7 +40,7 @@
         <div class="row">
           <div class="col-xs-8 col-sm-12 col-md-4">
 			<a href="@home.Url">
-            	<div class="brand" style="background-image:url('@(home.SiteLogo)?height=65&width=205&bgcolor=000')"></div>
+            	<div class="brand" style="background-image:url('@home.SiteLogo?height=65&width=205&bgcolor=000')"></div>
 			</a>
           </div>
           <div class="col-sm-12 col-md-8">

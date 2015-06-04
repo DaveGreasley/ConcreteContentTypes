@@ -18,6 +18,19 @@ namespace ConcreteContentTypes.Sandbox.Models
  	public partial class BlogAuthorRepository : UmbracoContent
 	{
 		
+		private IEnumerable<BlogAuthor> _children = null;
+		public new IEnumerable<BlogAuthor> Children
+		{
+			get
+			{
+				if (_children == null)
+				{
+					_children = this.Content.Children.Select(x => new BlogAuthor(x));
+				}
+
+				return _children;
+			}
+		}
 		
 		public BlogAuthorRepository()
 			: base()

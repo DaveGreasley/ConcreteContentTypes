@@ -32,6 +32,13 @@ namespace ConcreteContentTypes.Sandbox.Models
 		
 		[Field("siteTitle")]
 		public string SiteTitle { get; set; } 		
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		
+		[Field("siteLogo")]
+		public string SiteLogo { get; set; } 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 
 		
@@ -58,6 +65,8 @@ namespace ConcreteContentTypes.Sandbox.Models
 						
 			this.SiteTitle = Content.GetPropertyValue<string>("siteTitle");
 						
+			this.SiteLogo = Content.GetPropertyValue<string>("siteLogo");
+						
 			this.content = new GridContent("content", this.Content);
 			
 		}
@@ -68,6 +77,8 @@ namespace ConcreteContentTypes.Sandbox.Models
 			dbContent.SetValue("siteDescription", this.SiteDescription);
 						
 			dbContent.SetValue("siteTitle", this.SiteTitle);
+						
+			dbContent.SetValue("siteLogo", this.SiteLogo);
 			
 			return base.SetProperties(dbContent);
 		}
