@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.Core.ViewTemplates
 		public new T Model { get; set; }
 
 		/// <summary>
-		/// Access the the Umbraco Render Model.
+		/// Access to the Umbraco Render Model.
 		/// </summary>
 		public RenderModel RenderModel { get { return base.Model; } }
 

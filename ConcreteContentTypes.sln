@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.LinqToExamine", "ConcreteContentTypes.LinqToExamine\ConcreteContentTypes.LinqToExamine.csproj", "{11CE168C-3A47-4383-B5F4-33FD91348164}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteContentTypes.WebBlocks", "ConcreteContentTypes.WebBlocks\ConcreteContentTypes.WebBlocks.csproj", "{8AF3DFB2-5324-46DE-AB06-8F2D56A99123}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party Support", "Third Party Support", "{544F2882-540C-49AE-AFD4-4878A276914D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,16 @@ Global
 		{11CE168C-3A47-4383-B5F4-33FD91348164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11CE168C-3A47-4383-B5F4-33FD91348164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11CE168C-3A47-4383-B5F4-33FD91348164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF3DFB2-5324-46DE-AB06-8F2D56A99123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF3DFB2-5324-46DE-AB06-8F2D56A99123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF3DFB2-5324-46DE-AB06-8F2D56A99123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF3DFB2-5324-46DE-AB06-8F2D56A99123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11CE168C-3A47-4383-B5F4-33FD91348164} = {544F2882-540C-49AE-AFD4-4878A276914D}
+		{8AF3DFB2-5324-46DE-AB06-8F2D56A99123} = {544F2882-540C-49AE-AFD4-4878A276914D}
 	EndGlobalSection
 EndGlobal
