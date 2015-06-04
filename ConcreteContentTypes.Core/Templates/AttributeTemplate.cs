@@ -18,9 +18,9 @@ namespace ConcreteContentTypes.Core.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
+    #line 1 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public partial class BasicPropertyTypeDefinitionTemplate : BasicPropertyTypeDefinitionTemplateBase
+    public partial class AttributeTemplate : AttributeTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,61 +28,47 @@ namespace ConcreteContentTypes.Core.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n\t\t/// <summary>\r\n\t\t/// ");
             
-            #line 9 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_description));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t/// </summary>\r\n\t\t");
-            
-            #line 11 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- if(_required) { 
+            #line 7 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+ if (_parameters.Length > 0) { 
             
             #line default
             #line hidden
-            this.Write("[Required] ");
+            this.Write("[");
             
-            #line 11 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 8 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_type));
+            
+            #line default
+            #line hidden
+            this.Write("(");
+            
+            #line 8 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_parameters));
+            
+            #line default
+            #line hidden
+            this.Write(")]\r\n");
+            
+            #line 9 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("[");
+            
+            #line 10 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_type));
+            
+            #line default
+            #line hidden
+            this.Write("]\r\n");
+            
+            #line 11 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t");
-            
-            #line 13 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- foreach (var attribute in _attributeWriters) { 
-            
-            #line default
-            #line hidden
-            
-            #line 13 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(attribute.WriteAttribute()));
-            
-            #line default
-            #line hidden
-            
-            #line 13 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic ");
-            
-            #line 14 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 14 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_nicePropertyAlias));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; set; }");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -94,7 +80,7 @@ namespace ConcreteContentTypes.Core.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public class BasicPropertyTypeDefinitionTemplateBase
+    public class AttributeTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

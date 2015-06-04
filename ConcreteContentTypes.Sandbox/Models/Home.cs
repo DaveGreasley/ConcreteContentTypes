@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class Home : UmbracoContent
+	 [NodeTypeAlias("Home")]
+ 	public partial class Home : UmbracoContent
 	{
 				
 		
@@ -20,12 +23,14 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("siteDescription")]
 		public string SiteDescription { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("siteTitle")]
 		public string SiteTitle { get; set; } 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 

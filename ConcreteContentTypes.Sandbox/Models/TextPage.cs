@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class TextPage : UmbracoContent
+	 [NodeTypeAlias("TextPage")]
+ 	public partial class TextPage : UmbracoContent
 	{
 				
 		[JsonIgnore]

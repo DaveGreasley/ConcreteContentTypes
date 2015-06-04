@@ -1,4 +1,5 @@
 ﻿using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Models.Definitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,7 @@ namespace ConcreteContentTypes.Core.Events
 		internal static void RaiseGenerating(ClassDefinition classDefiniton)
 		{
 			if (Generating != null)
-			{
 				Generating(classDefiniton);
-			}
 		}
 	}
 }

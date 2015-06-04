@@ -4,11 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
-		/// <summary>
-		/// <#=_description#>
-		/// </summary>
-		<# if(_required) { #>[Required] <# } #>
-
-		<# foreach (var attribute in _attributeWriters) { #><#= attribute.WriteAttribute() #><# } #>
-		public <#=_typeName#> <#=_nicePropertyAlias#> { get; set; }
+<# if (_parameters.Length > 0) { #>
+[<#= _type #>(<#= _parameters #>)]
+<# } else { #>
+[<#= _type #>]
+<# } #>

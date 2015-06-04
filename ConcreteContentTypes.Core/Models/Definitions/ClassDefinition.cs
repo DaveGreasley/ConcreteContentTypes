@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace ConcreteContentTypes.Core.Models
+namespace ConcreteContentTypes.Core.Models.Definitions
 {
 	public class ClassDefinition
 	{
@@ -17,7 +17,8 @@ namespace ConcreteContentTypes.Core.Models
 		public bool HasBaseClass { get { return !string.IsNullOrEmpty(this.BaseClass); } }
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent";  } }
-		
+		protected List<string> UsingNamespaces { get; set; }
+
 		public List<AttributeDefinition> Attributes { get; set; }
 		public List<PropertyDefinition> Properties { get; set; }
 
@@ -35,17 +36,34 @@ namespace ConcreteContentTypes.Core.Models
 			this.Namespace = nameSpace;
 			this.Name = contentType.Alias;
 			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
-			Properties = new List<PropertyDefinition>();
+			this.Properties = new List<PropertyDefinition>();
+			this.Attributes = new List<AttributeDefinition>();
 
 			CreateDefinition(contentType, parent);
 		}
 
-
-		private void CreateDefinition(IDataTypeDefinition dataType)
+		public List<string> GetUsingNamespaces()
 		{
-			
-		}
+			this.UsingNamespaces = new List<string>();
 
+			foreach (var attribute in this.Attributes)
+			{
+				if (!this.UsingNamespaces.Contains(attribute.Namespace))
+					this.UsingNamespaces.Add(attribute.Namespace);
+			}
+
+			foreach (var property in this.Properties)
+			{
+				foreach (var attribute in property.Attributes)
+				{
+					if (!this.UsingNamespaces.Contains(attribute.Namespace))
+						this.UsingNamespaces.Add(attribute.Namespace);
+				}
+			}
+
+			return this.UsingNamespaces;
+		}
+		
 		private void CreateDefinition(IContentType contentType, IContentType parent)
 		{
 			this.ChildType = GetChildType(contentType);

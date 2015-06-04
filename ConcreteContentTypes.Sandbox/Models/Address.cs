@@ -9,29 +9,35 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class Address : UmbracoContent
+	 [NodeTypeAlias("Address")]
+ 	public partial class Address : UmbracoContent
 	{
 				
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		[Required]
+		[Required] 
+		[Field("addressLine1")]
 		public string AddressLine1 { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		[Required]
+		[Required] 
+		[Field("city")]
 		public string City { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		[Required]
+		[Required] 
+		[Field("postCode")]
 		public string PostCode { get; set; } 
 		
 		public Address()

@@ -1,6 +1,7 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetPropertyDefinition()
 		{
-			LazyLoadedPropertyTemplate template = new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName());
+			LazyLoadedPropertyTemplate template = new LazyLoadedPropertyTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, GetTypeName());
 			return template.TransformText();
 		}
 

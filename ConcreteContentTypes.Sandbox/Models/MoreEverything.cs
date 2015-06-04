@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class MoreEverything : Everything
+	 [NodeTypeAlias("MoreEverything")]
+ 	public partial class MoreEverything : Everything
 	{
 				
 		
@@ -20,6 +23,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("umbracoNaviHide")]
 		public bool HideInBottomNavigation { get; set; } 		
 		
 		private List<IPublishedContent> _multipleNodes = null;
@@ -77,7 +81,8 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		[Required]
+		[Required] 
+		[Field("namesCheckBox")]
 		public string NamesCheckBox { get; set; } 		
 		
 		private List<Address> _addresses = null;

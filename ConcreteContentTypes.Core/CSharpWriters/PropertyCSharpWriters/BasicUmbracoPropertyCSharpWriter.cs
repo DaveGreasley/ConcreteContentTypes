@@ -1,6 +1,7 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -20,18 +21,24 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetValueString()
 		{
-			return string.Format("this.{0} = Content.GetPropertyValue<{1}>(\"{2}\");", this.Property.NicePropertyName, GetTypeName(), this.Property.PropertyTypeAlias);
+			return string.Format("this.{0} = Content.GetPropertyValue<{1}>(\"{2}\");", this._property.NicePropertyName, GetTypeName(), this._property.PropertyTypeAlias);
 		}
 
 		public override string GetPropertyDefinition()
 		{
-			BasicPropertyTypeDefinitionTemplate template = new BasicPropertyTypeDefinitionTemplate(GetTypeName(), this.Property.NicePropertyName, this.Property.Description, this.Property.Required);
+			BasicPropertyTypeDefinitionTemplate template = new BasicPropertyTypeDefinitionTemplate(
+				GetTypeName(), 
+				this._property.NicePropertyName,
+				this._property.Description,
+				this._property.Required,
+				_attributeWriters);
+
 			return template.TransformText();
 		}
 
 		public override string GetPersistString()
 		{
-			return string.Format("dbContent.SetValue(\"{0}\", this.{1});", this.Property.PropertyTypeAlias, this.Property.NicePropertyName);
+			return string.Format("dbContent.SetValue(\"{0}\", this.{1});", this._property.PropertyTypeAlias, this._property.NicePropertyName);
 		}
 	}
 }

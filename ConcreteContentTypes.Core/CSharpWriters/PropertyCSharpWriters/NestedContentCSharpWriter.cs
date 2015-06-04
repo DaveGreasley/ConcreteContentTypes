@@ -10,6 +10,7 @@ using umbraco.cms.businesslogic.web;
 using Umbraco.Core;
 using Umbraco.Web;
 using ConcreteContentTypes.Core.Extensions;
+using ConcreteContentTypes.Core.Models.Definitions;
 
 namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
@@ -24,7 +25,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetTypeName()
 		{
-			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this.Property.DataTypeDefinitionId);
+			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this._property.DataTypeDefinitionId);
 
 			var contentTypeAlias = ApplicationContext.Current.Services.ContentTypeService.GetAliasByGuid(Guid.Parse(prevalues.PreValuesAsDictionary["docTypeGuid"].Value));
 
@@ -40,7 +41,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetPropertyDefinition()
 		{
-			return new NestedContentPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, GetTypeName(), _isCollection).TransformText();
+			return new NestedContentPropertyTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, GetTypeName(), _isCollection).TransformText();
 		}
 	}
 }

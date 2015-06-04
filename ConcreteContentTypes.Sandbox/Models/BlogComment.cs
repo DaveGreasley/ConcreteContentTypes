@@ -9,23 +9,28 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class BlogComment : UmbracoContent
+	 [NodeTypeAlias("BlogComment")]
+ 	public partial class BlogComment : UmbracoContent
 	{
 				
 		
 		/// <summary>
 		/// The full name of the person submitting the comment
 		/// </summary>
-		[Required]
+		[Required] 
+		[Field("fullName")]
 		public string FullName { get; set; } 		
 		
 		/// <summary>
 		/// A comment about this Blog Post
 		/// </summary>
-		[Required]
+		[Required] 
+		[Field("comment")]
 		public string Comment { get; set; } 
 		
 		public BlogComment()

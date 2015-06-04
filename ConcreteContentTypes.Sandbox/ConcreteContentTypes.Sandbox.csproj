@@ -113,6 +113,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Our.Umbraco.NestedContent.dll</HintPath>
     </Reference>
+    <Reference Include="Remotion.Linq">
+      <HintPath>..\packages\Remotion.Linq.1.15.15.0\lib\portable-net45+wp80+wpa81+win\Remotion.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="SQLCE4Umbraco">
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\SQLCE4Umbraco.dll</HintPath>
     </Reference>
@@ -187,6 +190,9 @@
     </Reference>
     <Reference Include="umbraco.editorControls">
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\umbraco.editorControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Examine.Linq">
+      <HintPath>..\packages\LINQToExamine.1.0.4\lib\Umbraco.Examine.Linq.dll</HintPath>
     </Reference>
     <Reference Include="umbraco.MacroEngines">
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\umbraco.MacroEngines.dll</HintPath>
@@ -285,6 +291,7 @@
     <Compile Include="Models\LandingPage.cs" />
     <Compile Include="Models\MoreEverything.cs" />
     <Compile Include="Models\Partials\BlogComment.cs" />
+    <Compile Include="Models\Partials\Everything.cs" />
     <Compile Include="Models\TextPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\BlogCommentApiController.cs" />
@@ -293,6 +300,10 @@
     <ProjectReference Include="..\ConcreteContentTypes.Core\ConcreteContentTypes.Core.csproj">
       <Project>{1b3d21dd-fb60-4a6b-a94a-5608c5154fa6}</Project>
       <Name>ConcreteContentTypes.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConcreteContentTypes.LinqToExamine\ConcreteContentTypes.LinqToExamine.csproj">
+      <Project>{11ce168c-3a47-4383-b5f4-33fd91348164}</Project>
+      <Name>ConcreteContentTypes.LinqToExamine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -1,6 +1,8 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
+using ConcreteContentTypes.Core.CSharpWriters;
 using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Models.Definitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +14,38 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {
 	public abstract class PropertyCSharpWriterBase
 	{
-		public SupportedTypesConfigurationCollection SupportedTypes { get; set; }
-		public PropertyDefinition Property { get; set; }
+		protected SupportedTypesConfigurationCollection _supportedTypes;
+		protected PropertyDefinition _property;
+		protected List<AttributeCSharpWriter> _attributeWriters;
 
 		public PropertyCSharpWriterBase(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 		{
-			this.Property = propertyType;
-			this.SupportedTypes = config.SupportedTypes;
+			_property = propertyType;
+			_supportedTypes = config.SupportedTypes;
+
+			LoadAttributeWriters();
+		}
+
+		private void LoadAttributeWriters()
+		{
+			_attributeWriters = new List<AttributeCSharpWriter>();
+
+			foreach (var attribute in _property.Attributes)
+			{
+				_attributeWriters.Add(new AttributeCSharpWriter(attribute));
+			}
 		}
 
 		public abstract string GetPropertyDefinition();
 
 		public virtual string GetTypeName()
 		{
-			var type = SupportedTypes.FirstOrDefault(x => x.Alias == this.Property.PropertyEditorAlias);
+			var type = _supportedTypes.FirstOrDefault(x => x.Alias == this._property.PropertyEditorAlias);
 
 			if (type != null)
 				return type.ClrType;
 			
-			throw new UnknownPropertyTypeException(this.Property.PropertyEditorAlias);
+			throw new UnknownPropertyTypeException(this._property.PropertyEditorAlias);
 		}
 
 		public virtual string GetValueString()

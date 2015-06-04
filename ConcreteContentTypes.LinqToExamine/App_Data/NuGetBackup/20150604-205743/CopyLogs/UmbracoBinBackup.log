@@ -1,0 +1,76 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thu Jun 04 20:57:43 2015
+
+   Source : C:\Projects\ConcreteContentTypes\ConcreteContentTypes.LinqToExamine\bin\
+     Dest : C:\Projects\ConcreteContentTypes\ConcreteContentTypes.LinqToExamine\App_Data\NuGetBackup\20150604-205743\bin\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	C:\Projects\ConcreteContentTypes\ConcreteContentTypes.LinqToExamine\bin\
+	  New Dir         43	C:\Projects\ConcreteContentTypes\ConcreteContentTypes.LinqToExamine\bin\Debug\
+	    New File  		  144384	AutoMapper.dll  0%   90%  100%  
+	    New File  		   78138	AutoMapper.xml  0%  100%  
+	    New File  		  118784	businesslogic.dll  0%  100%  
+	    New File  		  121934	businesslogic.xml  0%  100%  
+	    New File  		  145920	ClientDependency.Core.dll  0%   89%  100%  
+	    New File  		  378368	ClientDependency.Core.pdb  0%   34%   69%  100%  
+	    New File  		  516096	cms.dll  0%   25%   50%   76%  100%  
+	    New File  		  329469	cms.xml  0%   39%   79%  100%  
+	    New File  		   54272	ConcreteContentTypes.Core.dll  0%  100%  
+	    New File  		  224768	ConcreteContentTypes.Core.pdb  0%   58%  100%  
+	    New File  		    4096	ConcreteContentTypes.LinqToExamine.dll  0%  100%  
+	    New File  		    7680	ConcreteContentTypes.LinqToExamine.pdb  0%  100%  
+	    New File  		   51712	controls.dll  0%  100%  
+	    New File  		    9068	controls.xml  0%  100%  
+	    New File  		  122880	CookComputing.XmlRpcV2.dll  0%  100%  
+	    New File  		  134656	HtmlAgilityPack.dll  0%   97%  100%  
+	    New File  		  271872	HtmlAgilityPack.pdb  0%   48%   96%  100%  
+	    New File  		  122991	HtmlAgilityPack.xml  0%  100%  
+	    New File  		  200704	ICSharpCode.SharpZipLib.dll  0%   65%  100%  
+	    New File  		   24576	interfaces.dll  0%  100%  
+	    New File  		   11197	interfaces.xml  0%  100%  
+	    New File  		  258048	log4net.dll  0%   50%  100%  
+	    New File  		  786432	Lucene.Net.dll  0%   33%   66%  100%  
+	    New File  		   1.5 m	Lucene.Net.xml  0%   16%   33%   49%   66%   82%   99%  100%  
+	    New File  		   11264	Microsoft.ApplicationBlocks.Data.dll  0%  100%  
+	    New File  		  396288	MiniProfiler.dll  0%   33%   66%   99%  100%  
+	    New File  		  341504	MiniProfiler.pdb  0%   38%   76%  100%  
+	    New File  		  230981	MiniProfiler.xml  0%   56%  100%  
+	    New File  		  391680	MySql.Data.dll  0%   33%   66%  100%  
+	    New File  		  504832	Newtonsoft.Json.dll  0%   25%   51%   77%  100%  
+	    New File  		  478769	Newtonsoft.Json.xml  0%   27%   54%   82%  100%  
+	    New File  		  506976	System.Web.Mvc.dll  0%   25%   51%   77%  100%  
+	    New File  		  847872	System.Web.Mvc.xml  0%   30%   61%   92%  100%  
+	    New File  		  192512	TidyNet.dll  0%   68%  100%  
+	    New File  		   2.0 m	Umbraco.Core.dll  0%   24%   49%   74%   98%  100%  
+	    New File  		   1.5 m	Umbraco.Core.xml  0%   16%   32%   48%   64%   80%   96%  100%  
+	    New File  		   38912	umbraco.DataLayer.dll  0%  100%  
+	    New File  		  115002	umbraco.DataLayer.xml  0%  100%  
+	    New File  		   1.8 m	umbraco.dll  0%   13%   26%   40%   53%   67%   80%   94%  100%  
+	    New File  		   37888	umbraco.providers.dll  0%  100%  
+	    New File  		   51453	umbraco.providers.xml  0%  100%  
+	    New File  		   1.3 m	umbraco.xml  0%   18%   37%   55%   74%   93%  100%  
+	    New File  		   49152	UmbracoExamine.dll  0%  100%  
+	  New Dir          0	C:\Projects\ConcreteContentTypes\ConcreteContentTypes.LinqToExamine\bin\Release\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         2         1         0         0         0
+   Files :        43        43         0         0         0         0
+   Bytes :   16.22 m   16.22 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           180973393 Bytes/sec.
+   Speed :           10355.380 MegaBytes/min.
+
+   Ended : Thu Jun 04 20:57:43 2015

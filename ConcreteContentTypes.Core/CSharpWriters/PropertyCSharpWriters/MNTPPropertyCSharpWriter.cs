@@ -1,5 +1,6 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
@@ -38,11 +39,11 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 			{
 				case PickerType.SingleKnownObject:
 				case PickerType.SingleIPublishedContent:
-					return new LazyLoadedPropertyTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, typeName).TransformText();
+					return new LazyLoadedPropertyTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, typeName).TransformText();
 
 				case PickerType.MultipleIPublishedContent:
 				case PickerType.MultipleKnownObject:
-					return new LazyLoadedPropertyCollectionTemplate(this.Property.PropertyTypeAlias, this.Property.NicePropertyName, typeName).TransformText();
+					return new LazyLoadedPropertyCollectionTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, typeName).TransformText();
 			}
 
 			return "";
@@ -50,7 +51,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetTypeName()
 		{
-			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this.Property.DataTypeDefinitionId);
+			var prevalues = UmbracoContext.Current.Application.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(this._property.DataTypeDefinitionId);
 
 			int maxNumber = -1;
 			int.TryParse(prevalues.PreValuesAsDictionary["maxNumber"].Value, out maxNumber);

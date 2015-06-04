@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class BlogPostRepository : UmbracoContent
+	 [NodeTypeAlias("BlogPostRepository")]
+ 	public partial class BlogPostRepository : UmbracoContent
 	{
 				
 		
@@ -20,6 +23,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("umbracoNaviHide")]
 		public bool HideInBottomNavigation { get; set; } 
 		private IEnumerable<BlogPost> _children = null;
 		public new IEnumerable<BlogPost> Children

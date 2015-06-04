@@ -10,6 +10,7 @@ using System.Threading;
 using Umbraco.Core.Models;
 using Umbraco.Core.Logging;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Models.Definitions;
 
 namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {

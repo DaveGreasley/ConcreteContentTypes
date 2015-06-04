@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class BlogPost : UmbracoContent
+	 [NodeTypeAlias("BlogPost")]
+ 	public partial class BlogPost : UmbracoContent
 	{
 				
 		[JsonIgnore]
@@ -22,6 +25,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("introduction")]
 		public string Introduction { get; set; } 		
 		
 		private BlogAuthor _author = null;

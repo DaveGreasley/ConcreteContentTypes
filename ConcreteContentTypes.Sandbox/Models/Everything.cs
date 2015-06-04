@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class Everything : UmbracoContent
+	 [NodeTypeAlias("Everything")]
+ 	public partial class Everything : UmbracoContent
 	{
 				
 		
@@ -20,6 +23,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("approvedcolour")]
 		public string Approvedcolour { get; set; } 		
 		
 		private BlogAuthor _blogAuthor = null;
@@ -45,48 +49,56 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("checkboxList")]
 		public string CheckboxList { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("dateTimePicker")]
 		public DateTime DateTimePicker { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("myLabel")]
 		public string MyLabel { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("myNumeric")]
 		public int MyNumeric { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("myRichtextEditor")]
 		public IHtmlString MyRichtextEditor { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("multipleTextBox")]
 		public string MultipleTextBox { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("textString")]
 		public string TextString { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("yesOrNo")]
 		public bool YesOrNo { get; set; } 
 		private IEnumerable<MoreEverything> _children = null;
 		public new IEnumerable<MoreEverything> Children

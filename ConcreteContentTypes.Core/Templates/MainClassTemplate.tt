@@ -17,9 +17,14 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+<# foreach(string nameSpace in _usingNamespaces) { #>
+using <#= nameSpace #>;
+<# } #>
+
 
 namespace <#= _classDefinition.Namespace #>
 {
+	<# foreach (var attributeWriter in _attributeWriters) { #> <#=attributeWriter.WriteAttribute()#> <# } #>
 	public partial class <#= _classDefinition.Name #> : <#= _classDefinition.BaseClass #>
 	{
 		<# foreach(PropertyCSharpWriterBase p in _propertyWriters) { #>

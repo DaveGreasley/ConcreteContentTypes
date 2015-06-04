@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class BlogAuthor : UmbracoContent
+	 [NodeTypeAlias("BlogAuthor")]
+ 	public partial class BlogAuthor : UmbracoContent
 	{
 				
 		
@@ -20,18 +23,21 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("jobTitle")]
 		public string JobTitle { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("shortBio")]
 		public string ShortBio { get; set; } 		
 		
 		/// <summary>
 		/// 
 		/// </summary>
 		
+		[Field("bioFull")]
 		public IHtmlString BioFull { get; set; } 		
 		
 		private Address _address = null;

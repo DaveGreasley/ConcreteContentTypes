@@ -15,6 +15,8 @@ using System.IO;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Events;
+using ConcreteContentTypes.Core.Models.Definitions;
+using ConcreteContentTypes.Core.CSharpWriters;
 
 namespace ConcreteContentTypes.Core
 {

@@ -9,10 +9,13 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using Umbraco.Examine.Linq.Attributes;
+
 
 namespace ConcreteContentTypes.Sandbox.Models
 {
-	public partial class LandingPage : UmbracoContent
+	 [NodeTypeAlias("LandingPage")]
+ 	public partial class LandingPage : UmbracoContent
 	{
 				
 		
@@ -20,6 +23,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 		/// 
 		/// </summary>
 		
+		[Field("umbracoNaviHide")]
 		public bool HideInBottomNavigation { get; set; } 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 
