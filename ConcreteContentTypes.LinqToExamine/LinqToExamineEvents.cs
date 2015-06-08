@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.LinqToExamine
 		{
 			base.ApplicationStarted(umbracoApplication, applicationContext);
 
-			ConcreteEvents.Generating += ConcreteEvents_Generating;
+			ConcreteEvents.ModelClassGenerating += ConcreteEvents_Generating;
 		}
 
 		void ConcreteEvents_Generating(Core.Models.Definitions.ClassDefinition classDefintion)

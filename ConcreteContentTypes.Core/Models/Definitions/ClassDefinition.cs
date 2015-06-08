@@ -9,7 +9,7 @@ using Umbraco.Web;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class ClassDefinition
+	public class ClassDefinition : ClassDefinitionBase
 	{
 		public string Namespace { get; set; }
 		public string Name { get; set; }

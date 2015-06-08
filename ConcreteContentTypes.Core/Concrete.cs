@@ -72,19 +72,39 @@ namespace ConcreteContentTypes.Core
 
 		private void CreateCSharp(IEnumerable<IContentType> contentTypes)
 		{
+			UmbracoContentClassDefinition baseClassDefintion = GetBaseClass();
+
+			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefintion);
+
+			CSharpBaseClassFileWriter baseClassWriter = new CSharpBaseClassFileWriter(baseClassDefintion);
+			baseClassWriter.WriteBaseClass(_contentTypeCSharpOutputFolder);
+
 			foreach (IContentType contentType in contentTypes)
 			{
 				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
 
 				ClassDefinition classDefinition = new ClassDefinition(contentType, parent, _contentTypeNameSpace, "UmbracoContent");
 				
-				ConcreteEvents.RaiseGenerating(classDefinition);
+				ConcreteEvents.RaiseModelClassGenerating(classDefinition);
 				
 				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
-				writer.WriteFile(_contentTypeCSharpOutputFolder);
+				writer.WriteMainClass(_contentTypeCSharpOutputFolder);
 			}
 		}
 
+		//Don't like this, will do for now though
+		private UmbracoContentClassDefinition GetBaseClass()
+		{
+			List<PropertyDefinition> properties = new List<PropertyDefinition>();
+
+			properties.Add(new PropertyDefinition("Name", "nodeName", "string"));
+			properties.Add(new PropertyDefinition("Id", "id", "int"));
+			properties.Add(new PropertyDefinition("CreateDate", "createDate", "DateTime"));
+			properties.Add(new PropertyDefinition("UpdateDate", "updateDate", "DateTime"));
+			properties.Add(new PropertyDefinition("Path", "__path", "string"));
+
+			return new UmbracoContentClassDefinition(properties, "UmbracoContent", _contentTypeNameSpace, "UmbracoContentBase");
+		}
 		#endregion
 	}
 }

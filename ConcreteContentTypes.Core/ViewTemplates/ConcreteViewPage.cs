@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Models;
+﻿using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +11,7 @@ using Umbraco.Web.Mvc;
 
 namespace ConcreteContentTypes.Core.ViewTemplates
 {
-	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : UmbracoContent, new()
+	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : IUmbracoContent, new()
 	{
 		public new T Model { get; set; }
 

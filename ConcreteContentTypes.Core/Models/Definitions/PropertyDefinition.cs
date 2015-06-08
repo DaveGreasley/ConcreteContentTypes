@@ -33,5 +33,15 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 			this.Attributes = new List<AttributeDefinition>();
 		}
+
+		//This is a hack and will be removed
+		public PropertyDefinition(string propertyName, string propertyTypeAlias, string description)
+		{
+			this.PropertyName = propertyName;
+			this.PropertyTypeAlias = propertyTypeAlias;
+			this.Description = description;
+
+			this.Attributes = new List<AttributeDefinition>();
+		}
 	}
 }

@@ -186,12 +186,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSharpWriters\AttributeCSharpWriter.cs" />
+    <Compile Include="CSharpWriters\CSharpBaseClassFileWriter.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Helpers\AssemblyBuilder.cs" />
     <Compile Include="Concrete.cs" />
     <Compile Include="CSharpWriters\CSharpFileWriter.cs" />
+    <Compile Include="Interfaces\IUmbracoContent.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
+    <Compile Include="Models\Definitions\ClassDefinitionBase.cs" />
+    <Compile Include="Models\Definitions\UmbracoContentClassDefinition.cs" />
     <Compile Include="Models\Definitions\PropertyDefinition.cs" />
     <Compile Include="Configuration\CSharpWriterConfiguration.cs" />
     <Compile Include="Configuration\CSharpWriterConfigurationCollection.cs" />
@@ -200,8 +204,8 @@
     <Compile Include="Configuration\CSharpWriterSettings.cs" />
     <Compile Include="Helpers\NamingConventionHelper.cs" />
     <Compile Include="Models\ConcreteRenderModel.cs" />
+    <Compile Include="Models\Enums\PublishedContentProperty.cs" />
     <Compile Include="Models\GridContent.cs" />
-    <Compile Include="Models\BaseClasses\UmbracoContent.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\ContentPickerPropertyCSharpWriter.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\MNTPPropertyCSharpWriter.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\NestedContentCSharpWriter.cs" />
@@ -214,6 +218,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\BasicUmbracoPropertyCSharpWriter.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\GridPropertyCSharpWriter.cs" />
+    <Compile Include="Templates\UmbracoContentClassTemplate.cs">
+      <DependentUpon>UmbracoContentClassTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Templates\Models\AttributeTemplate.cs" />
     <Compile Include="Templates\LazyLoadedPropertyCollectionTemplate.cs">
       <DependentUpon>LazyLoadedPropertyCollectionTemplate.tt</DependentUpon>
@@ -269,6 +278,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AttributeTemplate.cs</LastGenOutput>
     </None>
+    <None Include="Templates\UmbracoContentClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>UmbracoContentClassTemplate.cs</LastGenOutput>
+    </None>
     <None Include="Templates\NestedContentPropertyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>NestedContentPropertyTemplate.cs</LastGenOutput>
@@ -286,7 +299,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Models\BaseClasses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

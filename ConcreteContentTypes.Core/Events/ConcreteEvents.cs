@@ -8,20 +8,32 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Events
 {
+	public delegate void ConcreteUmbracoContentModelGeneratingDelegate(UmbracoContentClassDefinition classDefinition);
 	public delegate void ConcreteModelGeneratingDelegate(ClassDefinition classDefintion);
 
 	public static class ConcreteEvents
 	{
 		/// <summary>
+		/// occurs when the UmbracoContent base class is being generated
+		/// </summary>
+		public static event ConcreteUmbracoContentModelGeneratingDelegate UmbracoContentClassGenerating;
+
+		/// <summary>
 		/// Occurs for each Content Type that Concrete is writing a class for before the C# is written.
 		/// Allows updating of class and property details.
 		/// </summary>
-		public static event ConcreteModelGeneratingDelegate Generating;
+		public static event ConcreteModelGeneratingDelegate ModelClassGenerating;
 
-		internal static void RaiseGenerating(ClassDefinition classDefiniton)
+		internal static void RaiseUmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition)
 		{
-			if (Generating != null)
-				Generating(classDefiniton);
+			if (UmbracoContentClassGenerating != null)
+				UmbracoContentClassGenerating(classDefinition);
+		}
+
+		internal static void RaiseModelClassGenerating(ClassDefinition classDefiniton)
+		{
+			if (ModelClassGenerating != null)
+				ModelClassGenerating(classDefiniton);
 		}
 	}
 }

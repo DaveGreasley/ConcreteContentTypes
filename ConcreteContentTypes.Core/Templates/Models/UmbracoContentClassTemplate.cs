@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ConcreteContentTypes.Core.CSharpWriters;
+using ConcreteContentTypes.Core.Models.Definitions;
+using ConcreteContentTypes.Core.Models.Enums;
+using ConcreteContentTypes.Core.PropertyCSharpWriters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +12,17 @@ namespace ConcreteContentTypes.Core.Templates
 {
 	public partial class UmbracoContentClassTemplate
 	{
-		public string _namespace;
-		public string _className;
+		protected UmbracoContentClassDefinition _classDefinition;
+		protected List<AttributeCSharpWriter> _attribtueWriters;
+		protected Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> _propertyAttributeWriters;
+		protected List<string> _usingNamespaces;
 
-		public UmbracoContentClassTemplate(string nameSpace, string className)
+		public UmbracoContentClassTemplate(UmbracoContentClassDefinition definition, List<AttributeCSharpWriter> attributeWriters, Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> propertyAttributeWriters)
 		{
-			_namespace = nameSpace;
-			_className = className;
+			_classDefinition = definition;
+			_attribtueWriters = attributeWriters;
+			_propertyAttributeWriters = propertyAttributeWriters;
+			_usingNamespaces = definition.GetUsingNamespaces();
 		}
 	}
 }

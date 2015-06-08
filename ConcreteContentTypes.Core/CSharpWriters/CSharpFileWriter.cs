@@ -53,7 +53,7 @@ namespace ConcreteContentTypes.Core.CSharpWriters
 		/// Writes a .cs file to the given folder based on the wrapped IContentType object
 		/// </summary>
 		/// <param name="folder"></param>
-		public void WriteFile(string folder)
+		public void WriteMainClass(string folder)
 		{
 			if (!Directory.Exists(folder))
 				Directory.CreateDirectory(folder);

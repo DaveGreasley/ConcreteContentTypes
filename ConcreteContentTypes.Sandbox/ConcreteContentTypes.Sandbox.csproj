@@ -312,6 +312,7 @@
     <Compile Include="Models\Partials\BlogComment.cs" />
     <Compile Include="Models\Partials\Everything.cs" />
     <Compile Include="Models\TextPage.cs" />
+    <Compile Include="Models\UmbracoContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\BlogCommentApiController.cs" />
   </ItemGroup>

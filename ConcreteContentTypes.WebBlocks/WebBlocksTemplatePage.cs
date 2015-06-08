@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Models;
+﻿using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ using Umbraco.Web.Mvc;
 using WebBlocks.Utilities.WebBlocks;
 using WB = WebBlocks.ViewTemplates;
 
-namespace ConcreteContentType.WebBlocks
+namespace ConcreteContentTypes.WebBlocks
 {
-	public class WebBlocksTemplatePage<BlockT> : WB.WebBlocksTemplatePage where BlockT : UmbracoContent, new()
+	public class WebBlocksTemplatePage<BlockT> : WB.WebBlocksTemplatePage where BlockT : IUmbracoContent, new()
     {
 		public new BlockT CurrentBlock { get; set; }
 		public new BlockT Model { get; set; }
