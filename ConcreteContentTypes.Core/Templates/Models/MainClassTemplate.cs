@@ -12,12 +12,12 @@ namespace ConcreteContentTypes.Core.Templates
 {
 	public partial class MainClassTemplate
 	{
-		protected ClassDefinition _classDefinition;
+		protected ModelClassDefinition _classDefinition;
 		protected List<AttributeCSharpWriter> _attributeWriters;
 		protected List<PropertyCSharpWriterBase> _propertyWriters;
 		protected List<string> _usingNamespaces;
 
-		public MainClassTemplate(ClassDefinition definition, 
+		public MainClassTemplate(ModelClassDefinition definition, 
 			List<AttributeCSharpWriter> attributeWriters,
 			List<PropertyCSharpWriterBase> propertyWriters)
 		{

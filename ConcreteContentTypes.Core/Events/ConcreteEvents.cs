@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ConcreteContentTypes.Core.Events
 {
 	public delegate void ConcreteUmbracoContentModelGeneratingDelegate(UmbracoContentClassDefinition classDefinition);
-	public delegate void ConcreteModelGeneratingDelegate(ClassDefinition classDefintion);
+	public delegate void ConcreteModelGeneratingDelegate(ModelClassDefinition classDefintion);
 
 	public static class ConcreteEvents
 	{
@@ -30,7 +30,7 @@ namespace ConcreteContentTypes.Core.Events
 				UmbracoContentClassGenerating(classDefinition);
 		}
 
-		internal static void RaiseModelClassGenerating(ClassDefinition classDefiniton)
+		internal static void RaiseModelClassGenerating(ModelClassDefinition classDefiniton)
 		{
 			if (ModelClassGenerating != null)
 				ModelClassGenerating(classDefiniton);

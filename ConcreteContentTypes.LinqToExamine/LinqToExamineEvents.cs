@@ -1,5 +1,6 @@
 ﻿using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Models.Definitions;
+using ConcreteContentTypes.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,15 @@ namespace ConcreteContentTypes.LinqToExamine
 		{
 			base.ApplicationStarted(umbracoApplication, applicationContext);
 
+			ConcreteEvents.UmbracoContentClassGenerating += ConcreteEvents_UmbracoContentClassGenerating;
 			ConcreteEvents.ModelClassGenerating += ConcreteEvents_Generating;
 		}
 
-		void ConcreteEvents_Generating(Core.Models.Definitions.ClassDefinition classDefintion)
+		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition)
+		{
+		}
+
+		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefintion)
 		{
 			//Add NodeTypeAliasAttribute to our generated class
 			classDefintion.Attributes.Add(new AttributeDefinition("NodeTypeAlias", "Umbraco.Examine.Linq.Attributes", "\"" + classDefintion.Name + "\""));

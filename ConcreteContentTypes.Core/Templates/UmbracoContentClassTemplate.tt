@@ -5,6 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="ConcreteContentTypes.Core.Models" #>
 <#@ import namespace="ConcreteContentTypes.Core.PropertyCSharpWriters" #>
+<#@ import namespace="ConcreteContentTypes.Core.Models.Enums" #>
 <#@ output extension=".cs" #>
 
 using System;
@@ -16,6 +17,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
+using ConcreteContentTypes.Core.Models.Enums;
 
 <# foreach(string nameSpace in _usingNamespaces) { #>
 using <#= nameSpace #>;
@@ -23,8 +25,8 @@ using <#= nameSpace #>;
 
 namespace <#= _classDefinition.Namespace #>
 {
-	<# foreach(var attribute in _attribtueWriters) { #> <#= attribute.WriteAttribute() #> <# } #>
-	public class <#= _classDefinition.Name #> : <#= _classDefinition.BaseClass #>
+	<# foreach(var attribute in _attributeWriters) { #> <#= attribute.WriteAttribute() #> <# } #>
+	public class <#= _classDefinition.Name #> : IUmbracoContent
 	{
 		[JsonIgnore]
 		private IPublishedContent _content = null;
@@ -58,12 +60,24 @@ namespace <#= _classDefinition.Namespace #>
 			}
 		}
 
+		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Name]) { #><#= writer.WriteAttribute() #><# } #>
 		public string Name { get; set; }
+
+		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Id]) { #><#= writer.WriteAttribute() #><# } #>
 		public int Id { get; set; }
+		
+		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.ParentId]) { #><#= writer.WriteAttribute() #><# } #>
 		public int ParentId { get; set; }
+		
+		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Path]) { #><#= writer.WriteAttribute() #><# } #>
 		public string Path { get; set; }
+		
+		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.CreateDate]) { #><#= writer.WriteAttribute() #><# } #>
 		public DateTime CreateDate { get; set; }
+		
+		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.UpdateDate]) { #><#= writer.WriteAttribute() #><# } #>
 		public DateTime UpdateDate { get; set; }
+		
 		public string Url { get; set; }
 
  		public <#= _classDefinition.Name #>()

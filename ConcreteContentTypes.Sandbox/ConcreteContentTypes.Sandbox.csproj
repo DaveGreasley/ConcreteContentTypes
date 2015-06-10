@@ -317,10 +317,6 @@
     <Compile Include="WebApi\BlogCommentApiController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConcreteContentTypes.WebBlocks\ConcreteContentTypes.WebBlocks.csproj">
-      <Project>{8af3dfb2-5324-46de-ab06-8f2d56a99123}</Project>
-      <Name>ConcreteContentTypes.WebBlocks</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ConcreteContentTypes.Core\ConcreteContentTypes.Core.csproj">
       <Project>{1b3d21dd-fb60-4a6b-a94a-5608c5154fa6}</Project>
       <Name>ConcreteContentTypes.Core</Name>

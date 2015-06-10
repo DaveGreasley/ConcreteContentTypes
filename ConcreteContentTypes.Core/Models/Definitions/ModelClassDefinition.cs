@@ -9,59 +9,29 @@ using Umbraco.Web;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class ClassDefinition : ClassDefinitionBase
+	public class ModelClassDefinition : ClassDefinitionBase
 	{
-		public string Namespace { get; set; }
-		public string Name { get; set; }
 		public string BaseClass { get; set; }
 		public bool HasBaseClass { get { return !string.IsNullOrEmpty(this.BaseClass); } }
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent";  } }
-		protected List<string> UsingNamespaces { get; set; }
 
-		public List<AttributeDefinition> Attributes { get; set; }
-		public List<PropertyDefinition> Properties { get; set; }
-
-		public ClassDefinition(List<PropertyDefinition> properties, string className, string nameSpace, string baseClass = "")
+		public ModelClassDefinition(List<PropertyDefinition> properties, string className, string nameSpace, string baseClass = "")
+			: base(className, nameSpace)
 		{
-			this.Namespace = nameSpace;
-			this.Name = className;
 			this.BaseClass = baseClass;
 			this.Properties = properties;
 			this.Attributes = new List<AttributeDefinition>();
 		}
 
-		public ClassDefinition(IContentType contentType, IContentType parent, string nameSpace, string defaultBaseClass = "")
+		public ModelClassDefinition(IContentType contentType, IContentType parent, string nameSpace, string defaultBaseClass = "")
+			: base(contentType.Alias, nameSpace)
 		{
-			this.Namespace = nameSpace;
-			this.Name = contentType.Alias;
 			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
 			this.Properties = new List<PropertyDefinition>();
 			this.Attributes = new List<AttributeDefinition>();
 
 			CreateDefinition(contentType, parent);
-		}
-
-		public List<string> GetUsingNamespaces()
-		{
-			this.UsingNamespaces = new List<string>();
-
-			foreach (var attribute in this.Attributes)
-			{
-				if (!this.UsingNamespaces.Contains(attribute.Namespace))
-					this.UsingNamespaces.Add(attribute.Namespace);
-			}
-
-			foreach (var property in this.Properties)
-			{
-				foreach (var attribute in property.Attributes)
-				{
-					if (!this.UsingNamespaces.Contains(attribute.Namespace))
-						this.UsingNamespaces.Add(attribute.Namespace);
-				}
-			}
-
-			return this.UsingNamespaces;
 		}
 		
 		private void CreateDefinition(IContentType contentType, IContentType parent)
