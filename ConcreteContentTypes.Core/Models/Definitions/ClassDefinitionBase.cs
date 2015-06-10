@@ -18,9 +18,11 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		{
 			this.Name = name;
 			this.Namespace = nameSpace;
+			this.Attributes = new List<AttributeDefinition>();
+			this.Properties = new List<PropertyDefinition>();
 		}
 
-		public List<string> GetUsingNamespaces()
+		public virtual List<string> GetUsingNamespaces()
 		{
 			this.UsingNamespaces = new List<string>();
 

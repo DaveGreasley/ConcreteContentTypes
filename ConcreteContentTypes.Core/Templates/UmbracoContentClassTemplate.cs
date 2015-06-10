@@ -41,60 +41,63 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
+using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models.Enums;
+using Umbraco.Core;
+using Umbraco.Core.Services;
 
 ");
             
-            #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  foreach(string nameSpace in _usingNamespaces) { 
             
             #line default
             #line hidden
             this.Write("using ");
             
-            #line 23 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 24 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 27 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\nnamespace ");
             
-            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Namespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\t");
             
-            #line 28 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  foreach(var attribute in _attributeWriters) { 
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 28 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(attribute.WriteAttribute()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 28 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\tpublic class ");
+            this.Write("\tpublic partial class ");
             
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 32 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
@@ -135,50 +138,31 @@ using ConcreteContentTypes.Core.Models.Enums;
 
 		");
             
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Name]) { 
             
             #line default
             #line hidden
             
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
             
             #line default
             #line hidden
             
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t\tpublic string Name { get; set; }\r\n\r\n\t\t");
             
-            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Id]) { 
             
             #line default
             #line hidden
             
-            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
-            
-            #line default
-            #line hidden
-            
-            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic int Id { get; set; }\r\n\t\t\r\n\t\t");
-            
-            #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
- foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.ParentId]) { 
-            
-            #line default
-            #line hidden
-            
             #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
             
@@ -190,81 +174,63 @@ using ConcreteContentTypes.Core.Models.Enums;
             
             #line default
             #line hidden
-            this.Write("\t\tpublic int ParentId { get; set; }\r\n\t\t\r\n\t\t");
+            this.Write("\t\tpublic int Id { get; set; }\r\n\t\t\r\n\t\tpublic int ParentId { get; set; }\r\n\t\t\r\n\t\tpub" +
+                    "lic string Path { get; set; }\r\n\t\t\r\n\t\t");
             
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
- foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Path]) { 
-            
-            #line default
-            #line hidden
-            
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
-            
-            #line default
-            #line hidden
-            
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic string Path { get; set; }\r\n\t\t\r\n\t\t");
-            
-            #line 75 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 76 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.CreateDate]) { 
             
             #line default
             #line hidden
             
-            #line 75 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 76 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
             
             #line default
             #line hidden
             
-            #line 75 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 76 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t\tpublic DateTime CreateDate { get; set; }\r\n\t\t\r\n\t\t");
             
-            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 79 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.UpdateDate]) { 
             
             #line default
             #line hidden
             
-            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 79 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
             
             #line default
             #line hidden
             
-            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 79 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t\tpublic DateTime UpdateDate { get; set; }\r\n\t\t\r\n\t\tpublic string Url { get; set; }" +
-                    "\r\n\r\n \t\tpublic ");
+                    "\r\n\r\n\t\t#region Constructors and Initalisation\r\n\r\n \t\tpublic ");
             
-            #line 83 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 86 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
             this.Write("()\r\n\t\t\t: base()\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
             
-            #line 88 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 91 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
             this.Write("(int contentId)\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
             
-            #line 92 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 95 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
@@ -272,39 +238,45 @@ using ConcreteContentTypes.Core.Models.Enums;
             this.Write("(IPublishedContent content)\r\n \t\t{\r\n \t\t}\r\n\r\n\t\tpublic virtual void Init(int content" +
                     "Id)\r\n\t\t{\r\n\t\t\tInit(UmbracoContext.Current.ContentCache.GetById(contentId));\r\n\t\t}\r" +
                     "\n\r\n\t\tpublic virtual void Init(IPublishedContent content)\r\n\t\t{\r\n\t\t\tthis.Content =" +
-                    " content;\r\n\r\n\t\t\tInit();\r\n\t\t}\r\n\r\n\t\t#region Public Methods\r\n\r\n\t\t/// <summary>\r\n\t\t/" +
-                    "// Retrieves the IContent object from the database or creates a new one. In orde" +
-                    "r to create a new object in the DB\r\n\t\t/// ParentId must be set.\r\n\t\t/// </summary" +
-                    ">\r\n\t\tpublic IContent GetOrCreatingIContent()\r\n\t\t{\r\n\t\t\tif (this.Id != -1)\r\n\t\t\t{\r\n" +
-                    "\t\t\t\treturn GetIContent();\r\n\t\t\t}\r\n\r\n\t\t\treturn CreateIContent();\r\n\t\t}\r\n\r\n\t\t/// <su" +
-                    "mmary>\r\n\t\t/// Maps all the properties on this class to the passed IContent objec" +
-                    "t\r\n\t\t/// </summary>\r\n\t\tpublic virtual IContent SetProperties(IContent dbContent)" +
-                    "\r\n\t\t{\r\n\t\t\tdbContent.Name = this.Name;\r\n\t\t\tdbContent.CreateDate = this.CreateDate" +
-                    ";\r\n\t\t\tdbContent.UpdateDate = this.UpdateDate;\r\n\r\n\t\t\treturn dbContent;\r\n\t\t}\r\n\r\n\t\t" +
-                    "/// <summary>\r\n\t\t/// Persists the current Concrete object to the DB using Save m" +
-                    "ethod on the Umbraco ContentService.\r\n\t\t/// If the current object is a new objec" +
-                    "t it will be created in the database (ParentId and Name must be set for this to " +
-                    "work).\r\n\t\t/// </summary>\r\n\t\tpublic void Save(int userId = 0, bool raiseEvents = " +
-                    "true)\r\n\t\t{\r\n\t\t\tIContent dbContent = SetProperties(GetOrCreatingIContent());\r\n\r\n\t" +
-                    "\t\tContentService.Save(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t/// <summary>\r\n" +
-                    "\t\t/// Persists the current Concrete object to the DB using SaveAndPublishWithSta" +
-                    "tus method on the Umbraco ContentService.\r\n\t\t/// If the current object is a new " +
-                    "object it will be created in the database (ParentId and Name must be set for thi" +
-                    "s to work).\r\n\t\t/// </summary>\r\n\t\tpublic Attempt<Umbraco.Core.Publishing.PublishS" +
-                    "tatus> SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)\r\n\t\t{\r\n\t" +
-                    "\t\tIContent dbContent = SetProperties(GetOrCreatingIContent());\r\n\r\n\t\t\treturn Cont" +
-                    "entService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t/" +
-                    "// <summary>\r\n\t\t/// Deletes the associated content object from the database. \r\n\t" +
-                    "\t/// </summary>\r\n\t\t/// <param name=\"userId\"></param>\r\n\t\tpublic void Delete(int u" +
-                    "serId = 0)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIContent();\r\n\r\n\t\t\tContentService.Del" +
-                    "ete(dbContent, userId);\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\tprivate IContent GetIContent()" +
-                    "\r\n\t\t{\r\n\t\t\tvar content = ContentService.GetById(this.Id);\r\n\r\n\t\t\tif (content != nu" +
-                    "ll)\r\n\t\t\t\treturn content;\r\n\r\n\t\t\tthrow new InvalidOperationException(\"Content Id \"" +
-                    " + this.Id + \" not found.\");\r\n\t\t}\r\n\r\n\t\tprivate IContent CreateIContent()\r\n\t\t{\r\n\t" +
-                    "\t\tif (string.IsNullOrEmpty(this.Name) || this.ParentId < 1)\r\n\t\t\t\tthrow new Inval" +
-                    "idOperationException(\"Either Name or ParentId is not set. These must be set in o" +
-                    "rder to create a content item.\");\r\n\r\n\t\t\treturn ContentService.CreateContent(this" +
-                    ".Name, this.ParentId, this.GetType().Name);\r\n\t\t}\r\n \t}\r\n} \r\n");
+                    " content;\r\n\r\n\t\t\tInit();\r\n\t\t}\r\n\r\n\t\tprotected virtual void Init()\r\n\t\t{\r\n\t\t\tthis.Na" +
+                    "me = this.Content.Name;\r\n\t\t\tthis.Id = this.Content.Id;\r\n\t\t\tthis.ParentId = this." +
+                    "Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //" +
+                    "TODO: Not sure about this, means we always grab the parent IPublishedContent too" +
+                    "...\r\n\t\t\tthis.Path = this.Content.Path;\r\n\t\t\tthis.CreateDate = this.Content.Create" +
+                    "Date;\r\n\t\t\tthis.UpdateDate = this.Content.UpdateDate;\r\n\t\t\tthis.Url = this.Content" +
+                    ".Url;\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\t#region Public Methods\r\n\r\n\t\t/// <summary>\r\n\t\t///" +
+                    " Retrieves the IContent object from the database or creates a new one. In order " +
+                    "to create a new object in the DB\r\n\t\t/// ParentId must be set.\r\n\t\t/// </summary>\r" +
+                    "\n\t\tpublic IContent GetOrCreateIContent()\r\n\t\t{\r\n\t\t\tif (this.Id != -1)\r\n\t\t\t{\r\n\t\t\t\t" +
+                    "return GetIContent();\r\n\t\t\t}\r\n\r\n\t\t\treturn CreateIContent();\r\n\t\t}\r\n\r\n\t\t/// <summar" +
+                    "y>\r\n\t\t/// Maps all the properties on this class to the passed IContent object\r\n\t" +
+                    "\t/// </summary>\r\n\t\tpublic virtual IContent SetProperties(IContent dbContent)\r\n\t\t" +
+                    "{\r\n\t\t\tdbContent.Name = this.Name;\r\n\t\t\tdbContent.CreateDate = this.CreateDate;\r\n\t" +
+                    "\t\tdbContent.UpdateDate = this.UpdateDate;\r\n\r\n\t\t\treturn dbContent;\r\n\t\t}\r\n\r\n\t\t/// " +
+                    "<summary>\r\n\t\t/// Persists the current Concrete object to the DB using Save metho" +
+                    "d on the Umbraco ContentService.\r\n\t\t/// If the current object is a new object it" +
+                    " will be created in the database (ParentId and Name must be set for this to work" +
+                    ").\r\n\t\t/// </summary>\r\n\t\tpublic void Save(int userId = 0, bool raiseEvents = true" +
+                    ")\r\n\t\t{\r\n\t\t\tIContent dbContent = SetProperties(GetOrCreateIContent());\r\n\r\n\t\t\tCont" +
+                    "entService.Save(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t/// <summary>\r\n\t\t/// " +
+                    "Persists the current Concrete object to the DB using SaveAndPublishWithStatus me" +
+                    "thod on the Umbraco ContentService.\r\n\t\t/// If the current object is a new object" +
+                    " it will be created in the database (ParentId and Name must be set for this to w" +
+                    "ork).\r\n\t\t/// </summary>\r\n\t\tpublic Attempt<Umbraco.Core.Publishing.PublishStatus>" +
+                    " SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)\r\n\t\t{\r\n\t\t\tICon" +
+                    "tent dbContent = SetProperties(GetOrCreateIContent());\r\n\r\n\t\t\treturn ContentServi" +
+                    "ce.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t/// <summ" +
+                    "ary>\r\n\t\t/// Deletes the associated content object from the database. \r\n\t\t/// </s" +
+                    "ummary>\r\n\t\t/// <param name=\"userId\"></param>\r\n\t\tpublic void Delete(int userId = " +
+                    "0)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIContent();\r\n\r\n\t\t\tContentService.Delete(dbCo" +
+                    "ntent, userId);\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\tprivate IContent GetIContent()\r\n\t\t{\r\n\t" +
+                    "\t\tvar content = ContentService.GetById(this.Id);\r\n\r\n\t\t\tif (content != null)\r\n\t\t\t" +
+                    "\treturn content;\r\n\r\n\t\t\tthrow new InvalidOperationException(\"Content Id \" + this." +
+                    "Id + \" not found.\");\r\n\t\t}\r\n\r\n\t\tprivate IContent CreateIContent()\r\n\t\t{\r\n\t\t\tif (st" +
+                    "ring.IsNullOrEmpty(this.Name) || this.ParentId < 1)\r\n\t\t\t\tthrow new InvalidOperat" +
+                    "ionException(\"Either Name or ParentId is not set. These must be set in order to " +
+                    "create a content item.\");\r\n\r\n\t\t\treturn ContentService.CreateContent(this.Name, t" +
+                    "his.ParentId, this.GetType().Name);\r\n\t\t}\r\n \t}\r\n} \r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

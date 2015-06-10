@@ -17,7 +17,10 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
+using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models.Enums;
+using Umbraco.Core;
+using Umbraco.Core.Services;
 
 <# foreach(string nameSpace in _usingNamespaces) { #>
 using <#= nameSpace #>;
@@ -26,7 +29,7 @@ using <#= nameSpace #>;
 namespace <#= _classDefinition.Namespace #>
 {
 	<# foreach(var attribute in _attributeWriters) { #> <#= attribute.WriteAttribute() #> <# } #>
-	public class <#= _classDefinition.Name #> : IUmbracoContent
+	public partial class <#= _classDefinition.Name #> : IUmbracoContent
 	{
 		[JsonIgnore]
 		private IPublishedContent _content = null;
@@ -66,10 +69,8 @@ namespace <#= _classDefinition.Namespace #>
 		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Id]) { #><#= writer.WriteAttribute() #><# } #>
 		public int Id { get; set; }
 		
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.ParentId]) { #><#= writer.WriteAttribute() #><# } #>
 		public int ParentId { get; set; }
 		
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Path]) { #><#= writer.WriteAttribute() #><# } #>
 		public string Path { get; set; }
 		
 		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.CreateDate]) { #><#= writer.WriteAttribute() #><# } #>
@@ -79,6 +80,8 @@ namespace <#= _classDefinition.Namespace #>
 		public DateTime UpdateDate { get; set; }
 		
 		public string Url { get; set; }
+
+		#region Constructors and Initalisation
 
  		public <#= _classDefinition.Name #>()
 			: base()
@@ -105,13 +108,26 @@ namespace <#= _classDefinition.Namespace #>
 			Init();
 		}
 
+		protected virtual void Init()
+		{
+			this.Name = this.Content.Name;
+			this.Id = this.Content.Id;
+			this.ParentId = this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //TODO: Not sure about this, means we always grab the parent IPublishedContent too...
+			this.Path = this.Content.Path;
+			this.CreateDate = this.Content.CreateDate;
+			this.UpdateDate = this.Content.UpdateDate;
+			this.Url = this.Content.Url;
+		}
+
+		#endregion
+
 		#region Public Methods
 
 		/// <summary>
 		/// Retrieves the IContent object from the database or creates a new one. In order to create a new object in the DB
 		/// ParentId must be set.
 		/// </summary>
-		public IContent GetOrCreatingIContent()
+		public IContent GetOrCreateIContent()
 		{
 			if (this.Id != -1)
 			{
@@ -139,7 +155,7 @@ namespace <#= _classDefinition.Namespace #>
 		/// </summary>
 		public void Save(int userId = 0, bool raiseEvents = true)
 		{
-			IContent dbContent = SetProperties(GetOrCreatingIContent());
+			IContent dbContent = SetProperties(GetOrCreateIContent());
 
 			ContentService.Save(dbContent, userId, raiseEvents);
 		}
@@ -150,7 +166,7 @@ namespace <#= _classDefinition.Namespace #>
 		/// </summary>
 		public Attempt<Umbraco.Core.Publishing.PublishStatus> SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)
 		{
-			IContent dbContent = SetProperties(GetOrCreatingIContent());
+			IContent dbContent = SetProperties(GetOrCreateIContent());
 
 			return ContentService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);
 		}

@@ -22,6 +22,21 @@ namespace ConcreteContentTypes.LinqToExamine
 
 		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition)
 		{
+			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Id, "id");
+			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Name, "nodeName");
+			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.CreateDate, "createDate");
+			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.UpdateDate, "updateDate");
+
+		}
+
+		private void AddAttributeToStandardProperty(UmbracoContentClassDefinition classDefinition, PublishedContentProperty property, string lucenePropertyName)
+		{
+			if (!classDefinition.StandardPropertyAttributes.ContainsKey(property))
+			{
+				classDefinition.StandardPropertyAttributes.Add(property, new List<AttributeDefinition>());
+			}
+
+			classDefinition.StandardPropertyAttributes[property].Add(new AttributeDefinition("Field", "Umbraco.Examine.Linq.Attributes", "\"" + lucenePropertyName + "\""));
 		}
 
 		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefintion)
