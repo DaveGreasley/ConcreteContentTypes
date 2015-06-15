@@ -9,6 +9,6 @@
     </metadata>
     <files>
         <file src="..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" target="content\Config\ConcreteContentTypes.config" />
-        <file src="..\ConcreteContentTypes.Core\bin\Debug\ConcreteContentTypes.Core.dll" target="lib\ConcreteContentTypes.Core.dll" />
+        <file src="..\ConcreteContentTypes.Core\bin\Release\ConcreteContentTypes.Core.dll" target="lib\ConcreteContentTypes.Core.dll" />
     </files>
 </package>
