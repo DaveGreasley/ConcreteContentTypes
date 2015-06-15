@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>ConcreteContentTypes</id>
-        <version>$version</version>
+        <version>$version$</version>
         <authors>David Greasley</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <projectUrl>https://github.com/DaveGreasley/ConcreteContentTypes</projectUrl>
