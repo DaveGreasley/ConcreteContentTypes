@@ -17,6 +17,23 @@ namespace ConcreteContentTypes.Core.Events
 			base.ApplicationStarted(umbracoApplication, applicationContext);
 
 			ContentTypeService.SavedContentType += ContentTypeService_SavedContentType;
+			ContentTypeService.SavedMediaType += ContentTypeService_SavedMediaType;
+		}
+
+		void ContentTypeService_SavedMediaType(IContentTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IMediaType> e)
+		{
+			try
+			{
+				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
+				{
+					Concrete c = new Concrete();
+					c.BuildMediaTypes();
+				}
+			}
+			catch (Exception ex)
+			{
+				LogHelper.Error<UmbracoEvents>("Error generating Concrete models on ContentType save", ex);
+			}
 		}
 
 		void ContentTypeService_SavedContentType(IContentTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IContentType> e)
@@ -26,6 +43,7 @@ namespace ConcreteContentTypes.Core.Events
 				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
 				{
 					Concrete c = new Concrete();
+					c.BuildMediaTypes();
 					c.BuildContentTypes();
 				}
 			}

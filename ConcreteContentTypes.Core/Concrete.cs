@@ -17,6 +17,7 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.CSharpWriters;
+using ConcreteContentTypes.Core.Compilation;
 
 namespace ConcreteContentTypes.Core
 {
@@ -28,6 +29,13 @@ namespace ConcreteContentTypes.Core
 
 		string _contentTypeNameSpace;
 		string _contentTypeCSharpOutputFolder;
+		string _mediaTypeNameSpace;
+		string _mediaTypeCSharpOutputFolder;
+
+		string _assemblyOutputDirectory;
+		string _assemblyDependencyDirectory;
+
+		List<ClassDefinitionBase> _classDefinitions;
 
 		#endregion
 
@@ -37,13 +45,35 @@ namespace ConcreteContentTypes.Core
 		{
 			_contentTypeService = UmbracoContext.Current.Application.Services.ContentTypeService;
 
-			_contentTypeNameSpace = ConcreteSettings.Current.Namespace;
-			_contentTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder;
+			_contentTypeNameSpace = ConcreteSettings.Current.Namespace + ".Content";
+			_contentTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder + "\\Content";
+
+			_mediaTypeNameSpace = ConcreteSettings.Current.Namespace + ".Media";
+			_mediaTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder + "\\Media";
+
+			_assemblyOutputDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyOutputDirectory;
+			_assemblyDependencyDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyDependencyDirectory;
+			_classDefinitions = new List<ClassDefinitionBase>();
 		}
 
 		#endregion
 
 		#region Public Methods
+
+		public void BuildMediaTypes()
+		{
+			var mediaTypes = _contentTypeService.GetAllMediaTypes();
+
+			BuildMediaTypes(mediaTypes);
+		}
+
+		public void BuildMediaTypes(IEnumerable<IMediaType> mediaTypes)
+		{
+			if (ConcreteSettings.Current.Enabled)
+			{
+				CreateCSharp(mediaTypes);
+			}
+		}
 
 		/// <summary>
 		/// Updates or creates C# files for all ContentTypes
@@ -66,15 +96,31 @@ namespace ConcreteContentTypes.Core
 			}
 		}
 
+
+		public void BuildAssembly()
+		{
+			if (ConcreteSettings.Current.Enabled && ConcreteSettings.Current.AssemblyGeneration)
+			{
+				AssemblyBuilder builder = new AssemblyBuilder();
+				builder.CreateAssembly(
+					_contentTypeCSharpOutputFolder,
+					_assemblyOutputDirectory,
+					ConcreteSettings.Current.AssemblyName,
+					_assemblyDependencyDirectory,
+					GetDependentAssemblies());
+			}
+		}
+
 		#endregion
 
 		#region Private Methods
 
 		private void CreateCSharp(IEnumerable<IContentType> contentTypes)
 		{
-			UmbracoContentClassDefinition baseClassDefintion = new UmbracoContentClassDefinition("UmbracoContent", ConcreteSettings.Current.Namespace);
+			UmbracoContentClassDefinition baseClassDefintion = new UmbracoContentClassDefinition("UmbracoContent", _contentTypeNameSpace, Models.Enums.ContentType.Content);
+			_classDefinitions.Add(baseClassDefintion);
 
-			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefintion);
+			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefintion, Models.Enums.ContentType.Content);
 
 			CSharpBaseClassFileWriter baseClassWriter = new CSharpBaseClassFileWriter(baseClassDefintion);
 			baseClassWriter.WriteBaseClass(_contentTypeCSharpOutputFolder);
@@ -83,14 +129,57 @@ namespace ConcreteContentTypes.Core
 			{
 				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
 
-				ModelClassDefinition classDefinition = new ModelClassDefinition(contentType, parent, _contentTypeNameSpace, "UmbracoContent");
-				
-				ConcreteEvents.RaiseModelClassGenerating(classDefinition);
-				
+				ModelClassDefinition classDefinition = new ModelClassDefinition(contentType, parent, _contentTypeNameSpace, Models.Enums.ContentType.Content, "UmbracoContent");
+				_classDefinitions.Add(classDefinition);
+				classDefinition.UsingNamespaces.Add(_mediaTypeNameSpace);
+
+				ConcreteEvents.RaiseModelClassGenerating(classDefinition, Models.Enums.ContentType.Content);
+
 				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
 				writer.WriteMainClass(_contentTypeCSharpOutputFolder);
 			}
 		}
+
+		private void CreateCSharp(IEnumerable<IMediaType> mediaTypes)
+		{
+			UmbracoContentClassDefinition baseClassDefinition = new UmbracoContentClassDefinition("UmbracoMedia", _mediaTypeNameSpace, Models.Enums.ContentType.Media);
+			_classDefinitions.Add(baseClassDefinition);
+
+			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefinition, Models.Enums.ContentType.Media);
+
+			CSharpBaseClassFileWriter baseClassWriter = new CSharpBaseClassFileWriter(baseClassDefinition);
+			baseClassWriter.WriteBaseClass(_mediaTypeCSharpOutputFolder);
+
+			foreach (IMediaType mediaType in mediaTypes)
+			{
+				var parent = mediaTypes.FirstOrDefault(x => x.Id == mediaType.ParentId);
+
+				ModelClassDefinition classDefinition = new ModelClassDefinition(mediaType, parent, _mediaTypeNameSpace, Models.Enums.ContentType.Media, "UmbracoMedia");
+				_classDefinitions.Add(classDefinition);
+
+				ConcreteEvents.RaiseModelClassGenerating(classDefinition, Models.Enums.ContentType.Media);
+
+				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
+				writer.WriteMainClass(_mediaTypeCSharpOutputFolder);
+			}
+		}
+
+		private List<string> GetDependentAssemblies()
+		{
+			List<string> assemblies = new List<string>();
+
+			foreach (var c in _classDefinitions)
+			{
+				foreach (var assembly in c.DependantAssemblies)
+				{
+					if (!assemblies.Contains(assembly))
+						assemblies.Add(assembly);
+				}
+			}
+
+			return assemblies;
+		}
+
 		#endregion
 	}
 }

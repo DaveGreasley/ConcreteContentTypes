@@ -9,10 +9,11 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 
 
-namespace ConcreteContentTypes.Sandbox.Models
+namespace ConcreteContentTypes.Sandbox.Models.Content
 {
 	 [NodeTypeAlias("Address")]
  	public partial class Address : UmbracoContent

@@ -9,15 +9,35 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 
 
-namespace ConcreteContentTypes.Sandbox.Models
+namespace ConcreteContentTypes.Sandbox.Models.Content
 {
 	 [NodeTypeAlias("BlogPost")]
  	public partial class BlogPost : UmbracoContent
 	{
 				
+		
+		private Image _image = null;
+		public Image Image
+		{
+			get 
+			{
+				if (_image == null)
+				{
+					int? contentId = Content.GetPropertyValue<int?>("image");
+
+					if (contentId.HasValue)
+					{
+					
+						_image = new Image(contentId.Value); 
+					}	
+				}
+				return _image;
+			}
+		} 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 		
 		

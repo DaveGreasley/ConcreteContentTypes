@@ -18,7 +18,7 @@
 					{
 					<# if (_typeName == "IPublishedContent") { #>
 
-						_<#=_propertyAlias#> = UmbracoContext.Current.ContentCache.GetById(contentId.Value);
+						_<#=_propertyAlias#> = UmbracoContext.Current.<#=_cacheSource #>.GetById(contentId.Value);
 				
 						<# } else { #>
 

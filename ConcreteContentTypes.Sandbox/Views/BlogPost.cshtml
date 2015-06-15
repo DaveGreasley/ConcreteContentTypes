@@ -11,13 +11,17 @@
 			<div class="col-md-12 column">
 				<div>
 					Author: <a href="@Model.Author.Url">@Model.Author.Name</a>
+					@if (Model.Image != null)
+					{
+						<img src="@Model.Image.Url" width="@Model.Image.Width" height="@Model.Image.Height" alt="@Model.Image.Name" />
+					}
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-	@Html.Raw(Model.content)
+@Html.Raw(Model.content)
 
 
 @Html.Partial("BlogSubmitComment", new BlogComment() { ParentId = Model.Id })

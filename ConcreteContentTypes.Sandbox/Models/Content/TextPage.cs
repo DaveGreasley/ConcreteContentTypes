@@ -9,36 +9,30 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 
 
-namespace ConcreteContentTypes.Sandbox.Models
+namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	 [NodeTypeAlias("LandingPage")]
- 	public partial class LandingPage : UmbracoContent
+	 [NodeTypeAlias("TextPage")]
+ 	public partial class TextPage : UmbracoContent
 	{
 				
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		
-		[Field("umbracoNaviHide")]
-		public bool HideInBottomNavigation { get; set; } 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 
 		
-		public LandingPage()
+		public TextPage()
 			: base()
 		{
 		}
 
-		public LandingPage(int contentId)
+		public TextPage(int contentId)
 			: base(contentId)
 		{
 		}
 
-		public LandingPage(IPublishedContent content)
+		public TextPage(IPublishedContent content)
 			: base(content)
 		{
 		}
@@ -47,16 +41,12 @@ namespace ConcreteContentTypes.Sandbox.Models
 		{
 			base.Init();
 						
-			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
-						
 			this.content = new GridContent("content", this.Content);
 			
 		}
 
 		public override IContent SetProperties(IContent dbContent)
 		{
-						
-			dbContent.SetValue("umbracoNaviHide", this.HideInBottomNavigation);
 			
 			return base.SetProperties(dbContent);
 		}

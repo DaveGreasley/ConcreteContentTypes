@@ -20,12 +20,14 @@ namespace ConcreteContentTypes.LinqToExamine
 			ConcreteEvents.ModelClassGenerating += ConcreteEvents_Generating;
 		}
 
-		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition)
+		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, ContentType contentType)
 		{
 			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Id, "id");
 			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Name, "nodeName");
 			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.CreateDate, "createDate");
 			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.UpdateDate, "updateDate");
+
+			classDefinition.DependantAssemblies.Add("Umbraco.Examine.Linq.dll");
 
 		}
 
@@ -39,16 +41,18 @@ namespace ConcreteContentTypes.LinqToExamine
 			classDefinition.StandardPropertyAttributes[property].Add(new AttributeDefinition("Field", "Umbraco.Examine.Linq.Attributes", "\"" + lucenePropertyName + "\""));
 		}
 
-		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefintion)
+		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefinition, ContentType contentType)
 		{
 			//Add NodeTypeAliasAttribute to our generated class
-			classDefintion.Attributes.Add(new AttributeDefinition("NodeTypeAlias", "Umbraco.Examine.Linq.Attributes", "\"" + classDefintion.Name + "\""));
+			classDefinition.Attributes.Add(new AttributeDefinition("NodeTypeAlias", "Umbraco.Examine.Linq.Attributes", "\"" + classDefinition.Name + "\""));
 
 			//Add FieldAttribute to each property in our generated class
-			foreach (var property in classDefintion.Properties)
+			foreach (var property in classDefinition.Properties)
 			{
 				property.Attributes.Add(new AttributeDefinition("Field", "Umbraco.Examine.Linq.Attributes", "\"" + property.PropertyTypeAlias + "\""));
 			}
+
+			classDefinition.DependantAssemblies.Add("Umbraco.Examine.Linq.dll");
 		}
 	}
 }

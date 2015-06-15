@@ -299,20 +299,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\EverythingController.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\BlogAuthor.cs" />
-    <Compile Include="Models\BlogAuthorRepository.cs" />
-    <Compile Include="Models\BlogComment.cs" />
-    <Compile Include="Models\BlogPost.cs" />
-    <Compile Include="Models\BlogPostRepository.cs" />
-    <Compile Include="Models\Everything.cs" />
-    <Compile Include="Models\Home.cs" />
-    <Compile Include="Models\LandingPage.cs" />
-    <Compile Include="Models\MoreEverything.cs" />
-    <Compile Include="Models\Partials\BlogComment.cs" />
-    <Compile Include="Models\Partials\Everything.cs" />
-    <Compile Include="Models\TextPage.cs" />
-    <Compile Include="Models\UmbracoContent.cs" />
+    <Compile Include="Models\Content\Address.cs" />
+    <Compile Include="Models\Content\BlogAuthor.cs" />
+    <Compile Include="Models\Content\BlogAuthorRepository.cs" />
+    <Compile Include="Models\Content\BlogComment.cs" />
+    <Compile Include="Models\Content\BlogPost.cs" />
+    <Compile Include="Models\Content\BlogPostRepository.cs" />
+    <Compile Include="Models\Content\Everything.cs" />
+    <Compile Include="Models\Content\Home.cs" />
+    <Compile Include="Models\Content\LandingPage.cs" />
+    <Compile Include="Models\Content\MoreEverything.cs" />
+    <Compile Include="Models\Content\TextPage.cs" />
+    <Compile Include="Models\Content\UmbracoContent.cs" />
+    <Compile Include="Models\Media\File.cs" />
+    <Compile Include="Models\Media\Folder.cs" />
+    <Compile Include="Models\Media\Image.cs" />
+    <Compile Include="Models\Media\UmbracoMedia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\BlogCommentApiController.cs" />
   </ItemGroup>
@@ -320,12 +322,14 @@
     <ProjectReference Include="..\ConcreteContentTypes.Core\ConcreteContentTypes.Core.csproj">
       <Project>{1b3d21dd-fb60-4a6b-a94a-5608c5154fa6}</Project>
       <Name>ConcreteContentTypes.Core</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\ConcreteContentTypes.LinqToExamine\ConcreteContentTypes.LinqToExamine.csproj">
       <Project>{11ce168c-3a47-4383-b5f4-33fd91348164}</Project>
       <Name>ConcreteContentTypes.LinqToExamine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

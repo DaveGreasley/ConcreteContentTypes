@@ -9,10 +9,11 @@ using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
+using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 
 
-namespace ConcreteContentTypes.Sandbox.Models
+namespace ConcreteContentTypes.Sandbox.Models.Content
 {
 	 [NodeTypeAlias("MoreEverything")]
  	public partial class MoreEverything : Everything
@@ -75,6 +76,27 @@ namespace ConcreteContentTypes.Sandbox.Models
 				}
 
 				return _blogAuthors;
+			}
+		} 		
+		
+		private IPublishedContent _mediaPicker = null;
+		public IPublishedContent MediaPicker
+		{
+			get 
+			{
+				if (_mediaPicker == null)
+				{
+					int? contentId = Content.GetPropertyValue<int?>("mediaPicker");
+
+					if (contentId.HasValue)
+					{
+					
+						_mediaPicker = UmbracoContext.Current.MediaCache.GetById(contentId.Value);
+				
+						
+					}	
+				}
+				return _mediaPicker;
 			}
 		} 		
 		

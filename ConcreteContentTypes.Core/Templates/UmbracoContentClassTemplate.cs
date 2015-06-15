@@ -102,16 +102,16 @@ using Umbraco.Core.Services;
             
             #line default
             #line hidden
-            this.Write(@" : IUmbracoContent
-	{
-		[JsonIgnore]
-		private IPublishedContent _content = null;
-		public IPublishedContent Content
-		{
-			get
-			{
-				if (_content == null && this.Id != 0)
-					_content = UmbracoContext.Current.ContentCache.GetById(this.Id);
+            this.Write(" : IUmbracoContent\r\n\t{\r\n\t\t[JsonIgnore]\r\n\t\tprivate IPublishedContent _content = nu" +
+                    "ll;\r\n\t\tpublic IPublishedContent Content\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_content == " +
+                    "null && this.Id != 0)\r\n\t\t\t\t\t_content = UmbracoContext.Current.");
+            
+            #line 41 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheName));
+            
+            #line default
+            #line hidden
+            this.Write(@".GetById(this.Id);
 
 				return _content;
 			}
@@ -228,55 +228,61 @@ using Umbraco.Core.Services;
             
             #line default
             #line hidden
-            this.Write("(int contentId)\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
+            this.Write("(int contentId)\r\n \t\t{\r\n\t\t\tInit(contentId);\r\n \t\t}\r\n \r\n \t\tpublic ");
             
-            #line 95 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            #line 96 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
-            this.Write("(IPublishedContent content)\r\n \t\t{\r\n \t\t}\r\n\r\n\t\tpublic virtual void Init(int content" +
-                    "Id)\r\n\t\t{\r\n\t\t\tInit(UmbracoContext.Current.ContentCache.GetById(contentId));\r\n\t\t}\r" +
-                    "\n\r\n\t\tpublic virtual void Init(IPublishedContent content)\r\n\t\t{\r\n\t\t\tthis.Content =" +
-                    " content;\r\n\r\n\t\t\tInit();\r\n\t\t}\r\n\r\n\t\tprotected virtual void Init()\r\n\t\t{\r\n\t\t\tthis.Na" +
-                    "me = this.Content.Name;\r\n\t\t\tthis.Id = this.Content.Id;\r\n\t\t\tthis.ParentId = this." +
-                    "Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //" +
-                    "TODO: Not sure about this, means we always grab the parent IPublishedContent too" +
-                    "...\r\n\t\t\tthis.Path = this.Content.Path;\r\n\t\t\tthis.CreateDate = this.Content.Create" +
-                    "Date;\r\n\t\t\tthis.UpdateDate = this.Content.UpdateDate;\r\n\t\t\tthis.Url = this.Content" +
-                    ".Url;\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\t#region Public Methods\r\n\r\n\t\t/// <summary>\r\n\t\t///" +
-                    " Retrieves the IContent object from the database or creates a new one. In order " +
-                    "to create a new object in the DB\r\n\t\t/// ParentId must be set.\r\n\t\t/// </summary>\r" +
-                    "\n\t\tpublic IContent GetOrCreateIContent()\r\n\t\t{\r\n\t\t\tif (this.Id != -1)\r\n\t\t\t{\r\n\t\t\t\t" +
-                    "return GetIContent();\r\n\t\t\t}\r\n\r\n\t\t\treturn CreateIContent();\r\n\t\t}\r\n\r\n\t\t/// <summar" +
-                    "y>\r\n\t\t/// Maps all the properties on this class to the passed IContent object\r\n\t" +
-                    "\t/// </summary>\r\n\t\tpublic virtual IContent SetProperties(IContent dbContent)\r\n\t\t" +
-                    "{\r\n\t\t\tdbContent.Name = this.Name;\r\n\t\t\tdbContent.CreateDate = this.CreateDate;\r\n\t" +
-                    "\t\tdbContent.UpdateDate = this.UpdateDate;\r\n\r\n\t\t\treturn dbContent;\r\n\t\t}\r\n\r\n\t\t/// " +
-                    "<summary>\r\n\t\t/// Persists the current Concrete object to the DB using Save metho" +
-                    "d on the Umbraco ContentService.\r\n\t\t/// If the current object is a new object it" +
-                    " will be created in the database (ParentId and Name must be set for this to work" +
-                    ").\r\n\t\t/// </summary>\r\n\t\tpublic void Save(int userId = 0, bool raiseEvents = true" +
-                    ")\r\n\t\t{\r\n\t\t\tIContent dbContent = SetProperties(GetOrCreateIContent());\r\n\r\n\t\t\tCont" +
-                    "entService.Save(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t/// <summary>\r\n\t\t/// " +
-                    "Persists the current Concrete object to the DB using SaveAndPublishWithStatus me" +
-                    "thod on the Umbraco ContentService.\r\n\t\t/// If the current object is a new object" +
-                    " it will be created in the database (ParentId and Name must be set for this to w" +
-                    "ork).\r\n\t\t/// </summary>\r\n\t\tpublic Attempt<Umbraco.Core.Publishing.PublishStatus>" +
-                    " SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)\r\n\t\t{\r\n\t\t\tICon" +
-                    "tent dbContent = SetProperties(GetOrCreateIContent());\r\n\r\n\t\t\treturn ContentServi" +
-                    "ce.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t/// <summ" +
-                    "ary>\r\n\t\t/// Deletes the associated content object from the database. \r\n\t\t/// </s" +
-                    "ummary>\r\n\t\t/// <param name=\"userId\"></param>\r\n\t\tpublic void Delete(int userId = " +
-                    "0)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIContent();\r\n\r\n\t\t\tContentService.Delete(dbCo" +
-                    "ntent, userId);\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\tprivate IContent GetIContent()\r\n\t\t{\r\n\t" +
-                    "\t\tvar content = ContentService.GetById(this.Id);\r\n\r\n\t\t\tif (content != null)\r\n\t\t\t" +
-                    "\treturn content;\r\n\r\n\t\t\tthrow new InvalidOperationException(\"Content Id \" + this." +
-                    "Id + \" not found.\");\r\n\t\t}\r\n\r\n\t\tprivate IContent CreateIContent()\r\n\t\t{\r\n\t\t\tif (st" +
-                    "ring.IsNullOrEmpty(this.Name) || this.ParentId < 1)\r\n\t\t\t\tthrow new InvalidOperat" +
-                    "ionException(\"Either Name or ParentId is not set. These must be set in order to " +
-                    "create a content item.\");\r\n\r\n\t\t\treturn ContentService.CreateContent(this.Name, t" +
-                    "his.ParentId, this.GetType().Name);\r\n\t\t}\r\n \t}\r\n} \r\n");
+            this.Write("(IPublishedContent content)\r\n \t\t{\r\n\t\t\tInit(content);\r\n \t\t}\r\n\r\n\t\tpublic void Init(" +
+                    "int contentId)\r\n\t\t{\r\n\t\t\tInit(UmbracoContext.Current.");
+            
+            #line 103 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheName));
+            
+            #line default
+            #line hidden
+            this.Write(".GetById(contentId));\r\n\t\t}\r\n\r\n\t\tpublic void Init(IPublishedContent content)\r\n\t\t{\r" +
+                    "\n\t\t\tthis.Content = content;\r\n\r\n\t\t\tInit();\r\n\t\t}\r\n\r\n\t\tprotected virtual void Init(" +
+                    ")\r\n\t\t{\r\n\t\t\tthis.Name = this.Content.Name;\r\n\t\t\tthis.Id = this.Content.Id;\r\n\t\t\tthi" +
+                    "s.ParentId = this.Content != null && this.Content.Parent != null ? this.Content." +
+                    "Parent.Id : -1; //TODO: Not sure about this, means we always grab the parent IPu" +
+                    "blishedContent too...\r\n\t\t\tthis.Path = this.Content.Path;\r\n\t\t\tthis.CreateDate = t" +
+                    "his.Content.CreateDate;\r\n\t\t\tthis.UpdateDate = this.Content.UpdateDate;\r\n\t\t\tthis." +
+                    "Url = this.Content.Url;\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\t#region Public Methods\r\n\r\n\t\t//" +
+                    "/ <summary>\r\n\t\t/// Retrieves the IContent object from the database or creates a " +
+                    "new one. In order to create a new object in the DB\r\n\t\t/// ParentId must be set.\r" +
+                    "\n\t\t/// </summary>\r\n\t\tpublic IContent GetOrCreateIContent()\r\n\t\t{\r\n\t\t\tif (this.Id " +
+                    "!= -1)\r\n\t\t\t{\r\n\t\t\t\treturn GetIContent();\r\n\t\t\t}\r\n\r\n\t\t\treturn CreateIContent();\r\n\t\t" +
+                    "}\r\n\r\n\t\t/// <summary>\r\n\t\t/// Maps all the properties on this class to the passed " +
+                    "IContent object\r\n\t\t/// </summary>\r\n\t\tpublic virtual IContent SetProperties(ICont" +
+                    "ent dbContent)\r\n\t\t{\r\n\t\t\tdbContent.Name = this.Name;\r\n\t\t\tdbContent.CreateDate = t" +
+                    "his.CreateDate;\r\n\t\t\tdbContent.UpdateDate = this.UpdateDate;\r\n\r\n\t\t\treturn dbConte" +
+                    "nt;\r\n\t\t}\r\n\r\n\t\t/// <summary>\r\n\t\t/// Persists the current Concrete object to the D" +
+                    "B using Save method on the Umbraco ContentService.\r\n\t\t/// If the current object " +
+                    "is a new object it will be created in the database (ParentId and Name must be se" +
+                    "t for this to work).\r\n\t\t/// </summary>\r\n\t\tpublic void Save(int userId = 0, bool " +
+                    "raiseEvents = true)\r\n\t\t{\r\n\t\t\tIContent dbContent = SetProperties(GetOrCreateICont" +
+                    "ent());\r\n\r\n\t\t\tContentService.Save(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\t///" +
+                    " <summary>\r\n\t\t/// Persists the current Concrete object to the DB using SaveAndPu" +
+                    "blishWithStatus method on the Umbraco ContentService.\r\n\t\t/// If the current obje" +
+                    "ct is a new object it will be created in the database (ParentId and Name must be" +
+                    " set for this to work).\r\n\t\t/// </summary>\r\n\t\tpublic Attempt<Umbraco.Core.Publish" +
+                    "ing.PublishStatus> SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = t" +
+                    "rue)\r\n\t\t{\r\n\t\t\tIContent dbContent = SetProperties(GetOrCreateIContent());\r\n\r\n\t\t\tr" +
+                    "eturn ContentService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);\r\n" +
+                    "\t\t}\r\n\r\n\t\t/// <summary>\r\n\t\t/// Deletes the associated content object from the dat" +
+                    "abase. \r\n\t\t/// </summary>\r\n\t\t/// <param name=\"userId\"></param>\r\n\t\tpublic void De" +
+                    "lete(int userId = 0)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIContent();\r\n\r\n\t\t\tContentS" +
+                    "ervice.Delete(dbContent, userId);\r\n\t\t}\r\n\r\n\t\t#endregion\r\n\r\n\t\tprivate IContent Get" +
+                    "IContent()\r\n\t\t{\r\n\t\t\tvar content = ContentService.GetById(this.Id);\r\n\r\n\t\t\tif (con" +
+                    "tent != null)\r\n\t\t\t\treturn content;\r\n\r\n\t\t\tthrow new InvalidOperationException(\"Co" +
+                    "ntent Id \" + this.Id + \" not found.\");\r\n\t\t}\r\n\r\n\t\tprivate IContent CreateIContent" +
+                    "()\r\n\t\t{\r\n\t\t\tif (string.IsNullOrEmpty(this.Name) || this.ParentId < 1)\r\n\t\t\t\tthrow" +
+                    " new InvalidOperationException(\"Either Name or ParentId is not set. These must b" +
+                    "e set in order to create a content item.\");\r\n\r\n\t\t\treturn ContentService.CreateCo" +
+                    "ntent(this.Name, this.ParentId, this.GetType().Name);\r\n\t\t}\r\n \t}\r\n} \r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

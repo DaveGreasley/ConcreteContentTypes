@@ -1,12 +1,3 @@
-﻿<#@ template debug="true" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="ConcreteContentTypes.Core.Models" #>
-<#@ import namespace="ConcreteContentTypes.Core.PropertyCSharpWriters" #>
-<#@ import namespace="ConcreteContentTypes.Core.Models.Enums" #>
-<#@ output extension=".cs" #>
 
 using System;
 using System.Collections.Generic;
@@ -22,14 +13,11 @@ using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 
-<# foreach(string nameSpace in _usingNamespaces) { #>
-using <#= nameSpace #>;
-<# } #>
+using Umbraco.Examine.Linq.Attributes;
 
-namespace <#= _classDefinition.Namespace #>
+namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	<# foreach(var attribute in _attributeWriters) { #> <#= attribute.WriteAttribute() #> <# } #>
-	public partial class <#= _classDefinition.Name #> : IUmbracoContent
+		public partial class UmbracoContent : IUmbracoContent
 	{
 		[JsonIgnore]
 		private IPublishedContent _content = null;
@@ -38,7 +26,7 @@ namespace <#= _classDefinition.Namespace #>
 			get
 			{
 				if (_content == null && this.Id != 0)
-					_content = UmbracoContext.Current.<#= _cacheName #>.GetById(this.Id);
+					_content = UmbracoContext.Current.ContentCache.GetById(this.Id);
 
 				return _content;
 			}
@@ -63,44 +51,44 @@ namespace <#= _classDefinition.Namespace #>
 			}
 		}
 
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Name]) { #><#= writer.WriteAttribute() #><# } #>
+		[Field("nodeName")]
 		public string Name { get; set; }
 
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Id]) { #><#= writer.WriteAttribute() #><# } #>
+		[Field("id")]
 		public int Id { get; set; }
 		
 		public int ParentId { get; set; }
 		
 		public string Path { get; set; }
 		
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.CreateDate]) { #><#= writer.WriteAttribute() #><# } #>
+		[Field("createDate")]
 		public DateTime CreateDate { get; set; }
 		
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.UpdateDate]) { #><#= writer.WriteAttribute() #><# } #>
+		[Field("updateDate")]
 		public DateTime UpdateDate { get; set; }
 		
 		public string Url { get; set; }
 
 		#region Constructors and Initalisation
 
- 		public <#= _classDefinition.Name #>()
+ 		public UmbracoContent()
 			: base()
  		{
  		}
  
- 		public <#= _classDefinition.Name #>(int contentId)
+ 		public UmbracoContent(int contentId)
  		{
 			Init(contentId);
  		}
  
- 		public <#= _classDefinition.Name #>(IPublishedContent content)
+ 		public UmbracoContent(IPublishedContent content)
  		{
 			Init(content);
  		}
 
 		public void Init(int contentId)
 		{
-			Init(UmbracoContext.Current.<#= _cacheName #>.GetById(contentId));
+			Init(UmbracoContext.Current.ContentCache.GetById(contentId));
 		}
 
 		public void Init(IPublishedContent content)

@@ -1,5 +1,5 @@
 ﻿using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Sandbox.Models;
+using ConcreteContentTypes.Sandbox.Models.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;

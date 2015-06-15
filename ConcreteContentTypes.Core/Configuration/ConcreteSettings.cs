@@ -75,6 +75,19 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
+		[ConfigurationProperty("GenerateOnMediaTypeSave")]
+		public bool GenerateOnMediaTypeSave
+		{
+			get
+			{
+				return (bool)this["GenerateOnMediaTypeSave"];
+			}
+			set
+			{
+				this["GenerateOnMediaTypeSave"] = value;
+			}
+		}
+
 		/// <summary>
 		/// The path of the folder to write .cs files to relative to the website root
 		/// </summary>
@@ -104,6 +117,58 @@ namespace ConcreteContentTypes.Core.Configuration
 			set
 			{
 				this["Namespace"] = value;
+			}
+		}
+
+		[ConfigurationProperty("AssemblyGeneration")]
+		public bool AssemblyGeneration
+		{
+			get
+			{
+				return (bool)this["AssemblyGeneration"];
+			}
+			set
+			{
+				this["AssemblyGeneration"] = value;
+			}
+		}
+
+		[ConfigurationProperty("AssemblyOutputDirectory")]
+		public string AssemblyOutputDirectory
+		{
+			get
+			{
+				return this["AssemblyOutputDirectory"].ToString();
+			}
+			set
+			{
+				this["AssemblyOutputDirectory"] = value;
+			}
+		}
+
+		[ConfigurationProperty("AssemblyName")]
+		public string AssemblyName
+		{
+			get
+			{
+				return this["AssemblyName"].ToString();
+			}
+			set
+			{
+				this["AssemblyName"] = value;
+			}
+		}
+
+		[ConfigurationProperty("AssemblyDependencyDirectory")]
+		public string AssemblyDependencyDirectory
+		{
+			get
+			{
+				return this["AssemblyDependencyDirectory"].ToString();
+			}
+			set
+			{
+				this["AssemblyDependencyDirectory"] = value;
 			}
 		}
 

@@ -185,13 +185,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compilation\AssemblyBuilder.cs" />
     <Compile Include="CSharpWriters\AttributeCSharpWriter.cs" />
     <Compile Include="CSharpWriters\CSharpBaseClassFileWriter.cs" />
+    <Compile Include="CSharpWriters\PropertyCSharpWriters\MediaPickerPropertyCSharpWriter.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
-    <Compile Include="Helpers\AssemblyBuilder.cs" />
     <Compile Include="Concrete.cs" />
     <Compile Include="CSharpWriters\CSharpFileWriter.cs" />
+    <Compile Include="Helpers\CacheNameHelper.cs" />
     <Compile Include="Interfaces\IUmbracoContent.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
     <Compile Include="Models\Definitions\ClassDefinitionBase.cs" />
@@ -204,6 +206,7 @@
     <Compile Include="Configuration\CSharpWriterSettings.cs" />
     <Compile Include="Helpers\NamingConventionHelper.cs" />
     <Compile Include="Models\ConcreteRenderModel.cs" />
+    <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\PublishedContentProperty.cs" />
     <Compile Include="Models\GridContent.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\ContentPickerPropertyCSharpWriter.cs" />

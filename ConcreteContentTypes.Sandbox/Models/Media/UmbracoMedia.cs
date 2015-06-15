@@ -15,9 +15,9 @@ using Umbraco.Core.Services;
 
 using Umbraco.Examine.Linq.Attributes;
 
-namespace ConcreteContentTypes.Sandbox.Models
+namespace ConcreteContentTypes.Sandbox.Models.Media
 {
-		public class UmbracoContent : IUmbracoContent
+		public partial class UmbracoMedia : IUmbracoContent
 	{
 		[JsonIgnore]
 		private IPublishedContent _content = null;
@@ -26,7 +26,7 @@ namespace ConcreteContentTypes.Sandbox.Models
 			get
 			{
 				if (_content == null && this.Id != 0)
-					_content = UmbracoContext.Current.ContentCache.GetById(this.Id);
+					_content = UmbracoContext.Current.MediaCache.GetById(this.Id);
 
 				return _content;
 			}
@@ -71,25 +71,27 @@ namespace ConcreteContentTypes.Sandbox.Models
 
 		#region Constructors and Initalisation
 
- 		public UmbracoContent()
+ 		public UmbracoMedia()
 			: base()
  		{
  		}
  
- 		public UmbracoContent(int contentId)
+ 		public UmbracoMedia(int contentId)
  		{
+			Init(contentId);
  		}
  
- 		public UmbracoContent(IPublishedContent content)
+ 		public UmbracoMedia(IPublishedContent content)
  		{
+			Init(content);
  		}
 
-		public virtual void Init(int contentId)
+		public void Init(int contentId)
 		{
-			Init(UmbracoContext.Current.ContentCache.GetById(contentId));
+			Init(UmbracoContext.Current.MediaCache.GetById(contentId));
 		}
 
-		public virtual void Init(IPublishedContent content)
+		public void Init(IPublishedContent content)
 		{
 			this.Content = content;
 

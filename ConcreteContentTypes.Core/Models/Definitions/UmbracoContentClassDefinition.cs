@@ -12,8 +12,8 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	{
 		public Dictionary<PublishedContentProperty, List<AttributeDefinition>> StandardPropertyAttributes;
 
-		internal UmbracoContentClassDefinition(string name, string nameSpace)
-			: base(name, nameSpace)
+		internal UmbracoContentClassDefinition(string name, string nameSpace, ContentType contentType)
+			: base(name, nameSpace, contentType)
 		{
 			this.StandardPropertyAttributes = new Dictionary<PublishedContentProperty, List<AttributeDefinition>>();
 			this.StandardPropertyAttributes.Add(PublishedContentProperty.Id, new List<AttributeDefinition>());

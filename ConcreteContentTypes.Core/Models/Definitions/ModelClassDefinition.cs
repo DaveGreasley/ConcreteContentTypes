@@ -14,30 +14,32 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public string BaseClass { get; set; }
 		public bool HasBaseClass { get { return !string.IsNullOrEmpty(this.BaseClass); } }
 		public string ChildType { get; set; }
-		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent";  } }
+		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent"; } }
 
-		public ModelClassDefinition(List<PropertyDefinition> properties, string className, string nameSpace, string baseClass = "")
-			: base(className, nameSpace)
+		public ModelClassDefinition(IMediaType mediaType, IMediaType parent, string nameSpace, Models.Enums.ContentType contentType, string defaultBaseClass = "")
+			: base(mediaType.Alias, nameSpace, contentType)
 		{
-			this.BaseClass = baseClass;
-			this.Properties = properties;
-			this.Attributes = new List<AttributeDefinition>();
-		}
-
-		public ModelClassDefinition(IContentType contentType, IContentType parent, string nameSpace, string defaultBaseClass = "")
-			: base(contentType.Alias, nameSpace)
-		{
-			this.BaseClass = GetBaseClass(contentType, defaultBaseClass);
+			this.BaseClass = GetBaseClass(mediaType, parent, defaultBaseClass);
 			this.Properties = new List<PropertyDefinition>();
 			this.Attributes = new List<AttributeDefinition>();
+			this.ChildType = GetChildType(mediaType);
+
+			CreateDefinition(mediaType, parent);
+		}
+
+		public ModelClassDefinition(IContentType contentType, IContentType parent, string nameSpace, Models.Enums.ContentType type, string defaultBaseClass = "")
+			: base(contentType.Alias, nameSpace, type)
+		{
+			this.BaseClass = GetBaseClass(contentType, parent, defaultBaseClass);
+			this.Properties = new List<PropertyDefinition>();
+			this.Attributes = new List<AttributeDefinition>();
+			this.ChildType = GetChildType(contentType);
 
 			CreateDefinition(contentType, parent);
 		}
-		
-		private void CreateDefinition(IContentType contentType, IContentType parent)
-		{
-			this.ChildType = GetChildType(contentType);
 
+		private void CreateDefinition(IContentTypeComposition contentType, IContentTypeComposition parent)
+		{
 			IEnumerable<PropertyType> propertyTypes = GetPropertyTypesNotDeclaredOnParent(contentType, parent);
 
 			foreach (var propertyType in propertyTypes)
@@ -50,7 +52,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			}
 		}
 
-		private string GetChildType(IContentType contentType)
+		private string GetChildType(IContentTypeBase contentType)
 		{
 			if (contentType.AllowedContentTypes.Count() > 1)
 				return "IPublishedContent";
@@ -61,7 +63,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			return "";
 		}
 
-		private IEnumerable<PropertyType> GetPropertyTypesNotDeclaredOnParent(IContentType contentType, IContentType parent)
+		private IEnumerable<PropertyType> GetPropertyTypesNotDeclaredOnParent(IContentTypeComposition contentType, IContentTypeComposition parent)
 		{
 			if (parent == null)
 				return contentType.CompositionPropertyTypes;
@@ -75,13 +77,11 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 			return propertyTypes;
 		}
-	
-		private string GetBaseClass(IContentType contentType, string defaultBaseClass = "")
+
+		private string GetBaseClass(IContentTypeBase contentType, IContentTypeBase parent, string defaultBaseClass = "")
 		{
 			if (contentType.ParentId == -1)
 				return defaultBaseClass;
-
-			var parent = UmbracoContext.Current.Application.Services.ContentTypeService.GetContentType(contentType.ParentId);
 
 			return parent.Alias;
 		}

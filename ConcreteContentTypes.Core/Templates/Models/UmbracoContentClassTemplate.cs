@@ -1,4 +1,5 @@
 ﻿using ConcreteContentTypes.Core.CSharpWriters;
+using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
 using ConcreteContentTypes.Core.PropertyCSharpWriters;
@@ -16,15 +17,19 @@ namespace ConcreteContentTypes.Core.Templates
 		protected List<AttributeCSharpWriter> _attributeWriters;
 		protected Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> _propertyAttributeWriters;
 		protected List<string> _usingNamespaces;
+		protected string _cacheName;
 
-		public UmbracoContentClassTemplate(UmbracoContentClassDefinition definition, List<AttributeCSharpWriter> attributeWriters, Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> propertyAttributeWriters)
+		public UmbracoContentClassTemplate(
+			UmbracoContentClassDefinition definition, 
+			List<AttributeCSharpWriter> attributeWriters, 
+			Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> propertyAttributeWriters,
+			ContentType contentType)
 		{
 			_classDefinition = definition;
 			_attributeWriters = attributeWriters;
 			_propertyAttributeWriters = propertyAttributeWriters;
 			_usingNamespaces = definition.GetUsingNamespaces();
-
-			
+			_cacheName = CacheNameHelper.GetCacheName(contentType);
 		}
 	}
 }
