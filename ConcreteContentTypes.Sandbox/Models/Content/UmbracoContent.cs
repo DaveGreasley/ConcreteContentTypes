@@ -17,8 +17,10 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-		public partial class UmbracoContent : IUmbracoContent
+		public abstract partial class UmbracoContent : IConcreteContent
 	{
+		public abstract string ContentTypeAlias { get; }
+
 		[JsonIgnore]
 		private IPublishedContent _content = null;
 		public IPublishedContent Content
@@ -111,85 +113,5 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 		#endregion
 
-		#region Public Methods
-
-		/// <summary>
-		/// Retrieves the IContent object from the database or creates a new one. In order to create a new object in the DB
-		/// ParentId must be set.
-		/// </summary>
-		public IContent GetOrCreateIContent()
-		{
-			if (this.Id != -1)
-			{
-				return GetIContent();
-			}
-
-			return CreateIContent();
-		}
-
-		/// <summary>
-		/// Maps all the properties on this class to the passed IContent object
-		/// </summary>
-		public virtual IContent SetProperties(IContent dbContent)
-		{
-			dbContent.Name = this.Name;
-			dbContent.CreateDate = this.CreateDate;
-			dbContent.UpdateDate = this.UpdateDate;
-
-			return dbContent;
-		}
-
-		/// <summary>
-		/// Persists the current Concrete object to the DB using Save method on the Umbraco ContentService.
-		/// If the current object is a new object it will be created in the database (ParentId and Name must be set for this to work).
-		/// </summary>
-		public void Save(int userId = 0, bool raiseEvents = true)
-		{
-			IContent dbContent = SetProperties(GetOrCreateIContent());
-
-			ContentService.Save(dbContent, userId, raiseEvents);
-		}
-
-		/// <summary>
-		/// Persists the current Concrete object to the DB using SaveAndPublishWithStatus method on the Umbraco ContentService.
-		/// If the current object is a new object it will be created in the database (ParentId and Name must be set for this to work).
-		/// </summary>
-		public Attempt<Umbraco.Core.Publishing.PublishStatus> SaveAndPublishWithStatus(int userId = 0, bool raiseEvents = true)
-		{
-			IContent dbContent = SetProperties(GetOrCreateIContent());
-
-			return ContentService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);
-		}
-
-		/// <summary>
-		/// Deletes the associated content object from the database. 
-		/// </summary>
-		/// <param name="userId"></param>
-		public void Delete(int userId = 0)
-		{
-			IContent dbContent = GetIContent();
-
-			ContentService.Delete(dbContent, userId);
-		}
-
-		#endregion
-
-		private IContent GetIContent()
-		{
-			var content = ContentService.GetById(this.Id);
-
-			if (content != null)
-				return content;
-
-			throw new InvalidOperationException("Content Id " + this.Id + " not found.");
-		}
-
-		private IContent CreateIContent()
-		{
-			if (string.IsNullOrEmpty(this.Name) || this.ParentId < 1)
-				throw new InvalidOperationException("Either Name or ParentId is not set. These must be set in order to create a content item.");
-
-			return ContentService.CreateContent(this.Name, this.ParentId, this.GetType().Name);
-		}
  	}
 } 

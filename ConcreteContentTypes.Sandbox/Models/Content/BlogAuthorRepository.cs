@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("BlogAuthorRepository")]
  	public partial class BlogAuthorRepository : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "BlogAuthorRepository"; } }
+
 		
 		private IEnumerable<BlogAuthor> _children = null;
 		public new IEnumerable<BlogAuthor> Children
@@ -54,11 +56,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

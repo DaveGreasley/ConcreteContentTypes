@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("LandingPage")]
  	public partial class LandingPage : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "LandingPage"; } }
+
 				
 		
 		/// <summary>
@@ -54,13 +56,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("umbracoNaviHide", this.HideInBottomNavigation);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

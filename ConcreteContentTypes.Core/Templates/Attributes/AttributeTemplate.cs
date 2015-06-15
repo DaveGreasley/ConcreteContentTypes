@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace ConcreteContentTypes.Core.Templates
+namespace ConcreteContentTypes.Core.Templates.Attributes
 {
     using System.Linq;
     using System.Text;
@@ -18,7 +18,7 @@ namespace ConcreteContentTypes.Core.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class AttributeTemplate : AttributeTemplateBase
     {
@@ -29,42 +29,42 @@ namespace ConcreteContentTypes.Core.Templates
         public virtual string TransformText()
         {
             
-            #line 7 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            #line 7 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
  if (_parameters.Length > 0) { 
             
             #line default
             #line hidden
             this.Write("[");
             
-            #line 8 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_type));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 8 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_parameters));
             
             #line default
             #line hidden
             this.Write(")]\r\n");
             
-            #line 9 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
  } else { 
             
             #line default
             #line hidden
             this.Write("[");
             
-            #line 10 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            #line 10 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_type));
             
             #line default
             #line hidden
             this.Write("]\r\n");
             
-            #line 11 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\AttributeTemplate.tt"
+            #line 11 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Attributes\AttributeTemplate.tt"
  } 
             
             #line default

@@ -16,6 +16,8 @@
 			OnSuccess = "CommentSubmitSuccess"
 		}))
 	{
+		@Html.HiddenFor(x => x.Id)
+		@Html.HiddenFor(x => x.Name)
 		@Html.HiddenFor(x => x.ParentId)
 	 
 		<label>Your Name</label>

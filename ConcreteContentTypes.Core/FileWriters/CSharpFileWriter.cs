@@ -1,7 +1,8 @@
-﻿using ConcreteContentTypes.Core.Models;
+﻿using ConcreteContentTypes.Core.CSharpWriters;
+using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.PropertyCSharpWriters;
-using ConcreteContentTypes.Core.Templates;
+using ConcreteContentTypes.Core.Templates.Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.CSharpWriters
+namespace ConcreteContentTypes.Core.FileWriters
 {
 	public class CSharpFileWriter
 	{

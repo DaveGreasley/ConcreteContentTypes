@@ -27,6 +27,8 @@ namespace <#= _classDefinition.Namespace #>
 	<# foreach (var attributeWriter in _attributeWriters) { #> <#=attributeWriter.WriteAttribute()#> <# } #>
 	public partial class <#= _classDefinition.Name #> : <#= _classDefinition.BaseClass #>
 	{
+		public override string ContentTypeAlias { get { return "<#= _classDefinition.Name #>"; } }
+
 		<# foreach(PropertyCSharpWriterBase p in _propertyWriters) { #>
 		
 		<#=p.GetPropertyDefinition()#> <# } #>
@@ -73,16 +75,6 @@ private IEnumerable<<#=_classDefinition.ChildType#>> _children = null;
 
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-			<# foreach(PropertyCSharpWriterBase p in _propertyWriters) {
-				if (!string.IsNullOrEmpty(p.GetPersistString())) { #>
-			
-			<#=p.GetPersistString()#>
-			<# } } #>
-
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

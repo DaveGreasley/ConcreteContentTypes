@@ -2,7 +2,7 @@
 using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
-using ConcreteContentTypes.Core.Templates;
+using ConcreteContentTypes.Core.Templates.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;

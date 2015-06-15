@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("Everything")]
  	public partial class Everything : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "Everything"; } }
+
 				
 		
 		/// <summary>
@@ -154,29 +156,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("approvedcolour", this.Approvedcolour);
-						
-			dbContent.SetValue("checkboxList", this.CheckboxList);
-						
-			dbContent.SetValue("dateTimePicker", this.DateTimePicker);
-						
-			dbContent.SetValue("myLabel", this.MyLabel);
-						
-			dbContent.SetValue("myNumeric", this.MyNumeric);
-						
-			dbContent.SetValue("myRichtextEditor", this.MyRichtextEditor);
-						
-			dbContent.SetValue("multipleTextBox", this.MultipleTextBox);
-						
-			dbContent.SetValue("textString", this.TextString);
-						
-			dbContent.SetValue("yesOrNo", this.YesOrNo);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

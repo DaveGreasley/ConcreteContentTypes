@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("BlogPostRepository")]
  	public partial class BlogPostRepository : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "BlogPostRepository"; } }
+
 				
 		
 		/// <summary>
@@ -63,13 +65,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("umbracoNaviHide", this.HideInBottomNavigation);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

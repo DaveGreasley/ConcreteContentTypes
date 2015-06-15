@@ -7,22 +7,20 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace ConcreteContentTypes.Core.Templates
+namespace ConcreteContentTypes.Core.Templates.Properties
 {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using ConcreteContentTypes.Core.Models;
-    using ConcreteContentTypes.Core.PropertyCSharpWriters;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
+    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public partial class MainClassTemplate : MainClassTemplateBase
+    public partial class NestedContentPropertyTemplate : NestedContentPropertyTemplateBase
     {
 #line hidden
         /// <summary>
@@ -30,196 +28,135 @@ namespace ConcreteContentTypes.Core.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing Umbraco.Core.Models;\r\nu" +
-                    "sing Umbraco.Web;\r\nusing System.Web;\r\nusing System.Linq;\r\nusing System.Component" +
-                    "Model.DataAnnotations;\r\nusing ConcreteContentTypes.Core.Models;\r\nusing Newtonsof" +
-                    "t.Json;\r\n\r\n");
+            this.Write("\r\n\t\tprivate ");
             
-            #line 20 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(string nameSpace in _usingNamespaces) { 
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
-            this.Write("using ");
+            this.Write(" _");
             
-            #line 21 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n");
-            
-            #line 22 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- } 
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nnamespace ");
+            this.Write(" = null;\r\n\t\tpublic ");
             
-            #line 25 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Namespace));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n{\r\n\t");
-            
-            #line 27 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach (var attributeWriter in _attributeWriters) { 
+            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 27 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(attributeWriter.WriteAttribute()));
+            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_nicePropertyAlias));
             
             #line default
             #line hidden
-            this.Write(" ");
+            this.Write("\r\n\t\t{\r\n\t\t\tget \r\n\t\t\t{\r\n\t\t\t\tif (_");
             
-            #line 27 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
+            #line 13 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(" == null)\r\n\t\t\t\t{\r\n\t\t\t\t");
+            
+            #line 15 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+if (_isCollection) {
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\t\r\n\t\t\t\t\t_");
+            
+            #line 17 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ");
+            
+            #line 17 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
+            
+            #line default
+            #line hidden
+            this.Write("();\r\n\r\n\t\t\t\t\tvar content = this.Content.GetPropertyValue<List<IPublishedContent>>(" +
+                    "\"");
+            
+            #line 19 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write("\");\r\n\r\n\t\t\t\t\tif (content != null)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tforeach (var item in content)\r\n\t\t" +
+                    "\t\t\t\t{\r\n\t\t\t\t\t\t\t_");
+            
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(".Add(new ");
+            
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_individualTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("(item));\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t");
+            
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+} else { 
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\r\n\t\t\t\t\tvar content = this.Content.GetPropertyValue<IPublishedContent>(\"");
+            
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write("\");\r\n\r\n\t\t\t\t\tif (content == null)\r\n\t\t\t\t\t\treturn new ");
+            
+            #line 34 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
+            
+            #line default
+            #line hidden
+            this.Write("();\r\n\r\n\t\t\t\t\t_");
+            
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ");
+            
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
+            
+            #line default
+            #line hidden
+            this.Write("(content);\r\n\t\t\t\t");
+            
+            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\tpublic partial class ");
+            this.Write("}\r\n\r\n\t\t\t\treturn _");
             
-            #line 28 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" : ");
-            
-            #line 28 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.BaseClass));
+            #line 40 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\NestedContentPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
-            this.Write("\r\n\t{\r\n\t\t");
-            
-            #line 30 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(PropertyCSharpWriterBase p in _propertyWriters) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\r\n\t\t");
-            
-            #line 32 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.GetPropertyDefinition()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 32 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t");
-            
-            #line 34 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- if (_classDefinition.HasConcreteChildType) { 
-            
-            #line default
-            #line hidden
-            this.Write("private IEnumerable<");
-            
-            #line 35 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.ChildType));
-            
-            #line default
-            #line hidden
-            this.Write("> _children = null;\r\n\t\tpublic new IEnumerable<");
-            
-            #line 36 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.ChildType));
-            
-            #line default
-            #line hidden
-            this.Write("> Children\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_children == null)\r\n\t\t\t\t{\r\n\t\t\t\t\t_children " +
-                    "= this.Content.Children.Select(x => new ");
-            
-            #line 42 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.ChildType));
-            
-            #line default
-            #line hidden
-            this.Write("(x));\r\n\t\t\t\t}\r\n\r\n\t\t\t\treturn _children;\r\n\t\t\t}\r\n\t\t}\r\n\t\t");
-            
-            #line 48 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-}
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\tpublic ");
-            
-            #line 50 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("()\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
-            
-            #line 55 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(int contentId)\r\n\t\t\t: base(contentId)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
-            
-            #line 60 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(IPublishedContent content)\r\n\t\t\t: base(content)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tprotected override" +
-                    " void Init()\r\n\t\t{\r\n\t\t\tbase.Init();\r\n\t\t\t");
-            
-            #line 68 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(PropertyCSharpWriterBase p in _propertyWriters) {
-				if (!string.IsNullOrEmpty(p.GetValueString())) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t\r\n\t\t\t");
-            
-            #line 71 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.GetValueString()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t\t");
-            
-            #line 72 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- } } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t}\r\n\r\n\t\tpublic override IContent SetProperties(IContent dbContent)\r\n\t\t{\r\n\t\t\t");
-            
-            #line 78 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- foreach(PropertyCSharpWriterBase p in _propertyWriters) {
-				if (!string.IsNullOrEmpty(p.GetPersistString())) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t\r\n\t\t\t");
-            
-            #line 81 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.GetPersistString()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t\t");
-            
-            #line 82 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\MainClassTemplate.tt"
- } } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t\treturn base.SetProperties(dbContent);\r\n\t\t}\r\n\t}\r\n}\r\n\r\n");
+            this.Write(";\r\n\t\t\t}\r\n\t\t}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -231,7 +168,7 @@ namespace ConcreteContentTypes.Core.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public class MainClassTemplateBase
+    public class NestedContentPropertyTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

@@ -17,6 +17,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 	 [NodeTypeAlias("Folder")]
  	public partial class Folder : UmbracoMedia
 	{
+		public override string ContentTypeAlias { get { return "Folder"; } }
+
 		
 		
 		public Folder()
@@ -40,11 +42,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

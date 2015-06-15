@@ -2,7 +2,7 @@
 using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
-using ConcreteContentTypes.Core.Templates;
+using ConcreteContentTypes.Core.Templates.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetPersistString()
 		{
-			return string.Format("dbContent.SetValue(\"{0}\", this.{1});", this._property.PropertyTypeAlias, this._property.NicePropertyName);
+			return string.Format("dbContent.SetValue(\"{0}\", content.{1});", this._property.PropertyTypeAlias, this._property.NicePropertyName);
 		}
 	}
 }

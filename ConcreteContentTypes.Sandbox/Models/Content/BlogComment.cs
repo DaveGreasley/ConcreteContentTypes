@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("BlogComment")]
  	public partial class BlogComment : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "BlogComment"; } }
+
 				
 		
 		/// <summary>
@@ -59,15 +61,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("fullName", this.FullName);
-						
-			dbContent.SetValue("comment", this.Comment);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

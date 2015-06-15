@@ -1,4 +1,6 @@
 ﻿using ConcreteContentTypes.Sandbox.Models;
+using ConcreteContentTypes.Sandbox.Models.Content;
+using ConcreteContentTypes.Sandbox.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +12,21 @@ namespace ConcreteContentTypes.Sandbox.WebApi
 {
 	public class BlogCommentApiController : UmbracoApiController
 	{
-		//[HttpPost]
-		//public bool SubmitBlogComment(BlogComment comment)
-		//{
-		//	comment.Name = "Comment " + DateTime.Now.ToString();
+		[HttpPost]
+		public bool SubmitBlogComment(BlogComment comment)
+		{
+			BlogCommentService commentService = new BlogCommentService(Services.ContentService);
+			var result = commentService.SaveAndPublishWithStatus(comment);
 
-		//	var result = comment.SaveAndPublishWithStatus();
+			return result.Success;
+		}
 
-		//	return result.Success;
-		//}
+		[HttpGet]
+		public List<BlogComment> GetComments(int blogPostId)
+		{
+			BlogPost post = new BlogPost(blogPostId);
 
-		//[HttpGet]
-		//public List<BlogComment> GetComments(int blogPostId)
-		//{
-		//	BlogPost post = new BlogPost(blogPostId);
-
-		//	return post.Children.ToList();
-		//}
+			return post.Children.ToList();
+		}
 	}
 }

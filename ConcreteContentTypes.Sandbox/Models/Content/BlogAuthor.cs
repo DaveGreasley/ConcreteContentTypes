@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("BlogAuthor")]
  	public partial class BlogAuthor : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "BlogAuthor"; } }
+
 				
 		
 		/// <summary>
@@ -88,17 +90,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("jobTitle", this.JobTitle);
-						
-			dbContent.SetValue("shortBio", this.ShortBio);
-						
-			dbContent.SetValue("bioFull", this.BioFull);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

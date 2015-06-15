@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("BlogPost")]
  	public partial class BlogPost : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "BlogPost"; } }
+
 				
 		
 		private Image _image = null;
@@ -126,13 +128,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("introduction", this.Introduction);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

@@ -17,6 +17,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 	 [NodeTypeAlias("ImageFolder")]
  	public partial class ImageFolder : Folder
 	{
+		public override string ContentTypeAlias { get { return "ImageFolder"; } }
+
 		
 		private IEnumerable<Image> _children = null;
 		public new IEnumerable<Image> Children
@@ -53,11 +55,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

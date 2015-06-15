@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("TextPage")]
  	public partial class TextPage : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "TextPage"; } }
+
 				
 		[JsonIgnore]
 		public GridContent content { get; set; } 
@@ -45,11 +47,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

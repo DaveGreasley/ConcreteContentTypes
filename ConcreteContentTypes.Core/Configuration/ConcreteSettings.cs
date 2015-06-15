@@ -44,7 +44,7 @@ namespace ConcreteContentTypes.Core.Configuration
 		#endregion
 
 		/// <summary>
-		/// Determines if the Comiler is enabled or disabled
+		/// Determines if Concrete is enabled or disabled
 		/// </summary>
 		[ConfigurationProperty("Enabled")]
 		public bool Enabled
@@ -60,7 +60,23 @@ namespace ConcreteContentTypes.Core.Configuration
 		}
 
 		/// <summary>
-		/// Determines if we should regenerate our C# when a Doc type is created / saved
+		/// Determines if the we should generate the Service classes for Content Types
+		/// </summary>
+		[ConfigurationProperty("GenerateContentServices")]
+		public bool GenerateContentServices
+		{
+			get
+			{
+				return (bool)this["GenerateContentServices"];
+			}
+			set
+			{
+				this["GenerateContentServices"] = value;
+			}
+		}
+
+		/// <summary>
+		/// Determines if we should regenerate our C# when a content type is created / saved
 		/// </summary>
 		[ConfigurationProperty("GenerateOnContentTypeSave")]
 		public bool GenerateOnContentTypeSave
@@ -75,6 +91,9 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
+		/// <summary>
+		/// Determines if we should regenerate our C# when a Media type is created / saved
+		/// </summary>
 		[ConfigurationProperty("GenerateOnMediaTypeSave")]
 		public bool GenerateOnMediaTypeSave
 		{
@@ -120,6 +139,9 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
+		/// <summary>
+		/// Determines if we should compile the generated C# into an assembly
+		/// </summary>
 		[ConfigurationProperty("AssemblyGeneration")]
 		public bool AssemblyGeneration
 		{
@@ -133,6 +155,9 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
+		/// <summary>
+		/// The directory where a compiled assembly will be saved to. 
+		/// </summary>
 		[ConfigurationProperty("AssemblyOutputDirectory")]
 		public string AssemblyOutputDirectory
 		{
@@ -146,6 +171,9 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
+		/// <summary>
+		/// The name of the compiled assembly
+		/// </summary>
 		[ConfigurationProperty("AssemblyName")]
 		public string AssemblyName
 		{
@@ -159,6 +187,9 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
+		/// <summary>
+		/// The directory where dependencies of our generated assembly can be found.
+		/// </summary>
 		[ConfigurationProperty("AssemblyDependencyDirectory")]
 		public string AssemblyDependencyDirectory
 		{

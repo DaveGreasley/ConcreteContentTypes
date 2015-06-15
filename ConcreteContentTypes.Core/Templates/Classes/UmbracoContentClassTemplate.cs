@@ -7,20 +7,23 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace ConcreteContentTypes.Core.Templates
+namespace ConcreteContentTypes.Core.Templates.Classes
 {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
+    using ConcreteContentTypes.Core.Models;
+    using ConcreteContentTypes.Core.PropertyCSharpWriters;
+    using ConcreteContentTypes.Core.Models.Enums;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
+    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public partial class LazyLoadedPropertyTemplate : LazyLoadedPropertyTemplateBase
+    public partial class UmbracoContentClassTemplate : UmbracoContentClassTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,105 +31,253 @@ namespace ConcreteContentTypes.Core.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n\t\tprivate ");
+            this.Write(@"
+using System;
+using System.Collections.Generic;
+using Umbraco.Core.Models;
+using Umbraco.Web;
+using System.Web;
+using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using ConcreteContentTypes.Core.Models;
+using Newtonsoft.Json;
+using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models.Enums;
+using Umbraco.Core;
+using Umbraco.Core.Services;
+
+");
             
-            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ foreach(string nameSpace in _usingNamespaces) { 
             
             #line default
             #line hidden
-            this.Write(" _");
+            this.Write("using ");
             
-            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
-            this.Write(" = null;\r\n\t\tpublic ");
+            this.Write(";\r\n");
             
-            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
+            #line 27 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nnamespace ");
+            
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Namespace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n\t");
+            
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ foreach(var attribute in _attributeWriters) { 
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_nicePropertyAlias));
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(attribute.WriteAttribute()));
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t{\r\n\t\t\tget \r\n\t\t\t{\r\n\t\t\t\tif (_");
+            this.Write(" ");
             
-            #line 13 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
-            
-            #line default
-            #line hidden
-            this.Write(" == null)\r\n\t\t\t\t{\r\n\t\t\t\t\tint? contentId = Content.GetPropertyValue<int?>(\"");
-            
-            #line 15 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
-            
-            #line default
-            #line hidden
-            this.Write("\");\r\n\r\n\t\t\t\t\tif (contentId.HasValue)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t");
-            
-            #line 19 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
- if (_typeName == "IPublishedContent") { 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t\t\t\t\t_");
-            
-            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
-            
-            #line default
-            #line hidden
-            this.Write(" = UmbracoContext.Current.");
-            
-            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheSource));
-            
-            #line default
-            #line hidden
-            this.Write(".GetById(contentId.Value);\r\n\t\t\t\t\r\n\t\t\t\t\t\t");
-            
-            #line 23 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
- } else { 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t\t\t\t\t_");
-            
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
-            
-            #line default
-            #line hidden
-            this.Write(" = new ");
-            
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
-            
-            #line default
-            #line hidden
-            this.Write("(contentId.Value); ");
-            
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t\t\t\t}\t\r\n\t\t\t\t}\r\n\t\t\t\treturn _");
+            this.Write("\tpublic abstract partial class ");
             
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\LazyLoadedPropertyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            #line 32 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
-            this.Write(";\r\n\t\t\t}\r\n\t\t}");
+            this.Write(@" : IConcreteContent
+	{
+		public abstract string ContentTypeAlias { get; }
+
+		[JsonIgnore]
+		private IPublishedContent _content = null;
+		public IPublishedContent Content
+		{
+			get
+			{
+				if (_content == null && this.Id != 0)
+					_content = UmbracoContext.Current.");
+            
+            #line 43 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheName));
+            
+            #line default
+            #line hidden
+            this.Write(@".GetById(this.Id);
+
+				return _content;
+			}
+			set
+			{
+				_content = value;
+			}
+		}
+
+		[JsonIgnore]
+		protected IContentService ContentService { get { return ApplicationContext.Current.Services.ContentService; } }
+
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (this.Content == null)
+					return new List<IPublishedContent>();
+
+				return this.Content.Children;
+			}
+		}
+
+		");
+            
+            #line 68 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Name]) { 
+            
+            #line default
+            #line hidden
+            
+            #line 68 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
+            
+            #line default
+            #line hidden
+            
+            #line 68 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic string Name { get; set; }\r\n\r\n\t\t");
+            
+            #line 71 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Id]) { 
+            
+            #line default
+            #line hidden
+            
+            #line 71 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
+            
+            #line default
+            #line hidden
+            
+            #line 71 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic int Id { get; set; }\r\n\t\t\r\n\t\tpublic int ParentId { get; set; }\r\n\t\t\r\n\t\tpub" +
+                    "lic string Path { get; set; }\r\n\t\t\r\n\t\t");
+            
+            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.CreateDate]) { 
+            
+            #line default
+            #line hidden
+            
+            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
+            
+            #line default
+            #line hidden
+            
+            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic DateTime CreateDate { get; set; }\r\n\t\t\r\n\t\t");
+            
+            #line 81 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.UpdateDate]) { 
+            
+            #line default
+            #line hidden
+            
+            #line 81 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(writer.WriteAttribute()));
+            
+            #line default
+            #line hidden
+            
+            #line 81 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic DateTime UpdateDate { get; set; }\r\n\t\t\r\n\t\tpublic string Url { get; set; }" +
+                    "\r\n\r\n\t\t#region Constructors and Initalisation\r\n\r\n \t\tpublic ");
+            
+            #line 88 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("()\r\n\t\t\t: base()\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
+            
+            #line 93 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(int contentId)\r\n \t\t{\r\n\t\t\tInit(contentId);\r\n \t\t}\r\n \r\n \t\tpublic ");
+            
+            #line 98 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(IPublishedContent content)\r\n \t\t{\r\n\t\t\tInit(content);\r\n \t\t}\r\n\r\n\t\tpublic void Init(" +
+                    "int contentId)\r\n\t\t{\r\n\t\t\tInit(UmbracoContext.Current.");
+            
+            #line 105 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\UmbracoContentClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheName));
+            
+            #line default
+            #line hidden
+            this.Write(@".GetById(contentId));
+		}
+
+		public void Init(IPublishedContent content)
+		{
+			this.Content = content;
+
+			Init();
+		}
+
+		protected virtual void Init()
+		{
+			this.Name = this.Content.Name;
+			this.Id = this.Content.Id;
+			this.ParentId = this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //TODO: Not sure about this, means we always grab the parent IPublishedContent too...
+			this.Path = this.Content.Path;
+			this.CreateDate = this.Content.CreateDate;
+			this.UpdateDate = this.Content.UpdateDate;
+			this.Url = this.Content.Url;
+		}
+
+		#endregion
+
+ 	}
+} 
+");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -138,7 +289,7 @@ namespace ConcreteContentTypes.Core.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public class LazyLoadedPropertyTemplateBase
+    public class UmbracoContentClassTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

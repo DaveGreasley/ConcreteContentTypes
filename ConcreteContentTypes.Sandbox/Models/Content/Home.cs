@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("Home")]
  	public partial class Home : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "Home"; } }
+
 				
 		
 		/// <summary>
@@ -72,17 +74,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("siteDescription", this.SiteDescription);
-						
-			dbContent.SetValue("siteTitle", this.SiteTitle);
-						
-			dbContent.SetValue("siteLogo", this.SiteLogo);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

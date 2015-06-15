@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("MoreEverything")]
  	public partial class MoreEverything : Everything
 	{
+		public override string ContentTypeAlias { get { return "MoreEverything"; } }
+
 				
 		
 		/// <summary>
@@ -184,15 +186,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("umbracoNaviHide", this.HideInBottomNavigation);
-						
-			dbContent.SetValue("namesCheckBox", this.NamesCheckBox);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

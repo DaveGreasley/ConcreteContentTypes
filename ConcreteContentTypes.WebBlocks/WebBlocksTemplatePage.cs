@@ -12,7 +12,7 @@ using WB = WebBlocks.ViewTemplates;
 
 namespace ConcreteContentTypes.WebBlocks
 {
-	public class WebBlocksTemplatePage<BlockT> : WB.WebBlocksTemplatePage where BlockT : IUmbracoContent, new()
+	public class WebBlocksTemplatePage<BlockT> : WB.WebBlocksTemplatePage where BlockT : IConcreteContent, new()
     {
 		public new BlockT CurrentBlock { get; set; }
 		public new BlockT Model { get; set; }

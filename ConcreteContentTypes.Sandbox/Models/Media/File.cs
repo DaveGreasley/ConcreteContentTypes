@@ -17,6 +17,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 	 [NodeTypeAlias("File")]
  	public partial class File : UmbracoMedia
 	{
+		public override string ContentTypeAlias { get { return "File"; } }
+
 				
 		
 		/// <summary>
@@ -67,17 +69,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("umbracoFile", this.UploadFile);
-						
-			dbContent.SetValue("umbracoExtension", this.Type);
-						
-			dbContent.SetValue("umbracoBytes", this.Size);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

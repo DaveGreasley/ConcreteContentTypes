@@ -18,6 +18,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	 [NodeTypeAlias("Address")]
  	public partial class Address : UmbracoContent
 	{
+		public override string ContentTypeAlias { get { return "Address"; } }
+
 				
 		
 		/// <summary>
@@ -68,17 +70,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			
 		}
 
-		public override IContent SetProperties(IContent dbContent)
-		{
-						
-			dbContent.SetValue("addressLine1", this.AddressLine1);
-						
-			dbContent.SetValue("city", this.City);
-						
-			dbContent.SetValue("postCode", this.PostCode);
-			
-			return base.SetProperties(dbContent);
-		}
 	}
 }
 

@@ -44,7 +44,10 @@ namespace ConcreteContentTypes.Core.Events
 				{
 					Concrete c = new Concrete();
 					c.BuildMediaTypes();
-					c.BuildContentTypes();
+					var contentClasses = c.BuildContentTypes();
+
+					if (ConcreteSettings.Current.GenerateContentServices)
+						c.BuildServiceClasses(contentClasses);
 				}
 			}
 			catch (Exception ex)

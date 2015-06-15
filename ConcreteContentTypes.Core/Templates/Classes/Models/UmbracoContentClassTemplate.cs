@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.Templates
+namespace ConcreteContentTypes.Core.Templates.Classes
 {
 	public partial class UmbracoContentClassTemplate
 	{

@@ -11,7 +11,7 @@ using Umbraco.Web.Mvc;
 
 namespace ConcreteContentTypes.Core.ViewTemplates
 {
-	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : IUmbracoContent, new()
+	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : IConcreteContent, new()
 	{
 		public new T Model { get; set; }
 

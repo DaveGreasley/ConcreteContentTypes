@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace ConcreteContentTypes.Core.Templates
+namespace ConcreteContentTypes.Core.Templates.Properties
 {
     using System.Linq;
     using System.Text;
@@ -18,9 +18,9 @@ namespace ConcreteContentTypes.Core.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
+    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public partial class BasicPropertyTypeDefinitionTemplate : BasicPropertyTypeDefinitionTemplateBase
+    public partial class LazyLoadedPropertyTemplate : LazyLoadedPropertyTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,61 +28,105 @@ namespace ConcreteContentTypes.Core.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n\t\t/// <summary>\r\n\t\t/// ");
+            this.Write("\r\n\t\tprivate ");
             
-            #line 9 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_description));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t/// </summary>\r\n\t\t");
-            
-            #line 11 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- if(_required) { 
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
-            this.Write("[Required] ");
+            this.Write(" _");
             
-            #line 11 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t");
-            
-            #line 13 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- foreach (var attribute in _attributeWriters) { 
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
+            this.Write(" = null;\r\n\t\tpublic ");
             
-            #line 13 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(attribute.WriteAttribute()));
-            
-            #line default
-            #line hidden
-            
-            #line 13 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic ");
-            
-            #line 14 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 14 "C:\Projects\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_nicePropertyAlias));
             
             #line default
             #line hidden
-            this.Write(" { get; set; }");
+            this.Write("\r\n\t\t{\r\n\t\t\tget \r\n\t\t\t{\r\n\t\t\t\tif (_");
+            
+            #line 13 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(" == null)\r\n\t\t\t\t{\r\n\t\t\t\t\tint? contentId = Content.GetPropertyValue<int?>(\"");
+            
+            #line 15 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write("\");\r\n\r\n\t\t\t\t\tif (contentId.HasValue)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t");
+            
+            #line 19 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+ if (_typeName == "IPublishedContent") { 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\t\t\t\t\t_");
+            
+            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(" = UmbracoContext.Current.");
+            
+            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheSource));
+            
+            #line default
+            #line hidden
+            this.Write(".GetById(contentId.Value);\r\n\t\t\t\t\r\n\t\t\t\t\t\t");
+            
+            #line 23 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\t\t\t\t\t_");
+            
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ");
+            
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
+            
+            #line default
+            #line hidden
+            this.Write("(contentId.Value); ");
+            
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\t\t\t\t}\t\r\n\t\t\t\t}\r\n\t\t\t\treturn _");
+            
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Properties\LazyLoadedPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n\t\t\t}\r\n\t\t}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -94,7 +138,7 @@ namespace ConcreteContentTypes.Core.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public class BasicPropertyTypeDefinitionTemplateBase
+    public class LazyLoadedPropertyTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

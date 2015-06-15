@@ -1,6 +1,5 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ using Umbraco.Core;
 using Umbraco.Web;
 using ConcreteContentTypes.Core.Extensions;
 using ConcreteContentTypes.Core.Models.Definitions;
+using ConcreteContentTypes.Core.Templates.Properties;
 
 namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {

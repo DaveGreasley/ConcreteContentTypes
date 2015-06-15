@@ -23,7 +23,6 @@
 
 @Html.Raw(Model.content)
 
-
-@Html.Partial("BlogSubmitComment", new BlogComment() { ParentId = Model.Id })
+@Html.Action("RenderSubmitCommentForm", "BlogPost", new { blogPost = Model })
 
 @Html.Partial("BlogComments", Model.Children.ToList())
