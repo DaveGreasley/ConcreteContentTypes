@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>ConcreteContentTypes</id>
+        <version>1.0.4</version>
+        <authors>David Greasley</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>ConcreteContentTypes is a package for the Umbraco CMS that will generate a strongly typed model based on Content Types. It will write C# classes when you save or create a new Content Type.</description>
+    </metadata>
+    <files>
+        <file src="..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" target="content\Config\ConcreteContentTypes.config" />
+        <file src="..\ConcreteContentTypes.Core\bin\Debug\ConcreteContentTypes.Core.dll" target="lib\ConcreteContentTypes.Core.dll" />
+    </files>
+</package>
