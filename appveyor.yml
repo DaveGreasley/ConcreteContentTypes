@@ -1,15 +1,6 @@
 # version format
 version: 1.0.1.{build}
 
-configuration: Release
-
-assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
-
 environment:
   EnableNuGetPackageRestore: true
 
@@ -25,8 +16,8 @@ install:
 build: off
 
 artifacts:
-  - path: BuildPackage\Package\*.nupkg
-  - path: BuildPackage\Package\*.zip
+  - path: BuildPackage\artifacts\*.nupkg
+  - path: BuildPackage\artifacts\*.zip
  
 deploy:
 - provider: NuGet
