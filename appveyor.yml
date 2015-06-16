@@ -29,17 +29,22 @@ artifacts:
   - path: BuildPackage\Package\*.nupkg
   - path: BuildPackage\Package\*.zip
  
- deploy:
-  - provider: NuGet
-    server: https://www.myget.org/F/davegreasley/api/v2
-    api_key:
-      secure: BP3uPS2ODB1y8sMfdz8nI6hKKcsj5ZMIMjIjoMlEScbJwwTPfxgcgRyJxJgBikb6
-    artifact: /.*\.nupkg/
-
-  - provider: NuGet
-    server: 
-    api_key:
-      secure: 1V7+KSNxLyS8Dv7cI3aunX6xaJ8ncRyGawfWOjDMpa71PTowA4SoHDa0QsaXdBOu
-    artifact: /.*\.nupkg/
-    on:
-      branch: release
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/davegreasley/api/v2
+  api_key:
+    secure: BP3uPS2ODB1y8sMfdz8nI6hKKcsj5ZMIMjIjoMlEScbJwwTPfxgcgRyJxJgBikb6
+  on:
+    branch: master
+  artifact: /.*\.nupkg/
+- provider: NuGet
+  api_key:
+    secure: 1kymiGZ5/Dp9GK6NAYdpFy4Ok73z5NrBNN0GfBHPDhtkOKcCOXY1AheqzIys3Nz0
+  on:
+    branch: release
+  artifact: /.*\.nupkg/
+- provider: GitHub
+  auth_token:
+    secure: 1V7+KSNxLyS8Dv7cI3aunX6xaJ8ncRyGawfWOjDMpa71PTowA4SoHDa0QsaXdBOu
+  on:
+    branch: release
