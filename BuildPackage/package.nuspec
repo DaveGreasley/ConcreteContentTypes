@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>ConcreteContentTypes</id>
         <version>$version$</version>
@@ -7,9 +7,12 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <projectUrl>https://github.com/DaveGreasley/ConcreteContentTypes</projectUrl>
         <description>ConcreteContentTypes is a package for the Umbraco CMS that will generate a strongly typed model based on Content Types and Media Types.</description>
+        <dependencies>
+          <dependency id="UmbracoCms.Core" version="7.1.4" />
+        </dependencies>
     </metadata>
     <files>
-        <file src="..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" target="content\Config\ConcreteContentTypes.config" />
-        <file src="bin\Release\ConcreteContentTypes.Core.dll" target="lib\ConcreteContentTypes.Core.dll" />
+        <file src="..\..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" target="content\Config\ConcreteContentTypes.config" />
+        <file src="..\..\ConcreteContentTypes.Core\bin\Release\ConcreteContentTypes.Core.dll" target="lib\ConcreteContentTypes.Core.dll" />
     </files>
 </package>

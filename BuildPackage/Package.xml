@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <info>
+    <package>
+      <name>ConcreteContentTypes</name>
+      <version>$version$</version>
+      <license url=""></license>
+      <url>https://github.com/DaveGreasley/ConcreteContentTypes</url>
+      <requirements>
+        <major>7</major>
+        <minor>1</minor>
+        <patch>4</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Dave Greasley</name>
+      <website></website>
+    </author>
+    <readme><![CDATA[]]></readme>
+  </info>
+
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+
+  <Actions/>
+
+  <control />
+
+  <files />
+
+</umbPackage>
