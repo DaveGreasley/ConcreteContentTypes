@@ -1,0 +1,31 @@
+# version format
+version: 1.0.1.{build}
+
+configuration: Release
+platform: Any CPU
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+environment:
+  EnableNuGetPackageRestore: true
+
+# UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds
+# example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
+install:
+  - cmd: set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
+  - cmd: set UMBRACO_PACKAGE_MIN_VERSION=7.1.4
+  - cmd: cd BuildPackage
+  - cmd: Build.bat
+
+# to disable automatic builds
+build: off
+
+artifacts:
+  - path: BuildPackage\Package\*.nupkg
+  - path: BuildPackage\Package\*.zip
+ 
