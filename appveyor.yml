@@ -21,7 +21,7 @@ artifacts:
  
 deploy:
 - provider: NuGet
-  server: https://www.myget.org/F/davegreasley/api/v2
+  server: https://www.myget.org/F/concrete-content-types/
   api_key:
     secure: BP3uPS2ODB1y8sMfdz8nI6hKKcsj5ZMIMjIjoMlEScbJwwTPfxgcgRyJxJgBikb6
   on:

@@ -117,6 +117,7 @@
       <SrcFiles Include="$(CoreProjectDir)\**\*.cs" Exclude="$(CoreProjectDir)\obj\**"/>
 			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
       <NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
+      <ConcreteConfig Include="$(CoreProjectDir)\..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" />
     </ItemGroup>
     <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildUmbDir)\bin" />
     <Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildUmbDir)" />
@@ -124,7 +125,8 @@
     <Copy SourceFiles="@(PdbFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
     <Copy SourceFiles="@(SrcFiles)"
    DestinationFiles="@(SrcFiles->'$(BuildNuGetDir)\src\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />  
+    <Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />
+    <Copy SourceFiles="@(ConcreteConfig)" DestinationFolder="$(BuildUmbDir)\config" />
   </Target>
 
   <!-- MANIFEST UMBRACO -->
