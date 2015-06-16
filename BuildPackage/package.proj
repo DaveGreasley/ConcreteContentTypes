@@ -114,7 +114,7 @@
 		<ItemGroup>
 			<BinFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.Core.dll" />
       <PdbFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.Core.pdb" />
-      <SrcFiles Include="$(CoreProjectDir)\**\*.cs" Exclude="$(CoreProjectDir)\obj\**"/>
+      <SrcFiles Include="$(CoreProjectDir)\**\*.cs;$(CoreProjectDir)\**\*.tt" Exclude="$(CoreProjectDir)\obj\**"/>
 			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
       <NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
       <ConcreteConfig Include="$(CoreProjectDir)\..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" />
