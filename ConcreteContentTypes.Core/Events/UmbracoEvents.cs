@@ -7,6 +7,9 @@ using Umbraco.Core;
 using Umbraco.Core.Services;
 using ConcreteContentTypes.Core.Configuration;
 using Umbraco.Core.Logging;
+using Umbraco.Core.Models.PublishedContent;
+using ConcreteContentTypes.Core.Factory;
+using ConcreteContentTypes.Core.Context;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -18,6 +21,10 @@ namespace ConcreteContentTypes.Core.Events
 
 			ContentTypeService.SavedContentType += ContentTypeService_SavedContentType;
 			ContentTypeService.SavedMediaType += ContentTypeService_SavedMediaType;
+
+			//Initialise concrete
+			ConcreteContextFactory factory = new ConcreteContextFactory();
+			ConcreteContext.Current = factory.CreateContext();
 		}
 
 		void ContentTypeService_SavedMediaType(IContentTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IMediaType> e)

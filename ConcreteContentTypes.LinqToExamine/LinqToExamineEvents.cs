@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.LinqToExamine
 {
@@ -20,7 +21,7 @@ namespace ConcreteContentTypes.LinqToExamine
 			ConcreteEvents.ModelClassGenerating += ConcreteEvents_Generating;
 		}
 
-		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, ContentType contentType)
+		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, PublishedItemType contentType)
 		{
 			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Id, "id");
 			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Name, "nodeName");
@@ -41,7 +42,7 @@ namespace ConcreteContentTypes.LinqToExamine
 			classDefinition.StandardPropertyAttributes[property].Add(new AttributeDefinition("Field", "Umbraco.Examine.Linq.Attributes", "\"" + lucenePropertyName + "\""));
 		}
 
-		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefinition, ContentType contentType)
+		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefinition, PublishedItemType contentType)
 		{
 			//Add NodeTypeAliasAttribute to our generated class
 			classDefinition.Attributes.Add(new AttributeDefinition("NodeTypeAlias", "Umbraco.Examine.Linq.Attributes", "\"" + classDefinition.Name + "\""));

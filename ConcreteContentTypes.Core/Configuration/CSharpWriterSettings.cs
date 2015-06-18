@@ -45,7 +45,7 @@ namespace ConcreteContentTypes.Core.Configuration
 		#endregion
 
 		[ConfigurationProperty("CSharpWriters", IsRequired=true)]
-		public CSharpWriterConfigurationCollection TypeResolvers
+		public CSharpWriterConfigurationCollection Writers
 		{
 			get
 			{

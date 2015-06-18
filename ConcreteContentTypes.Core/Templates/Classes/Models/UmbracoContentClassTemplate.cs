@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Templates.Classes
 {
@@ -23,7 +24,7 @@ namespace ConcreteContentTypes.Core.Templates.Classes
 			UmbracoContentClassDefinition definition, 
 			List<AttributeCSharpWriter> attributeWriters, 
 			Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> propertyAttributeWriters,
-			ContentType contentType)
+			PublishedItemType contentType)
 		{
 			_classDefinition = definition;
 			_attributeWriters = attributeWriters;

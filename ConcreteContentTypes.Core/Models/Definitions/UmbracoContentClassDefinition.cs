@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
@@ -12,7 +13,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	{
 		public Dictionary<PublishedContentProperty, List<AttributeDefinition>> StandardPropertyAttributes;
 
-		internal UmbracoContentClassDefinition(string name, string nameSpace, ContentType contentType)
+		internal UmbracoContentClassDefinition(string name, string nameSpace, PublishedItemType contentType)
 			: base(name, nameSpace, contentType)
 		{
 			this.StandardPropertyAttributes = new Dictionary<PublishedContentProperty, List<AttributeDefinition>>();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Templates.Properties
 {
@@ -15,7 +16,7 @@ namespace ConcreteContentTypes.Core.Templates.Properties
 		protected string _nicePropertyAlias;
 		protected string _cacheSource;
 
-		public LazyLoadedPropertyTemplate(string propertyAlias, string nicePropertyAlias, string typeName, ContentType contentType = ContentType.Content)
+		public LazyLoadedPropertyTemplate(string propertyAlias, string nicePropertyAlias, string typeName, PublishedItemType contentType = PublishedItemType.Content)
 		{
 			_propertyAlias = propertyAlias;
 			_typeName = typeName;

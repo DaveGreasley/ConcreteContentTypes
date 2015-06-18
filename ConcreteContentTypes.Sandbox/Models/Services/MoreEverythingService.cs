@@ -10,6 +10,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Services
 {
 	public class MoreEverythingService : ServiceBase<MoreEverything>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "MoreEverything"; }
+		}
+
+		public MoreEverythingService()
+			: base()
+		{
+
+		}
+		
 		public MoreEverythingService(IContentService contentService)
 			: base(contentService)
 		{

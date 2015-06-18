@@ -10,6 +10,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Services
 {
 	public class BlogPostRepositoryService : ServiceBase<BlogPostRepository>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "BlogPostRepository"; }
+		}
+
+		public BlogPostRepositoryService()
+			: base()
+		{
+
+		}
+
 		public BlogPostRepositoryService(IContentService contentService)
 			: base(contentService)
 		{

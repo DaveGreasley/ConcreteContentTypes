@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Helpers
 {
 	public static class CacheNameHelper
 	{
-		public static string GetCacheName(ContentType contentType)
+		public static string GetCacheName(PublishedItemType contentType)
 		{
 			switch (contentType)
 			{
-				case ContentType.Content:
+				case PublishedItemType.Content:
 					return "ContentCache";
-				case ContentType.Media:
+				case PublishedItemType.Media:
 					return "MediaCache";
 			}
 

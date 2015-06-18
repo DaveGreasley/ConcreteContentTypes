@@ -16,7 +16,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent"; } }
 
-		public ModelClassDefinition(IMediaType mediaType, IMediaType parent, string nameSpace, Models.Enums.ContentType contentType, string defaultBaseClass = "")
+		public ModelClassDefinition(IMediaType mediaType, IMediaType parent, string nameSpace, PublishedItemType contentType, string defaultBaseClass = "")
 			: base(mediaType.Alias, nameSpace, contentType)
 		{
 			this.BaseClass = GetBaseClass(mediaType, parent, defaultBaseClass);
@@ -27,7 +27,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			CreateDefinition(mediaType, parent);
 		}
 
-		public ModelClassDefinition(IContentType contentType, IContentType parent, string nameSpace, Models.Enums.ContentType type, string defaultBaseClass = "")
+		public ModelClassDefinition(IContentType contentType, IContentType parent, string nameSpace, PublishedItemType type, string defaultBaseClass = "")
 			: base(contentType.Alias, nameSpace, type)
 		{
 			this.BaseClass = GetBaseClass(contentType, parent, defaultBaseClass);

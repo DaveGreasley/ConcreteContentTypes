@@ -59,9 +59,23 @@ namespace ConcreteContentTypes.Core.Templates.Classes
             
             #line default
             #line hidden
-            this.Write(">\r\n\t{\r\n\t\tpublic ");
+            this.Write(">\r\n\t{\r\n\t\tpublic override string ContentTypeAlias\r\n\t\t{\r\n\t\t\tget { return \"");
             
-            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            #line 23 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("\"; }\r\n\t\t}\r\n\r\n\t\tpublic ");
+            
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("Service()\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t\t\r\n\t\t}\r\n\r\n\t\tpublic ");
+            
+            #line 32 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
@@ -69,14 +83,14 @@ namespace ConcreteContentTypes.Core.Templates.Classes
             this.Write("Service(IContentService contentService)\r\n\t\t\t: base(contentService)\r\n\t\t{\r\n\t\t\t\r\n\t\t}" +
                     "\r\n\r\n\t\tpublic override IContent SetDbProperties(");
             
-            #line 27 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            #line 38 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
             this.Write(" content, IContent dbContent)\r\n\t\t{\r\n\t\t\t");
             
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            #line 40 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
  foreach(PropertyCSharpWriterBase p in _propertyWriters) {
 				if (!string.IsNullOrEmpty(p.GetPersistString())) { 
             
@@ -84,14 +98,14 @@ namespace ConcreteContentTypes.Core.Templates.Classes
             #line hidden
             this.Write("\t\t\t\r\n\t\t\t");
             
-            #line 32 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            #line 43 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.GetPersistString()));
             
             #line default
             #line hidden
             this.Write("\r\n\t\t\t");
             
-            #line 33 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
+            #line 44 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\Templates\Classes\ServiceClassTemplate.tt"
  } } 
             
             #line default

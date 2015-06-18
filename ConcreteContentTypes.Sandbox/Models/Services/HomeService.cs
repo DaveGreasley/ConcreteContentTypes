@@ -10,6 +10,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Services
 {
 	public class HomeService : ServiceBase<Home>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "Home"; }
+		}
+		
+		public HomeService()
+			: base()
+		{
+
+		}
+
 		public HomeService(IContentService contentService)
 			: base(contentService)
 		{

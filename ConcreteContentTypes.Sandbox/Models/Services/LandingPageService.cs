@@ -10,6 +10,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Services
 {
 	public class LandingPageService : ServiceBase<LandingPage>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "LandingPage"; }
+		}
+
+		public LandingPageService()
+			: base()
+		{
+
+		}
+
 		public LandingPageService(IContentService contentService)
 			: base(contentService)
 		{

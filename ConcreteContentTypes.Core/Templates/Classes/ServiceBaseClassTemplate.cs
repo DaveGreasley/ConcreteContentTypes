@@ -37,30 +37,33 @@ namespace ConcreteContentTypes.Core.Templates.Classes
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n\tpublic abstract partial class ServiceBase<T> where T : IConcreteContent, ne" +
-                    "w()\r\n\t{\r\n\t\tprotected IContentService _contentService;\r\n\r\n\t\tpublic ServiceBase(IC" +
-                    "ontentService contentService)\r\n\t\t{\r\n\t\t\t_contentService = contentService;\r\n\t\t}\r\n\r" +
-                    "\n\t\tpublic T GetById(int contentId) \r\n\t\t{\r\n\t\t\tT result = new T();\r\n\t\t\tresult.Init" +
-                    "(contentId);\r\n\r\n\t\t\treturn result;\r\n\t\t}\r\n\r\n\t\tpublic T Create(IConcreteContent par" +
-                    "ent, string name, int userId = 0)\r\n\t\t{\r\n\t\t\treturn Create(parent.Id, name, userId" +
-                    ");\r\n\t\t}\r\n\r\n\t\tpublic T Create(int parentId, string name, int userId = 0)\r\n\t\t{\r\n\t\t" +
-                    "\tT result = new T();\r\n\r\n\t\t\tvar content = _contentService.CreateContentWithIdenti" +
-                    "ty(name, parentId, result.ContentTypeAlias, userId);\r\n\r\n\t\t\tresult.Name = name;\r\n" +
-                    "\t\t\tresult.ParentId = parentId;\r\n\t\t\tresult.Id = content.Id;\r\n\r\n\t\t\treturn result;\r" +
-                    "\n\t\t}\r\n\r\n\t\tpublic IContent GetIContent(T content)\r\n\t\t{\r\n\t\t\tvar dbContent = _conte" +
-                    "ntService.GetById(content.Id);\r\n\r\n\t\t\tif (content != null)\r\n\t\t\t\treturn dbContent;" +
-                    "\r\n\r\n\t\t\tthrow new InvalidOperationException(\"Content Id \" + content.Id + \" not fo" +
-                    "und.\");\r\n\t\t}\r\n\r\n\t\tpublic void Save(T content, int userId = 0, bool raiseEvents =" +
-                    " true)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIContent(content);\r\n\r\n\t\t\tSetDbProperties" +
-                    "(content, dbContent);\r\n\r\n\t\t\t_contentService.Save(dbContent, userId, raiseEvents)" +
-                    ";\r\n\t\t}\r\n\r\n\t\tpublic Attempt<Umbraco.Core.Publishing.PublishStatus> SaveAndPublish" +
-                    "WithStatus(T content, int userId = 0, bool raiseEvents = true)\r\n\t\t{\r\n\t\t\tvar dbCo" +
-                    "ntent = GetIContent(content);\r\n\r\n\t\t\tSetDbProperties(content, dbContent);\r\n\r\n\t\t\tr" +
-                    "eturn _contentService.SaveAndPublishWithStatus(dbContent, userId, raiseEvents);\r" +
-                    "\n\t\t}\r\n\r\n\t\tpublic void Delete(T content, int userId = 0)\r\n\t\t{\r\n\t\t\tIContent dbCont" +
-                    "ent = GetIContent(content);\r\n\r\n\t\t\t_contentService.Delete(dbContent, userId);\r\n\t\t" +
-                    "}\r\n\r\n\t\tpublic virtual IContent SetDbProperties(T content, IContent dbContent)\r\n\t" +
-                    "\t{\r\n\t\t\tdbContent.Name = content.Name;\r\n\r\n\t\t\treturn dbContent;\r\n\t\t}\r\n\t}\r\n}");
+            this.Write("\r\n{\r\n\tpublic abstract partial class ServiceBase<T> : IModelService<IConcreteConte" +
+                    "nt> where T : IConcreteContent, new()\r\n\t{\r\n\t\tpublic abstract string ContentTypeA" +
+                    "lias { get; }\r\n\r\n\t\tprotected IContentService _contentService;\r\n\r\n\t\tpublic Servic" +
+                    "eBase() \r\n\t\t\t: this(ApplicationContext.Current.Services.ContentService)\r\n\t\t{\r\n\t\t" +
+                    "\t\r\n\t\t}\r\n\r\n\t\tpublic ServiceBase(IContentService contentService)\r\n\t\t{\r\n\t\t\t_content" +
+                    "Service = contentService;\r\n\t\t}\r\n\r\n\t\tpublic T GetById(int contentId) \r\n\t\t{\r\n\t\t\tT " +
+                    "result = new T();\r\n\t\t\tresult.Init(contentId);\r\n\r\n\t\t\treturn result;\r\n\t\t}\r\n\r\n\t\tpub" +
+                    "lic T Create(IConcreteContent parent, string name, int userId = 0)\r\n\t\t{\r\n\t\t\tretu" +
+                    "rn Create(parent.Id, name, userId);\r\n\t\t}\r\n\r\n\t\tpublic T Create(int parentId, stri" +
+                    "ng name, int userId = 0)\r\n\t\t{\r\n\t\t\tT result = new T();\r\n\r\n\t\t\tvar content = _conte" +
+                    "ntService.CreateContentWithIdentity(name, parentId, result.ContentTypeAlias, use" +
+                    "rId);\r\n\r\n\t\t\tresult.Name = name;\r\n\t\t\tresult.ParentId = parentId;\r\n\t\t\tresult.Id = " +
+                    "content.Id;\r\n\r\n\t\t\treturn result;\r\n\t\t}\r\n\r\n\t\tpublic IContent GetIContent(T content" +
+                    ")\r\n\t\t{\r\n\t\t\tvar dbContent = _contentService.GetById(content.Id);\r\n\r\n\t\t\tif (conten" +
+                    "t != null)\r\n\t\t\t\treturn dbContent;\r\n\r\n\t\t\tthrow new InvalidOperationException(\"Con" +
+                    "tent Id \" + content.Id + \" not found.\");\r\n\t\t}\r\n\r\n\t\tpublic void Save(T content, i" +
+                    "nt userId = 0, bool raiseEvents = true)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIConten" +
+                    "t(content);\r\n\r\n\t\t\tSetDbProperties(content, dbContent);\r\n\r\n\t\t\t_contentService.Sav" +
+                    "e(dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\tpublic Attempt<Umbraco.Core.Publish" +
+                    "ing.PublishStatus> SaveAndPublishWithStatus(T content, int userId = 0, bool rais" +
+                    "eEvents = true)\r\n\t\t{\r\n\t\t\tvar dbContent = GetIContent(content);\r\n\r\n\t\t\tSetDbProper" +
+                    "ties(content, dbContent);\r\n\r\n\t\t\treturn _contentService.SaveAndPublishWithStatus(" +
+                    "dbContent, userId, raiseEvents);\r\n\t\t}\r\n\r\n\t\tpublic void Delete(T content, int use" +
+                    "rId = 0)\r\n\t\t{\r\n\t\t\tIContent dbContent = GetIContent(content);\r\n\r\n\t\t\t_contentServi" +
+                    "ce.Delete(dbContent, userId);\r\n\t\t}\r\n\r\n\t\tpublic virtual IContent SetDbProperties(" +
+                    "T content, IContent dbContent)\r\n\t\t{\r\n\t\t\tdbContent.Name = content.Name;\r\n\r\n\t\t\tret" +
+                    "urn dbContent;\r\n\t\t}\r\n\t}\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

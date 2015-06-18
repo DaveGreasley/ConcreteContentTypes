@@ -187,8 +187,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\ConcreteCache.cs" />
+    <Compile Include="Cache\IConcreteCache.cs" />
     <Compile Include="Compilation\AssemblyBuilder.cs" />
+    <Compile Include="Context\ConcreteContext.cs" />
+    <Compile Include="Context\ConcreteContextFactory.cs" />
     <Compile Include="CSharpWriters\AttributeCSharpWriter.cs" />
+    <Compile Include="Factory\ConcreteFactory.cs" />
+    <Compile Include="Factory\IConcreteFactory.cs" />
     <Compile Include="FileWriters\CSharpBaseClassFileWriter.cs" />
     <Compile Include="FileWriters\CSharpServiceClassFileWriter.cs" />
     <Compile Include="FileWriters\CSharpServiceBaseClassFileWriter.cs" />
@@ -210,7 +216,6 @@
     <Compile Include="Configuration\CSharpWriterSettings.cs" />
     <Compile Include="Helpers\NamingConventionHelper.cs" />
     <Compile Include="Models\ConcreteRenderModel.cs" />
-    <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\PublishedContentProperty.cs" />
     <Compile Include="Models\GridContent.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\ContentPickerPropertyCSharpWriter.cs" />
@@ -225,6 +230,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\BasicUmbracoPropertyCSharpWriter.cs" />
     <Compile Include="CSharpWriters\PropertyCSharpWriters\GridPropertyCSharpWriter.cs" />
+    <Compile Include="Services\IModelService.cs" />
+    <Compile Include="Services\IModelServiceResolver.cs" />
+    <Compile Include="Services\ModelServiceResolver.cs" />
     <Compile Include="Templates\Classes\Models\ServiceClassTemplate.cs" />
     <Compile Include="Templates\Classes\Models\ServiceBaseClassTemplate.cs" />
     <Compile Include="Templates\Classes\ServiceClassTemplate.cs">

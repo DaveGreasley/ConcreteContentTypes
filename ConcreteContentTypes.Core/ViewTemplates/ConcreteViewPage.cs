@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Interfaces;
+﻿using ConcreteContentTypes.Core.Factory;
+using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using Umbraco.Web.Mvc;
 
 namespace ConcreteContentTypes.Core.ViewTemplates
 {
-	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : IConcreteContent, new()
+	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : class, IConcreteContent, new()
 	{
 		public new T Model { get; set; }
 
@@ -28,8 +29,7 @@ namespace ConcreteContentTypes.Core.ViewTemplates
 		{
 			base.InitializePage();
 
-			this.Model = new T();
-			this.Model.Init(base.Model.Content);
+			this.Model = ConcreteContext.Current.ModelFactory.GetModel<T>(base.Model.Content);
 		}
 
 

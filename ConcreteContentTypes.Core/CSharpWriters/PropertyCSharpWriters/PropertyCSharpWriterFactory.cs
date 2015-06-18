@@ -24,7 +24,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 		{
 			try
 			{
-				var typeResolverConfig = CSharpWriterSettings.Current.TypeResolvers
+				var typeResolverConfig = CSharpWriterSettings.Current.Writers
 					.FirstOrDefault(x => x.SupportedTypes.Any(p => p.Alias == property.PropertyEditorAlias));
 
 				if (typeResolverConfig == null)

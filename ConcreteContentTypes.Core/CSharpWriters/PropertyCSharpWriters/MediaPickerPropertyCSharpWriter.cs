@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core;
+using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace ConcreteContentTypes.Core.PropertyCSharpWriters
@@ -22,7 +23,7 @@ namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 
 		public override string GetPropertyDefinition()
 		{
-			LazyLoadedPropertyTemplate template = new LazyLoadedPropertyTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, GetTypeName(), ContentType.Media);
+			LazyLoadedPropertyTemplate template = new LazyLoadedPropertyTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, GetTypeName(), PublishedItemType.Media);
 			return template.TransformText();
 		}
 

@@ -18,6 +18,17 @@ namespace <#= _nameSpace #>
 {
 	public class <#= _classDefinition.Name #>Service : ServiceBase<<#= _classDefinition.Name #>>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "<#= _classDefinition.Name #>"; }
+		}
+
+		public <#= _classDefinition.Name #>Service()
+			: base()
+		{
+			
+		}
+
 		public <#= _classDefinition.Name #>Service(IContentService contentService)
 			: base(contentService)
 		{

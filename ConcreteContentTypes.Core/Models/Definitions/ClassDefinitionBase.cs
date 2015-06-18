@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
@@ -15,9 +16,9 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public List<PropertyDefinition> Properties { get; set; }
 		public List<string> UsingNamespaces { get; set; }
 		public List<string> DependantAssemblies { get; set; }
-		public ContentType ContentType { get; set; }
+		public PublishedItemType ContentType { get; set; }
 
-		public ClassDefinitionBase(string name, string nameSpace, ContentType contentType)
+		public ClassDefinitionBase(string name, string nameSpace, PublishedItemType contentType)
 		{
 			this.Name = name;
 			this.Namespace = nameSpace;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Models.Enums
 {
-	public enum PublishedContentProperty : int
+	public enum PublishedContentProperty
 	{
 		Id,
 		Name,

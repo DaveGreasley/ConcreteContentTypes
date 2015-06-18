@@ -1,5 +1,6 @@
 
 using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Services;
 using System;
 using Umbraco.Core;
 using Umbraco.Core.Models;
@@ -7,9 +8,17 @@ using Umbraco.Core.Services;
 
 namespace ConcreteContentTypes.Sandbox.Models.Services
 {
-	public abstract partial class ServiceBase<T> where T : IConcreteContent, new()
+	public abstract partial class ServiceBase<T> : IModelService<IConcreteContent> where T : IConcreteContent, new()
 	{
+		public abstract string ContentTypeAlias { get; }
+
 		protected IContentService _contentService;
+
+		public ServiceBase()
+			: this(ApplicationContext.Current.Services.ContentService)
+		{
+
+		}
 
 		public ServiceBase(IContentService contentService)
 		{

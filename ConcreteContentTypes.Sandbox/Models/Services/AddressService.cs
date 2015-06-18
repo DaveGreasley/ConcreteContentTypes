@@ -10,6 +10,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Services
 {
 	public class AddressService : ServiceBase<Address>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "Address"; }
+		}
+
+		public AddressService()
+			: base()
+		{
+
+		}
+
 		public AddressService(IContentService contentService)
 			: base(contentService)
 		{

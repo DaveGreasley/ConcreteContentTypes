@@ -10,6 +10,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Services
 {
 	public class TextPageService : ServiceBase<TextPage>
 	{
+		public override string ContentTypeAlias
+		{
+			get { return "TextPageService"; }
+		}
+
+		public TextPageService()
+			: base()
+		{
+
+		}
+
 		public TextPageService(IContentService contentService)
 			: base(contentService)
 		{
