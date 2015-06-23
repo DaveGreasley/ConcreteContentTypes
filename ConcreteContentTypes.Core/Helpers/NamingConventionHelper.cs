@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Helpers
 {
-	public static class NamingConventionHelper
+	internal static class NamingConventionHelper
 	{
 		/// <summary>
 		/// Turns a string into a nice name we can use for csharp properties

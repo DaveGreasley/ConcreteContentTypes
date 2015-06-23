@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConcreteContentTypes.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -8,12 +9,12 @@ using Umbraco.Core.Logging;
 
 namespace ConcreteContentTypes.Core.Configuration
 {
-	public class ConcreteSettings : ConfigurationSection
+	public class ConcreteSettings : ConfigurationSection, IConcreteSettings
 	{
 		#region Singleton
 
-		private static ConcreteSettings _settings = null;
-		public static ConcreteSettings Current
+		private static IConcreteSettings _settings = null;
+		public static IConcreteSettings Current
 		{
 			get
 			{
@@ -24,7 +25,7 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
-		private static ConcreteSettings LoadSettings()
+		private static IConcreteSettings LoadSettings()
 		{
 			try
 			{

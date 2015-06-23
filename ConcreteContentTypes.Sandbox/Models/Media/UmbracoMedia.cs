@@ -17,7 +17,7 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Media
 {
-		public abstract partial class UmbracoMedia : IConcreteContent
+		public abstract partial class UmbracoMedia : IConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
 

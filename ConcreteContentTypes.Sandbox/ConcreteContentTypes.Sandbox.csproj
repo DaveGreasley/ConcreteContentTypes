@@ -319,42 +319,6 @@
     <Compile Include="Models\Media\Image.cs" />
     <Compile Include="Models\Media\ImageFolder.cs" />
     <Compile Include="Models\Media\UmbracoMedia.cs" />
-    <Compile Include="Models\Services\AddressService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\BlogAuthorRepositoryService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\BlogAuthorService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\BlogCommentService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\BlogPostRepositoryService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\BlogPostService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\EverythingService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\HomeService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\LandingPageService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\MoreEverythingService.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\ServiceBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Services\TextPageService.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\BlogCommentApiController.cs" />
   </ItemGroup>

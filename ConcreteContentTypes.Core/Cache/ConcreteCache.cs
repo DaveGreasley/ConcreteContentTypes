@@ -15,11 +15,11 @@ namespace ConcreteContentTypes.Core.Cache
 	{
 		//Using ConcurrentDictionary but maybe we could use the new MemoryCache object? 
 		//Should try both and compare speed!
-		ConcurrentDictionary<int, IConcreteContent> _cache;
+		ConcurrentDictionary<int, IConcreteModel> _cache;
 
 		public ConcreteCache()
 		{
-			_cache = new ConcurrentDictionary<int, IConcreteContent>();
+			_cache = new ConcurrentDictionary<int, IConcreteModel>();
 		}
 
 		/// <summary>
@@ -27,7 +27,7 @@ namespace ConcreteContentTypes.Core.Cache
 		/// with this Id then it will be replaced by this new item.
 		/// </summary>
 		/// <param name="content">The Concrete Model to cache.</param>
-		public void AddOrUpdate(IConcreteContent content)
+		public void AddOrUpdateItem(IConcreteModel content)
 		{
 			if (!_cache.ContainsKey(content.Id))
 			{
@@ -46,13 +46,10 @@ namespace ConcreteContentTypes.Core.Cache
 		/// <typeparam name="T">The Type of the Concrete Model to return</typeparam>
 		/// <param name="contentId">The Id of the Content item to retrieve from the cache.</param>
 		/// <returns>Returns Concrete model if present, otherwise null.</returns>
-		public T Get<T>(int contentId) where T : class, IConcreteContent
+		public T GetItem<T>(int contentId) where T : class, IConcreteModel
 		{
 			if (_cache.ContainsKey(contentId))
-			{
-				if (_cache[contentId].GetType().IsAssignableFrom(typeof(T)))
-					return _cache[contentId] as T;
-			}
+				return _cache[contentId] as T;
 
 			return null;
 		}
@@ -71,9 +68,9 @@ namespace ConcreteContentTypes.Core.Cache
 		/// Removes an item from the cache.
 		/// </summary>
 		/// <param name="contentId">The Id of the Content item to remove.</param>
-		public void Remove(int contentId)
+		public void RemoveItem(int contentId)
 		{
-			IConcreteContent removedValue;
+			IConcreteModel removedValue;
 
 			if (_cache.ContainsKey(contentId))
 				_cache.TryRemove(contentId, out removedValue);

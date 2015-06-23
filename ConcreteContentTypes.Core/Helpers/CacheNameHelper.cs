@@ -8,7 +8,7 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Helpers
 {
-	public static class CacheNameHelper
+	internal static class CacheNameHelper
 	{
 		public static string GetCacheName(PublishedItemType contentType)
 		{

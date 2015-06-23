@@ -188,23 +188,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\ConcreteCache.cs" />
-    <Compile Include="Cache\IConcreteCache.cs" />
+    <Compile Include="Extensions\IPublishedContentExtensions.cs" />
+    <Compile Include="Extensions\UmbracoHelperExtensions.cs" />
+    <Compile Include="Interfaces\IConcreteCache.cs" />
     <Compile Include="Compilation\AssemblyBuilder.cs" />
+    <Compile Include="Interfaces\IConcreteSettings.cs" />
+    <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
     <Compile Include="Context\ConcreteContext.cs" />
     <Compile Include="Context\ConcreteContextFactory.cs" />
-    <Compile Include="CSharpWriters\AttributeCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\AttributeCSharpWriter.cs" />
     <Compile Include="Factory\ConcreteFactory.cs" />
-    <Compile Include="Factory\IConcreteFactory.cs" />
-    <Compile Include="FileWriters\CSharpBaseClassFileWriter.cs" />
-    <Compile Include="FileWriters\CSharpServiceClassFileWriter.cs" />
-    <Compile Include="FileWriters\CSharpServiceBaseClassFileWriter.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\MediaPickerPropertyCSharpWriter.cs" />
+    <Compile Include="Interfaces\IConcreteFactory.cs" />
+    <Compile Include="ModelGeneration\FileWriters\CSharpBaseClassFileWriter.cs" />
+    <Compile Include="ModelGeneration\FileWriters\CSharpServiceClassFileWriter.cs" />
+    <Compile Include="ModelGeneration\FileWriters\CSharpServiceBaseClassFileWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MediaPickerPropertyCSharpWriter.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Concrete.cs" />
-    <Compile Include="FileWriters\CSharpFileWriter.cs" />
+    <Compile Include="ModelGeneration\FileWriters\CSharpFileWriter.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
-    <Compile Include="Interfaces\IConcreteContent.cs" />
+    <Compile Include="Helpers\ConcreteHelper.cs" />
+    <Compile Include="Interfaces\IConcreteModel.cs" />
+    <Compile Include="ModelGeneration\Generators\ContentTypeModelsGenerator.cs" />
+    <Compile Include="ModelGeneration\Generators\MediaTypeModelsGenerator.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
     <Compile Include="Models\Definitions\ClassDefinitionBase.cs" />
     <Compile Include="Models\Definitions\UmbracoContentClassDefinition.cs" />
@@ -218,114 +225,111 @@
     <Compile Include="Models\ConcreteRenderModel.cs" />
     <Compile Include="Models\Enums\PublishedContentProperty.cs" />
     <Compile Include="Models\GridContent.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\ContentPickerPropertyCSharpWriter.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\MNTPPropertyCSharpWriter.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\NestedContentCSharpWriter.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\PropertyCSharpWriterBase.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\PropertyCSharpWriterFactory.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\ContentPickerPropertyCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MNTPPropertyCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\NestedContentCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\PropertyCSharpWriterBase.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\PropertyCSharpWriterFactory.cs" />
     <Compile Include="Configuration\ConcreteSettings.cs" />
     <Compile Include="Events\UmbracoEvents.cs" />
     <Compile Include="Exceptions\UnknownPropertyTypeException.cs" />
     <Compile Include="Models\Definitions\ModelClassDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\BasicUmbracoPropertyCSharpWriter.cs" />
-    <Compile Include="CSharpWriters\PropertyCSharpWriters\GridPropertyCSharpWriter.cs" />
-    <Compile Include="Services\IModelService.cs" />
-    <Compile Include="Services\IModelServiceResolver.cs" />
-    <Compile Include="Services\ModelServiceResolver.cs" />
-    <Compile Include="Templates\Classes\Models\ServiceClassTemplate.cs" />
-    <Compile Include="Templates\Classes\Models\ServiceBaseClassTemplate.cs" />
-    <Compile Include="Templates\Classes\ServiceClassTemplate.cs">
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\BasicUmbracoPropertyCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\GridPropertyCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\Templates\Classes\Models\ServiceClassTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Classes\Models\ServiceBaseClassTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Classes\ServiceClassTemplate.cs">
       <DependentUpon>ServiceClassTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Classes\UmbracoContentClassTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Classes\UmbracoContentClassTemplate.cs">
       <DependentUpon>UmbracoContentClassTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Classes\ServiceBaseClassTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Classes\ServiceBaseClassTemplate.cs">
       <DependentUpon>ServiceBaseClassTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Attributes\Models\AttributeTemplate.cs" />
-    <Compile Include="Templates\Properties\LazyLoadedPropertyCollectionTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Attributes\Models\AttributeTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Properties\LazyLoadedPropertyCollectionTemplate.cs">
       <DependentUpon>LazyLoadedPropertyCollectionTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Properties\BasicPropertyTypeDefinitionTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.cs">
       <DependentUpon>BasicPropertyTypeDefinitionTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Properties\Models\NestedContentPropertyTemplate.cs" />
-    <Compile Include="Templates\Attributes\AttributeTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Properties\Models\NestedContentPropertyTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Attributes\AttributeTemplate.cs">
       <DependentUpon>AttributeTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Properties\NestedContentPropertyTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.cs">
       <DependentUpon>NestedContentPropertyTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Templates\Properties\LazyLoadedPropertyTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Properties\LazyLoadedPropertyTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LazyLoadedPropertyTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="Templates\Classes\MainClassTemplate.cs">
+    <Compile Include="ModelGeneration\Templates\Classes\MainClassTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="Templates\Properties\Models\BasicPropertyTypeDefinitionTemplate.cs" />
-    <Compile Include="Templates\Properties\Models\LazyLoadedPropertyCollectionTemplate.cs" />
-    <Compile Include="Templates\Properties\Models\LazyLoadedPropertyTemplate.cs" />
-    <Compile Include="Templates\Classes\Models\MainClassTemplate.cs" />
-    <Compile Include="Templates\Classes\Models\UmbracoContentClassTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Properties\Models\BasicPropertyTypeDefinitionTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Properties\Models\LazyLoadedPropertyCollectionTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Properties\Models\LazyLoadedPropertyTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Classes\Models\MainClassTemplate.cs" />
+    <Compile Include="ModelGeneration\Templates\Classes\Models\UmbracoContentClassTemplate.cs" />
     <Compile Include="ViewTemplates\ConcreteViewPage.cs" />
     <Compile Include="WebApi\ConcreteContentTypesApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Templates\Properties\LazyLoadedPropertyCollectionTemplate.tt">
+    <None Include="ModelGeneration\Templates\Properties\LazyLoadedPropertyCollectionTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>LazyLoadedPropertyCollectionTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt">
+    <None Include="ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>BasicPropertyTypeDefinitionTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Attributes\AttributeTemplate.tt">
+    <None Include="ModelGeneration\Templates\Attributes\AttributeTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AttributeTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Classes\ServiceClassTemplate.tt">
+    <None Include="ModelGeneration\Templates\Classes\ServiceClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ServiceClassTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Classes\UmbracoContentClassTemplate.tt">
+    <None Include="ModelGeneration\Templates\Classes\UmbracoContentClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>UmbracoContentClassTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Classes\ServiceBaseClassTemplate.tt">
+    <None Include="ModelGeneration\Templates\Classes\ServiceBaseClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ServiceBaseClassTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Properties\NestedContentPropertyTemplate.tt">
+    <None Include="ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>NestedContentPropertyTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Properties\LazyLoadedPropertyTemplate.tt">
+    <None Include="ModelGeneration\Templates\Properties\LazyLoadedPropertyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>LazyLoadedPropertyTemplate.cs</LastGenOutput>
     </None>
-    <None Include="Templates\Classes\MainClassTemplate.tt">
+    <None Include="ModelGeneration\Templates\Classes\MainClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>MainClassTemplate.cs</LastGenOutput>
     </None>

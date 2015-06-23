@@ -10,7 +10,7 @@ using Umbraco.Web.Models;
 
 namespace ConcreteContentTypes.Core.Models
 {
-	public class ConcreteRenderModel<T> : RenderModel where T : IConcreteContent, new()
+	public class ConcreteRenderModel<T> : RenderModel where T : IConcreteModel, new()
 	{
 		public T Model { get; set; }
 

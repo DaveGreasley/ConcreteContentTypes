@@ -1,0 +1,29 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Tue Jun 16 07:57:37 2015
+
+   Source : C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.ModelFactory\bin\
+     Dest : C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.ModelFactory\App_Data\NuGetBackup\20150616-075736\bin\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.ModelFactory\bin\
+	  New Dir          0	C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.ModelFactory\bin\Debug\
+	  New Dir          0	C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.ModelFactory\bin\Release\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         2         1         0         0         0
+   Files :         0         0         0         0         0         0
+   Bytes :         0         0         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+   Ended : Tue Jun 16 07:57:37 2015
