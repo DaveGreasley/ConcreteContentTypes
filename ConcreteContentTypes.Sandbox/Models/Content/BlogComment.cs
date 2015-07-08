@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
+using ConcreteContentTypes.Core.Interfaces;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
@@ -39,6 +40,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		public BlogComment()
 			: base()
 		{
+		}
+
+		public BlogComment(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public BlogComment(string name, int parentId)
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public BlogComment(int contentId)

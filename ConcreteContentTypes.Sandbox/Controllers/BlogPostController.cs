@@ -1,4 +1,5 @@
 ﻿using ConcreteContentTypes.Sandbox.Models.Content;
+using ConcreteContentTypes.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,12 @@ namespace ConcreteContentTypes.Sandbox.Controllers
 {
 	public class BlogPostController : SurfaceController
 	{
-		//[ChildActionOnly]
-		//public ActionResult RenderSubmitCommentForm(BlogPost blogPost)
-		//{
-		//	BlogCommentService commentService = new BlogCommentService(Services.ContentService);
-		//	var commentModel = commentService.Create(blogPost, "Blog Comment + " + DateTime.Now.ToString());
+		[ChildActionOnly]
+		public ActionResult RenderSubmitCommentForm(BlogPost blogPost)
+		{
+			var blogComment = new BlogComment("Blog Comment " + DateTime.Now.ToString(), blogPost);
 
-		//	return PartialView("BlogSubmitComment", commentModel);
-		//}
+			return PartialView("BlogSubmitComment", blogComment);
+		}
 	}
 }
