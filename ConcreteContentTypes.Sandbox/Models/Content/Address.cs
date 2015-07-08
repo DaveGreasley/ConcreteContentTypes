@@ -58,9 +58,9 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 		}
 
-		protected override void Init()
+		public override void Init(IPublishedContent content)
 		{
-			base.Init();
+			base.Init(content);
 						
 			this.AddressLine1 = Content.GetPropertyValue<string>("addressLine1");
 						

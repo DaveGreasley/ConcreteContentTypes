@@ -10,13 +10,13 @@ namespace ConcreteContentTypes.Sandbox.Controllers
 {
 	public class BlogPostController : SurfaceController
 	{
-		[ChildActionOnly]
-		public ActionResult RenderSubmitCommentForm(BlogPost blogPost)
-		{
-			BlogCommentService commentService = new BlogCommentService(Services.ContentService);
-			var commentModel = commentService.Create(blogPost, "Blog Comment + " + DateTime.Now.ToString());
+		//[ChildActionOnly]
+		//public ActionResult RenderSubmitCommentForm(BlogPost blogPost)
+		//{
+		//	BlogCommentService commentService = new BlogCommentService(Services.ContentService);
+		//	var commentModel = commentService.Create(blogPost, "Blog Comment + " + DateTime.Now.ToString());
 
-			return PartialView("BlogSubmitComment", commentModel);
-		}
+		//	return PartialView("BlogSubmitComment", commentModel);
+		//}
 	}
 }

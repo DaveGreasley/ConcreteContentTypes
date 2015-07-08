@@ -12,7 +12,10 @@ namespace ConcreteContentTypes.Core.Extensions
 	{
 		public static T ConcreteModel<T>(this UmbracoHelper helper, int contentId) where T : class, IConcreteModel, new()
 		{
-			return ConcreteContext.Current.Helper.GetModel<T>(contentId);
+			T model = new T();
+			model.Init(contentId);
+
+			return model;
 		}
 	}
 }

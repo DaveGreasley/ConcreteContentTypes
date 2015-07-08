@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.Templates.Classes
+namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
 {
 	public partial class MainClassTemplate
 	{

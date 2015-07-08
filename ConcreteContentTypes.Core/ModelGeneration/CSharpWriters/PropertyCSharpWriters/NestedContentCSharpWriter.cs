@@ -10,7 +10,7 @@ using Umbraco.Core;
 using Umbraco.Web;
 using ConcreteContentTypes.Core.Extensions;
 using ConcreteContentTypes.Core.Models.Definitions;
-using ConcreteContentTypes.Core.Templates.Properties;
+using ConcreteContentTypes.Core.ModelGeneration.Templates.Properties;
 
 namespace ConcreteContentTypes.Core.PropertyCSharpWriters
 {

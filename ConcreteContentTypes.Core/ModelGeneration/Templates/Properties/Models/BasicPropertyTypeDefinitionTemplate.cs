@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.Templates.Properties
+namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
 {
 	public partial class BasicPropertyTypeDefinitionTemplate
 	{

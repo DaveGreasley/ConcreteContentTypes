@@ -64,9 +64,9 @@ private IEnumerable<<#=_classDefinition.ChildType#>> _children = null;
 		{
 		}
 
-		protected override void Init()
+		public override void Init(IPublishedContent content)
 		{
-			base.Init();
+			base.Init(content);
 			<# foreach(PropertyCSharpWriterBase p in _propertyWriters) {
 				if (!string.IsNullOrEmpty(p.GetValueString())) { #>
 			

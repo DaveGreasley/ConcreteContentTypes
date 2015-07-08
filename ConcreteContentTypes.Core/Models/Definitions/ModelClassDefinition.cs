@@ -44,11 +44,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 			foreach (var propertyType in propertyTypes)
 			{
-				try
-				{
-					this.Properties.Add(new PropertyDefinition(propertyType));
-				}
-				catch { }
+				this.Properties.Add(new PropertyDefinition(propertyType));
 			}
 		}
 

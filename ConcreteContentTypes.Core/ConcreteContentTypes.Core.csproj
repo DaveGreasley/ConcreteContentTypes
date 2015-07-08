@@ -187,28 +187,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\ConcreteCache.cs" />
+    <Compile Include="DynamicLoading\ConcreteFactory.cs" />
+    <Compile Include="DynamicLoading\ModelAssemblyLoader.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
     <Compile Include="Extensions\UmbracoHelperExtensions.cs" />
-    <Compile Include="Interfaces\IConcreteCache.cs" />
     <Compile Include="Compilation\AssemblyBuilder.cs" />
     <Compile Include="Interfaces\IConcreteSettings.cs" />
     <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
-    <Compile Include="Context\ConcreteContext.cs" />
-    <Compile Include="Context\ConcreteContextFactory.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\AttributeCSharpWriter.cs" />
-    <Compile Include="Factory\ConcreteFactory.cs" />
-    <Compile Include="Interfaces\IConcreteFactory.cs" />
     <Compile Include="ModelGeneration\FileWriters\CSharpBaseClassFileWriter.cs" />
-    <Compile Include="ModelGeneration\FileWriters\CSharpServiceClassFileWriter.cs" />
-    <Compile Include="ModelGeneration\FileWriters\CSharpServiceBaseClassFileWriter.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MediaPickerPropertyCSharpWriter.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Concrete.cs" />
     <Compile Include="ModelGeneration\FileWriters\CSharpFileWriter.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
-    <Compile Include="Helpers\ConcreteHelper.cs" />
     <Compile Include="Interfaces\IConcreteModel.cs" />
     <Compile Include="ModelGeneration\Generators\ContentTypeModelsGenerator.cs" />
     <Compile Include="ModelGeneration\Generators\MediaTypeModelsGenerator.cs" />
@@ -237,20 +230,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\BasicUmbracoPropertyCSharpWriter.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\GridPropertyCSharpWriter.cs" />
-    <Compile Include="ModelGeneration\Templates\Classes\Models\ServiceClassTemplate.cs" />
-    <Compile Include="ModelGeneration\Templates\Classes\Models\ServiceBaseClassTemplate.cs" />
-    <Compile Include="ModelGeneration\Templates\Classes\ServiceClassTemplate.cs">
-      <DependentUpon>ServiceClassTemplate.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ModelGeneration\Templates\Classes\UmbracoContentClassTemplate.cs">
       <DependentUpon>UmbracoContentClassTemplate.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="ModelGeneration\Templates\Classes\ServiceBaseClassTemplate.cs">
-      <DependentUpon>ServiceBaseClassTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -309,17 +290,9 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AttributeTemplate.cs</LastGenOutput>
     </None>
-    <None Include="ModelGeneration\Templates\Classes\ServiceClassTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ServiceClassTemplate.cs</LastGenOutput>
-    </None>
     <None Include="ModelGeneration\Templates\Classes\UmbracoContentClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>UmbracoContentClassTemplate.cs</LastGenOutput>
-    </None>
-    <None Include="ModelGeneration\Templates\Classes\ServiceBaseClassTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ServiceBaseClassTemplate.cs</LastGenOutput>
     </None>
     <None Include="ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

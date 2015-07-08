@@ -62,6 +62,10 @@
     <Reference Include="cms">
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\cms.dll</HintPath>
     </Reference>
+    <Reference Include="ConcreteModels">
+      <HintPath>bin-models\ConcreteModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="controls">
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\controls.dll</HintPath>
     </Reference>
@@ -302,23 +306,6 @@
   <ItemGroup>
     <Compile Include="Controllers\BlogPostController.cs" />
     <Compile Include="Controllers\EverythingController.cs" />
-    <Compile Include="Models\Content\Address.cs" />
-    <Compile Include="Models\Content\BlogAuthor.cs" />
-    <Compile Include="Models\Content\BlogAuthorRepository.cs" />
-    <Compile Include="Models\Content\BlogComment.cs" />
-    <Compile Include="Models\Content\BlogPost.cs" />
-    <Compile Include="Models\Content\BlogPostRepository.cs" />
-    <Compile Include="Models\Content\Everything.cs" />
-    <Compile Include="Models\Content\Home.cs" />
-    <Compile Include="Models\Content\LandingPage.cs" />
-    <Compile Include="Models\Content\MoreEverything.cs" />
-    <Compile Include="Models\Content\TextPage.cs" />
-    <Compile Include="Models\Content\UmbracoContent.cs" />
-    <Compile Include="Models\Media\File.cs" />
-    <Compile Include="Models\Media\Folder.cs" />
-    <Compile Include="Models\Media\Image.cs" />
-    <Compile Include="Models\Media\ImageFolder.cs" />
-    <Compile Include="Models\Media\UmbracoMedia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\BlogCommentApiController.cs" />
   </ItemGroup>

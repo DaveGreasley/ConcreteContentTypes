@@ -9,7 +9,6 @@ namespace ConcreteContentTypes.Core.Interfaces
 	public interface IConcreteSettings
 	{
 		bool Enabled { get; set; }
-		bool GenerateContentServices { get; set; }
 		bool GenerateOnContentTypeSave { get; set; }
 		bool GenerateOnMediaTypeSave { get; set; }
 		string CSharpOutputFolder { get; set; }

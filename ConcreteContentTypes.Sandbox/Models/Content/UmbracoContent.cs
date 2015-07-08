@@ -39,9 +39,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		}
 
 		[JsonIgnore]
-		protected IContentService ContentService { get { return ApplicationContext.Current.Services.ContentService; } }
-
-		[JsonIgnore]
 		public IEnumerable<IPublishedContent> Children
 		{
 			get
@@ -90,18 +87,18 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 		public void Init(int contentId)
 		{
-			Init(UmbracoContext.Current.ContentCache.GetById(contentId));
+			IPublishedContent content = UmbracoContext.Current.ContentCache.GetById(contentId);
+
+			if (content == null)
+				throw new InvalidOperationException(string.Format("Content Id {0} not found in Umbraco Cache", contentId));
+
+			Init(content);
 		}
 
-		public void Init(IPublishedContent content)
+		public virtual void Init(IPublishedContent content)
 		{
 			this.Content = content;
 
-			Init();
-		}
-
-		protected virtual void Init()
-		{
 			this.Name = this.Content.Name;
 			this.Id = this.Content.Id;
 			this.ParentId = this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //TODO: Not sure about this, means we always grab the parent IPublishedContent too...

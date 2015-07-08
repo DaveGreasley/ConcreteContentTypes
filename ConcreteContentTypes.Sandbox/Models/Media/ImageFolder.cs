@@ -49,9 +49,9 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 		{
 		}
 
-		protected override void Init()
+		public override void Init(IPublishedContent content)
 		{
-			base.Init();
+			base.Init(content);
 			
 		}
 

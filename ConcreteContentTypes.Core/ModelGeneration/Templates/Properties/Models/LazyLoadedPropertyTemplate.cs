@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.Templates.Properties
+namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
 {
 	public partial class LazyLoadedPropertyTemplate
 	{

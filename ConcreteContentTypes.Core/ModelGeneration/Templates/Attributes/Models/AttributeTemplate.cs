@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.Templates.Attributes
+namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Attributes
 {
 	public partial class AttributeTemplate
 	{

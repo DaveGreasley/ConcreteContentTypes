@@ -132,9 +132,9 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 		}
 
-		protected override void Init()
+		public override void Init(IPublishedContent content)
 		{
-			base.Init();
+			base.Init(content);
 						
 			this.Approvedcolour = Content.GetPropertyValue<string>("approvedcolour");
 						

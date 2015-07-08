@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Umbraco.Core;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.ModelFactory
+namespace ConcreteContentTypes.Core.DynamicLoading
 {
-	public class ConcreteCache
+	public static class ConcreteFactory
 	{
-		public ConcreteCache()
-		{
-		}
-
+		//public static T Get<T>(IPublishedContent content)
+		//{
+		//}
 	}
 }

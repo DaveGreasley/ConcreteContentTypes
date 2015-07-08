@@ -1,7 +1,7 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
+using ConcreteContentTypes.Core.ModelGeneration.Templates.Properties;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
-using ConcreteContentTypes.Core.Templates.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;

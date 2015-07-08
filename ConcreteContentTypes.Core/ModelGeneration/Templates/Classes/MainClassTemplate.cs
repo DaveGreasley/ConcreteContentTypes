@@ -181,8 +181,8 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
             
             #line default
             #line hidden
-            this.Write("(IPublishedContent content)\r\n\t\t\t: base(content)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tprotected override" +
-                    " void Init()\r\n\t\t{\r\n\t\t\tbase.Init();\r\n\t\t\t");
+            this.Write("(IPublishedContent content)\r\n\t\t\t: base(content)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic override vo" +
+                    "id Init(IPublishedContent content)\r\n\t\t{\r\n\t\t\tbase.Init(content);\r\n\t\t\t");
             
             #line 70 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
  foreach(PropertyCSharpWriterBase p in _propertyWriters) {

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.Templates.Classes
+namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
 {
 	public partial class UmbracoContentClassTemplate
 	{

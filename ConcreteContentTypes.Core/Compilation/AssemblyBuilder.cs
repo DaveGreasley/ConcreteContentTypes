@@ -23,7 +23,7 @@ namespace ConcreteContentTypes.Core.Compilation
 			{
 				DirectoryInfo sourceFolder = new DirectoryInfo(sourceFolderPath);
 
-				FileInfo[] sourceFiles = sourceFolder.GetFiles("*.cs");
+				FileInfo[] sourceFiles = sourceFolder.GetFiles("*.cs", SearchOption.AllDirectories);
 				string[] sourceFilePaths = sourceFiles.Select(x => x.FullName).ToArray();
 
 				outputFolderPath = outputFolderPath.TrimEnd('\\');
@@ -33,7 +33,7 @@ namespace ConcreteContentTypes.Core.Compilation
 
 
 
-				string assemblyOutputPath = string.Format("{0}\\{1}", outputFolderPath, assemblyName);
+				string assemblyOutputPath = string.Format("{0}\\{1}.dll", outputFolderPath, assemblyName);
 
 				var csc = new CSharpCodeProvider(new Dictionary<string, string>() { { "CompilerVersion", "v4.0" } });
 				var parameters = new CompilerParameters(GetDependencies(dependencyDirectory, dependentAssemblies), assemblyOutputPath, true);

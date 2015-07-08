@@ -17,7 +17,6 @@ using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.CSharpWriters;
 using ConcreteContentTypes.Core.Compilation;
-using ConcreteContentTypes.Core.Templates.Classes;
 using ConcreteContentTypes.Core.FileWriters;
 
 namespace ConcreteContentTypes.Core
@@ -28,11 +27,10 @@ namespace ConcreteContentTypes.Core
 
 		IContentTypeService _contentTypeService;
 
+		string _cSharpOutpuFolder;
+
 		string _contentTypeNameSpace;
 		string _contentTypeCSharpOutputFolder;
-
-		string _contentTypeServiceNameSpace;
-		string _contentTypeServiceCSharpOutputFolder;
 
 		string _mediaTypeNameSpace;
 		string _mediaTypeCSharpOutputFolder;
@@ -50,14 +48,13 @@ namespace ConcreteContentTypes.Core
 		{
 			_contentTypeService = UmbracoContext.Current.Application.Services.ContentTypeService;
 
-			_contentTypeNameSpace = ConcreteSettings.Current.Namespace + ".Content";
-			_contentTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder + "\\Content";
+			_cSharpOutpuFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder;
 
-			_contentTypeServiceNameSpace = ConcreteSettings.Current.Namespace + ".Services";
-			_contentTypeServiceCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder + "\\Services";
+			_contentTypeNameSpace = ConcreteSettings.Current.Namespace + ".Content";
+			_contentTypeCSharpOutputFolder = string.Format("{0}\\Content", _cSharpOutpuFolder);
 
 			_mediaTypeNameSpace = ConcreteSettings.Current.Namespace + ".Media";
-			_mediaTypeCSharpOutputFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder + "\\Media";
+			_mediaTypeCSharpOutputFolder = string.Format("{0}\\Media", _cSharpOutpuFolder);
 
 			_assemblyOutputDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyOutputDirectory;
 			_assemblyDependencyDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyDependencyDirectory;
@@ -67,18 +64,6 @@ namespace ConcreteContentTypes.Core
 		#endregion
 
 		#region Public Methods
-
-		public void BuildServiceClasses(List<ModelClassDefinition> modelClasses)
-		{
-			CSharpServiceBaseClassFileWriter serviceBaseWriter = new CSharpServiceBaseClassFileWriter(_contentTypeServiceNameSpace);
-			serviceBaseWriter.WriteFile(_contentTypeServiceCSharpOutputFolder);
-
-			foreach (var model in modelClasses)
-			{
-				CSharpServiceClassFileWriter serviceWriter = new CSharpServiceClassFileWriter(model, _contentTypeServiceNameSpace);
-				serviceWriter.WriteClass(_contentTypeServiceCSharpOutputFolder);
-			}
-		}
 
 		public void BuildMediaTypes()
 		{
@@ -123,7 +108,7 @@ namespace ConcreteContentTypes.Core
 			{
 				AssemblyBuilder builder = new AssemblyBuilder();
 				builder.CreateAssembly(
-					_contentTypeCSharpOutputFolder,
+					_cSharpOutpuFolder,
 					_assemblyOutputDirectory,
 					ConcreteSettings.Current.AssemblyName,
 					_assemblyDependencyDirectory,

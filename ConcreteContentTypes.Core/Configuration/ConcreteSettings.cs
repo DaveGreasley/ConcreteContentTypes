@@ -61,22 +61,6 @@ namespace ConcreteContentTypes.Core.Configuration
 		}
 
 		/// <summary>
-		/// Determines if the we should generate the Service classes for Content Types
-		/// </summary>
-		[ConfigurationProperty("GenerateContentServices")]
-		public bool GenerateContentServices
-		{
-			get
-			{
-				return (bool)this["GenerateContentServices"];
-			}
-			set
-			{
-				this["GenerateContentServices"] = value;
-			}
-		}
-
-		/// <summary>
 		/// Determines if we should regenerate our C# when a content type is created / saved
 		/// </summary>
 		[ConfigurationProperty("GenerateOnContentTypeSave")]
