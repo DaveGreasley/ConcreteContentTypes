@@ -12,7 +12,7 @@ using Umbraco.Core.Logging;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 
-namespace ConcreteContentTypes.Core.PropertyCSharpWriters
+namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters
 {
 	public static class PropertyCSharpWriterFactory
 	{

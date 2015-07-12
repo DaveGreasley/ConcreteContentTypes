@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.CSharpWriters;
+﻿using ConcreteContentTypes.Core.ModelGeneration.CSharpWriters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

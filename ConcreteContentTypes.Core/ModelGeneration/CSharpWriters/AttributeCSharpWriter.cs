@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CSharpWriters
+namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters
 {
 	public class AttributeCSharpWriter
 	{

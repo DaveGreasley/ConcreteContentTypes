@@ -1,6 +1,6 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Events;
-using ConcreteContentTypes.Core.FileWriters;
+using ConcreteContentTypes.Core.ModelGeneration.FileWriters;
 using ConcreteContentTypes.Core.Models.Definitions;
 using System;
 using System.Collections.Generic;

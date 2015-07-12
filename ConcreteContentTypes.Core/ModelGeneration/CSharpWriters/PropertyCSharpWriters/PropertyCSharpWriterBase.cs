@@ -1,5 +1,4 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
-using ConcreteContentTypes.Core.CSharpWriters;
 using ConcreteContentTypes.Core.Exceptions;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
@@ -10,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyCSharpWriters
+namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters
 {
 	public abstract class PropertyCSharpWriterBase
 	{

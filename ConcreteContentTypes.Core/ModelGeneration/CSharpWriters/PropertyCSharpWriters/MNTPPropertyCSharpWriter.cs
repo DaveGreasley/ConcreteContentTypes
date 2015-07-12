@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace ConcreteContentTypes.Core.PropertyCSharpWriters
+namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters
 {
 	public class MNTPPropertyCSharpWriter : PropertyCSharpWriterBase
 	{

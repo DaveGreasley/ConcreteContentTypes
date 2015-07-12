@@ -42,8 +42,8 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
             
             #line default
             #line hidden
-            this.Write("> Children\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_children == null)\r\n\t\t\t\t\t_children = this." +
-                    "Content.Children.Select(x => new ");
+            this.Write("> Children\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_children == null && this.Content != null)" +
+                    "\r\n\t\t\t\t\t_children = this.Content.Children.Select(x => new ");
             
             #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_childType));

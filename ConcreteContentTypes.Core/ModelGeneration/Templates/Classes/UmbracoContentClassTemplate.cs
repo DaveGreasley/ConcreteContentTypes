@@ -13,7 +13,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
     using System.Text;
     using System.Collections.Generic;
     using ConcreteContentTypes.Core.Models;
-    using ConcreteContentTypes.Core.PropertyCSharpWriters;
+    using ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters;
     using ConcreteContentTypes.Core.Models.Enums;
     using System;
     

@@ -12,7 +12,7 @@ using ConcreteContentTypes.Core.Extensions;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.ModelGeneration.Templates.Properties;
 
-namespace ConcreteContentTypes.Core.PropertyCSharpWriters
+namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters
 {
 	public class NestedContentCSharpWriter : PropertyCSharpWriterBase
 	{

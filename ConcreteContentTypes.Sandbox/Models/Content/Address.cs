@@ -44,7 +44,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			get
 			{
-				if (_children == null)
+				if (_children == null && this.Content != null)
 					_children = this.Content.Children;
 
 				return _children;

@@ -1,5 +1,4 @@
-﻿using ConcreteContentTypes.Core.CSharpWriters;
-using ConcreteContentTypes.Core.Models.Enums;
+﻿using ConcreteContentTypes.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

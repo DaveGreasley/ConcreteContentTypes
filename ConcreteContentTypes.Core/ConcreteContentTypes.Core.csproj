@@ -285,7 +285,6 @@
     <Compile Include="ModelGeneration\Templates\Classes\Models\MainClassTemplate.cs" />
     <Compile Include="ModelGeneration\Templates\Classes\Models\UmbracoContentClassTemplate.cs" />
     <Compile Include="ViewTemplates\ConcreteViewPage.cs" />
-    <Compile Include="WebApi\ConcreteContentTypesApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

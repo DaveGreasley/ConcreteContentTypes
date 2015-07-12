@@ -28,10 +28,19 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n\t\tprivate IEnumerable<IPublishedContent> _children = null;\r\n\t\t[JsonIgnore]\r\n\t\tp" +
-                    "ublic IEnumerable<IPublishedContent> Children\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_child" +
-                    "ren == null)\r\n\t\t\t\t\t_children = this.Content.Children;\r\n\r\n\t\t\t\treturn _children;\r\n" +
-                    "\t\t\t}\r\n\t\t}");
+            this.Write(@"
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null && this.Content != null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}");
             return this.GenerationEnvironment.ToString();
         }
     }

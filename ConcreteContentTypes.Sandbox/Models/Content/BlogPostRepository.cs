@@ -33,7 +33,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			get
 			{
-				if (_children == null)
+				if (_children == null && this.Content != null)
 					_children = this.Content.Children.Select(x => new BlogPost(x));
 
 				return _children;

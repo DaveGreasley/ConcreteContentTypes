@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="ConcreteContentTypes.Core.Models" #>
-<#@ import namespace="ConcreteContentTypes.Core.PropertyCSharpWriters" #>
+<#@ import namespace="ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters" #>
 <#@ import namespace="ConcreteContentTypes.Core.Models.Enums" #>
 <#@ output extension=".cs" #>
 

@@ -1,8 +1,8 @@
-﻿using ConcreteContentTypes.Core.CSharpWriters;
+﻿using ConcreteContentTypes.Core.ModelGeneration.CSharpWriters;
+using ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters;
 using ConcreteContentTypes.Core.ModelGeneration.Templates.Properties;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
-using ConcreteContentTypes.Core.PropertyCSharpWriters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

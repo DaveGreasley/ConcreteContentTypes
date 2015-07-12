@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.PropertyCSharpWriters
+namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharpWriters
 {
 	public class GridPropertyCSharpWriter : PropertyCSharpWriterBase
 	{
