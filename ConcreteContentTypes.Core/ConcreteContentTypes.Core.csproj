@@ -191,7 +191,6 @@
     <Compile Include="DynamicLoading\ModelAssemblyLoader.cs" />
     <Compile Include="Extensions\IContentServiceExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
-    <Compile Include="Extensions\UmbracoHelperExtensions.cs" />
     <Compile Include="Compilation\AssemblyBuilder.cs" />
     <Compile Include="Interfaces\IConcreteSettings.cs" />
     <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
@@ -206,6 +205,18 @@
     <Compile Include="Interfaces\IConcreteModel.cs" />
     <Compile Include="ModelGeneration\Generators\ContentTypeModelsGenerator.cs" />
     <Compile Include="ModelGeneration\Generators\MediaTypeModelsGenerator.cs" />
+    <Compile Include="ModelGeneration\Generators\ModelsGeneratorBase.cs" />
+    <Compile Include="ModelGeneration\Templates\Properties\IPublishedContentChildrenPropertyTemplate.cs">
+      <DependentUpon>IPublishedContentChildrenPropertyTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.cs">
+      <DependentUpon>TypedChildrenPropertyTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ModelGeneration\Templates\Properties\Models\TypedChildrenPropertyTemplate.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
     <Compile Include="Models\Definitions\ClassDefinitionBase.cs" />
     <Compile Include="Models\Definitions\UmbracoContentClassDefinition.cs" />
@@ -278,6 +289,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ModelGeneration\Templates\Properties\IPublishedContentChildrenPropertyTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IPublishedContentChildrenPropertyTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TypedChildrenPropertyTemplate.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="ModelGeneration\Templates\Properties\LazyLoadedPropertyCollectionTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

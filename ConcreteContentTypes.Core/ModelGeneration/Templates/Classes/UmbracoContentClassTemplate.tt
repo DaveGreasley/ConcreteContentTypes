@@ -50,18 +50,6 @@ namespace <#= _classDefinition.Namespace #>
 			}
 		}
 
-		[JsonIgnore]
-		public IEnumerable<IPublishedContent> Children
-		{
-			get
-			{
-				if (this.Content == null)
-					return new List<IPublishedContent>();
-
-				return this.Content.Children;
-			}
-		}
-
 		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Name]) { #><#= writer.WriteAttribute() #><# } #>
 		public string Name { get; set; }
 

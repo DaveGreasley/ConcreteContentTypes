@@ -7,22 +7,20 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
+namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
 {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using ConcreteContentTypes.Core.Models;
-    using ConcreteContentTypes.Core.PropertyCSharpWriters;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
+    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public partial class MainClassTemplate : MainClassTemplateBase
+    public partial class TypedChildrenPropertyTemplate : TypedChildrenPropertyTemplateBase
     {
 #line hidden
         /// <summary>
@@ -30,177 +28,29 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"
-using System;
-using System.Collections.Generic;
-using Umbraco.Core.Models;
-using Umbraco.Web;
-using System.Web;
-using System.Linq;
-using System.ComponentModel.DataAnnotations;
-using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Interfaces;
-using Newtonsoft.Json;
-
-");
+            this.Write("\r\n\t\tprivate IEnumerable<");
             
-            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- foreach(string nameSpace in _usingNamespaces) { 
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_childType));
             
             #line default
             #line hidden
-            this.Write("using ");
+            this.Write("> _children = null;\r\n\t\tpublic IEnumerable<");
             
-            #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n");
-            
-            #line 23 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- } 
+            #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_childType));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nnamespace ");
+            this.Write("> Children\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_children == null)\r\n\t\t\t\t\t_children = this." +
+                    "Content.Children.Select(x => new ");
             
-            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Namespace));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n{\r\n\t");
-            
-            #line 28 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- foreach (var attributeWriter in _attributeWriters) { 
+            #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\TypedChildrenPropertyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_childType));
             
             #line default
             #line hidden
-            this.Write(" ");
-            
-            #line 28 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(attributeWriter.WriteAttribute()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 28 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\tpublic partial class ");
-            
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" : ");
-            
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.BaseClass));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t{\r\n\t\tpublic override string ContentTypeAlias { get { return \"");
-            
-            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("\"; } }\r\n\r\n\t\t");
-            
-            #line 33 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- foreach(PropertyCSharpWriterBase p in _propertyWriters) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\r\n\t\t");
-            
-            #line 35 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.GetPropertyDefinition()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 35 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t");
-            
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_children));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\n\t\tpublic ");
-            
-            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("()\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
-            
-            #line 44 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(string name, IConcreteModel parent)\r\n\t\t\t: this(name, parent.Id)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tp" +
-                    "ublic ");
-            
-            #line 49 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(string name, int parentId)\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t\tthis.Name = name;\r\n\t\t\tthis.Pare" +
-                    "ntId = parentId;\r\n\t\t}\r\n\r\n\t\tpublic ");
-            
-            #line 56 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(int contentId)\r\n\t\t\t: base(contentId)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
-            
-            #line 61 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(IPublishedContent content)\r\n\t\t\t: base(content)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic override vo" +
-                    "id Init(IPublishedContent content)\r\n\t\t{\r\n\t\t\tbase.Init(content);\r\n\t\t\t");
-            
-            #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- foreach(PropertyCSharpWriterBase p in _propertyWriters) {
-				if (!string.IsNullOrEmpty(p.GetValueString())) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t\r\n\t\t\t");
-            
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.GetValueString()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t\t");
-            
-            #line 73 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
- } } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\t\t}\r\n\r\n\t}\r\n}\r\n\r\n");
+            this.Write("(x));\r\n\r\n\t\t\t\treturn _children;\r\n\t\t\t}\r\n\t\t}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -212,7 +62,7 @@ using Newtonsoft.Json;
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
-    public class MainClassTemplateBase
+    public class TypedChildrenPropertyTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

@@ -21,7 +21,8 @@ using ConcreteContentTypes.Core.FileWriters;
 
 namespace ConcreteContentTypes.Core
 {
-	public class Concrete
+	[Obsolete("Use classes in ModelGenerations.Generators namespace.")]
+	internal class Concrete
 	{
 		#region Private Variables
 

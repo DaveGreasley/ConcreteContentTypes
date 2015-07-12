@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -22,9 +23,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("approvedcolour")]
 		public string Approvedcolour { get; set; } 		
@@ -48,78 +47,73 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 		} 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("checkboxList")]
 		public string CheckboxList { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("dateTimePicker")]
 		public DateTime DateTimePicker { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("myLabel")]
 		public string MyLabel { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("myNumeric")]
 		public int MyNumeric { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("myRichtextEditor")]
 		public IHtmlString MyRichtextEditor { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("multipleTextBox")]
 		public string MultipleTextBox { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("textString")]
 		public string TextString { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("yesOrNo")]
 		public bool YesOrNo { get; set; } 
+		
 		private IEnumerable<MoreEverything> _children = null;
-		public new IEnumerable<MoreEverything> Children
+		public IEnumerable<MoreEverything> Children
 		{
 			get
 			{
 				if (_children == null)
-				{
 					_children = this.Content.Children.Select(x => new MoreEverything(x));
-				}
 
 				return _children;
 			}
 		}
-		
+
 		public Everything()
 			: base()
 		{
+		}
+
+		public Everything(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public Everything(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public Everything(int contentId)

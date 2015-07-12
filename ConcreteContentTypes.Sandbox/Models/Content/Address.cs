@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -22,30 +23,49 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		[Required] 
 		[Field("addressLine1")]
 		public string AddressLine1 { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		[Required] 
 		[Field("city")]
 		public string City { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		[Required] 
 		[Field("postCode")]
 		public string PostCode { get; set; } 
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public Address()
 			: base()
 		{
+		}
+
+		public Address(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public Address(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public Address(int contentId)

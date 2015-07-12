@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -22,9 +23,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoNaviHide")]
 		public bool HideInBottomNavigation { get; set; } 		
@@ -102,9 +101,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 		} 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		[Required] 
 		[Field("namesCheckBox")]
 		public string NamesCheckBox { get; set; } 		
@@ -161,9 +158,34 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 		} 
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public MoreEverything()
 			: base()
 		{
+		}
+
+		public MoreEverything(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public MoreEverything(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public MoreEverything(int contentId)

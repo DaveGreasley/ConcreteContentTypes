@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -22,23 +23,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("jobTitle")]
 		public string JobTitle { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("shortBio")]
 		public string ShortBio { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("bioFull")]
 		public IHtmlString BioFull { get; set; } 		
@@ -63,9 +58,34 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 		} 
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public BlogAuthor()
 			: base()
 		{
+		}
+
+		public BlogAuthor(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public BlogAuthor(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public BlogAuthor(int contentId)

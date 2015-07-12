@@ -12,6 +12,7 @@ using Umbraco.Web.Routing;
 using System.Reflection;
 using System.IO;
 using ConcreteContentTypes.Core.DynamicLoading;
+using ConcreteContentTypes.Core.ModelGeneration.Generators;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -47,8 +48,8 @@ namespace ConcreteContentTypes.Core.Events
 			{
 				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
 				{
-					Concrete c = new Concrete();
-					c.BuildMediaTypes();
+					MediaTypeModelsGenerator modelsGenerator = new MediaTypeModelsGenerator();
+					modelsGenerator.GenerateModels();
 				}
 			}
 			catch (Exception ex)
@@ -63,11 +64,11 @@ namespace ConcreteContentTypes.Core.Events
 			{
 				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
 				{
-					Concrete c = new Concrete();
-					c.BuildMediaTypes();
-					var contentClasses = c.BuildContentTypes();
+					MediaTypeModelsGenerator mediaModelsGenerator = new MediaTypeModelsGenerator();
+					mediaModelsGenerator.GenerateModels();
 
-					c.BuildAssembly();
+					ContentTypeModelsGenerator contentModelsGenerator = new ContentTypeModelsGenerator();
+					contentModelsGenerator.GenerateModels();
 				}
 			}
 			catch (Exception ex)

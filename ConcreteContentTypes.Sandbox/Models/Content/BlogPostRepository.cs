@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -22,29 +23,38 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoNaviHide")]
 		public bool HideInBottomNavigation { get; set; } 
+		
 		private IEnumerable<BlogPost> _children = null;
-		public new IEnumerable<BlogPost> Children
+		public IEnumerable<BlogPost> Children
 		{
 			get
 			{
 				if (_children == null)
-				{
 					_children = this.Content.Children.Select(x => new BlogPost(x));
-				}
 
 				return _children;
 			}
 		}
-		
+
 		public BlogPostRepository()
 			: base()
 		{
+		}
+
+		public BlogPostRepository(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public BlogPostRepository(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public BlogPostRepository(int contentId)

@@ -5,9 +5,10 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 
-		/// <summary>
+		<# if (HasDescription) { #>/// <summary>
 		/// <#=_description#>
-		/// </summary>
+		/// </summary> <# } #>
+		
 		<# if(_required) { #>[Required] <# } #>
 
 		<# foreach (var attribute in _attributeWriters) { #><#= attribute.WriteAttribute() #><# } #>

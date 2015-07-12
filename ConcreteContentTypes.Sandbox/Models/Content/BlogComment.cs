@@ -7,11 +7,11 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
-using ConcreteContentTypes.Core.Interfaces;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
@@ -25,18 +25,31 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		
 		/// <summary>
 		/// The full name of the person submitting the comment
-		/// </summary>
+		/// </summary> 		
 		[Required] 
 		[Field("fullName")]
 		public string FullName { get; set; } 		
 		
 		/// <summary>
 		/// A comment about this Blog Post
-		/// </summary>
+		/// </summary> 		
 		[Required] 
 		[Field("comment")]
 		public string Comment { get; set; } 
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public BlogComment()
 			: base()
 		{
@@ -48,6 +61,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		}
 
 		public BlogComment(string name, int parentId)
+			: base()
 		{
 			this.Name = name;
 			this.ParentId = parentId;

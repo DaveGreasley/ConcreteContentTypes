@@ -28,56 +28,70 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n\t\t/// <summary>\r\n\t\t/// ");
+            this.Write("\r\n\t\t");
+            
+            #line 8 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+ if (HasDescription) { 
+            
+            #line default
+            #line hidden
+            this.Write("/// <summary>\r\n\t\t/// ");
             
             #line 9 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_description));
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t/// </summary>\r\n\t\t");
+            this.Write("\r\n\t\t/// </summary> ");
             
-            #line 11 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 10 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\r\n\t\t");
+            
+            #line 12 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
  if(_required) { 
             
             #line default
             #line hidden
             this.Write("[Required] ");
             
-            #line 11 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 12 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n\t\t");
             
-            #line 13 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
  foreach (var attribute in _attributeWriters) { 
             
             #line default
             #line hidden
             
-            #line 13 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(attribute.WriteAttribute()));
             
             #line default
             #line hidden
             
-            #line 13 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t\tpublic ");
             
-            #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 15 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 14 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
+            #line 15 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\BasicPropertyTypeDefinitionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_nicePropertyAlias));
             
             #line default

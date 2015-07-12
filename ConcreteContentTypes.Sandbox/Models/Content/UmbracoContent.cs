@@ -38,18 +38,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 		}
 
-		[JsonIgnore]
-		public IEnumerable<IPublishedContent> Children
-		{
-			get
-			{
-				if (this.Content == null)
-					return new List<IPublishedContent>();
-
-				return this.Content.Children;
-			}
-		}
-
 		[Field("nodeName")]
 		public string Name { get; set; }
 

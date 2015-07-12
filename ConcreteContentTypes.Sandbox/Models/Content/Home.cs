@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -22,32 +23,51 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("siteDescription")]
 		public string SiteDescription { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("siteTitle")]
 		public string SiteTitle { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("siteLogo")]
 		public string SiteLogo { get; set; } 		
 		[JsonIgnore]
 		public GridContent content { get; set; } 
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public Home()
 			: base()
 		{
+		}
+
+		public Home(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public Home(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public Home(int contentId)

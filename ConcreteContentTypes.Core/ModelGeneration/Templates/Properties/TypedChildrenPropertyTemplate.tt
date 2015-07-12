@@ -1,0 +1,18 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+		private IEnumerable<<#= _childType #>> _children = null;
+		public IEnumerable<<#= _childType #>> Children
+		{
+			get
+			{
+				if (_children == null)
+					_children = this.Content.Children.Select(x => new <#= _childType #>(x));
+
+				return _children;
+			}
+		}

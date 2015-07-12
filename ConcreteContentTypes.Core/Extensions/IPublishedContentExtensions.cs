@@ -17,5 +17,17 @@ namespace ConcreteContentTypes.Core
 
 			return model;
 		}
+
+		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> content) where T : class, IConcreteModel, new()
+		{
+			List<T> contentList = new List<T>();
+
+			foreach (var c in content)
+			{
+				contentList.Add(c.As<T>());
+			}
+
+			return contentList;
+		}
 	}
 }

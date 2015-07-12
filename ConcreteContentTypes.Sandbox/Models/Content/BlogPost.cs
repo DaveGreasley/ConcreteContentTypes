@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -43,9 +44,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		[JsonIgnore]
 		public GridContent content { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("introduction")]
 		public string Introduction { get; set; } 		
@@ -89,23 +88,34 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				return _linkedPage;
 			}
 		} 
+		
 		private IEnumerable<BlogComment> _children = null;
-		public new IEnumerable<BlogComment> Children
+		public IEnumerable<BlogComment> Children
 		{
 			get
 			{
 				if (_children == null)
-				{
 					_children = this.Content.Children.Select(x => new BlogComment(x));
-				}
 
 				return _children;
 			}
 		}
-		
+
 		public BlogPost()
 			: base()
 		{
+		}
+
+		public BlogPost(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public BlogPost(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public BlogPost(int contentId)

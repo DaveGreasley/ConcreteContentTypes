@@ -14,6 +14,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
 		protected string _description;
 		protected bool _required;
 		protected List<AttributeCSharpWriter> _attributeWriters;
+		protected bool HasDescription { get { return !string.IsNullOrEmpty(_description); } }
 
 		public BasicPropertyTypeDefinitionTemplate(string typeName, string nicePropertyAlias, string description, bool required,
 			List<AttributeCSharpWriter> attributeWriters)

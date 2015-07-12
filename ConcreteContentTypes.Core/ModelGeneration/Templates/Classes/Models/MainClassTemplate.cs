@@ -1,4 +1,5 @@
 ﻿using ConcreteContentTypes.Core.CSharpWriters;
+using ConcreteContentTypes.Core.ModelGeneration.Templates.Properties;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.PropertyCSharpWriters;
@@ -16,6 +17,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
 		protected List<AttributeCSharpWriter> _attributeWriters;
 		protected List<PropertyCSharpWriterBase> _propertyWriters;
 		protected List<string> _usingNamespaces;
+		protected string _children;
 
 		public MainClassTemplate(ModelClassDefinition definition, 
 			List<AttributeCSharpWriter> attributeWriters,
@@ -25,6 +27,10 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
 			_propertyWriters = propertyWriters;
 			_attributeWriters = attributeWriters;
 			_usingNamespaces = definition.GetUsingNamespaces();
+
+			_children = definition.HasConcreteChildType
+				? new TypedChildrenPropertyTemplate(definition.ChildType).TransformText()
+				: new IPublishedContentChildrenPropertyTemplate().TransformText();
 		}
 	}
 }

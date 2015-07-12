@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
@@ -21,23 +22,34 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		public override string ContentTypeAlias { get { return "BlogAuthorRepository"; } }
 
 		
+		
 		private IEnumerable<BlogAuthor> _children = null;
-		public new IEnumerable<BlogAuthor> Children
+		public IEnumerable<BlogAuthor> Children
 		{
 			get
 			{
 				if (_children == null)
-				{
 					_children = this.Content.Children.Select(x => new BlogAuthor(x));
-				}
 
 				return _children;
 			}
 		}
-		
+
 		public BlogAuthorRepository()
 			: base()
 		{
+		}
+
+		public BlogAuthorRepository(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public BlogAuthorRepository(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public BlogAuthorRepository(int contentId)
