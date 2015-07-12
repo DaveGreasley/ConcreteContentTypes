@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 using ConcreteContentTypes.Core.Helpers;
+using ConcreteContentTypes.Core.Extensions;
 
 namespace ConcreteContentTypes.Core.ViewTemplates
 {

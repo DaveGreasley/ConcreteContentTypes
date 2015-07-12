@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using Umbraco.Web.WebApi;
+using ConcreteContentTypes.Core.Extensions;
 
 namespace ConcreteContentTypes.Sandbox.WebApi
 {

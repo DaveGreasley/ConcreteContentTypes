@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core
+namespace ConcreteContentTypes.Core.Extensions
 {
 	public static class IPublishedContentExtensions
 	{

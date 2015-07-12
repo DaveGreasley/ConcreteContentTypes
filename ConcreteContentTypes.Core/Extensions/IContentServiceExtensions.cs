@@ -9,7 +9,7 @@ using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 
-namespace ConcreteContentTypes.Core
+namespace ConcreteContentTypes.Core.Extensions
 {
 	public static class IContentServiceExtensions
 	{
