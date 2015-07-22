@@ -1,7 +1,7 @@
 # ConcreteContentTypes [![Build status](https://ci.appveyor.com/api/projects/status/paw5swsg5jex75h1?svg=true)](https://ci.appveyor.com/project/DaveGreasley/concretecontenttypes)
 
 
-ConcreteContentTypes is a package for the Umbraco CMS that will generate a strongly typed model based on Content Types. It will write C# classes when you save or create a new Content Type.
+ConcreteContentTypes is a package for the Umbraco CMS that will generate strongly typed models based on Content Types and Media Types.
 
 Full documentation and usage information available on the [wiki](https://github.com/DaveGreasley/ConcreteContentTypes/wiki)
 
