@@ -46,11 +46,8 @@ namespace ConcreteContentTypes.Core.Events
 		{
 			try
 			{
-				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
-				{
-					MediaTypeModelsGenerator modelsGenerator = new MediaTypeModelsGenerator();
-					modelsGenerator.GenerateModels();
-				}
+				if (ConcreteSettings.Current.GenerateOnMediaTypeSave)
+					RegenerateAllModels();
 			}
 			catch (Exception ex)
 			{
@@ -63,18 +60,23 @@ namespace ConcreteContentTypes.Core.Events
 			try
 			{
 				if (ConcreteSettings.Current.GenerateOnContentTypeSave)
-				{
-					MediaTypeModelsGenerator mediaModelsGenerator = new MediaTypeModelsGenerator();
-					mediaModelsGenerator.GenerateModels();
-
-					ContentTypeModelsGenerator contentModelsGenerator = new ContentTypeModelsGenerator();
-					contentModelsGenerator.GenerateModels();
-				}
+					RegenerateAllModels();
 			}
 			catch (Exception ex)
 			{
 				LogHelper.Error<UmbracoEvents>("Error generating Concrete models on ContentType save", ex);
 			}
+		}
+
+		//Currently we regenerate all Media and all Content models every time we save either.
+		void RegenerateAllModels()
+		{
+			//Generate Media models first as they are used by Content models
+			MediaTypeModelsGenerator mediaModelsGenerator = new MediaTypeModelsGenerator();
+			mediaModelsGenerator.GenerateModels();
+
+			ContentTypeModelsGenerator contentModelsGenerator = new ContentTypeModelsGenerator();
+			contentModelsGenerator.GenerateModels();
 		}
 
 		#endregion

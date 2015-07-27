@@ -92,66 +92,65 @@ if (_isCollection) {
             
             #line default
             #line hidden
-            this.Write("\");\r\n\r\n\t\t\t\t\tif (content != null)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tforeach (var item in content)\r\n\t\t" +
-                    "\t\t\t\t{\r\n\t\t\t\t\t\t\t_");
+            this.Write("\");\r\n\r\n\t\t\t\t\tif (content != null)\r\n\t\t\t\t\t\t_");
             
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
-            this.Write(".Add(new ");
+            this.Write(" = content.As<");
             
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_individualTypeName));
             
             #line default
             #line hidden
-            this.Write("(item));\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t");
+            this.Write(">().ToList();\r\n\r\n\t\t\t\t");
             
-            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 24 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
 } else { 
             
             #line default
             #line hidden
             this.Write("\t\t\t\t\r\n\t\t\t\t\tvar content = this.Content.GetPropertyValue<IPublishedContent>(\"");
             
-            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
             this.Write("\");\r\n\r\n\t\t\t\t\tif (content == null)\r\n\t\t\t\t\t\treturn new ");
             
-            #line 34 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
             this.Write("();\r\n\r\n\t\t\t\t\t_");
             
-            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
-            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 31 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
             
             #line default
             #line hidden
             this.Write("(content);\r\n\t\t\t\t");
             
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 32 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("}\r\n\r\n\t\t\t\treturn _");
             
-            #line 40 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
+            #line 35 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
             
             #line default

@@ -13,9 +13,9 @@ namespace ConcreteContentTypes.Core.Interfaces
 		bool GenerateOnMediaTypeSave { get; set; }
 		string CSharpOutputFolder { get; set; }
 		string Namespace { get; set; }
-		bool AssemblyGeneration { get; set; }
-		string AssemblyOutputDirectory { get; set; }
-		string AssemblyName { get; set; }
-		string AssemblyDependencyDirectory { get; set; }
+		//bool AssemblyGeneration { get; set; }
+		//string AssemblyOutputDirectory { get; set; }
+		//string AssemblyName { get; set; }
+		//string AssemblyDependencyDirectory { get; set; }
 	}
 }

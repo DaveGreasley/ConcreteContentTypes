@@ -23,16 +23,16 @@ namespace ConcreteContentTypes.LinqToExamine
 
 		void ConcreteEvents_UmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, PublishedItemType contentType)
 		{
-			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Id, "id");
-			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.Name, "nodeName");
-			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.CreateDate, "createDate");
-			AddAttributeToStandardProperty(classDefinition, PublishedContentProperty.UpdateDate, "updateDate");
+			AddAttributeToStandardProperty(classDefinition, BaseClassProperty.Id, "id");
+			AddAttributeToStandardProperty(classDefinition, BaseClassProperty.Name, "nodeName");
+			AddAttributeToStandardProperty(classDefinition, BaseClassProperty.CreateDate, "createDate");
+			AddAttributeToStandardProperty(classDefinition, BaseClassProperty.UpdateDate, "updateDate");
 
 			classDefinition.DependantAssemblies.Add("Umbraco.Examine.Linq.dll");
 
 		}
 
-		private void AddAttributeToStandardProperty(UmbracoContentClassDefinition classDefinition, PublishedContentProperty property, string lucenePropertyName)
+		private void AddAttributeToStandardProperty(UmbracoContentClassDefinition classDefinition, BaseClassProperty property, string lucenePropertyName)
 		{
 			if (!classDefinition.StandardPropertyAttributes.ContainsKey(property))
 			{

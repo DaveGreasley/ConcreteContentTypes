@@ -19,12 +19,7 @@
 					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("<#=_propertyAlias#>");
 
 					if (content != null)
-					{
-						foreach (var item in content)
-						{
-							_<#=_propertyAlias#>.Add(new <#=_individualTypeName#>(item));
-						}
-					}
+						_<#=_propertyAlias#> = content.As<<#=_individualTypeName#>>().ToList();
 
 				<#} else { #>
 				

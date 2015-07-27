@@ -178,7 +178,7 @@ namespace ConcreteContentTypes.Core.Extensions
 
 					if (modelProperty != null)
 					{
-						var modelPropertyType = modelProperty.GetType();
+						var modelPropertyType = modelProperty.PropertyType;
 
 						if (modelPropertyType.IsPrimitive || modelPropertyType.Equals(typeof(string)))
 						{

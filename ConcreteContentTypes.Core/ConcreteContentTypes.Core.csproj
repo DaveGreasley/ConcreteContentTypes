@@ -195,6 +195,7 @@
     <Compile Include="Interfaces\IConcreteSettings.cs" />
     <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\AttributeCSharpWriter.cs" />
+    <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MultipleMediaPickerPropertyCSharpWriter.cs" />
     <Compile Include="ModelGeneration\FileWriters\CSharpBaseClassFileWriter.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MediaPickerPropertyCSharpWriter.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
@@ -202,7 +203,7 @@
     <Compile Include="Concrete.cs" />
     <Compile Include="ModelGeneration\FileWriters\CSharpFileWriter.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
-    <Compile Include="Interfaces\IConcreteModel.cs" />
+    <Compile Include="Interfaces\ConcreteModel.cs" />
     <Compile Include="ModelGeneration\Generators\ContentTypeModelsGenerator.cs" />
     <Compile Include="ModelGeneration\Generators\MediaTypeModelsGenerator.cs" />
     <Compile Include="ModelGeneration\Generators\ModelsGeneratorBase.cs" />
@@ -228,7 +229,8 @@
     <Compile Include="Configuration\CSharpWriterSettings.cs" />
     <Compile Include="Helpers\NamingConventionHelper.cs" />
     <Compile Include="Models\ConcreteRenderModel.cs" />
-    <Compile Include="Models\Enums\PublishedContentProperty.cs" />
+    <Compile Include="Models\Enums\BaseClassProperty.cs" />
+    <Compile Include="Models\Enums\PickerType.cs" />
     <Compile Include="Models\GridContent.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\ContentPickerPropertyCSharpWriter.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MNTPPropertyCSharpWriter.cs" />

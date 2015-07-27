@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
+using ConcreteContentTypes.Core.Extensions;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
@@ -119,12 +120,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("addresses");
 
 					if (content != null)
-					{
-						foreach (var item in content)
-						{
-							_addresses.Add(new Address(item));
-						}
-					}
+						_addresses = content.As<Address>().ToList();
 
 				}
 
@@ -145,16 +141,37 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("nestedBlogAuthor");
 
 					if (content != null)
-					{
-						foreach (var item in content)
-						{
-							_nestedBlogAuthor.Add(new BlogAuthor(item));
-						}
-					}
+						_nestedBlogAuthor = content.As<BlogAuthor>().ToList();
 
 				}
 
 				return _nestedBlogAuthor;
+			}
+		} 		
+		
+		private List<Image> _multipleMediaPicker = null;
+		public List<Image> MultipleMediaPicker
+		{
+			get 
+			{
+				if (_multipleMediaPicker == null)
+				{
+					_multipleMediaPicker = new List<Image>();
+
+					string val = Content.GetPropertyValue<string>("multipleMediaPicker");
+
+					if (!string.IsNullOrEmpty(val))
+					{
+						string[] contentIds = val.Split(',');
+
+						foreach (string id in contentIds)
+						{ 
+							_multipleMediaPicker.Add(new Image(int.Parse(id))); 
+					    }
+					}
+				}
+
+				return _multipleMediaPicker;
 			}
 		} 
 		

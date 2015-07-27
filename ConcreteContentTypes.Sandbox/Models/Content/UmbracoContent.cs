@@ -13,6 +13,7 @@ using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 
+using ConcreteContentTypes.Core.Extensions;
 using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
@@ -21,8 +22,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	{
 		public abstract string ContentTypeAlias { get; }
 
-		[JsonIgnore]
 		private IPublishedContent _content = null;
+		[JsonIgnore]
 		public IPublishedContent Content
 		{
 			get

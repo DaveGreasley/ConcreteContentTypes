@@ -30,21 +30,16 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 		/// <summary>
 		/// Updates or creates C# files for the passed ContentTypes
 		/// </summary>
-		public List<ModelClassDefinition> BuildContentTypes(IEnumerable<IContentType> contentTypes)
+		public void BuildContentTypes(IEnumerable<IContentType> contentTypes)
 		{
 			if (ConcreteSettings.Current.Enabled)
-				return CreateCSharp(contentTypes);
-
-			return new List<ModelClassDefinition>();
+				CreateCSharp(contentTypes);
 		}
 
-		private List<ModelClassDefinition> CreateCSharp(IEnumerable<IContentType> contentTypes)
+		private void CreateCSharp(IEnumerable<IContentType> contentTypes)
 		{
-			List<ModelClassDefinition> modelClasses = new List<ModelClassDefinition>();
-
-			//Create our base class definition and add to global list of generated classes
+			//Create our base class definition 
 			UmbracoContentClassDefinition baseClassDefintion = new UmbracoContentClassDefinition("UmbracoContent", _contentTypeNameSpace, PublishedItemType.Content);
-			_classDefinitions.Add(baseClassDefintion);
 
 			//Notify subscribers that base class is about to be generated
 			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefintion, PublishedItemType.Content);
@@ -58,10 +53,10 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 			{
 				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
 
-				//Create model class definition from ContentType and add to list of defintions we return
+				//Create model class definition from ContentType
 				ModelClassDefinition classDefinition = new ModelClassDefinition(contentType, parent, _contentTypeNameSpace, PublishedItemType.Content, "UmbracoContent");
+				//Make sure we add the namespace of our media models to the generated class so we can reference Media models by name
 				classDefinition.UsingNamespaces.Add(_mediaTypeNameSpace);
-				modelClasses.Add(classDefinition);
 
 				//Notify subscribers that model class is about to be generated
 				ConcreteEvents.RaiseModelClassGenerating(classDefinition, PublishedItemType.Content);
@@ -70,11 +65,6 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
 				writer.WriteMainClass(_cSharpOutputFolder);
 			}
-
-			//Add our model classes to global list of generated classes
-			_classDefinitions.AddRange(modelClasses);
-
-			return modelClasses;
 		}
 	}
 }

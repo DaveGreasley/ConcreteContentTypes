@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Models.Enums
 {
-	public enum PublishedContentProperty
+	public enum PickerType : int
 	{
-		Id,
-		Name,
-		ParentId,
-		Path,
-		CreateDate,
-		UpdateDate,
-		Url
+		Single,
+		Multiple,
 	}
 }

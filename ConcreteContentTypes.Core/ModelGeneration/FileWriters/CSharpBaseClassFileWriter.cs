@@ -17,7 +17,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.FileWriters
 	{
 		UmbracoContentClassDefinition _classDefinition;
 		List<AttributeCSharpWriter> _attributeWriters;
-		Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> _propertyAttributeWriters;
+		Dictionary<BaseClassProperty, List<AttributeCSharpWriter>> _propertyAttributeWriters;
 
 		public CSharpBaseClassFileWriter(UmbracoContentClassDefinition classDefinition)
 		{
@@ -29,15 +29,15 @@ namespace ConcreteContentTypes.Core.ModelGeneration.FileWriters
 
 		private void LoadPropertyAttributeWriters()
 		{
-			_propertyAttributeWriters = new Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>>();
+			_propertyAttributeWriters = new Dictionary<BaseClassProperty, List<AttributeCSharpWriter>>();
 
 			foreach (var property in _classDefinition.StandardPropertyAttributes.Keys)
 			{
+				if (!_propertyAttributeWriters.ContainsKey(property))
+					_propertyAttributeWriters.Add(property, new List<AttributeCSharpWriter>());
+
 				foreach (var attribute in _classDefinition.StandardPropertyAttributes[property])
 				{
-					if (!_propertyAttributeWriters.ContainsKey(property))
-						_propertyAttributeWriters.Add(property, new List<AttributeCSharpWriter>());
-
 					_propertyAttributeWriters[property].Add(new AttributeCSharpWriter(attribute));
 				}
 			}

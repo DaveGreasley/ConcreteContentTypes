@@ -124,69 +124,69 @@ namespace ConcreteContentTypes.Core.Configuration
 			}
 		}
 
-		/// <summary>
-		/// Determines if we should compile the generated C# into an assembly
-		/// </summary>
-		[ConfigurationProperty("AssemblyGeneration")]
-		public bool AssemblyGeneration
-		{
-			get
-			{
-				return (bool)this["AssemblyGeneration"];
-			}
-			set
-			{
-				this["AssemblyGeneration"] = value;
-			}
-		}
+		///// <summary>
+		///// Determines if we should compile the generated C# into an assembly
+		///// </summary>
+		//[ConfigurationProperty("AssemblyGeneration")]
+		//public bool AssemblyGeneration
+		//{
+		//	get
+		//	{
+		//		return (bool)this["AssemblyGeneration"];
+		//	}
+		//	set
+		//	{
+		//		this["AssemblyGeneration"] = value;
+		//	}
+		//}
 
-		/// <summary>
-		/// The directory where a compiled assembly will be saved to. 
-		/// </summary>
-		[ConfigurationProperty("AssemblyOutputDirectory")]
-		public string AssemblyOutputDirectory
-		{
-			get
-			{
-				return this["AssemblyOutputDirectory"].ToString();
-			}
-			set
-			{
-				this["AssemblyOutputDirectory"] = value;
-			}
-		}
+		///// <summary>
+		///// The directory where a compiled assembly will be saved to. 
+		///// </summary>
+		//[ConfigurationProperty("AssemblyOutputDirectory")]
+		//public string AssemblyOutputDirectory
+		//{
+		//	get
+		//	{
+		//		return this["AssemblyOutputDirectory"].ToString();
+		//	}
+		//	set
+		//	{
+		//		this["AssemblyOutputDirectory"] = value;
+		//	}
+		//}
 
-		/// <summary>
-		/// The name of the compiled assembly
-		/// </summary>
-		[ConfigurationProperty("AssemblyName")]
-		public string AssemblyName
-		{
-			get
-			{
-				return this["AssemblyName"].ToString();
-			}
-			set
-			{
-				this["AssemblyName"] = value;
-			}
-		}
+		///// <summary>
+		///// The name of the compiled assembly
+		///// </summary>
+		//[ConfigurationProperty("AssemblyName")]
+		//public string AssemblyName
+		//{
+		//	get
+		//	{
+		//		return this["AssemblyName"].ToString();
+		//	}
+		//	set
+		//	{
+		//		this["AssemblyName"] = value;
+		//	}
+		//}
 
-		/// <summary>
-		/// The directory where dependencies of our generated assembly can be found.
-		/// </summary>
-		[ConfigurationProperty("AssemblyDependencyDirectory")]
-		public string AssemblyDependencyDirectory
-		{
-			get
-			{
-				return this["AssemblyDependencyDirectory"].ToString();
-			}
-			set
-			{
-				this["AssemblyDependencyDirectory"] = value;
-			}
-		}
+		///// <summary>
+		///// The directory where dependencies of our generated assembly can be found.
+		///// </summary>
+		//[ConfigurationProperty("AssemblyDependencyDirectory")]
+		//public string AssemblyDependencyDirectory
+		//{
+		//	get
+		//	{
+		//		return this["AssemblyDependencyDirectory"].ToString();
+		//	}
+		//	set
+		//	{
+		//		this["AssemblyDependencyDirectory"] = value;
+		//	}
+		//}
 
 		public ConcreteSettings()
 		{

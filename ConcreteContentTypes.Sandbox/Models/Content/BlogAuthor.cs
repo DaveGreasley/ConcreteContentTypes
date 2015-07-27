@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
+using ConcreteContentTypes.Core.Extensions;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
@@ -55,6 +56,32 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				}
 
 				return _address;
+			}
+		} 		
+		
+		private List<IPublishedContent> _authorImage = null;
+		public List<IPublishedContent> AuthorImage
+		{
+			get 
+			{
+				if (_authorImage == null)
+				{
+					_authorImage = new List<IPublishedContent>();
+
+					string val = Content.GetPropertyValue<string>("authorImage");
+
+					if (!string.IsNullOrEmpty(val))
+					{
+						string[] contentIds = val.Split(',');
+
+						foreach (string id in contentIds)
+						{ 
+							_authorImage.Add(UmbracoContext.Current.MediaCache.GetById(int.Parse(id)));
+					    }
+					}
+				}
+
+				return _authorImage;
 			}
 		} 
 		

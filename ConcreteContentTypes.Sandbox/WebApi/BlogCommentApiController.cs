@@ -14,11 +14,17 @@ namespace ConcreteContentTypes.Sandbox.WebApi
 	public class BlogCommentApiController : UmbracoApiController
 	{
 		[HttpPost]
-		public bool SubmitBlogComment(BlogComment comment)
+		public int SubmitBlogComment(BlogComment comment)
 		{
 			var result = Services.ContentService.SaveAndPublishWithStatus(comment);
 
-			return result.Success;
+			return result.Success ? result.Result.ContentItem.Id : -1;
+		}
+
+		[HttpGet]
+		public BlogComment GetComment([FromUri]int commentId)
+		{
+			return new BlogComment(commentId);
 		}
 
 		[HttpGet]

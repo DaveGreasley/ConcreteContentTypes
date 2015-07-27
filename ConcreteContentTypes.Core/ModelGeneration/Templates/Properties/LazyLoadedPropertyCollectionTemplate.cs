@@ -99,7 +99,14 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
             
             #line default
             #line hidden
-            this.Write(".Add(UmbracoContext.Current.ContentCache.GetById(int.Parse(id)));\r\n\t\t\t\t\t   ");
+            this.Write(".Add(UmbracoContext.Current.");
+            
+            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\LazyLoadedPropertyCollectionTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_cacheSource));
+            
+            #line default
+            #line hidden
+            this.Write(".GetById(int.Parse(id)));\r\n\t\t\t\t\t   ");
             
             #line 27 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\LazyLoadedPropertyCollectionTemplate.tt"
  } else { string typeNameSingle = _typeName.Replace("List<", "").Replace(">", ""); 

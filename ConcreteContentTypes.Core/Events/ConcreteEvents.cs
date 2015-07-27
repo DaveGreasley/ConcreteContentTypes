@@ -10,20 +10,17 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Events
 {
-	public delegate void ConcreteUmbracoContentModelGeneratingDelegate(UmbracoContentClassDefinition classDefinition, PublishedItemType contentType);
-	public delegate void ConcreteModelGeneratingDelegate(ModelClassDefinition classDefintion, PublishedItemType contentType);
-
 	public static class ConcreteEvents
 	{
 		/// <summary>
-		/// occurs when the UmbracoContent and UmbracoMedia base classes is being generated
+		/// Occurs when the UmbracoContent and UmbracoMedia base classes is being generated
 		/// </summary>
-		public static event ConcreteUmbracoContentModelGeneratingDelegate UmbracoContentClassGenerating;
+		public static event Action<UmbracoContentClassDefinition, PublishedItemType> UmbracoContentClassGenerating;
 
 		/// <summary>
 		/// Occurs for each Content Type and Media Type that Concrete is writing a class for before the C# is written.
 		/// </summary>
-		public static event ConcreteModelGeneratingDelegate ModelClassGenerating;
+		public static event Action<ModelClassDefinition, PublishedItemType> ModelClassGenerating;
 
 		internal static void RaiseUmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, PublishedItemType contentType)
 		{

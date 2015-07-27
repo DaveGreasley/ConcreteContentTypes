@@ -33,8 +33,9 @@ namespace <#= _classDefinition.Namespace #>
 	{
 		public abstract string ContentTypeAlias { get; }
 
-		[JsonIgnore]
 		private IPublishedContent _content = null;
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.Content]) { #><#= "		" + writer.WriteAttribute() #><# } #>
+		[JsonIgnore]
 		public IPublishedContent Content
 		{
 			get
@@ -50,22 +51,25 @@ namespace <#= _classDefinition.Namespace #>
 			}
 		}
 
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Name]) { #><#= writer.WriteAttribute() #><# } #>
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.Name]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public string Name { get; set; }
 
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.Id]) { #><#= writer.WriteAttribute() #><# } #>
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.Id]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public int Id { get; set; }
 		
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.ParentId]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public int ParentId { get; set; }
 		
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.Path]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public string Path { get; set; }
 		
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.CreateDate]) { #><#= writer.WriteAttribute() #><# } #>
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.CreateDate]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public DateTime CreateDate { get; set; }
 		
-		<# foreach(var writer in _propertyAttributeWriters[PublishedContentProperty.UpdateDate]) { #><#= writer.WriteAttribute() #><# } #>
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.UpdateDate]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public DateTime UpdateDate { get; set; }
 		
+<# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.Url]) { #><#= "		" + writer.WriteAttribute() #><# } #>
 		public string Url { get; set; }
 
 		#region Constructors and Initalisation

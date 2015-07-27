@@ -10,17 +10,16 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 {
 	public class UmbracoContentClassDefinition : ClassDefinitionBase
 	{
-		public Dictionary<PublishedContentProperty, List<AttributeDefinition>> StandardPropertyAttributes;
+		public Dictionary<BaseClassProperty, List<AttributeDefinition>> StandardPropertyAttributes;
 
 		internal UmbracoContentClassDefinition(string name, string nameSpace, PublishedItemType contentType)
 			: base(name, nameSpace, contentType)
 		{
-			this.StandardPropertyAttributes = new Dictionary<PublishedContentProperty, List<AttributeDefinition>>();
-			this.StandardPropertyAttributes.Add(PublishedContentProperty.Id, new List<AttributeDefinition>());
-			this.StandardPropertyAttributes.Add(PublishedContentProperty.Name, new List<AttributeDefinition>());
-			this.StandardPropertyAttributes.Add(PublishedContentProperty.CreateDate, new List<AttributeDefinition>());
-			this.StandardPropertyAttributes.Add(PublishedContentProperty.UpdateDate, new List<AttributeDefinition>());
-			this.StandardPropertyAttributes.Add(PublishedContentProperty.Path, new List<AttributeDefinition>());
+			this.StandardPropertyAttributes = new Dictionary<BaseClassProperty, List<AttributeDefinition>>();
+			foreach (BaseClassProperty property in Enum.GetValues(typeof(BaseClassProperty)))
+			{
+				this.StandardPropertyAttributes.Add(property, new List<AttributeDefinition>());
+			}
 		}
 
 		public override List<string> GetUsingNamespaces()

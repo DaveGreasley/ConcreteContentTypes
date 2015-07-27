@@ -18,7 +18,7 @@
   <PropertyGroup>
     <PackageName>ConcreteContentTypes</PackageName>
     <MinUmbracoVersion>7.1.4</MinUmbracoVersion>
-    <Readme>Soemthing fun for Umbraco</Readme>
+    <Readme>Strongly Typed Models for Umbraco </Readme>
     <AuthorName>Dave Greasley</AuthorName>
     <AuthorUrl>http://our.umbraco.org</AuthorUrl>
     <PackageLicenseName>MIT license</PackageLicenseName>

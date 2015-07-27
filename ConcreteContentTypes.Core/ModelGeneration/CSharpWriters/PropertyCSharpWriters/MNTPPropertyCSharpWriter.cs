@@ -2,6 +2,7 @@
 using ConcreteContentTypes.Core.ModelGeneration.Templates.Properties;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
+using ConcreteContentTypes.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 {
 	public class MNTPPropertyCSharpWriter : PropertyCSharpWriterBase
 	{
-		enum PickerType : int
-		{
-			SingleKnownObject,
-			MultipleKnownObject,
-			SingleIPublishedContent,
-			MultipleIPublishedContent
-		}
-
 		PickerType _pickerType;
-
 
 		public MNTPPropertyCSharpWriter(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 			: base(propertyType, config)
@@ -37,13 +29,11 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 
 			switch (_pickerType)
 			{
-				case PickerType.SingleKnownObject:
-				case PickerType.SingleIPublishedContent:
+				case PickerType.Single:
 					return new LazyLoadedPropertyTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, typeName).TransformText();
 
-				case PickerType.MultipleIPublishedContent:
-				case PickerType.MultipleKnownObject:
-					return new LazyLoadedPropertyCollectionTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, typeName).TransformText();
+				case PickerType.Multiple:
+					return new LazyLoadedPropertyCollectionTemplate(this._property.PropertyTypeAlias, this._property.NicePropertyName, typeName, PublishedItemType.Content).TransformText();
 			}
 
 			return "";
@@ -60,23 +50,19 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 
 			if (maxNumber == 1)
 			{
-				if (!string.IsNullOrEmpty(filter) && !filter.Contains(','))
-				{
-					_pickerType = PickerType.SingleKnownObject;
-					return filter;
-				}
+				_pickerType = PickerType.Single;
 
-				_pickerType = PickerType.SingleIPublishedContent;
+				if (!string.IsNullOrEmpty(filter) && !filter.Contains(','))
+					return filter;
+
 				return "IPublishedContent";
 			}
 
-			if (!string.IsNullOrEmpty(filter) && !filter.Contains(','))
-			{
-				_pickerType = PickerType.MultipleKnownObject;
-				return string.Format("List<{0}>", filter);
-			}
+			_pickerType = PickerType.Multiple;
 
-			_pickerType = PickerType.MultipleIPublishedContent;
+			if (!string.IsNullOrEmpty(filter) && !filter.Contains(','))
+				return string.Format("List<{0}>", filter);
+
 			return "List<IPublishedContent>";
 		}
 

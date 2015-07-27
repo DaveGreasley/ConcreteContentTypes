@@ -15,14 +15,14 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
 	{
 		protected UmbracoContentClassDefinition _classDefinition;
 		protected List<AttributeCSharpWriter> _attributeWriters;
-		protected Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> _propertyAttributeWriters;
+		protected Dictionary<BaseClassProperty, List<AttributeCSharpWriter>> _propertyAttributeWriters;
 		protected List<string> _usingNamespaces;
 		protected string _cacheName;
 
 		public UmbracoContentClassTemplate(
 			UmbracoContentClassDefinition definition, 
 			List<AttributeCSharpWriter> attributeWriters, 
-			Dictionary<PublishedContentProperty, List<AttributeCSharpWriter>> propertyAttributeWriters,
+			Dictionary<BaseClassProperty, List<AttributeCSharpWriter>> propertyAttributeWriters,
 			PublishedItemType contentType)
 		{
 			_classDefinition = definition;

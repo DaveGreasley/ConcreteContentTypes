@@ -33,8 +33,8 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 			_contentTypeNameSpace = ConcreteSettings.Current.Namespace + ".Content";
 			_mediaTypeNameSpace = ConcreteSettings.Current.Namespace + ".Media";
 
-			_assemblyOutputDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyOutputDirectory;
-			_assemblyDependencyDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyDependencyDirectory;
+			//_assemblyOutputDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyOutputDirectory;
+			//_assemblyDependencyDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyDependencyDirectory;
 
 			_classDefinitions = new List<ClassDefinitionBase>();
 		}

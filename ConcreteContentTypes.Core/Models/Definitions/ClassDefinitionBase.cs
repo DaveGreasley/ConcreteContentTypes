@@ -46,7 +46,16 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 				}
 			}
 
+			//Ensure we add our extensions namespace to all classes
+			AddUsingNamespace("ConcreteContentTypes.Core.Extensions");
+
 			return this.UsingNamespaces;
+		}
+
+		public void AddUsingNamespace(string nameSpace)
+		{
+			if (!this.UsingNamespaces.Contains(nameSpace))
+				this.UsingNamespaces.Add(nameSpace);
 		}
 	}
 }

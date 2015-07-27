@@ -15,6 +15,9 @@ namespace ConcreteContentTypes.Core.ViewTemplates
 {
 	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : class, IConcreteModel, new()
 	{
+		/// <summary>
+		/// The <typeparam name="T">Concrete Model</typeparam> that represents the Current Page
+		/// </summary>
 		public new T Model { get; set; }
 
 		/// <summary>

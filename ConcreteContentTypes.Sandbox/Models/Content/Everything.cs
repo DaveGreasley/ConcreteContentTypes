@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
+using ConcreteContentTypes.Core.Extensions;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
