@@ -187,11 +187,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicLoading\ConcreteFactory.cs" />
-    <Compile Include="DynamicLoading\ModelAssemblyLoader.cs" />
     <Compile Include="Extensions\IContentServiceExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
-    <Compile Include="Compilation\AssemblyBuilder.cs" />
     <Compile Include="Interfaces\IConcreteSettings.cs" />
     <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\AttributeCSharpWriter.cs" />
@@ -200,7 +197,6 @@
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\MediaPickerPropertyCSharpWriter.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
-    <Compile Include="Concrete.cs" />
     <Compile Include="ModelGeneration\FileWriters\CSharpFileWriter.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
     <Compile Include="Interfaces\ConcreteModel.cs" />

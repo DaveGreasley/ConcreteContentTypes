@@ -11,7 +11,6 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Routing;
 using System.Reflection;
 using System.IO;
-using ConcreteContentTypes.Core.DynamicLoading;
 using ConcreteContentTypes.Core.ModelGeneration.Generators;
 
 namespace ConcreteContentTypes.Core.Events
