@@ -1,0 +1,33 @@
+# version format
+version: 0.1.0.{build}
+
+environment:
+  EnableNuGetPackageRestore: true
+
+# UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds
+# example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
+install:
+  - cmd: set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
+  - cmd: set UMBRACO_PACKAGE_MIN_VERSION=7.2.4
+  - cmd: cd BuildPackage
+  - cmd: Build-addon.bat
+
+# to disable automatic builds
+build: off
+
+artifacts:
+  - path: BuildPackage\artifacts\*.nupkg
+  - path: BuildPackage\artifacts\*.zip
+ 
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/concrete-content-types/
+  api_key:
+    secure: BP3uPS2ODB1y8sMfdz8nI6hKKcsj5ZMIMjIjoMlEScbJwwTPfxgcgRyJxJgBikb6
+  artifact: /.*\.nupkg/
+- provider: NuGet
+  api_key:
+    secure: 1kymiGZ5/Dp9GK6NAYdpFy4Ok73z5NrBNN0GfBHPDhtkOKcCOXY1AheqzIys3Nz0
+  on:
+    branch: release
+  artifact: /.*\.nupkg/
