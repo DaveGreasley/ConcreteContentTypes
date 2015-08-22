@@ -29,5 +29,5 @@ deploy:
   api_key:
     secure: 1kymiGZ5/Dp9GK6NAYdpFy4Ok73z5NrBNN0GfBHPDhtkOKcCOXY1AheqzIys3Nz0
   on:
-    branch: release
+    branch: release-addon-webblocks
   artifact: /.*\.nupkg/
