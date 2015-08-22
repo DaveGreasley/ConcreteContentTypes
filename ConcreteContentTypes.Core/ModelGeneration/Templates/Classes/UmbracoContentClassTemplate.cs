@@ -319,11 +319,28 @@ using Umbraco.Core.Services;
 
 			this.Name = this.Content.Name;
 			this.Id = this.Content.Id;
-			this.ParentId = this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; //TODO: Not sure about this, means we always grab the parent IPublishedContent too...
 			this.Path = this.Content.Path;
+			this.ParentId = GetParentId(this.Path);
 			this.CreateDate = this.Content.CreateDate;
 			this.UpdateDate = this.Content.UpdateDate;
 			this.Url = this.Content.Url;
+		}
+
+		private int GetParentId(string path)
+		{
+			//First try and get parent id from the path
+			var pathElements = path.Split(',');
+
+			if (pathElements != null && pathElements.Count() >= 2)
+			{
+				var parentId = pathElements[pathElements.Length - 2];
+
+				if (!string.IsNullOrWhiteSpace(parentId))
+					return Convert.ToInt32(parentId);
+			}
+
+			//If that doesn't work then get it from the parent content object. 
+			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; 
 		}
 
 		#endregion
