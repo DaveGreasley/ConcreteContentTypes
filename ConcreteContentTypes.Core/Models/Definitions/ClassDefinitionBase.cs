@@ -16,7 +16,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public List<PropertyDefinition> Properties { get; set; }
 		public List<string> UsingNamespaces { get; set; }
 		public List<string> DependantAssemblies { get; set; }
-		public PublishedItemType ContentType { get; set; }
+		public PublishedItemType PublishedItemType { get; set; }
 
 		public ClassDefinitionBase(string name, string nameSpace, PublishedItemType contentType)
 		{
@@ -26,7 +26,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			this.Properties = new List<PropertyDefinition>();
 			this.DependantAssemblies = new List<string>();
 			this.UsingNamespaces = new List<string>();
-			this.ContentType = contentType;
+			this.PublishedItemType = contentType;
 		}
 
 		public virtual List<string> GetUsingNamespaces()
@@ -54,7 +54,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 		public void AddUsingNamespace(string nameSpace)
 		{
-			if (!this.UsingNamespaces.Contains(nameSpace))
+			if (!this.UsingNamespaces.Contains(nameSpace) && !string.IsNullOrWhiteSpace(nameSpace))
 				this.UsingNamespaces.Add(nameSpace);
 		}
 	}

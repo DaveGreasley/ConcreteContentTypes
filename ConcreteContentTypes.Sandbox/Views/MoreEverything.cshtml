@@ -47,4 +47,18 @@
 		@Html.Partial("BlogAuthor", author)
 		<hr />
 	}
+
+	<hr />
+
+	RJP Multi Url Picker:
+
+	@if (Model.MultiUrls.Any())
+	{
+		<ul>
+			@foreach (var item in Model.MultiUrls)
+			{
+				<li><a href="@item.Url" target="@item.Target">@item.Name</a></li>
+			}
+		</ul>
+	}
 }

@@ -17,6 +17,12 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public string Description { get; set; }
 		public bool Required { get; set; }
 
+		/// <summary>
+		/// The ClrType to create this property as. Setting this is optional but this will take precedence
+		/// over any other mechanism for determining the correct type.
+		/// </summary>
+		public string ClrType { get; set; }
+
 		public List<AttributeDefinition> Attributes { get; set; }
 
 		public string NicePropertyName { get { return NamingConventionHelper.GetConventionalName(this.PropertyName); } }

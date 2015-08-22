@@ -189,6 +189,7 @@
   <ItemGroup>
     <Compile Include="Extensions\IContentServiceExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
+    <Compile Include="Helpers\PropertyValueConverterHelper.cs" />
     <Compile Include="Interfaces\IConcreteSettings.cs" />
     <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\AttributeCSharpWriter.cs" />

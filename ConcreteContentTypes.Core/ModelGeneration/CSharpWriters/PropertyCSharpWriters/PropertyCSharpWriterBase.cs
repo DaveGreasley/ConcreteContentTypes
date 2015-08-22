@@ -16,11 +16,13 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 		protected SupportedTypesConfigurationCollection _supportedTypes;
 		protected PropertyDefinition _property;
 		protected List<AttributeCSharpWriter> _attributeWriters;
+		protected bool _error;
 
 		public PropertyCSharpWriterBase(PropertyDefinition propertyType, CSharpWriterConfiguration config)
 		{
 			_property = propertyType;
 			_supportedTypes = config.SupportedTypes;
+			_error = false;
 
 			LoadAttributeWriters();
 		}
@@ -39,11 +41,16 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 
 		public virtual string GetTypeName()
 		{
+			// First see if there is a type set in the config file, if so use that.
 			var type = _supportedTypes.FirstOrDefault(x => x.Alias == this._property.PropertyEditorAlias);
 
-			if (type != null)
+			if (type != null && !string.IsNullOrWhiteSpace(type.ClrType))
 				return type.ClrType;
-			
+
+			// Then see if there is a type set in the property definition, if so use that.
+			if (!string.IsNullOrWhiteSpace(_property.ClrType))
+				return _property.ClrType;
+
 			throw new UnknownPropertyTypeException(this._property.PropertyEditorAlias);
 		}
 

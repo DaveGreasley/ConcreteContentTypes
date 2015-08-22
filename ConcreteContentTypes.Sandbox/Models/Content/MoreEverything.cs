@@ -10,6 +10,8 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
+using System;
+using RJP.MultiUrlPicker.Models;
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 using ConcreteContentTypes.Core.Extensions;
@@ -173,7 +175,14 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 
 				return _multipleMediaPicker;
 			}
-		} 
+		} 		
+		
+		/// <summary>
+		/// An RJP Multi URL Picker
+		/// </summary> 		
+		
+		[Field("multiUrls")]
+		public MultiUrls MultiUrls { get; set; } 
 		
 		private IEnumerable<IPublishedContent> _children = null;
 		[JsonIgnore]
@@ -222,6 +231,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
 						
 			this.NamesCheckBox = Content.GetPropertyValue<string>("namesCheckBox");
+						
+			this.MultiUrls = Content.GetPropertyValue<MultiUrls>("multiUrls");
 			
 		}
 

@@ -26,14 +26,26 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 
 		public override string GetPropertyDefinition()
 		{
-			BasicPropertyTypeDefinitionTemplate template = new BasicPropertyTypeDefinitionTemplate(
-				GetTypeName(), 
-				this._property.NicePropertyName,
-				this._property.Description,
-				this._property.Required,
-				_attributeWriters);
+			try
+			{
+				if (!_error)
+				{
+					BasicPropertyTypeDefinitionTemplate template = new BasicPropertyTypeDefinitionTemplate(
+						GetTypeName(),
+						_property.NicePropertyName,
+						_property.Description,
+						_property.Required,
+						_attributeWriters);
 
-			return template.TransformText();
+					return template.TransformText();
+				}
+			}
+			catch (Exception ex)
+			{
+				_error = true;
+			}
+
+			return "";
 		}
 
 		public override string GetPersistString()

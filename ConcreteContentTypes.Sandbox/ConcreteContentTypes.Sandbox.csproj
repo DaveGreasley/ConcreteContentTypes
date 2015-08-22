@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngularGoogleMaps, Version=1.0.7.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\AngularGoogleMaps.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -119,6 +123,10 @@
     </Reference>
     <Reference Include="Remotion.Linq">
       <HintPath>..\packages\Remotion.Linq.1.15.15.0\lib\portable-net45+wp80+wpa81+win\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="RJP.MultiUrlPicker, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\RJP.MultiUrlPicker.dll</HintPath>
     </Reference>
     <Reference Include="SQLCE4Umbraco">
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\SQLCE4Umbraco.dll</HintPath>
@@ -286,6 +294,9 @@
     <Content Include="Views\Partials\BlogSubmitComment.cshtml" />
     <Content Include="Views\Partials\BlogComments.cshtml" />
     <Content Include="Views\Partials\BlogAuthor.cshtml" />
+    <Content Include="Views\MapPage.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -311,6 +322,7 @@
     <Compile Include="Models\Content\Everything.cs" />
     <Compile Include="Models\Content\Home.cs" />
     <Compile Include="Models\Content\LandingPage.cs" />
+    <Compile Include="Models\Content\MapPage.cs" />
     <Compile Include="Models\Content\MoreEverything.cs" />
     <Compile Include="Models\Content\TextPage.cs" />
     <Compile Include="Models\Content\UmbracoContent.cs" />

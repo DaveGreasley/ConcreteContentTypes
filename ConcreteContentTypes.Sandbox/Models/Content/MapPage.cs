@@ -10,7 +10,7 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
-using System;
+using AngularGoogleMaps;
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 using ConcreteContentTypes.Core.Extensions;
@@ -18,26 +18,17 @@ using ConcreteContentTypes.Core.Extensions;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	 [NodeTypeAlias("BlogComment")]
- 	public partial class BlogComment : UmbracoContent
+	 [NodeTypeAlias("MapPage")]
+ 	public partial class MapPage : UmbracoContent
 	{
-		public override string ContentTypeAlias { get { return "BlogComment"; } }
+		public override string ContentTypeAlias { get { return "MapPage"; } }
 
 				
 		
-		/// <summary>
-		/// The full name of the person submitting the comment
-		/// </summary> 		
-		[Required] 
-		[Field("fullName")]
-		public string FullName { get; set; } 		
+				
 		
-		/// <summary>
-		/// A comment about this Blog Post
-		/// </summary> 		
-		[Required] 
-		[Field("comment")]
-		public string Comment { get; set; } 
+		[Field("map")]
+		public Model Map { get; set; } 
 		
 		private IEnumerable<IPublishedContent> _children = null;
 		[JsonIgnore]
@@ -52,29 +43,29 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 		}
 
-		public BlogComment()
+		public MapPage()
 			: base()
 		{
 		}
 
-		public BlogComment(string name, IConcreteModel parent)
+		public MapPage(string name, IConcreteModel parent)
 			: this(name, parent.Id)
 		{
 		}
 
-		public BlogComment(string name, int parentId)
+		public MapPage(string name, int parentId)
 			: base()
 		{
 			this.Name = name;
 			this.ParentId = parentId;
 		}
 
-		public BlogComment(int contentId)
+		public MapPage(int contentId)
 			: base(contentId)
 		{
 		}
 
-		public BlogComment(IPublishedContent content)
+		public MapPage(IPublishedContent content)
 			: base(content)
 		{
 		}
@@ -83,9 +74,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.FullName = Content.GetPropertyValue<string>("fullName");
-						
-			this.Comment = Content.GetPropertyValue<string>("comment");
+			this.Map = Content.GetPropertyValue<Model>("map");
 			
 		}
 

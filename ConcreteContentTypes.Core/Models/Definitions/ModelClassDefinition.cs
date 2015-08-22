@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConcreteContentTypes.Core.Configuration;
+using ConcreteContentTypes.Core.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +45,21 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 			foreach (var propertyType in propertyTypes)
 			{
-				this.Properties.Add(new PropertyDefinition(propertyType));
+				// Check that we support the property type
+				if (CSharpWriterSettings.Current.Writers.Any(x => x.SupportedTypes.Any(s => s.Alias == propertyType.PropertyEditorAlias)))
+				{
+					var ptd = new PropertyDefinition(propertyType);
+
+					// See if we can work out the Clr Type from any configured PropertyValueConverter
+					PropertyValueConverterHelper tch = new PropertyValueConverterHelper(contentType, propertyType, this.PublishedItemType);
+					if (tch.CanResolveType)
+					{
+						ptd.ClrType = tch.GetTypeName();
+						AddUsingNamespace(tch.GetNamespace());
+					}
+
+					this.Properties.Add(ptd);
+				}
 			}
 		}
 

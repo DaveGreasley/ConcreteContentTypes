@@ -56,7 +56,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 				//Create model class definition from ContentType
 				ModelClassDefinition classDefinition = new ModelClassDefinition(contentType, parent, _contentTypeNameSpace, PublishedItemType.Content, "UmbracoContent");
 				//Make sure we add the namespace of our media models to the generated class so we can reference Media models by name
-				classDefinition.UsingNamespaces.Add(_mediaTypeNameSpace);
+				classDefinition.AddUsingNamespace(_mediaTypeNameSpace);
 
 				//Notify subscribers that model class is about to be generated
 				ConcreteEvents.RaiseModelClassGenerating(classDefinition, PublishedItemType.Content);

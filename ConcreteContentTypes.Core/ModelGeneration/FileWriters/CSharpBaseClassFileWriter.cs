@@ -58,7 +58,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.FileWriters
 			if (!Directory.Exists(folder))
 				Directory.CreateDirectory(folder);
 
-			UmbracoContentClassTemplate classTemplate = new UmbracoContentClassTemplate(_classDefinition, _attributeWriters, _propertyAttributeWriters, _classDefinition.ContentType);
+			UmbracoContentClassTemplate classTemplate = new UmbracoContentClassTemplate(_classDefinition, _attributeWriters, _propertyAttributeWriters, _classDefinition.PublishedItemType);
 			string cs = classTemplate.TransformText();
 
 			string fileName = string.Format("{0}.cs", _classDefinition.Name);

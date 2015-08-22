@@ -10,6 +10,8 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
+using System;
+using Newtonsoft.Json.Linq;
 using ConcreteContentTypes.Sandbox.Models.Media;
 using Umbraco.Examine.Linq.Attributes;
 using ConcreteContentTypes.Core.Extensions;
