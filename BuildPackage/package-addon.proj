@@ -15,9 +15,9 @@
 
   <!-- SHARED PROPERTIES -->
   <PropertyGroup>
-    <PackageName>ConcreteContentTypes.Addon.WebBlocks</PackageName>
+    <PackageName>ConcreteContentTypes.Addon.LinqToExamine</PackageName>
     <MinUmbracoVersion>7.2.4</MinUmbracoVersion>
-    <Readme>Strongly Typed Models for Umbraco </Readme>
+    <Readme>An addon for ConcreteContentTypes that supports adding LinqToExamine attributes to model classes.</Readme>
     <AuthorName>Dave Greasley</AuthorName>
     <AuthorUrl>http://our.umbraco.org</AuthorUrl>
     <PackageLicenseName>MIT license</PackageLicenseName>
@@ -27,7 +27,7 @@
 
   <!-- NUGET ONLY PROPERTIES -->
   <PropertyGroup>
-    <PackageId>ConcreteContentTypes.Addon.WebBlocks</PackageId>
+    <PackageId>ConcreteContentTypes.Addon.LinqToExamine</PackageId>
     <Copyright>Dave Greasley</Copyright>
     <Owners>Dave Greasley</Owners>
     <IconUrl></IconUrl>
@@ -72,7 +72,7 @@
   <PropertyGroup>
     <BuildConfig>Release</BuildConfig>
     <RootDir>$(MSBuildProjectDirectory)\..</RootDir>
-    <CoreProjectDir>$(RootDir)\ConcreteContentTypes.WebBlocks</CoreProjectDir>
+    <CoreProjectDir>$(RootDir)\ConcreteContentTypes.LinqToExamine</CoreProjectDir>
     <BuildNuGetDir>$(MSBuildProjectDirectory)\_nuget</BuildNuGetDir>
     <ArtifactsDir>$(MSBuildProjectDirectory)\artifacts</ArtifactsDir>
   </PropertyGroup>
@@ -102,16 +102,16 @@
 
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="$(CoreProjectDir)\ConcreteContentTypes.WebBlocks.csproj" Properties="Configuration=$(BuildConfig)"/>
+		<MSBuild Projects="$(CoreProjectDir)\ConcreteContentTypes.LinqToExamine.csproj" Properties="Configuration=$(BuildConfig)"/>
 	</Target>
 
 	<!-- PREPARE FILES -->
 	<Target Name="PrepareFiles" DependsOnTargets="Compile">
 		<ItemGroup>
-			<BinFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.WebBlocks.dll" />
-      <PdbFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.WebBlocks.pdb" />
+			<BinFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.LinqToExamine.dll" />
+      <PdbFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.LinqToExamine.pdb" />
       <SrcFiles Include="$(CoreProjectDir)\**\*.cs;$(CoreProjectDir)\**\*.tt" Exclude="$(CoreProjectDir)\obj\**"/>
-      <NuSpecFile Include="$(MSBuildProjectDirectory)\ConcreteContentTypes.Addon.WebBlocks.nuspec" />
+      <NuSpecFile Include="$(MSBuildProjectDirectory)\ConcreteContentTypes.Addon.LinqToExamine.nuspec" />
     </ItemGroup>
     <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
     <Copy SourceFiles="@(PdbFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
@@ -125,7 +125,7 @@
       <ManifestFiles Include="$(BuildNuGetDir)\**\*" Exclude="$(BuildNuGetDir)\*.nuspec;" />
     </ItemGroup>
     <MSBuild.NuGet.Tasks.ManifestUpdate
-			ManifestFile="$(BuildNuGetDir)\ConcreteContentTypes.Addon.WebBlocks.nuspec"
+			ManifestFile="$(BuildNuGetDir)\ConcreteContentTypes.Addon.LinqToExamine.nuspec"
 			WorkingDirectory="$(BuildNuGetDir)"
 			Title="$(PackageName)"
 			Description="$(Readme)"
@@ -149,7 +149,7 @@
   <Target Name="Package" DependsOnTargets="ManifestNuGet">
 
     <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\BuildPackage\Tools\NuGet.exe"
-          ManifestFile="$(BuildNuGetDir)\ConcreteContentTypes.Addon.WebBlocks.nuspec"
+          ManifestFile="$(BuildNuGetDir)\ConcreteContentTypes.Addon.LinqToExamine.nuspec"
           BasePath="$(BuildNuGetDir)"
           Version="$(ProductVersion)"
           OutputDirectory="$(ArtifactsDir)" 
