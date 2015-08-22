@@ -17,7 +17,8 @@
   <!-- SHARED PROPERTIES -->
   <PropertyGroup>
     <PackageName>ConcreteContentTypes</PackageName>
-    <MinUmbracoVersion>7.1.4</MinUmbracoVersion>
+    <PackageNameCore>ConcreteContentTypes.Core</PackageNameCore>
+    <MinUmbracoVersion>7.2.4</MinUmbracoVersion>
     <Readme>Strongly Typed Models for Umbraco </Readme>
     <AuthorName>Dave Greasley</AuthorName>
     <AuthorUrl>http://our.umbraco.org</AuthorUrl>
@@ -29,6 +30,7 @@
   <!-- NUGET ONLY PROPERTIES -->
   <PropertyGroup>
     <PackageId>ConcreteContentTypes</PackageId>
+    <PackageIdCore>ConcreteContentTypes.Core</PackageIdCore>
     <Copyright>Dave Greasley</Copyright>
     <Owners>Dave Greasley</Owners>
     <IconUrl></IconUrl>
@@ -76,6 +78,7 @@
     <CoreProjectDir>$(RootDir)\ConcreteContentTypes.Core</CoreProjectDir>
     <BuildUmbDir>$(MSBuildProjectDirectory)\_umbraco</BuildUmbDir>
     <BuildNuGetDir>$(MSBuildProjectDirectory)\_nuget</BuildNuGetDir>
+    <BuildCoreNuGetDir>$(MSBuildProjectDirectory)\_nuget_core</BuildCoreNuGetDir>
     <ArtifactsDir>$(MSBuildProjectDirectory)\artifacts</ArtifactsDir>
   </PropertyGroup>
 
@@ -91,9 +94,11 @@
   <Target Name="Clean" DependsOnTargets="GetProductVersion">
     <RemoveDir Directories="$(BuildUmbDir)" Condition="Exists('$(BuildUmbDir)')" />
     <RemoveDir Directories="$(BuildNuGetDir)" Condition="Exists('$(BuildNuGetDir)')" />
+    <RemoveDir Directories="$(BuildCoreNuGetDir)" Condition="Exists('$(BuildCoreNuGetDir)')" />
     <RemoveDir Directories="$(ArtifactsDir)" Condition="Exists('$(ArtifactsDir)')" />
     <MakeDir Directories="$(BuildUmbDir)" />
     <MakeDir Directories="$(BuildNuGetDir)" />
+    <MakeDir Directories="$(BuildCoreNuGetDir)" />
     <MakeDir Directories="$(ArtifactsDir)" />
   </Target>
 
@@ -116,17 +121,19 @@
       <PdbFiles Include="$(CoreProjectDir)\Bin\$(BuildConfig)\ConcreteContentTypes.Core.pdb" />
       <SrcFiles Include="$(CoreProjectDir)\**\*.cs;$(CoreProjectDir)\**\*.tt" Exclude="$(CoreProjectDir)\obj\**"/>
 			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
-      <NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
+      <NuSpecFile Include="$(MSBuildProjectDirectory)\ConcreteContentTypes.nuspec" />
+      <CoreNuSpecFile Include="$(MSBuildProjectDirectory)\ConcreteContentTypes.Core.nuspec" />
       <ConcreteConfig Include="$(CoreProjectDir)\..\ConcreteContentTypes.Sandbox\Config\ConcreteContentTypes.config" />
     </ItemGroup>
     <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildUmbDir)\bin" />
     <Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildUmbDir)" />
-    <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
-    <Copy SourceFiles="@(PdbFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
-    <Copy SourceFiles="@(SrcFiles)"
-   DestinationFiles="@(SrcFiles->'$(BuildNuGetDir)\src\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildCoreNuGetDir)\lib\net45" />
+    <Copy SourceFiles="@(PdbFiles)" DestinationFolder="$(BuildCoreNuGetDir)\lib\net45" />
+    <Copy SourceFiles="@(SrcFiles)" DestinationFiles="@(SrcFiles->'$(BuildCoreNuGetDir)\src\%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />
+    <Copy SourceFiles="@(CoreNuSpecFile)" DestinationFolder="$(BuildCoreNuGetDir)" />
     <Copy SourceFiles="@(ConcreteConfig)" DestinationFolder="$(BuildUmbDir)\config" />
+    <Copy SourceFiles="@(ConcreteConfig)" DestinationFolder="$(BuildNuGetDir)\content\config" />
   </Target>
 
   <!-- MANIFEST UMBRACO -->
@@ -150,12 +157,38 @@
   </Target>
 
   <!-- MANIFEST FOR NUGET PACKAGE -->
-  <Target Name="ManifestNuGet" DependsOnTargets="PrepareFiles">
+  <Target Name="ManifestNuGetCore" DependsOnTargets="PrepareFiles">
     <ItemGroup>
-      <ManifestFiles Include="$(BuildNuGetDir)\**\*" Exclude="$(BuildNuGetDir)\package.nuspec" />
+      <ManifestFiles Include="$(BuildCoreNuGetDir)\**\*" Exclude="$(BuildCoreNuGetDir)\*.nuspec;" />
     </ItemGroup>
     <MSBuild.NuGet.Tasks.ManifestUpdate
-			ManifestFile="$(BuildNuGetDir)\package.nuspec"
+			ManifestFile="$(BuildCoreNuGetDir)\ConcreteContentTypes.Core.nuspec"
+			WorkingDirectory="$(BuildCoreNuGetDir)"
+			Title="$(PackageNameCore)"
+			Description="$(Readme)"
+			Summary="$(Readme)"
+			Version="$(ProductVersion)"
+			MinimumRequiredUmbracoVersion ="$(MinUmbracoVersion)"
+			Authors="$(AuthorName)"
+			Owners="$(Owners)"
+			Copyright="$(Copyright)"
+			LicenseUrl="$(PackageLicenseUrl)"
+			ProjectUrl="$(ProjectUrl)"
+			Id="$(PackageIdCore)"
+			IconUrl="$(IconUrl)"
+			Language="$(Language)"
+			RequireLicenseAcceptance="$(RequireLicenseAcceptance)"
+			Tags="$(Tags)"
+			Files="@(ManifestFiles)" />
+  </Target>
+  
+   <!-- MANIFEST FOR NUGET PACKAGE -->
+  <Target Name="ManifestNuGet" DependsOnTargets="ManifestNuGetCore">
+    <ItemGroup>
+      <aManifestFiles Include="$(BuildNuGetDir)\**\*" Exclude="$(BuildNuGetDir)\*.nuspec;" />
+    </ItemGroup>
+    <MSBuild.NuGet.Tasks.ManifestUpdate
+			ManifestFile="$(BuildNuGetDir)\ConcreteContentTypes.nuspec"
 			WorkingDirectory="$(BuildNuGetDir)"
 			Title="$(PackageName)"
 			Description="$(Readme)"
@@ -172,7 +205,7 @@
 			Language="$(Language)"
 			RequireLicenseAcceptance="$(RequireLicenseAcceptance)"
 			Tags="$(Tags)"
-			Files="@(ManifestFiles)" />
+			Files="@(aManifestFiles)" />
   </Target>
 
   <!-- PACKAGE -->
@@ -187,14 +220,21 @@
 			Files="@(PackageFiles)" />
 
     <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\BuildPackage\Tools\NuGet.exe"
-          ManifestFile="$(BuildNuGetDir)\package.nuspec"
+          ManifestFile="$(BuildCoreNuGetDir)\ConcreteContentTypes.Core.nuspec"
+          BasePath="$(BuildCoreNuGetDir)"
+          Version="$(ProductVersion)"
+          OutputDirectory="$(ArtifactsDir)" 
+          Symbols="true"/>
+
+    <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\BuildPackage\Tools\NuGet.exe"
+          ManifestFile="$(BuildNuGetDir)\ConcreteContentTypes.nuspec"
           BasePath="$(BuildNuGetDir)"
           Version="$(ProductVersion)"
-          OutputDirectory="$(ArtifactsDir)"
-          Symbols="true" />
-
+          OutputDirectory="$(ArtifactsDir)" />
+          
     <RemoveDir Directories="$(BuildUmbDir)" Condition="Exists('$(BuildUmbDir)')" />
     <RemoveDir Directories="$(BuildNuGetDir)" Condition="Exists('$(BuildNuGetDir)')" />
+    <RemoveDir Directories="$(BuildCoreNuGetDir)" Condition="Exists('$(BuildCoreNuGetDir)')" />
 
   </Target>
 

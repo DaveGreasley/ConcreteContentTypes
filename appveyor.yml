@@ -8,7 +8,7 @@ environment:
 # example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
 install:
   - cmd: set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
-  - cmd: set UMBRACO_PACKAGE_MIN_VERSION=7.1.4
+  - cmd: set UMBRACO_PACKAGE_MIN_VERSION=7.2.4
   - cmd: cd BuildPackage
   - cmd: Build.bat
 
