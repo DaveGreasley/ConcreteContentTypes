@@ -7,9 +7,11 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using Umbraco.Examine.Linq.Attributes;
+using ConcreteContentTypes.Core.Extensions;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Media
@@ -21,44 +23,59 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 
 				
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoFile")]
 		public string UploadImage { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoWidth")]
 		public string Width { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoHeight")]
 		public string Height { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoBytes")]
 		public string Size { get; set; } 		
 		
-		/// <summary>
-		/// 
-		/// </summary>
+				
 		
 		[Field("umbracoExtension")]
 		public string Type { get; set; } 
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null && this.Content != null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public Image()
 			: base()
 		{
+		}
+
+		public Image(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public Image(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public Image(int contentId)

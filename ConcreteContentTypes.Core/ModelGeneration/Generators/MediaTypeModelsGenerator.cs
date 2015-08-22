@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 	{
 		public MediaTypeModelsGenerator()
 		{
-			_cSharpOutputFolder = string.Format("{0}\\Media", _cSharpOutputFolder);
+			_cSharpOutputFolder = string.Format("{0}\\Media", _cSharpOutputFolderBase);
 		}
 
 		public override void GenerateModels()

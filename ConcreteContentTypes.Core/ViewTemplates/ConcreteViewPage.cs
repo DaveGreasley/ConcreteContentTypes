@@ -33,7 +33,16 @@ namespace ConcreteContentTypes.Core.ViewTemplates
 		{
 			base.InitializePage();
 
-			this.Model = base.Model.Content.As<T>();
+			if (base.Model is ConcreteRenderModel<T>)
+			{
+				ConcreteRenderModel<T> renderModel = (ConcreteRenderModel<T>)base.Model;
+
+				this.Model = renderModel.Model;
+			}
+			else
+			{
+				this.Model = base.Model.Content.As<T>();
+			}
 		}
 
 		public override void Execute()

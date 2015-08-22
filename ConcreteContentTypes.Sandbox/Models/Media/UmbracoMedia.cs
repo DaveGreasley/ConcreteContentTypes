@@ -13,6 +13,7 @@ using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 
+using ConcreteContentTypes.Core.Extensions;
 using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Media
@@ -21,8 +22,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 	{
 		public abstract string ContentTypeAlias { get; }
 
-		[JsonIgnore]
 		private IPublishedContent _content = null;
+		[JsonIgnore]
 		public IPublishedContent Content
 		{
 			get
@@ -35,18 +36,6 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			set
 			{
 				_content = value;
-			}
-		}
-
-		[JsonIgnore]
-		public IEnumerable<IPublishedContent> Children
-		{
-			get
-			{
-				if (this.Content == null)
-					return new List<IPublishedContent>();
-
-				return this.Content.Children;
 			}
 		}
 

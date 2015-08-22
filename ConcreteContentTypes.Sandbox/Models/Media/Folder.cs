@@ -7,9 +7,11 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using Umbraco.Examine.Linq.Attributes;
+using ConcreteContentTypes.Core.Extensions;
 
 
 namespace ConcreteContentTypes.Sandbox.Models.Media
@@ -21,9 +23,34 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 
 		
 		
+		private IEnumerable<IPublishedContent> _children = null;
+		[JsonIgnore]
+		public IEnumerable<IPublishedContent> Children
+		{
+			get
+			{
+				if (_children == null && this.Content != null)
+					_children = this.Content.Children;
+
+				return _children;
+			}
+		}
+
 		public Folder()
 			: base()
 		{
+		}
+
+		public Folder(string name, IConcreteModel parent)
+			: this(name, parent.Id)
+		{
+		}
+
+		public Folder(string name, int parentId)
+			: base()
+		{
+			this.Name = name;
+			this.ParentId = parentId;
 		}
 
 		public Folder(int contentId)
