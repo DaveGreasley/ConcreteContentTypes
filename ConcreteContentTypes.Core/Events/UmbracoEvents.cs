@@ -12,6 +12,7 @@ using Umbraco.Web.Routing;
 using System.Reflection;
 using System.IO;
 using ConcreteContentTypes.Core.ModelGeneration.Generators;
+using System.Web.Configuration;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -31,14 +32,23 @@ namespace ConcreteContentTypes.Core.Events
 		{
 		}
 
-		
+
 
 		#region Content Type Service Events
 
 		private void AttachToContentTypeServiceEvents()
 		{
-			ContentTypeService.SavedContentType += ContentTypeService_SavedContentType;
-			ContentTypeService.SavedMediaType += ContentTypeService_SavedMediaType;
+			if (IsInDebugMode())
+			{
+				ContentTypeService.SavedContentType += ContentTypeService_SavedContentType;
+				ContentTypeService.SavedMediaType += ContentTypeService_SavedMediaType;
+			}
+		}
+
+		private bool IsInDebugMode()
+		{
+			CompilationSection compilationSection = (CompilationSection)System.Configuration.ConfigurationManager.GetSection(@"system.web/compilation");
+			return compilationSection.Debug;
 		}
 
 		void ContentTypeService_SavedMediaType(IContentTypeService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IMediaType> e)
