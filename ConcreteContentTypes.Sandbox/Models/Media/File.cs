@@ -10,6 +10,7 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
+using System;
 using Umbraco.Examine.Linq.Attributes;
 using ConcreteContentTypes.Core.Extensions;
 
@@ -68,13 +69,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			this.ParentId = parentId;
 		}
 
-		public File(int contentId)
-			: base(contentId)
+		public File(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public File(IPublishedContent content)
-			: base(content)
+		public File(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -82,11 +83,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 		{
 			base.Init(content);
 						
-			this.UploadFile = Content.GetPropertyValue<string>("umbracoFile");
+			this.UploadFile = Content.GetPropertyValue<string>("umbracoFile", this.GetPropertiesRecursively);
 						
-			this.Type = Content.GetPropertyValue<string>("umbracoExtension");
+			this.Type = Content.GetPropertyValue<string>("umbracoExtension", this.GetPropertiesRecursively);
 						
-			this.Size = Content.GetPropertyValue<string>("umbracoBytes");
+			this.Size = Content.GetPropertyValue<string>("umbracoBytes", this.GetPropertiesRecursively);
 			
 		}
 

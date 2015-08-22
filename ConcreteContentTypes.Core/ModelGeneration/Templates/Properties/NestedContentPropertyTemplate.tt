@@ -16,14 +16,14 @@
 					
 					_<#=_propertyAlias#> = new <#=_typeName#>();
 
-					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("<#=_propertyAlias#>");
+					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("<#=_propertyAlias#>", this.GetPropertiesRecursively);
 
 					if (content != null)
 						_<#=_propertyAlias#> = content.As<<#=_individualTypeName#>>().ToList();
 
 				<#} else { #>
 				
-					var content = this.Content.GetPropertyValue<IPublishedContent>("<#=_propertyAlias#>");
+					var content = this.Content.GetPropertyValue<IPublishedContent>("<#=_propertyAlias#>", this.GetPropertiesRecursively);
 
 					if (content == null)
 						return new <#=_typeName#>();

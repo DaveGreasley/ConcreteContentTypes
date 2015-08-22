@@ -59,13 +59,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public BlogPostRepository(int contentId)
-			: base(contentId)
+		public BlogPostRepository(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public BlogPostRepository(IPublishedContent content)
-			: base(content)
+		public BlogPostRepository(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -73,7 +73,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
+			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide", this.GetPropertiesRecursively);
 			
 		}
 

@@ -53,13 +53,13 @@ namespace <#= _classDefinition.Namespace #>
 			this.ParentId = parentId;
 		}
 
-		public <#= _classDefinition.Name #>(int contentId)
-			: base(contentId)
+		public <#= _classDefinition.Name #>(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public <#=_classDefinition.Name#>(IPublishedContent content)
-			: base(content)
+		public <#=_classDefinition.Name#>(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 

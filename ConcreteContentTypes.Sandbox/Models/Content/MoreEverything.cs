@@ -40,7 +40,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				{
 					_multipleNodes = new List<IPublishedContent>();
 
-					string val = Content.GetPropertyValue<string>("multipleNodes");
+					string val = Content.GetPropertyValue<string>("multipleNodes", this.GetPropertiesRecursively);
 
 					if (!string.IsNullOrEmpty(val))
 					{
@@ -66,7 +66,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				{
 					_blogAuthors = new List<BlogAuthor>();
 
-					string val = Content.GetPropertyValue<string>("blogAuthors");
+					string val = Content.GetPropertyValue<string>("blogAuthors", this.GetPropertiesRecursively);
 
 					if (!string.IsNullOrEmpty(val))
 					{
@@ -90,7 +90,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			{
 				if (_mediaPicker == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("mediaPicker");
+					int? contentId = Content.GetPropertyValue<int?>("mediaPicker", this.GetPropertiesRecursively);
 
 					if (contentId.HasValue)
 					{
@@ -119,7 +119,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 									
 					_addresses = new List<Address>();
 
-					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("addresses");
+					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("addresses", this.GetPropertiesRecursively);
 
 					if (content != null)
 						_addresses = content.As<Address>().ToList();
@@ -140,7 +140,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 									
 					_nestedBlogAuthor = new List<BlogAuthor>();
 
-					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("nestedBlogAuthor");
+					var content = this.Content.GetPropertyValue<List<IPublishedContent>>("nestedBlogAuthor", this.GetPropertiesRecursively);
 
 					if (content != null)
 						_nestedBlogAuthor = content.As<BlogAuthor>().ToList();
@@ -160,7 +160,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				{
 					_multipleMediaPicker = new List<Image>();
 
-					string val = Content.GetPropertyValue<string>("multipleMediaPicker");
+					string val = Content.GetPropertyValue<string>("multipleMediaPicker", this.GetPropertiesRecursively);
 
 					if (!string.IsNullOrEmpty(val))
 					{
@@ -214,13 +214,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public MoreEverything(int contentId)
-			: base(contentId)
+		public MoreEverything(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public MoreEverything(IPublishedContent content)
-			: base(content)
+		public MoreEverything(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -228,11 +228,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
+			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide", this.GetPropertiesRecursively);
 						
-			this.NamesCheckBox = Content.GetPropertyValue<string>("namesCheckBox");
+			this.NamesCheckBox = Content.GetPropertyValue<string>("namesCheckBox", this.GetPropertiesRecursively);
 						
-			this.MultiUrls = Content.GetPropertyValue<MultiUrls>("multiUrls");
+			this.MultiUrls = Content.GetPropertyValue<MultiUrls>("multiUrls", this.GetPropertiesRecursively);
 			
 		}
 

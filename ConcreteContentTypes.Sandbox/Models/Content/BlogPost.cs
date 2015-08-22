@@ -33,7 +33,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			{
 				if (_image == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("image");
+					int? contentId = Content.GetPropertyValue<int?>("image", this.GetPropertiesRecursively);
 
 					if (contentId.HasValue)
 					{
@@ -59,7 +59,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			{
 				if (_author == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("author");
+					int? contentId = Content.GetPropertyValue<int?>("author", this.GetPropertiesRecursively);
 
 					if (contentId.HasValue)
 					{
@@ -78,7 +78,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			{
 				if (_linkedPage == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("linkedPage");
+					int? contentId = Content.GetPropertyValue<int?>("linkedPage", this.GetPropertiesRecursively);
 
 					if (contentId.HasValue)
 					{
@@ -121,13 +121,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public BlogPost(int contentId)
-			: base(contentId)
+		public BlogPost(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public BlogPost(IPublishedContent content)
-			: base(content)
+		public BlogPost(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -137,7 +137,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 						
 			this.content = new GridContent("content", this.Content);
 						
-			this.Introduction = Content.GetPropertyValue<string>("introduction");
+			this.Introduction = Content.GetPropertyValue<string>("introduction", this.GetPropertiesRecursively);
 			
 		}
 

@@ -14,7 +14,7 @@
 				{
 					_<#=_propertyAlias#> = new <#=_typeName#>();
 
-					string val = Content.GetPropertyValue<string>("<#=_propertyAlias#>");
+					string val = Content.GetPropertyValue<string>("<#=_propertyAlias#>", this.GetPropertiesRecursively);
 
 					if (!string.IsNullOrEmpty(val))
 					{

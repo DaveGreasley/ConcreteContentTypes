@@ -10,6 +10,7 @@ namespace ConcreteContentTypes.Core.Interfaces
 	public interface IConcreteModel
 	{
 		string ContentTypeAlias { get; }
+		bool GetPropertiesRecursively { get; set; }
 
 		string Name { get; set; }
 		int Id { get; set; }

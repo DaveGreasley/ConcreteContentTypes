@@ -170,15 +170,17 @@ using Newtonsoft.Json;
             
             #line default
             #line hidden
-            this.Write("(int contentId)\r\n\t\t\t: base(contentId)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
+            this.Write("(int contentId, bool getPropertiesRecursively = false)\r\n\t\t\t: base(contentId, getP" +
+                    "ropertiesRecursively)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
             
             #line 61 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classDefinition.Name));
             
             #line default
             #line hidden
-            this.Write("(IPublishedContent content)\r\n\t\t\t: base(content)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic override vo" +
-                    "id Init(IPublishedContent content)\r\n\t\t{\r\n\t\t\tbase.Init(content);\r\n\t\t\t");
+            this.Write("(IPublishedContent content, bool getPropertiesRecursively = false)\r\n\t\t\t: base(con" +
+                    "tent, getPropertiesRecursively)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic override void Init(IPublis" +
+                    "hedContent content)\r\n\t\t{\r\n\t\t\tbase.Init(content);\r\n\t\t\t");
             
             #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Classes\MainClassTemplate.tt"
  foreach(PropertyCSharpWriterBase p in _propertyWriters) {

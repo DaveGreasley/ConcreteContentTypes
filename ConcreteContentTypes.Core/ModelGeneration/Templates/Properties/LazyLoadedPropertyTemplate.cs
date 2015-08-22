@@ -70,7 +70,8 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
             
             #line default
             #line hidden
-            this.Write("\");\r\n\r\n\t\t\t\t\tif (contentId.HasValue)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t");
+            this.Write("\", this.GetPropertiesRecursively);\r\n\r\n\t\t\t\t\tif (contentId.HasValue)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t" +
+                    "");
             
             #line 19 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\LazyLoadedPropertyTemplate.tt"
  if (_typeName == "IPublishedContent") { 

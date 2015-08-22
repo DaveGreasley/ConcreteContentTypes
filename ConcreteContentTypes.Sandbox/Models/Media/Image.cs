@@ -10,6 +10,7 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
+using System;
 using Umbraco.Examine.Linq.Attributes;
 using ConcreteContentTypes.Core.Extensions;
 
@@ -78,13 +79,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			this.ParentId = parentId;
 		}
 
-		public Image(int contentId)
-			: base(contentId)
+		public Image(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public Image(IPublishedContent content)
-			: base(content)
+		public Image(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -92,15 +93,15 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 		{
 			base.Init(content);
 						
-			this.UploadImage = Content.GetPropertyValue<string>("umbracoFile");
+			this.UploadImage = Content.GetPropertyValue<string>("umbracoFile", this.GetPropertiesRecursively);
 						
-			this.Width = Content.GetPropertyValue<string>("umbracoWidth");
+			this.Width = Content.GetPropertyValue<string>("umbracoWidth", this.GetPropertiesRecursively);
 						
-			this.Height = Content.GetPropertyValue<string>("umbracoHeight");
+			this.Height = Content.GetPropertyValue<string>("umbracoHeight", this.GetPropertiesRecursively);
 						
-			this.Size = Content.GetPropertyValue<string>("umbracoBytes");
+			this.Size = Content.GetPropertyValue<string>("umbracoBytes", this.GetPropertiesRecursively);
 						
-			this.Type = Content.GetPropertyValue<string>("umbracoExtension");
+			this.Type = Content.GetPropertyValue<string>("umbracoExtension", this.GetPropertiesRecursively);
 			
 		}
 

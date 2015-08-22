@@ -53,13 +53,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			this.ParentId = parentId;
 		}
 
-		public Folder(int contentId)
-			: base(contentId)
+		public Folder(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public Folder(IPublishedContent content)
-			: base(content)
+		public Folder(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 

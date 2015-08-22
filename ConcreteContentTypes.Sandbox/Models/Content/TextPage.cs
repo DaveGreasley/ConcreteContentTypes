@@ -57,13 +57,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public TextPage(int contentId)
-			: base(contentId)
+		public TextPage(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public TextPage(IPublishedContent content)
-			: base(content)
+		public TextPage(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 

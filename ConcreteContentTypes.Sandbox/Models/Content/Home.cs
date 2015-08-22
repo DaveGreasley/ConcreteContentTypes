@@ -73,13 +73,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public Home(int contentId)
-			: base(contentId)
+		public Home(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public Home(IPublishedContent content)
-			: base(content)
+		public Home(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -87,11 +87,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.SiteDescription = Content.GetPropertyValue<string>("siteDescription");
+			this.SiteDescription = Content.GetPropertyValue<string>("siteDescription", this.GetPropertiesRecursively);
 						
-			this.SiteTitle = Content.GetPropertyValue<string>("siteTitle");
+			this.SiteTitle = Content.GetPropertyValue<string>("siteTitle", this.GetPropertiesRecursively);
 						
-			this.SiteLogo = Content.GetPropertyValue<string>("siteLogo");
+			this.SiteLogo = Content.GetPropertyValue<string>("siteLogo", this.GetPropertiesRecursively);
 						
 			this.content = new GridContent("content", this.Content);
 			

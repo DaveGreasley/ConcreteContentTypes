@@ -32,6 +32,7 @@ namespace <#= _classDefinition.Namespace #>
 	public abstract partial class <#= _classDefinition.Name #> : IConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
+		public bool GetPropertiesRecursively { get; set; }
 
 		private IPublishedContent _content = null;
 <# foreach(var writer in _propertyAttributeWriters[BaseClassProperty.Content]) { #><#= "		" + writer.WriteAttribute() #><# } #>
@@ -79,13 +80,17 @@ namespace <#= _classDefinition.Namespace #>
  		{
  		}
  
- 		public <#= _classDefinition.Name #>(int contentId)
+ 		public <#= _classDefinition.Name #>(int contentId, bool getPropertiesRecursively = false)
  		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
 			Init(contentId);
  		}
  
- 		public <#= _classDefinition.Name #>(IPublishedContent content)
+ 		public <#= _classDefinition.Name #>(IPublishedContent content, bool getPropertiesRecursively = false)
  		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
 			Init(content);
  		}
 

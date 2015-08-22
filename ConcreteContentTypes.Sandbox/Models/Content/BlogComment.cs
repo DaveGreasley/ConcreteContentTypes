@@ -69,13 +69,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public BlogComment(int contentId)
-			: base(contentId)
+		public BlogComment(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public BlogComment(IPublishedContent content)
-			: base(content)
+		public BlogComment(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -83,9 +83,9 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.FullName = Content.GetPropertyValue<string>("fullName");
+			this.FullName = Content.GetPropertyValue<string>("fullName", this.GetPropertiesRecursively);
 						
-			this.Comment = Content.GetPropertyValue<string>("comment");
+			this.Comment = Content.GetPropertyValue<string>("comment", this.GetPropertiesRecursively);
 			
 		}
 

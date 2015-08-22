@@ -21,6 +21,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		public abstract partial class UmbracoContent : IConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
+		public bool GetPropertiesRecursively { get; set; }
 
 		private IPublishedContent _content = null;
 		[JsonIgnore]
@@ -64,13 +65,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
  		{
  		}
  
- 		public UmbracoContent(int contentId)
+ 		public UmbracoContent(int contentId, bool getPropertiesRecursively = false)
  		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
 			Init(contentId);
  		}
  
- 		public UmbracoContent(IPublishedContent content)
+ 		public UmbracoContent(IPublishedContent content, bool getPropertiesRecursively = false)
  		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
 			Init(content);
  		}
 

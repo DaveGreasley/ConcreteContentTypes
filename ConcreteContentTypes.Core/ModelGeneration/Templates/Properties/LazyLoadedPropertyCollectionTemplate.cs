@@ -84,8 +84,9 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Properties
             
             #line default
             #line hidden
-            this.Write("\");\r\n\r\n\t\t\t\t\tif (!string.IsNullOrEmpty(val))\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tstring[] contentIds = " +
-                    "val.Split(\',\');\r\n\r\n\t\t\t\t\t\tforeach (string id in contentIds)\r\n\t\t\t\t\t\t{ ");
+            this.Write("\", this.GetPropertiesRecursively);\r\n\r\n\t\t\t\t\tif (!string.IsNullOrEmpty(val))\r\n\t\t\t\t\t" +
+                    "{\r\n\t\t\t\t\t\tstring[] contentIds = val.Split(\',\');\r\n\r\n\t\t\t\t\t\tforeach (string id in co" +
+                    "ntentIds)\r\n\t\t\t\t\t\t{ ");
             
             #line 24 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\LazyLoadedPropertyCollectionTemplate.tt"
  if (_typeName == "List<IPublishedContent>") { 

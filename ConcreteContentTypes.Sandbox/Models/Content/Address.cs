@@ -70,13 +70,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public Address(int contentId)
-			: base(contentId)
+		public Address(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public Address(IPublishedContent content)
-			: base(content)
+		public Address(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -84,11 +84,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.AddressLine1 = Content.GetPropertyValue<string>("addressLine1");
+			this.AddressLine1 = Content.GetPropertyValue<string>("addressLine1", this.GetPropertiesRecursively);
 						
-			this.City = Content.GetPropertyValue<string>("city");
+			this.City = Content.GetPropertyValue<string>("city", this.GetPropertiesRecursively);
 						
-			this.PostCode = Content.GetPropertyValue<string>("postCode");
+			this.PostCode = Content.GetPropertyValue<string>("postCode", this.GetPropertiesRecursively);
 			
 		}
 

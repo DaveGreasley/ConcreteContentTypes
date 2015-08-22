@@ -21,6 +21,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 		public abstract partial class UmbracoMedia : IConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
+		public bool GetPropertiesRecursively { get; set; }
 
 		private IPublishedContent _content = null;
 		[JsonIgnore]
@@ -64,13 +65,17 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
  		{
  		}
  
- 		public UmbracoMedia(int contentId)
+ 		public UmbracoMedia(int contentId, bool getPropertiesRecursively = false)
  		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
 			Init(contentId);
  		}
  
- 		public UmbracoMedia(IPublishedContent content)
+ 		public UmbracoMedia(IPublishedContent content, bool getPropertiesRecursively = false)
  		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
 			Init(content);
  		}
 

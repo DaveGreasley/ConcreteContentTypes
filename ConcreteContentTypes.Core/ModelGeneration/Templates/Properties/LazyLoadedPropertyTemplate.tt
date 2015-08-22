@@ -12,7 +12,7 @@
 			{
 				if (_<#=_propertyAlias#> == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("<#=_propertyAlias#>");
+					int? contentId = Content.GetPropertyValue<int?>("<#=_propertyAlias#>", this.GetPropertiesRecursively);
 
 					if (contentId.HasValue)
 					{

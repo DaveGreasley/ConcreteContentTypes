@@ -49,7 +49,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				if (_address == null)
 				{
 								
-					var content = this.Content.GetPropertyValue<IPublishedContent>("address");
+					var content = this.Content.GetPropertyValue<IPublishedContent>("address", this.GetPropertiesRecursively);
 
 					if (content == null)
 						return new Address();
@@ -70,7 +70,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 				{
 					_authorImage = new List<IPublishedContent>();
 
-					string val = Content.GetPropertyValue<string>("authorImage");
+					string val = Content.GetPropertyValue<string>("authorImage", this.GetPropertiesRecursively);
 
 					if (!string.IsNullOrEmpty(val))
 					{
@@ -117,13 +117,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public BlogAuthor(int contentId)
-			: base(contentId)
+		public BlogAuthor(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public BlogAuthor(IPublishedContent content)
-			: base(content)
+		public BlogAuthor(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -131,11 +131,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.JobTitle = Content.GetPropertyValue<string>("jobTitle");
+			this.JobTitle = Content.GetPropertyValue<string>("jobTitle", this.GetPropertiesRecursively);
 						
-			this.ShortBio = Content.GetPropertyValue<string>("shortBio");
+			this.ShortBio = Content.GetPropertyValue<string>("shortBio", this.GetPropertiesRecursively);
 						
-			this.BioFull = Content.GetPropertyValue<IHtmlString>("bioFull");
+			this.BioFull = Content.GetPropertyValue<IHtmlString>("bioFull", this.GetPropertiesRecursively);
 			
 		}
 

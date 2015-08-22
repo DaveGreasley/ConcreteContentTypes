@@ -53,13 +53,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public BlogAuthorRepository(int contentId)
-			: base(contentId)
+		public BlogAuthorRepository(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public BlogAuthorRepository(IPublishedContent content)
-			: base(content)
+		public BlogAuthorRepository(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 

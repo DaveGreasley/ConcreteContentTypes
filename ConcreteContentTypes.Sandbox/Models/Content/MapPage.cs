@@ -60,13 +60,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public MapPage(int contentId)
-			: base(contentId)
+		public MapPage(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public MapPage(IPublishedContent content)
-			: base(content)
+		public MapPage(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -74,7 +74,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.Map = Content.GetPropertyValue<Model>("map");
+			this.Map = Content.GetPropertyValue<Model>("map", this.GetPropertiesRecursively);
 			
 		}
 

@@ -63,13 +63,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public LandingPage(int contentId)
-			: base(contentId)
+		public LandingPage(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public LandingPage(IPublishedContent content)
-			: base(content)
+		public LandingPage(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -77,7 +77,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide");
+			this.HideInBottomNavigation = Content.GetPropertyValue<bool>("umbracoNaviHide", this.GetPropertiesRecursively);
 						
 			this.content = new GridContent("content", this.Content);
 			

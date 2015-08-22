@@ -38,7 +38,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			{
 				if (_blogAuthor == null)
 				{
-					int? contentId = Content.GetPropertyValue<int?>("blogAuthor");
+					int? contentId = Content.GetPropertyValue<int?>("blogAuthor", this.GetPropertiesRecursively);
 
 					if (contentId.HasValue)
 					{
@@ -119,13 +119,13 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.ParentId = parentId;
 		}
 
-		public Everything(int contentId)
-			: base(contentId)
+		public Everything(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
 		{
 		}
 
-		public Everything(IPublishedContent content)
-			: base(content)
+		public Everything(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
 		{
 		}
 
@@ -133,23 +133,23 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			base.Init(content);
 						
-			this.Approvedcolour = Content.GetPropertyValue<string>("approvedcolour");
+			this.Approvedcolour = Content.GetPropertyValue<string>("approvedcolour", this.GetPropertiesRecursively);
 						
-			this.CheckboxList = Content.GetPropertyValue<string>("checkboxList");
+			this.CheckboxList = Content.GetPropertyValue<string>("checkboxList", this.GetPropertiesRecursively);
 						
-			this.DateTimePicker = Content.GetPropertyValue<DateTime>("dateTimePicker");
+			this.DateTimePicker = Content.GetPropertyValue<DateTime>("dateTimePicker", this.GetPropertiesRecursively);
 						
-			this.MyLabel = Content.GetPropertyValue<string>("myLabel");
+			this.MyLabel = Content.GetPropertyValue<string>("myLabel", this.GetPropertiesRecursively);
 						
-			this.MyNumeric = Content.GetPropertyValue<int>("myNumeric");
+			this.MyNumeric = Content.GetPropertyValue<int>("myNumeric", this.GetPropertiesRecursively);
 						
-			this.MyRichtextEditor = Content.GetPropertyValue<IHtmlString>("myRichtextEditor");
+			this.MyRichtextEditor = Content.GetPropertyValue<IHtmlString>("myRichtextEditor", this.GetPropertiesRecursively);
 						
-			this.MultipleTextBox = Content.GetPropertyValue<string>("multipleTextBox");
+			this.MultipleTextBox = Content.GetPropertyValue<string>("multipleTextBox", this.GetPropertiesRecursively);
 						
-			this.TextString = Content.GetPropertyValue<string>("textString");
+			this.TextString = Content.GetPropertyValue<string>("textString", this.GetPropertiesRecursively);
 						
-			this.YesOrNo = Content.GetPropertyValue<bool>("yesOrNo");
+			this.YesOrNo = Content.GetPropertyValue<bool>("yesOrNo", this.GetPropertiesRecursively);
 			
 		}
 

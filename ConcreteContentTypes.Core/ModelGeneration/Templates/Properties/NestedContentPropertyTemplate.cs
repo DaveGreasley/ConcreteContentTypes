@@ -92,7 +92,7 @@ if (_isCollection) {
             
             #line default
             #line hidden
-            this.Write("\");\r\n\r\n\t\t\t\t\tif (content != null)\r\n\t\t\t\t\t\t_");
+            this.Write("\", this.GetPropertiesRecursively);\r\n\r\n\t\t\t\t\tif (content != null)\r\n\t\t\t\t\t\t_");
             
             #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_propertyAlias));
@@ -120,7 +120,8 @@ if (_isCollection) {
             
             #line default
             #line hidden
-            this.Write("\");\r\n\r\n\t\t\t\t\tif (content == null)\r\n\t\t\t\t\t\treturn new ");
+            this.Write("\", this.GetPropertiesRecursively);\r\n\r\n\t\t\t\t\tif (content == null)\r\n\t\t\t\t\t\treturn new" +
+                    " ");
             
             #line 29 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\ModelGeneration\Templates\Properties\NestedContentPropertyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_typeName));
