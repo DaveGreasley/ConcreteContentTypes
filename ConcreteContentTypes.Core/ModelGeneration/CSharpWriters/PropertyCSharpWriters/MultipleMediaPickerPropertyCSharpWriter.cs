@@ -50,7 +50,10 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 
 			var dictionary = prevalues.PreValuesAsDictionary;
 
-			if (dictionary.ContainsKey("startNodeId") && dictionary["startNodeId"] != null && dictionary["startNodeId"].Value != null)
+			if (dictionary.ContainsKey("startNodeId") 
+				&& dictionary["startNodeId"] != null 
+				&& dictionary["startNodeId"].Value != null
+				&& !string.IsNullOrWhiteSpace(dictionary["startNodeId"].Value))
 			{
 				var startNodeId = Convert.ToInt32(dictionary["startNodeId"].Value);
 
@@ -64,7 +67,9 @@ namespace ConcreteContentTypes.Core.ModelGeneration.CSharpWriters.PropertyCSharp
 				}
 			}
 
-			if (dictionary.ContainsKey("multiPicker") && dictionary["multiPicker"] != null && dictionary["multiPicker"].Value != null)
+			if (dictionary.ContainsKey("multiPicker") 
+				&& dictionary["multiPicker"] != null 
+				&& dictionary["multiPicker"].Value != null)
 			{
 				if (dictionary["multiPicker"].Value == "1")
 				{
