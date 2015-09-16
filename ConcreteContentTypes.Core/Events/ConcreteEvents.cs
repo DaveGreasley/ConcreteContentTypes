@@ -20,7 +20,7 @@ namespace ConcreteContentTypes.Core.Events
 		/// <summary>
 		/// Occurs for each Content Type and Media Type that Concrete is writing a class for before the C# is written.
 		/// </summary>
-		public static event Action<ModelClassDefinition, PublishedItemType> ModelClassGenerating;
+		public static event Action<ModelClassDefinitionBase, PublishedItemType> ModelClassGenerating;
 
 		internal static void RaiseUmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, PublishedItemType contentType)
 		{
@@ -28,7 +28,7 @@ namespace ConcreteContentTypes.Core.Events
 				UmbracoContentClassGenerating(classDefinition, contentType);
 		}
 
-		internal static void RaiseModelClassGenerating(ModelClassDefinition classDefiniton, PublishedItemType contentType)
+		internal static void RaiseModelClassGenerating(ModelClassDefinitionBase classDefiniton, PublishedItemType contentType)
 		{
 			if (ModelClassGenerating != null)
 				ModelClassGenerating(classDefiniton, contentType);

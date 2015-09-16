@@ -217,6 +217,8 @@
     <Compile Include="ModelGeneration\Templates\Properties\Models\TypedChildrenPropertyTemplate.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
     <Compile Include="Models\Definitions\ClassDefinitionBase.cs" />
+    <Compile Include="Models\Definitions\ContentModelClassDefinition.cs" />
+    <Compile Include="Models\Definitions\MediaModelClassDefinition.cs" />
     <Compile Include="Models\Definitions\UmbracoContentClassDefinition.cs" />
     <Compile Include="Models\Definitions\PropertyDefinition.cs" />
     <Compile Include="Configuration\CSharpWriterConfiguration.cs" />
@@ -237,7 +239,7 @@
     <Compile Include="Configuration\ConcreteSettings.cs" />
     <Compile Include="Events\UmbracoEvents.cs" />
     <Compile Include="Exceptions\UnknownPropertyTypeException.cs" />
-    <Compile Include="Models\Definitions\ModelClassDefinition.cs" />
+    <Compile Include="Models\Definitions\ModelClassDefinitionBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\BasicUmbracoPropertyCSharpWriter.cs" />
     <Compile Include="ModelGeneration\CSharpWriters\PropertyCSharpWriters\GridPropertyCSharpWriter.cs" />

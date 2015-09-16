@@ -54,7 +54,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
 
 				//Create model class definition from ContentType
-				ModelClassDefinition classDefinition = new ModelClassDefinition(contentType, parent, _contentTypeNameSpace, PublishedItemType.Content, "UmbracoContent");
+				ContentModelClassDefinition classDefinition = new ContentModelClassDefinition(contentType, parent, _contentTypeNameSpace, "UmbracoContent");
 				//Make sure we add the namespace of our media models to the generated class so we can reference Media models by name
 				classDefinition.AddUsingNamespace(_mediaTypeNameSpace);
 

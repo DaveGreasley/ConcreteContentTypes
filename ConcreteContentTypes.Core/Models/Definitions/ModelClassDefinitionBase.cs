@@ -10,36 +10,19 @@ using Umbraco.Web;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class ModelClassDefinition : ClassDefinitionBase
+	public abstract class ModelClassDefinitionBase : ClassDefinitionBase
 	{
 		public string BaseClass { get; set; }
 		public bool HasBaseClass { get { return !string.IsNullOrEmpty(this.BaseClass); } }
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent"; } }
 
-		public ModelClassDefinition(IMediaType mediaType, IMediaType parent, string nameSpace, PublishedItemType contentType, string defaultBaseClass = "")
-			: base(mediaType.Alias, nameSpace, contentType)
+		public ModelClassDefinitionBase(string name, string nameSpace, PublishedItemType itemType)
+			: base(name, nameSpace, itemType)
 		{
-			this.BaseClass = GetBaseClass(mediaType, parent, defaultBaseClass);
-			this.Properties = new List<PropertyDefinition>();
-			this.Attributes = new List<AttributeDefinition>();
-			this.ChildType = GetChildType(mediaType);
-
-			CreateDefinition(mediaType, parent);
 		}
 
-		public ModelClassDefinition(IContentType contentType, IContentType parent, string nameSpace, PublishedItemType type, string defaultBaseClass = "")
-			: base(contentType.Alias, nameSpace, type)
-		{
-			this.BaseClass = GetBaseClass(contentType, parent, defaultBaseClass);
-			this.Properties = new List<PropertyDefinition>();
-			this.Attributes = new List<AttributeDefinition>();
-			this.ChildType = GetChildType(contentType);
-
-			CreateDefinition(contentType, parent);
-		}
-
-		private void CreateDefinition(IContentTypeComposition contentType, IContentTypeComposition parent)
+		protected void CreateDefinition(IContentTypeComposition contentType, IContentTypeComposition parent)
 		{
 			IEnumerable<PropertyType> propertyTypes = GetPropertyTypesNotDeclaredOnParent(contentType, parent);
 
@@ -63,7 +46,15 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			}
 		}
 
-		private string GetChildType(IContentTypeBase contentType)
+		protected string GetBaseClass(IContentTypeBase contentType, IContentTypeBase parent, string defaultBaseClass = "")
+		{
+			if (contentType.ParentId == -1)
+				return defaultBaseClass;
+
+			return parent.Alias;
+		}
+
+		protected string GetChildType(IContentTypeBase contentType)
 		{
 			if (contentType.AllowedContentTypes.Count() > 1)
 				return "IPublishedContent";
@@ -87,14 +78,6 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			}
 
 			return propertyTypes;
-		}
-
-		private string GetBaseClass(IContentTypeBase contentType, IContentTypeBase parent, string defaultBaseClass = "")
-		{
-			if (contentType.ParentId == -1)
-				return defaultBaseClass;
-
-			return parent.Alias;
 		}
 	}
 }

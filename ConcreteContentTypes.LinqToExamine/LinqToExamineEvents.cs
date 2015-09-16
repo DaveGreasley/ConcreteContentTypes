@@ -42,7 +42,7 @@ namespace ConcreteContentTypes.LinqToExamine
 			classDefinition.StandardPropertyAttributes[property].Add(new AttributeDefinition("Field", "Umbraco.Examine.Linq.Attributes", "\"" + lucenePropertyName + "\""));
 		}
 
-		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinition classDefinition, PublishedItemType contentType)
+		void ConcreteEvents_Generating(Core.Models.Definitions.ModelClassDefinitionBase classDefinition, PublishedItemType contentType)
 		{
 			//Add NodeTypeAliasAttribute to our generated class
 			classDefinition.Attributes.Add(new AttributeDefinition("NodeTypeAlias", "Umbraco.Examine.Linq.Attributes", "\"" + classDefinition.Name + "\""));

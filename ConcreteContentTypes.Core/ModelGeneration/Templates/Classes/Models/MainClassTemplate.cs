@@ -13,13 +13,13 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Classes
 {
 	public partial class MainClassTemplate
 	{
-		protected ModelClassDefinition _classDefinition;
+		protected ModelClassDefinitionBase _classDefinition;
 		protected List<AttributeCSharpWriter> _attributeWriters;
 		protected List<PropertyCSharpWriterBase> _propertyWriters;
 		protected List<string> _usingNamespaces;
 		protected string _children;
 
-		public MainClassTemplate(ModelClassDefinition definition, 
+		public MainClassTemplate(ModelClassDefinitionBase definition, 
 			List<AttributeCSharpWriter> attributeWriters,
 			List<PropertyCSharpWriterBase> propertyWriters)
 		{

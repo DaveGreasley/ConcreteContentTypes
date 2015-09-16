@@ -15,11 +15,11 @@ namespace ConcreteContentTypes.Core.ModelGeneration.FileWriters
 {
 	public class CSharpFileWriter
 	{
-		ModelClassDefinition _classDefinition;
+		ModelClassDefinitionBase _classDefinition;
 		List<AttributeCSharpWriter> _attributeWriters;
 		List<PropertyCSharpWriterBase> _propertyWriters;
 
-		public CSharpFileWriter(ModelClassDefinition classDefinition)
+		public CSharpFileWriter(ModelClassDefinitionBase classDefinition)
 		{
 			_classDefinition = classDefinition;
 

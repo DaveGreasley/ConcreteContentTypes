@@ -11,7 +11,7 @@ namespace ConcreteContentTypes.Tests
 		/// We don't want to allow users to use 'Content' as a property name as this is reserved for us.
 		/// </summary>
 		[TestMethod]
-		public void GetConventionalName_DisallowContent()
+		public void NamingConventionHelperTests_GetConventionalName_DisallowContent()
 		{
 			string test = "Content";
 
@@ -21,7 +21,7 @@ namespace ConcreteContentTypes.Tests
 		}
 
 		[TestMethod]
-		public void GetConventionalName_OnlyAllowedCharacters()
+		public void NamingConventionHelperTests_GetConventionalName_OnlyAllowedCharacters()
 		{
 			string test = "abc123*\";!£$%^&*()+=/\\.,|`¬ DEF";
 

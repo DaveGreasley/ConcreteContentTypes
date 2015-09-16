@@ -47,7 +47,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 			{
 				var parent = mediaTypes.FirstOrDefault(x => x.Id == mediaType.ParentId);
 
-				ModelClassDefinition classDefinition = new ModelClassDefinition(mediaType, parent, _mediaTypeNameSpace, PublishedItemType.Media, "UmbracoMedia");
+				MediaModelClassDefinition classDefinition = new MediaModelClassDefinition(mediaType, parent, _mediaTypeNameSpace, "UmbracoMedia");
 				_classDefinitions.Add(classDefinition);
 
 				ConcreteEvents.RaiseModelClassGenerating(classDefinition, PublishedItemType.Media);
