@@ -11,6 +11,10 @@ branches:
 
 skip_tags: true
 
+test:
+  assemblies:
+    - '**\*.tests.dll'
+
 # UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds
 # example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
 install:
