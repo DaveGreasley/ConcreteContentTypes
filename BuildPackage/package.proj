@@ -76,6 +76,7 @@
     <BuildConfig>Release</BuildConfig>
     <RootDir>$(MSBuildProjectDirectory)\..</RootDir>
     <CoreProjectDir>$(RootDir)\ConcreteContentTypes.Core</CoreProjectDir>
+    <TestsProjectDir>$(RootDir)\ConcreteContentTypes.Tests</CoreProjectDir>
     <BuildUmbDir>$(MSBuildProjectDirectory)\_umbraco</BuildUmbDir>
     <BuildNuGetDir>$(MSBuildProjectDirectory)\_nuget</BuildNuGetDir>
     <BuildCoreNuGetDir>$(MSBuildProjectDirectory)\_nuget_core</BuildCoreNuGetDir>
@@ -112,6 +113,7 @@
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
 		<MSBuild Projects="$(CoreProjectDir)\ConcreteContentTypes.Core.csproj" Properties="Configuration=$(BuildConfig)"/>
+		<MSBuild Projects="$(TestsProjectDir)\ConcreteContentTypes.Tests.csproj" Properties="Configuration=$(BuildConfig)"/>
 	</Target>
 
 	<!-- PREPARE FILES -->

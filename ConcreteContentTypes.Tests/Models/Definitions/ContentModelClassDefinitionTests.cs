@@ -8,43 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Tests
+namespace ConcreteContentTypes.Tests.Models.Definitions
 {
 	[TestClass]
 	public class ContentModelClassDefinitionTests
 	{
 		[TestMethod]
-		public void ContentModelClassDefinition_ClassNameCorrect()
+		public void ContentModelClassDefinition_Constructor_BasicPropertiesSetCorrectly()
 		{
 			var dummyName = "DummyName";
+			var dummyNamespace = "DummyNamespace";
+
 
 			var contentType = GetEmptyContentType();
 			contentType.Alias = dummyName;
 
-			var sut = new ContentModelClassDefinition(contentType, null, "");
-
-			Assert.AreEqual(dummyName, sut.Name);
-		}
-
-		[TestMethod]
-		public void ContentModelClassDefinition_NamespaceCorrect()
-		{
-			var dummyNamespace = "DummyNamespace";
-
-			var contentType = GetEmptyContentType();
-
 			var sut = new ContentModelClassDefinition(contentType, null, dummyNamespace);
 
+			Assert.AreEqual(dummyName, sut.Name);
 			Assert.AreEqual(dummyNamespace, sut.Namespace);
-		}
-
-		[TestMethod]
-		public void ContentModelClassDefinition_PublishedItemTypeCorrect()
-		{
-			var contentType = GetEmptyContentType();
-
-			var sut = new ContentModelClassDefinition(contentType, null, "");
-
 			Assert.AreEqual(PublishedItemType.Content, sut.PublishedItemType);
 		}
 

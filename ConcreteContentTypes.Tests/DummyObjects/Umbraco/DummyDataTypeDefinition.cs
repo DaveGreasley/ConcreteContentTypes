@@ -9,6 +9,11 @@ namespace ConcreteContentTypes.Tests.DummyObjects.Umbraco
 {
 	public class DummyDataTypeDefinition : IDataTypeDefinition
 	{
+		public string PropertyEditorAlias { get; set; }
+		public int Id { get; set; }
+		public bool HasIdentity { get; set; }
+		public DataTypeDatabaseType DatabaseType { get; set; }
+
 		public DummyDataTypeDefinition()
 		{
 
@@ -17,30 +22,6 @@ namespace ConcreteContentTypes.Tests.DummyObjects.Umbraco
 		#region Not Implemented
 
 		public Guid ControlId
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public DataTypeDatabaseType DatabaseType
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public string PropertyEditorAlias
 		{
 			get
 			{
@@ -135,23 +116,6 @@ namespace ConcreteContentTypes.Tests.DummyObjects.Umbraco
 		}
 
 		public DateTime CreateDate
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public bool HasIdentity
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public int Id
 		{
 			get
 			{

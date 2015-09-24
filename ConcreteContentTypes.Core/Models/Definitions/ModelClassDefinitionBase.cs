@@ -34,7 +34,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 					var ptd = new PropertyDefinition(propertyType);
 
 					// See if we can work out the Clr Type from any configured PropertyValueConverter
-					PropertyValueConverterHelper tch = new PropertyValueConverterHelper(contentType, propertyType, this.PublishedItemType);
+					PropertyValueConverterHelper tch = new PropertyValueConverterHelper(contentType.Alias, propertyType.Alias, this.PublishedItemType);
 					if (tch.CanResolveType)
 					{
 						ptd.ClrType = tch.GetTypeName();

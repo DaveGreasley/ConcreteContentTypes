@@ -13,7 +13,7 @@ skip_tags: true
 
 test:
   assemblies:
-    - ConcreteContentTypes.Tests\Bin\Release\ConcreteContentTypes.Tests.dll
+    - 'ConcreteContentTypes.Tests.dll'
 
 # UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds
 # example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta

@@ -8,48 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Tests
+namespace ConcreteContentTypes.Tests.Models.Definitions
 {
 	[TestClass]
 	public class MediaModelClassDefinitionTests
 	{
 		[TestMethod]
-		public void MediaModelClassDefinition_ClassNameCorrect()
+		public void MediaModelClassDefinition_Constructor_BasicPropertiesSetCorrectly()
 		{
 			var dummyName = "DummyName";
+			var dummyNamespace = "DummyNamespace";
 
 			var mediaType = GetEmptyMediaType();
 			mediaType.Alias = dummyName;
 
-			var sut = new MediaModelClassDefinition(mediaType, null, "");
-
-			Assert.AreEqual(dummyName, sut.Name);
-		}
-
-		[TestMethod]
-		public void MediaModelClassDefinition_NamespaceCorrect()
-		{
-			var dummyNamespace = "DummyNamespace";
-
-			var mediaType = GetEmptyMediaType();
-
 			var sut = new MediaModelClassDefinition(mediaType, null, dummyNamespace);
 
+			Assert.AreEqual(dummyName, sut.Name);
 			Assert.AreEqual(dummyNamespace, sut.Namespace);
-		}
-
-		[TestMethod]
-		public void MediaModelClassDefinition_PublishedItemTypeCorrect()
-		{
-			var mediaType = GetEmptyMediaType();
-
-			var sut = new MediaModelClassDefinition(mediaType, null, "");
-
 			Assert.AreEqual(PublishedItemType.Media, sut.PublishedItemType);
 		}
 
 		[TestMethod]
-		public void MediaModelClassDefinition_ChildTypeCorrect_SingleAllowedChild()
+		public void MediaModelClassDefinition_Constructor_ChildTypeCorrect_SingleAllowedChild()
 		{
 			var testChildAlias = "DummyChildType";
 
@@ -73,7 +54,7 @@ namespace ConcreteContentTypes.Tests
 		}
 
 		[TestMethod]
-		public void MediaModelClassDefinition_ChildTypeCorrect_MultipleAllowedChildren()
+		public void MediaModelClassDefinition_Constructor_ChildTypeCorrect_MultipleAllowedChildren()
 		{
 			var mediaType = GetEmptyMediaType();
 

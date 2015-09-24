@@ -15,9 +15,9 @@ namespace ConcreteContentTypes.Core.Helpers
 
 		public bool CanResolveType { get; set; }
 
-		public PropertyValueConverterHelper(IContentTypeComposition contentType, PropertyType propertyType, PublishedItemType itemType)
+		public PropertyValueConverterHelper(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
 		{
-			AttemptResolveType(contentType, propertyType, itemType);
+			AttemptResolveType(contentTypeAlias, propertyTypeAlias, itemType);
 		}
 
 		public string GetTypeName()
@@ -36,13 +36,13 @@ namespace ConcreteContentTypes.Core.Helpers
 			return "";
 		}
 
-		private void AttemptResolveType(IContentTypeComposition contentType, PropertyType propertyType, PublishedItemType itemType)
+		private void AttemptResolveType(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
 		{
 			try
 			{
-				var publishedContentType = PublishedContentType.Get(itemType, contentType.Alias);
+				var publishedContentType = PublishedContentType.Get(itemType, contentTypeAlias);
 
-				var publishedPropertyType = publishedContentType.GetPropertyType(propertyType.Alias);
+				var publishedPropertyType = publishedContentType.GetPropertyType(propertyTypeAlias);
 
 				_resolvedType = publishedPropertyType.ClrType;
 
@@ -53,5 +53,6 @@ namespace ConcreteContentTypes.Core.Helpers
 				this.CanResolveType = false;
 			}
 		}
+
 	}
 }

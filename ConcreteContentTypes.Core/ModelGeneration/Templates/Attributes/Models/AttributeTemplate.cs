@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Templates.Attributes
 		public AttributeTemplate(AttributeDefinition definition)
 		{
 			_type = definition.Type;
-			_parameters = definition.ParamtersString;
+			_parameters = definition.GetParametersValuesString();
 		}
 	}
 }

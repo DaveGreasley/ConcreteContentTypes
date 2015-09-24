@@ -20,7 +20,7 @@ namespace ConcreteContentTypes.Core.Helpers
 					return "MediaCache";
 			}
 
-			throw new InvalidOperationException("Cannot create a lazy loaded property template for ContentType " + contentType.ToString());
+			throw new InvalidOperationException("Cannot find a suitable cache name for the given PublishedItemType - " + contentType.ToString());
 		}
 	}
 }

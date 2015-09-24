@@ -12,8 +12,8 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	{
 		public string PropertyEditorAlias { get; set; }
 		public string PropertyTypeAlias { get; set; }
+		public string PropertyTypeName { get; set; }
 		public int DataTypeDefinitionId { get; set; }
-		public string PropertyName { get; set; }
 		public string Description { get; set; }
 		public bool Required { get; set; }
 
@@ -25,16 +25,32 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 		public List<AttributeDefinition> Attributes { get; set; }
 
-		public string NicePropertyName { get { return NamingConventionHelper.GetConventionalName(this.PropertyName); } }
+		public string NicePropertyName { get { return NamingConventionHelper.GetConventionalName(this.PropertyTypeName); } }
 
 		public PropertyDefinition(PropertyType propertyType)
+			: this(propertyType.PropertyEditorAlias,
+			propertyType.Alias,
+			propertyType.Name,
+			propertyType.DataTypeDefinitionId,
+			propertyType.Description,
+			propertyType.Mandatory)
 		{
-			this.PropertyEditorAlias = propertyType.PropertyEditorAlias;
-			this.PropertyTypeAlias = propertyType.Alias;
-			this.DataTypeDefinitionId = propertyType.DataTypeDefinitionId;
-			this.PropertyName = propertyType.Name;
-			this.Description = propertyType.Description ?? "";
-			this.Required = propertyType.Mandatory;
+		}
+
+		public PropertyDefinition(
+			string propertyEditorAlias,
+			string propertyTypeAlias,
+			string propertyTypeName,
+			int dataTypeDefinitionId,
+			string description,
+			bool required)
+		{
+			this.PropertyEditorAlias = propertyEditorAlias;
+			this.PropertyTypeAlias = propertyTypeAlias;
+			this.PropertyTypeName = propertyTypeName;
+			this.DataTypeDefinitionId = dataTypeDefinitionId;
+			this.Description = description ?? "";
+			this.Required = required;
 
 			this.Attributes = new List<AttributeDefinition>();
 		}

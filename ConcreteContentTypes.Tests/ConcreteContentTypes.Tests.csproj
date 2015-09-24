@@ -216,11 +216,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ModelGeneration\Templates\Attributes\AttributeCSharpWriterTests.cs" />
     <Compile Include="DummyObjects\Umbraco\DummyContentType.cs" />
     <Compile Include="DummyObjects\Umbraco\DummyDataTypeDefinition.cs" />
     <Compile Include="DummyObjects\Umbraco\DummyMediaType.cs" />
-    <Compile Include="MediaModelClassDefinitionTests.cs" />
-    <Compile Include="ContentModelClassDefinitionTests.cs" />
+    <Compile Include="ModelGeneration\Templates\Classes\MainClassTemplateTests.cs" />
+    <Compile Include="Models\Definitions\AttributeDefinitionTests.cs" />
+    <Compile Include="Models\Definitions\MediaModelClassDefinitionTests.cs" />
+    <Compile Include="Models\Definitions\ContentModelClassDefinitionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NamingConventionHelperTests.cs" />
   </ItemGroup>
