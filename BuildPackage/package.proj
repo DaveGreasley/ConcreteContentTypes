@@ -76,7 +76,7 @@
     <BuildConfig>Release</BuildConfig>
     <RootDir>$(MSBuildProjectDirectory)\..</RootDir>
     <CoreProjectDir>$(RootDir)\ConcreteContentTypes.Core</CoreProjectDir>
-    <TestsProjectDir>$(RootDir)\ConcreteContentTypes.Tests</CoreProjectDir>
+    <TestsProjectDir>$(RootDir)\ConcreteContentTypes.Tests</TestsProjectDir>
     <BuildUmbDir>$(MSBuildProjectDirectory)\_umbraco</BuildUmbDir>
     <BuildNuGetDir>$(MSBuildProjectDirectory)\_nuget</BuildNuGetDir>
     <BuildCoreNuGetDir>$(MSBuildProjectDirectory)\_nuget_core</BuildCoreNuGetDir>
