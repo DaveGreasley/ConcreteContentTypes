@@ -22,7 +22,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 		string _assemblyOutputDirectory;
 		string _assemblyDependencyDirectory;
 
-		protected List<ClassDefinitionBase> _classDefinitions;
+		protected List<ClassDefinition> _classDefinitions;
 
 		public ModelsGeneratorBase()
 		{
@@ -36,7 +36,7 @@ namespace ConcreteContentTypes.Core.ModelGeneration.Generators
 			//_assemblyOutputDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyOutputDirectory;
 			//_assemblyDependencyDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyDependencyDirectory;
 
-			_classDefinitions = new List<ClassDefinitionBase>();
+			_classDefinitions = new List<ClassDefinition>();
 		}
 
 		public abstract void GenerateModels();

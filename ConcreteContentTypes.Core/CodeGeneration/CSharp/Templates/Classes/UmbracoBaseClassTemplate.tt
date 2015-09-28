@@ -1,0 +1,138 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="ConcreteContentTypes.Core.Models" #>
+<#@ import namespace="ConcreteContentTypes.Core.Models.Enums" #>
+<#@ output extension=".cs" #>
+
+using System;
+using System.Collections.Generic;
+using Umbraco.Core.Models;
+using Umbraco.Web;
+using System.Web;
+using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using ConcreteContentTypes.Core.Models;
+using Newtonsoft.Json;
+using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models.Enums;
+using Umbraco.Core;
+using Umbraco.Core.Services;
+
+<# foreach(string nameSpace in _usingNamespaces) { #>
+using <#= nameSpace #>;
+<# } #>
+
+namespace <#= CurrentDefinition.Namespace #>
+{
+	<# foreach(var attribute in AttributeTemplates) { #> <#= attribute.TransformText() #> <# } #>
+	public abstract partial class <#= CurrentDefinition.Name #> : IConcreteModel
+	{
+		public abstract string ContentTypeAlias { get; }
+		public bool GetPropertiesRecursively { get; set; }
+
+		private IPublishedContent _content = null;
+		[JsonIgnore]
+		public IPublishedContent Content
+		{
+			get
+			{
+				if (_content == null && this.Id != 0)
+					_content = UmbracoContext.Current.<#= _cacheName #>.GetById(this.Id);
+
+				return _content;
+			}
+			set
+			{
+				_content = value;
+			}
+		}
+
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Name]) { #><#= "		" + template.TransformText() #><# } #>
+		public string Name { get; set; }
+
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Id]) { #><#= "		" + template.TransformText() #><# } #>
+		public int Id { get; set; }
+		
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.ParentId]) { #><#= "		" + template.TransformText() #><# } #>
+		public int ParentId { get; set; }
+		
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Path]) { #><#= "		" + template.TransformText() #><# } #>
+		public string Path { get; set; }
+		
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.CreateDate]) { #><#= "		" + template.TransformText() #><# } #>
+		public DateTime CreateDate { get; set; }
+		
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.UpdateDate]) { #><#= "		" + template.TransformText() #><# } #>
+		public DateTime UpdateDate { get; set; }
+		
+<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Url]) { #><#= "		" + template.TransformText() #><# } #>
+		public string Url { get; set; }
+
+		#region Constructors and Initalisation
+
+ 		public <#= CurrentDefinition.Name #>()
+			: base()
+ 		{
+ 		}
+ 
+ 		public <#= CurrentDefinition.Name #>(int contentId, bool getPropertiesRecursively = false)
+ 		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
+			Init(contentId);
+ 		}
+ 
+ 		public <#= CurrentDefinition.Name #>(IPublishedContent content, bool getPropertiesRecursively = false)
+ 		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
+			Init(content);
+ 		}
+
+		public void Init(int contentId)
+		{
+			IPublishedContent content = UmbracoContext.Current.<#= _cacheName #>.GetById(contentId);
+
+			if (content == null)
+				throw new InvalidOperationException(string.Format("Content Id {0} not found in Umbraco Cache", contentId));
+
+			Init(content);
+		}
+
+		public virtual void Init(IPublishedContent content)
+		{
+			this.Content = content;
+
+			this.Name = this.Content.Name;
+			this.Id = this.Content.Id;
+			this.Path = this.Content.Path;
+			this.ParentId = GetParentId(this.Path);
+			this.CreateDate = this.Content.CreateDate;
+			this.UpdateDate = this.Content.UpdateDate;
+			this.Url = this.Content.Url;
+		}
+
+		private int GetParentId(string path)
+		{
+			//First try and get parent id from the path
+			var pathElements = path.Split(',');
+
+			if (pathElements != null && pathElements.Count() >= 2)
+			{
+				var parentId = pathElements[pathElements.Length - 2];
+
+				if (!string.IsNullOrWhiteSpace(parentId))
+					return Convert.ToInt32(parentId);
+			}
+
+			//If that doesn't work then get it from the parent content object. 
+			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; 
+		}
+
+		#endregion
+
+ 	}
+} 

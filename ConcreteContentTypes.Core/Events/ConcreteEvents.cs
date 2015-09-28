@@ -10,28 +10,52 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Events
 {
-	public static class ConcreteEvents
+	public class ConcreteEvents : IConcreteEvents
 	{
-		/// <summary>
-		/// Occurs when the UmbracoContent and UmbracoMedia base classes is being generated
-		/// </summary>
-		public static event Action<UmbracoContentClassDefinition, PublishedItemType> UmbracoContentClassGenerating;
-
-		/// <summary>
-		/// Occurs for each Content Type and Media Type that Concrete is writing a class for before the C# is written.
-		/// </summary>
-		public static event Action<ModelClassDefinitionBase, PublishedItemType> ModelClassGenerating;
-
-		internal static void RaiseUmbracoContentClassGenerating(UmbracoContentClassDefinition classDefinition, PublishedItemType contentType)
+		private static ConcreteEvents _instance = null;
+		public static ConcreteEvents Current
 		{
-			if (UmbracoContentClassGenerating != null)
-				UmbracoContentClassGenerating(classDefinition, contentType);
+			get
+			{
+				if (_instance == null)
+					_instance = new ConcreteEvents();
+
+				return _instance;
+			}
 		}
 
-		internal static void RaiseModelClassGenerating(ModelClassDefinitionBase classDefiniton, PublishedItemType contentType)
+		public static event Action<UmbracoBaseClassDefinition> ContentBaseClassGenerating;
+		public static event Action<UmbracoModelClassDefinition> ContentModelClassGenerating;
+		public static event Action<UmbracoBaseClassDefinition> MediaBaseClassGenerating;
+		public static event Action<UmbracoModelClassDefinition> MediaModelClassGenerating;
+
+		public ConcreteEvents()
 		{
-			if (ModelClassGenerating != null)
-				ModelClassGenerating(classDefiniton, contentType);
+
+		}
+
+		public void RaiseContentBaseClassGenerating(UmbracoBaseClassDefinition classDefinition)
+		{
+			if (ContentBaseClassGenerating != null)
+				ContentBaseClassGenerating(classDefinition);
+		}
+
+		public void RaiseContentModelClassGenerating(UmbracoModelClassDefinition classDefinition)
+		{
+			if (ContentModelClassGenerating != null)
+				ContentModelClassGenerating(classDefinition);
+		}
+
+		public void RaiseMediaBaseClassGenerating(UmbracoBaseClassDefinition classDefinition)
+		{
+			if (MediaBaseClassGenerating != null)
+				MediaBaseClassGenerating(classDefinition);
+		}
+
+		public void RaiseMediaModelClassGenerating(UmbracoModelClassDefinition classDefinition)
+		{
+			if (MediaModelClassGenerating != null)
+				MediaModelClassGenerating(classDefinition);
 		}
 	}
 }

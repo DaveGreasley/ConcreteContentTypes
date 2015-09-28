@@ -10,9 +10,8 @@ using Umbraco.Web;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public abstract class ModelClassDefinitionBase : ClassDefinitionBase
+	public abstract class ModelClassDefinitionBase : ClassDefinition
 	{
-		public string BaseClass { get; set; }
 		public bool HasBaseClass { get { return !string.IsNullOrEmpty(this.BaseClass); } }
 		public string ChildType { get; set; }
 		public bool HasConcreteChildType { get { return !string.IsNullOrEmpty(this.ChildType) && this.ChildType != "IPublishedContent"; } }
@@ -31,7 +30,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 				// Check that we support the property type
 				if (CSharpWriterSettings.Current.Writers.Any(x => x.SupportedTypes.Any(s => s.Alias == propertyType.PropertyEditorAlias)))
 				{
-					var ptd = new PropertyDefinition(propertyType);
+					var ptd = new UmbracoPropertyDefinition(propertyType);
 
 					// See if we can work out the Clr Type from any configured PropertyValueConverter
 					PropertyValueConverterHelper tch = new PropertyValueConverterHelper(contentType.Alias, propertyType.Alias, this.PublishedItemType);

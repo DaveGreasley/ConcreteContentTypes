@@ -11,7 +11,6 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Routing;
 using System.Reflection;
 using System.IO;
-using ConcreteContentTypes.Core.ModelGeneration.Generators;
 using System.Web.Configuration;
 
 namespace ConcreteContentTypes.Core.Events
@@ -80,12 +79,7 @@ namespace ConcreteContentTypes.Core.Events
 		//Currently we regenerate all Media and all Content models every time we save either.
 		void RegenerateAllModels()
 		{
-			//Generate Media models first as they are used by Content models
-			MediaTypeModelsGenerator mediaModelsGenerator = new MediaTypeModelsGenerator();
-			mediaModelsGenerator.GenerateModels();
-
-			ContentTypeModelsGenerator contentModelsGenerator = new ContentTypeModelsGenerator();
-			contentModelsGenerator.GenerateModels();
+			
 		}
 
 		#endregion

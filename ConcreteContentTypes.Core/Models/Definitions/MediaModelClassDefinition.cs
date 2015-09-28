@@ -13,7 +13,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			: base(mediaType.Alias, nameSpace, PublishedItemType.Media)
 		{
 			this.BaseClass = GetBaseClass(mediaType, parent, defaultBaseClass);
-			this.Properties = new List<PropertyDefinition>();
+			this.Properties = new List<UmbracoPropertyDefinition>();
 			this.Attributes = new List<AttributeDefinition>();
 			this.ChildType = GetChildType(mediaType);
 

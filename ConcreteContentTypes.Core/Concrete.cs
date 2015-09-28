@@ -1,201 +1,180 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Umbraco.Core.Models;
-//using System.CodeDom.Compiler;
-//using ConcreteContentTypes.Core.Configuration;
-//using Umbraco.Core.Services;
-//using Umbraco.Web;
-//using System.Web;
-//using System.IO;
-//using ConcreteContentTypes.Core.Helpers;
-//using ConcreteContentTypes.Core.Models;
-//using ConcreteContentTypes.Core.Events;
-//using ConcreteContentTypes.Core.Models.Definitions;
+﻿using ConcreteContentTypes.Core.CodeGeneration;
+using ConcreteContentTypes.Core.Configuration;
+using ConcreteContentTypes.Core.FileWriters;
+using ConcreteContentTypes.Core.SourceModelMapping;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace ConcreteContentTypes.Core
-//{
-//	[Obsolete("Use classes in ModelGenerations.Generators namespace.")]
-//	internal class Concrete
-//	{
-//		#region Private Variables
+namespace ConcreteContentTypes.Core
+{
+	public class Concrete
+	{
+		public IConcreteSettings Settings { get; set; }
 
-//		IContentTypeService _contentTypeService;
+		public ISourceModelMapper ContentTypeSourceModelMapper { get; set; }
+		public ISourceModelMapper MediaTypeSourceModelMapper { get; set; }
 
-//		string _cSharpOutpuFolder;
+		public ICodeGenerator ContentTypeCodeGenerator { get; set; }
+		public ICodeGenerator MediaTypeCodeGenerator { get; set; }
 
-//		string _contentTypeNameSpace;
-//		string _contentTypeCSharpOutputFolder;
+		public IFileWriter FileWriter { get; set; }
 
-//		string _mediaTypeNameSpace;
-//		string _mediaTypeCSharpOutputFolder;
+		public List<GenerationError> GenerationErrors { get; set; }
+		public int ContentModelCount { get; set; }
+		public int MediaModelCount { get; set; }
+		public int FilesWritten { get; set; }
 
-//		string _assemblyOutputDirectory;
-//		string _assemblyDependencyDirectory;
+		public bool FatalErrorHasOccured { get { return this.GenerationErrors.Any(x => x.Fatal); } }
+		public string ContentOutputFolder { get { return string.Format("{0}\\Content", Settings.CSharpOutputFolder); } }
+		public string MediaOutputFolder { get { return string.Format("{0}\\Media", Settings.CSharpOutputFolder); } }
 
-//		List<ClassDefinitionBase> _classDefinitions;
+		public Concrete(
+			IConcreteSettings settings,
+			ISourceModelMapper contentSourceModelMapper,
+			ISourceModelMapper mediaSourceModelMapper,
+			ICodeGenerator contentCodeGenerator,
+			ICodeGenerator mediaCodeGenerator,
+			IFileWriter fileWriter
+			)
+		{
+			this.Settings = settings;
 
-//		#endregion
+			this.ContentTypeSourceModelMapper = contentSourceModelMapper;
+			this.MediaTypeSourceModelMapper = mediaSourceModelMapper;
 
-//		#region Constructor
+			this.ContentTypeCodeGenerator = contentCodeGenerator;
+			this.MediaTypeCodeGenerator = mediaCodeGenerator;
 
-//		public Concrete()
-//		{
-//			_contentTypeService = UmbracoContext.Current.Application.Services.ContentTypeService;
+			this.FileWriter = fileWriter;
 
-//			_cSharpOutpuFolder = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.CSharpOutputFolder;
+			this.GenerationErrors = new List<GenerationError>();
+			this.ContentModelCount = 0;
+			this.MediaModelCount = 0;
+			this.FilesWritten = 0;
+		}
 
-//			_contentTypeNameSpace = ConcreteSettings.Current.Namespace + ".Content";
-//			_contentTypeCSharpOutputFolder = string.Format("{0}\\Content", _cSharpOutpuFolder);
+		public void Generate()
+		{
+			GenerateContentBaseClass();
+			GenerateContentModels();
 
-//			_mediaTypeNameSpace = ConcreteSettings.Current.Namespace + ".Media";
-//			_mediaTypeCSharpOutputFolder = string.Format("{0}\\Media", _cSharpOutpuFolder);
+			GenerateMediaBaseClass();
+			GenerateMediaModels();
 
-//			_assemblyOutputDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyOutputDirectory;
-//			_assemblyDependencyDirectory = AppDomain.CurrentDomain.BaseDirectory + ConcreteSettings.Current.AssemblyDependencyDirectory;
-//			_classDefinitions = new List<ClassDefinitionBase>();
-//		}
+			//Code files aren't written to disk until the end of the generation. While generation is in progress the write operations 
+			//are  queued in the FileWriter. This ensures that we don't overwrite existing working files if there were any fatal errors 
+			//in the generation. 
+			WriteAllFiles();
+		}
 
-//		#endregion
+		private void GenerateContentBaseClass()
+		{
+			if (!this.FatalErrorHasOccured)
+			{
+				try
+				{
+					var baseClassDefinition = this.ContentTypeSourceModelMapper.GetBaseClassDefinition();
 
-//		#region Public Methods
+					var baseClassCode = this.ContentTypeCodeGenerator.GenerateBaseClass(baseClassDefinition);
 
-//		public void BuildMediaTypes()
-//		{
-//			var mediaTypes = _contentTypeService.GetAllMediaTypes();
+					this.FileWriter.QueueWriteOperation("UmbracoContent", this.ContentOutputFolder, baseClassCode);
+				}
+				catch (Exception ex)
+				{
+					//This is a fatal error. If the base class doesn't generate properly our models will never compile!
+					this.GenerationErrors.Add(new GenerationError("Error generating content base class.", ex, true));
+				}
+			}
+		}
 
-//			BuildMediaTypes(mediaTypes);
-//		}
+		private void GenerateContentModels()
+		{
+			if (!this.FatalErrorHasOccured)
+			{
+				try
+				{
+					var modelDefinitions = this.ContentTypeSourceModelMapper.GetModelClassDefinitions();
 
-//		public void BuildMediaTypes(IEnumerable<IMediaType> mediaTypes)
-//		{
-//			if (ConcreteSettings.Current.Enabled)
-//			{
-//				CreateCSharp(mediaTypes);
-//			}
-//		}
+					foreach (var definition in modelDefinitions)
+					{
+						var definitionCode = this.ContentTypeCodeGenerator.GenerateModelClass(definition);
 
-//		/// <summary>
-//		/// Updates or creates C# files for all ContentTypes
-//		/// </summary>
-//		public List<ModelClassDefinition> BuildContentTypes()
-//		{
-//			IEnumerable<IContentType> typesToBuild = _contentTypeService.GetAllContentTypes();
+						this.FileWriter.QueueWriteOperation(definition.Name, this.ContentOutputFolder, definitionCode);
 
-//			return BuildContentTypes(typesToBuild);
-//		}
+						this.ContentModelCount++;
+					}
+				}
+				catch (Exception ex)
+				{
+					//This *could* be a fatal error, so we treat as such. If a model failed to generate and another model relied on it
+					//then we wouldn't be able to compile.
+					this.GenerationErrors.Add(new GenerationError("Error generating content model classes", ex, true));
+				}
+			}
+		}
 
-//		/// <summary>
-//		/// Updates or creates C# files for the passed ContentTypes
-//		/// </summary>
-//		public List<ModelClassDefinition> BuildContentTypes(IEnumerable<IContentType> contentTypes)
-//		{
-//			if (ConcreteSettings.Current.Enabled)
-//				return CreateCSharp(contentTypes);
+		private void GenerateMediaBaseClass()
+		{
+			if (!this.FatalErrorHasOccured)
+			{
+				try
+				{
+					var baseClassDefinition = this.MediaTypeSourceModelMapper.GetBaseClassDefinition();
 
-//			return new List<ModelClassDefinition>();
-//		}
+					string baseClassCode = this.MediaTypeCodeGenerator.GenerateBaseClass(baseClassDefinition);
 
+					this.FileWriter.QueueWriteOperation("UmbracoMedia", this.MediaOutputFolder, baseClassCode);
+				}
+				catch (Exception ex)
+				{
+					//This is a fatal error. If the base class doesn't generate properly our models will never compile!
+					this.GenerationErrors.Add(new GenerationError("Error generating media base class", ex, true));
+				}
+			}
+		}
 
-//		public void BuildAssembly()
-//		{
-//			if (ConcreteSettings.Current.Enabled && ConcreteSettings.Current.AssemblyGeneration)
-//			{
-//				AssemblyBuilder builder = new AssemblyBuilder();
-//				builder.CreateAssembly(
-//					_cSharpOutpuFolder,
-//					_assemblyOutputDirectory,
-//					ConcreteSettings.Current.AssemblyName,
-//					_assemblyDependencyDirectory,
-//					GetDependentAssemblies());
-//			}
-//		}
+		private void GenerateMediaModels()
+		{
+			if (!this.FatalErrorHasOccured)
+			{
+				try
+				{
+					var modelDefinitions = this.MediaTypeSourceModelMapper.GetModelClassDefinitions();
 
-//		#endregion
+					foreach (var definition in modelDefinitions)
+					{
+						var definitionCode = this.MediaTypeCodeGenerator.GenerateModelClass(definition);
 
-//		#region Private Methods
+						this.FileWriter.QueueWriteOperation(definition.Name, this.MediaOutputFolder, definitionCode);
 
-//		private List<ModelClassDefinition> CreateCSharp(IEnumerable<IContentType> contentTypes)
-//		{
-//			List<ModelClassDefinition> modelClasses = new List<ModelClassDefinition>();
+						this.MediaModelCount++;
+					}
+				}
+				catch (Exception ex)
+				{
+					//This *could* be a fatal error, so we treat as such. If a model failed to generate and another model relied on it
+					//then we wouldn't be able to compile.
+					this.GenerationErrors.Add(new GenerationError("Error generating media model classes", ex, true));
+				}
+			}
+		}
 
-//			//Create our base class definition and add to global list of generated classes
-//			UmbracoContentClassDefinition baseClassDefintion = new UmbracoContentClassDefinition("UmbracoContent", _contentTypeNameSpace, PublishedItemType.Content);
-//			_classDefinitions.Add(baseClassDefintion);
-
-//			//Notify subscribers that base class is about to be generated
-//			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefintion, PublishedItemType.Content);
-
-//			//Write base class .cs file
-//			CSharpBaseClassFileWriter baseClassWriter = new CSharpBaseClassFileWriter(baseClassDefintion);
-//			baseClassWriter.WriteBaseClass(_contentTypeCSharpOutputFolder);
-
-//			//Create classes for all passed content types
-//			foreach (IContentType contentType in contentTypes)
-//			{
-//				var parent = contentTypes.FirstOrDefault(x => x.Id == contentType.ParentId);
-
-//				//Create model class definition from ContentType and add to list of defintions we return
-//				ModelClassDefinition classDefinition = new ModelClassDefinition(contentType, parent, _contentTypeNameSpace, PublishedItemType.Content, "UmbracoContent");
-//				classDefinition.UsingNamespaces.Add(_mediaTypeNameSpace);
-//				modelClasses.Add(classDefinition);
-
-//				//Notify subscribers that model class is about to be generated
-//				ConcreteEvents.RaiseModelClassGenerating(classDefinition, PublishedItemType.Content);
-
-//				//Write model class .cs file
-//				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
-//				writer.WriteMainClass(_contentTypeCSharpOutputFolder);
-//			}
-
-//			//Add our model classes to global list of generated classes
-//			_classDefinitions.AddRange(modelClasses);
-
-//			return modelClasses;
-//		}
-
-//		private void CreateCSharp(IEnumerable<IMediaType> mediaTypes)
-//		{
-//			UmbracoContentClassDefinition baseClassDefinition = new UmbracoContentClassDefinition("UmbracoMedia", _mediaTypeNameSpace, PublishedItemType.Media);
-//			_classDefinitions.Add(baseClassDefinition);
-
-//			ConcreteEvents.RaiseUmbracoContentClassGenerating(baseClassDefinition, PublishedItemType.Media);
-
-//			CSharpBaseClassFileWriter baseClassWriter = new CSharpBaseClassFileWriter(baseClassDefinition);
-//			baseClassWriter.WriteBaseClass(_mediaTypeCSharpOutputFolder);
-
-//			foreach (IMediaType mediaType in mediaTypes)
-//			{
-//				var parent = mediaTypes.FirstOrDefault(x => x.Id == mediaType.ParentId);
-
-//				ModelClassDefinition classDefinition = new ModelClassDefinition(mediaType, parent, _mediaTypeNameSpace, PublishedItemType.Media, "UmbracoMedia");
-//				_classDefinitions.Add(classDefinition);
-
-//				ConcreteEvents.RaiseModelClassGenerating(classDefinition, PublishedItemType.Media);
-
-//				CSharpFileWriter writer = new CSharpFileWriter(classDefinition);
-//				writer.WriteMainClass(_mediaTypeCSharpOutputFolder);
-//			}
-//		}
-
-//		private List<string> GetDependentAssemblies()
-//		{
-//			List<string> assemblies = new List<string>();
-
-//			foreach (var c in _classDefinitions)
-//			{
-//				foreach (var assembly in c.DependantAssemblies)
-//				{
-//					if (!assemblies.Contains(assembly))
-//						assemblies.Add(assembly);
-//				}
-//			}
-
-//			return assemblies;
-//		}
-
-//		#endregion
-//	}
-//}
+		private void WriteAllFiles()
+		{
+			if (!this.FatalErrorHasOccured)
+			{
+				try
+				{
+					this.FilesWritten = this.FileWriter.WriteQueue();
+				}
+				catch (Exception ex)
+				{
+					//TODO: Not sure what to do here...
+				}
+			}
+		}
+	}
+}

@@ -13,7 +13,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			: base(contentType.Alias, nameSpace, PublishedItemType.Content)
 		{
 			this.BaseClass = GetBaseClass(contentType, parent, defaultBaseClass);
-			this.Properties = new List<PropertyDefinition>();
+			this.Properties = new List<UmbracoPropertyDefinition>();
 			this.Attributes = new List<AttributeDefinition>();
 			this.ChildType = GetChildType(contentType);
 

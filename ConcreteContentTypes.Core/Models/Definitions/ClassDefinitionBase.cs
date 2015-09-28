@@ -13,20 +13,17 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public string Name { get; internal set; }
 		public string Namespace { get; set; }
 		public List<AttributeDefinition> Attributes { get; set; }
-		public List<PropertyDefinition> Properties { get; set; }
 		public List<string> UsingNamespaces { get; set; }
 		public List<string> DependantAssemblies { get; set; }
-		public PublishedItemType PublishedItemType { get; set; }
+		public string BaseClass { get; set; }
 
-		public ClassDefinitionBase(string name, string nameSpace, PublishedItemType contentType)
+		public ClassDefinitionBase(string name, string nameSpace)
 		{
 			this.Name = name;
 			this.Namespace = nameSpace;
 			this.Attributes = new List<AttributeDefinition>();
-			this.Properties = new List<PropertyDefinition>();
 			this.DependantAssemblies = new List<string>();
 			this.UsingNamespaces = new List<string>();
-			this.PublishedItemType = contentType;
 		}
 
 		public virtual List<string> GetUsingNamespaces()
@@ -35,15 +32,6 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			{
 				if (!this.UsingNamespaces.Contains(attribute.Namespace))
 					this.UsingNamespaces.Add(attribute.Namespace);
-			}
-
-			foreach (var property in this.Properties)
-			{
-				foreach (var attribute in property.Attributes)
-				{
-					if (!this.UsingNamespaces.Contains(attribute.Namespace))
-						this.UsingNamespaces.Add(attribute.Namespace);
-				}
 			}
 
 			//Ensure we add our extensions namespace to all classes
