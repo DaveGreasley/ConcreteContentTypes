@@ -30,7 +30,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 		public UmbracoBaseClassDefinition GetBaseClassDefinition()
 		{
-			var baseClassDefinition = new UmbracoBaseClassDefinition("UmbracoContent", this.Namespace);
+			var baseClassDefinition = new UmbracoBaseClassDefinition("UmbracoContent", this.Namespace, PublishedItemType.Content);
 			baseClassDefinition.Properties = GetBaseClassProperties();
 
 			this.Events.RaiseContentBaseClassGenerating(baseClassDefinition);

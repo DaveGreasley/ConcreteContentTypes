@@ -11,27 +11,49 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Templates.Classes
 {
-	public partial class UmbracoBaseClassTemplate : IModelClassTemplate
+	public partial class UmbracoBaseClassTemplate : IUmbracoBaseClassTemplate
 	{
-		public UmbracoModelClassDefinition CurrentDefinition { get; private set; }
-		public IEnumerable<AttributeTemplate> AttributeTemplates { get; private set; }
+		public UmbracoBaseClassDefinition CurrentDefinition { get; private set; }
+		public IEnumerable<AttributeTemplate> ClassAttributeTemplates { get; private set; }
+		public List<string> UsingNamespaces { get; private set; }
+		public string CacheName { get; private set; }
 
 		public UmbracoBaseClassTemplate()
 		{
 			this.CurrentDefinition = null;
-			this.AttributeTemplates = null;
+			this.ClassAttributeTemplates = new List<AttributeTemplate>();
+			this.UsingNamespaces = new List<string>();
+			this.CacheName = string.Empty;
 		}
 
-		public string TransformText(UmbracoModelClassDefinition classDefinition)
+		public string TransformText(UmbracoBaseClassDefinition classDefinition)
 		{
 			if (classDefinition == null)
 				throw new ArgumentNullException("classDefinition");
 
 			this.CurrentDefinition = classDefinition;
-			this.AttributeTemplates = GetAttributeTemplates();
+			this.ClassAttributeTemplates = GetAttributeTemplates();
+			this.UsingNamespaces = classDefinition.GetUsingNamespaces();
+			this.CacheName = CacheNameHelper.GetCacheName(classDefinition.PublishedItemType);
 
-			//return TransformText();
-			return "";
+			return TransformText();
+		}
+
+		protected IEnumerable<AttributeTemplate> GetPropertyAttributeTemplates(UmbracoBaseClassProperty property)
+		{
+			List<AttributeTemplate> attributeTemplates = new List<AttributeTemplate>();
+
+			var propertyDefintion = this.CurrentDefinition.Properties.FirstOrDefault(x => x.Property == property);
+
+			if (propertyDefintion != null)
+			{
+				foreach (var attributeDefinition in propertyDefintion.Attributes)
+				{
+					attributeTemplates.Add(new AttributeTemplate(attributeDefinition));
+				}
+			}
+
+			return attributeTemplates;
 		}
 
 		private IEnumerable<AttributeTemplate> GetAttributeTemplates()

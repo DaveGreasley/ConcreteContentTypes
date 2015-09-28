@@ -21,26 +21,27 @@ using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 
-<# foreach(string nameSpace in _usingNamespaces) { #>
+<# foreach(string nameSpace in UsingNamespaces) { #>
 using <#= nameSpace #>;
 <# } #>
 
 namespace <#= CurrentDefinition.Namespace #>
 {
-	<# foreach(var attribute in AttributeTemplates) { #> <#= attribute.TransformText() #> <# } #>
+	<# foreach(var attribute in ClassAttributeTemplates) { #> <#= attribute.TransformText() #> <# } #>
 	public abstract partial class <#= CurrentDefinition.Name #> : IConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
 		public bool GetPropertiesRecursively { get; set; }
 
 		private IPublishedContent _content = null;
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.Content)) { #><#= "		" + template.TransformText() #><# } #>
 		[JsonIgnore]
 		public IPublishedContent Content
 		{
 			get
 			{
 				if (_content == null && this.Id != 0)
-					_content = UmbracoContext.Current.<#= _cacheName #>.GetById(this.Id);
+					_content = UmbracoContext.Current.<#= CacheName #>.GetById(this.Id);
 
 				return _content;
 			}
@@ -50,25 +51,25 @@ namespace <#= CurrentDefinition.Namespace #>
 			}
 		}
 
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Name]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.Name)) { #><#= "		" + template.TransformText() #><# } #>
 		public string Name { get; set; }
 
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Id]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.Id)) { #><#= "		" + template.TransformText() #><# } #>
 		public int Id { get; set; }
 		
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.ParentId]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.ParentId)) { #><#= "		" + template.TransformText() #><# } #>
 		public int ParentId { get; set; }
 		
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Path]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.Path)) { #><#= "		" + template.TransformText() #><# } #>
 		public string Path { get; set; }
 		
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.CreateDate]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.CreateDate)) { #><#= "		" + template.TransformText() #><# } #>
 		public DateTime CreateDate { get; set; }
 		
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.UpdateDate]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.UpdateDate)) { #><#= "		" + template.TransformText() #><# } #>
 		public DateTime UpdateDate { get; set; }
 		
-<# foreach(var template in _propertyattributeTemplates[BaseClassProperty.Url]) { #><#= "		" + template.TransformText() #><# } #>
+<# foreach(var template in GetPropertyAttributeTemplates(UmbracoBaseClassProperty.Url)) { #><#= "		" + template.TransformText() #><# } #>
 		public string Url { get; set; }
 
 		#region Constructors and Initalisation
@@ -94,7 +95,7 @@ namespace <#= CurrentDefinition.Namespace #>
 
 		public void Init(int contentId)
 		{
-			IPublishedContent content = UmbracoContext.Current.<#= _cacheName #>.GetById(contentId);
+			IPublishedContent content = UmbracoContext.Current.<#= CacheName #>.GetById(contentId);
 
 			if (content == null)
 				throw new InvalidOperationException(string.Format("Content Id {0} not found in Umbraco Cache", contentId));

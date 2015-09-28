@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Tests
 {
@@ -20,7 +21,7 @@ namespace ConcreteContentTypes.Tests
 
 			ConcreteEvents.ContentBaseClassGenerating += (cd) => { eventFired = true; notifiedClassDefinition = cd; };
 
-			var baseClassDefinition = new UmbracoBaseClassDefinition("ContentBaseClass", "TestNamespace");
+			var baseClassDefinition = new UmbracoBaseClassDefinition("ContentBaseClass", "TestNamespace", PublishedItemType.Content);
 
 			var sut = new ConcreteEvents();
 			sut.RaiseContentBaseClassGenerating(baseClassDefinition);
@@ -56,7 +57,7 @@ namespace ConcreteContentTypes.Tests
 
 			ConcreteEvents.MediaBaseClassGenerating += (cd) => { eventFired = true; notifiedClassDefinition = cd; };
 
-			var baseClassDefinition = new UmbracoBaseClassDefinition("MediaBaseClass", "TestNamespace");
+			var baseClassDefinition = new UmbracoBaseClassDefinition("MediaBaseClass", "TestNamespace", PublishedItemType.Media);
 
 			var sut = new ConcreteEvents();
 			sut.RaiseMediaBaseClassGenerating(baseClassDefinition);

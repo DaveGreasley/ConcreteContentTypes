@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Tests
 {
@@ -78,7 +79,7 @@ namespace ConcreteContentTypes.Tests
 			};
 
 			//Setup ContentSourceModelMapper
-			var contentBaseClassDefinition = new UmbracoBaseClassDefinition("UmbracoContent", settings.Namespace + ".Content");
+			var contentBaseClassDefinition = new UmbracoBaseClassDefinition("UmbracoContent", settings.Namespace + ".Content", PublishedItemType.Content);
 			var contentClassDefinition = new UmbracoModelClassDefinition("TestContentType", settings.Namespace + ".Content");
 
 			var contentTypeSourceModelMapper = new Mock<ISourceModelMapper>();
@@ -86,7 +87,7 @@ namespace ConcreteContentTypes.Tests
 			contentTypeSourceModelMapper.Setup(x => x.GetModelClassDefinitions()).Returns(new List<UmbracoModelClassDefinition>() { contentClassDefinition });
 
 			//Setup MediaSourceModelMapper
-			var mediaBaseClassDefinition = new UmbracoBaseClassDefinition("UmbracoMedia", settings.Namespace + ".Content");
+			var mediaBaseClassDefinition = new UmbracoBaseClassDefinition("UmbracoMedia", settings.Namespace + ".Content", PublishedItemType.Media);
 			var mediaClassDefinition = new UmbracoModelClassDefinition("TestMediaType", settings.Namespace + ".Media");
 
 			var mediaTypeSourceModelMapper = new Mock<ISourceModelMapper>();

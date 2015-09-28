@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Tests
 {
@@ -18,7 +19,7 @@ namespace ConcreteContentTypes.Tests
 			string name = "UmbracoBaseClass";
 			string nameSpace = "TestNameSapce";
 
-			var sut = new UmbracoBaseClassDefinition(name, nameSpace);
+			var sut = new UmbracoBaseClassDefinition(name, nameSpace, PublishedItemType.Content);
 
 			Assert.AreEqual(name, sut.Name, "The name is not set correctly");
 			Assert.AreEqual(nameSpace, sut.Namespace, "The namespace is not set correctly");
@@ -26,6 +27,7 @@ namespace ConcreteContentTypes.Tests
 			Assert.AreEqual(0, sut.Properties.Count(), "Properties should be initialised to an empty collection");
 			Assert.IsNotNull(sut.Attributes, "Attributes collection is null");
 			Assert.AreEqual(0, sut.Attributes.Count(), "Attributes should be initialised to an empty collection");
+			Assert.AreEqual(PublishedItemType.Content, sut.PublishedItemType, "PublishedItemType isn ot set correctly");
 
 			var usingNamespaces = sut.GetUsingNamespaces();
 			Assert.IsNotNull(usingNamespaces, "UsingNamespaces is null");
@@ -39,7 +41,7 @@ namespace ConcreteContentTypes.Tests
 			string name = "UmbracoBaseClass";
 			string nameSpace = "TestNameSapce";
 
-			var sut = new UmbracoBaseClassDefinition(name, nameSpace);
+			var sut = new UmbracoBaseClassDefinition(name, nameSpace, PublishedItemType.Content);
 
 			sut.Attributes.Add(new AttributeDefinition("AttributeType", "AttributeNamespace"));
 
@@ -57,7 +59,7 @@ namespace ConcreteContentTypes.Tests
 			string name = "UmbracoBaseClass";
 			string nameSpace = "TestNameSapce";
 
-			var sut = new UmbracoBaseClassDefinition(name, nameSpace);
+			var sut = new UmbracoBaseClassDefinition(name, nameSpace, PublishedItemType.Content);
 
 			sut.Attributes.Add(new AttributeDefinition("AttributeType", "AttributeNamespace"));
 

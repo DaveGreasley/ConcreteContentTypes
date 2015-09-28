@@ -29,7 +29,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 		public UmbracoBaseClassDefinition GetBaseClassDefinition()
 		{
-			var baseClassDefinition = new UmbracoBaseClassDefinition("UmbracoMedia", this.Namespace);
+			var baseClassDefinition = new UmbracoBaseClassDefinition("UmbracoMedia", this.Namespace, PublishedItemType.Media);
 			baseClassDefinition.Properties = GetBaseClassProperties();
 
 			this.Events.RaiseMediaBaseClassGenerating(baseClassDefinition);

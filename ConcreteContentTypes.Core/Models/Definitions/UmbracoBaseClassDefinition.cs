@@ -11,11 +11,13 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	public class UmbracoBaseClassDefinition : ClassDefinitionBase
 	{
 		public List<UmbracoBaseClassPropertyDefinition> Properties { get; set; }
+		public PublishedItemType PublishedItemType { get; set; }
 
-		public UmbracoBaseClassDefinition(string name, string nameSpace)
+		public UmbracoBaseClassDefinition(string name, string nameSpace, PublishedItemType publishedItemType)
 			: base(name, nameSpace)
 		{
 			this.Properties = new List<UmbracoBaseClassPropertyDefinition>();
+			this.PublishedItemType = publishedItemType;
 		}
 
 		public override List<string> GetUsingNamespaces()

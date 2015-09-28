@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Tests
 {
@@ -29,7 +30,7 @@ namespace ConcreteContentTypes.Tests
 		[TestMethod]
 		public void CSharpCodeGenerator_GenerateBaseClass()
 		{
-			var baseClassDefinition = new UmbracoBaseClassDefinition("BaseClass", "TestNameSpace");
+			var baseClassDefinition = new UmbracoBaseClassDefinition("BaseClass", "TestNameSpace", PublishedItemType.Content);
 
 			var baseClassCode = "SomeCode...";
 
