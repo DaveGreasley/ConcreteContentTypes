@@ -1,5 +1,5 @@
 ﻿using ConcreteContentTypes.Core.Helpers;
-using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <param name="userId">The user id to run the content service as</param>
 		/// <returns>A Typed Concrete Model with Id, Name and ParentId set</returns>
 		public static T CreateContentWithIdentity<T>(this IContentService contentService,
-			string name, int parentId, int userId = 0) where T : IConcreteModel, new()
+			string name, int parentId, int userId = 0) where T : ConcreteModel, new()
 		{
 			T model = new T();
 
@@ -46,7 +46,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <param name="userId">The user id to run the content service as</param>
 		/// <returns>A Typed Concrete Model with Id, Name and ParentId set</returns>
 		public static T CreateContentWithIdentity<T>(this IContentService contentService,
-			string name, IContent parent, int userId = 0) where T : IConcreteModel, new()
+			string name, IContent parent, int userId = 0) where T : ConcreteModel, new()
 		{
 			T model = new T();
 
@@ -68,7 +68,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <param name="userId">The user id to run the content service as</param>
 		/// <returns>A Typed Concrete Model with Id, Name and ParentId set</returns>
 		public static T CreateContentWithIdentity<T>(this IContentService contentService,
-			string name, IConcreteModel parent, int userId = 0) where T : IConcreteModel, new()
+			string name, ConcreteModel parent, int userId = 0) where T : ConcreteModel, new()
 		{
 			T model = new T();
 
@@ -93,7 +93,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <param name="userId">Optional Id of the User saving the Content</param>
 		/// <param name="raiseEvents">Optional boolean indicating whether to raise events</param>
 		public static void Save<T>(this IContentService contentService,
-			T model, int userId = 0, bool raiseEvents = true) where T : IConcreteModel, new()
+			T model, int userId = 0, bool raiseEvents = true) where T : ConcreteModel, new()
 		{
 			IContent content = GetOrCreateIContent<T>(contentService, model, userId);
 
@@ -115,7 +115,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <param name="raiseEvents">Optional boolean indicating whether to raise events</param>
 		/// <returns>An <c>Attempt</c> object containing the Status of the Publish attempt</returns>
 		public static Attempt<Umbraco.Core.Publishing.PublishStatus> SaveAndPublishWithStatus<T>(this IContentService contentService,
-			T model, int userId = 0, bool raiseEvents = true) where T : IConcreteModel, new()
+			T model, int userId = 0, bool raiseEvents = true) where T : ConcreteModel, new()
 		{
 			IContent content = GetOrCreateIContent(contentService, model, userId);
 
@@ -124,7 +124,7 @@ namespace ConcreteContentTypes.Core.Extensions
 			return contentService.SaveAndPublishWithStatus(content, userId, raiseEvents);
 		}
 
-		private static IContent GetOrCreateIContent<T>(IContentService contentService, T model, int userId) where T : IConcreteModel, new()
+		private static IContent GetOrCreateIContent<T>(IContentService contentService, T model, int userId) where T : ConcreteModel, new()
 		{
 			IContent content = null;
 
@@ -147,7 +147,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <typeparam name="T">The Type of Concrete Model to delete</typeparam>
 		/// <param name="model">The Concrete Model object to delete</param>
 		/// <param name="userId">Optional Id of the User Deleting the Content</param>
-		public static void Delete<T>(this IContentService contentService, T model, int userId = 0) where T : IConcreteModel, new()
+		public static void Delete<T>(this IContentService contentService, T model, int userId = 0) where T : ConcreteModel, new()
 		{
 			IContent content = contentService.GetById(model.Id);
 

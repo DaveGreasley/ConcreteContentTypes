@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.Interfaces;
+﻿using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

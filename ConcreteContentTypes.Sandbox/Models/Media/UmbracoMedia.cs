@@ -8,7 +8,6 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
-using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
@@ -18,14 +17,11 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Media
 {
-		public abstract partial class UmbracoMedia : IConcreteModel
+		public abstract partial class UmbracoMedia : ConcreteModel
 	{
-		public abstract string ContentTypeAlias { get; }
-		public bool GetPropertiesRecursively { get; set; }
-
 		private IPublishedContent _content = null;
 		[JsonIgnore]
-		public IPublishedContent Content
+		public override IPublishedContent Content
 		{
 			get
 			{
@@ -41,12 +37,12 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 		}
 
 		[Field("nodeName")]
-		public string Name { get; set; }
+		public override string Name { get; set; }
 
 		[Field("id")]
-		public int Id { get; set; }
+		public override int Id { get; set; }
 		
-		public int ParentId { get; set; }
+		public override int ParentId { get; set; }
 		
 		public string Path { get; set; }
 		
@@ -79,7 +75,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			Init(content);
  		}
 
-		public void Init(int contentId)
+		public override void Init(int contentId)
 		{
 			IPublishedContent content = UmbracoContext.Current.MediaCache.GetById(contentId);
 
@@ -89,7 +85,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			Init(content);
 		}
 
-		public virtual void Init(IPublishedContent content)
+		public override void Init(IPublishedContent content)
 		{
 			this.Content = content;
 

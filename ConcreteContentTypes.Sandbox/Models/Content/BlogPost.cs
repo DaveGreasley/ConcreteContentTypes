@@ -7,7 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
 using System;
@@ -109,7 +109,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 		}
 
-		public BlogPost(string name, IConcreteModel parent)
+		public BlogPost(string name, ConcreteModel parent)
 			: this(name, parent.Id)
 		{
 		}

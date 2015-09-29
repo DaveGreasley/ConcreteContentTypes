@@ -111,9 +111,9 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write(" : IConcreteModel\r\n\t{\r\n\t\tpublic abstract string ContentTypeAlias { get; }\r\n\t\tpubl" +
-                    "ic bool GetPropertiesRecursively { get; set; }\r\n\r\n\t\tprivate IPublishedContent _c" +
-                    "ontent = null;\r\n");
+            this.Write(" : ConcreteModel\r\n\t{\r\n\t\tpublic abstract string ContentTypeAlias { get; }\r\n\t\tpubli" +
+                    "c bool GetPropertiesRecursively { get; set; }\r\n\r\n\t\tprivate IPublishedContent _co" +
+                    "ntent = null;\r\n");
             
             #line 46 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { 
@@ -132,8 +132,9 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write("\t\t[JsonIgnore]\r\n\t\tpublic IPublishedContent Content\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t\t\t\tif (_c" +
-                    "ontent == null && this.Id != 0)\r\n\t\t\t\t\t_content = UmbracoContext.Current.");
+            this.Write("\t\t[JsonIgnore]\r\n\t\tpublic override IPublishedContent Content\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t" +
+                    "\t\t\tif (_content == null && this.Id != 0)\r\n\t\t\t\t\t_content = UmbracoContext.Current" +
+                    ".");
             
             #line 53 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CacheName));
@@ -160,7 +161,7 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write("\t\tpublic string Name { get; set; }\r\n\r\n");
+            this.Write("\t\tpublic override string Name { get; set; }\r\n\r\n");
             
             #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Id)) { 
@@ -179,7 +180,7 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write("\t\tpublic int Id { get; set; }\r\n\t\t\r\n");
+            this.Write("\t\tpublic override int Id { get; set; }\r\n\t\t\r\n");
             
             #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(var attribute in GetPropertyAttributes(BaseClassProperty.ParentId)) { 
@@ -198,7 +199,7 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write("\t\tpublic int ParentId { get; set; }\r\n\t\t\r\n");
+            this.Write("\t\tpublic override int ParentId { get; set; }\r\n\t\t\r\n");
             
             #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Path)) { 
@@ -305,7 +306,7 @@ namespace ");
 			Init(content);
  		}
 
-		public void Init(int contentId)
+		public override void Init(int contentId)
 		{
 			IPublishedContent content = UmbracoContext.Current.");
             
@@ -322,7 +323,7 @@ namespace ");
 			Init(content);
 		}
 
-		public virtual void Init(IPublishedContent content)
+		public override void Init(IPublishedContent content)
 		{
 			this.Content = content;
 

@@ -37,15 +37,15 @@ using <#= nameSpace #>;
 namespace <#= Definition.Namespace #>
 {
 	<# foreach(var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
-	public abstract partial class <#= Definition.Name #> : IConcreteModel
+	public abstract partial class <#= Definition.Name #> : ConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
 		public bool GetPropertiesRecursively { get; set; }
 
 		private IPublishedContent _content = null;
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.Content)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
 		[JsonIgnore]
-		public IPublishedContent Content
+		public override IPublishedContent Content
 		{
 			get
 			{
@@ -60,25 +60,25 @@ namespace <#= Definition.Namespace #>
 			}
 		}
 
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.Name)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
-		public string Name { get; set; }
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Name)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+		public override string Name { get; set; }
 
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.Id)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
-		public int Id { get; set; }
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Id)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+		public override int Id { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.ParentId)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
-		public int ParentId { get; set; }
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.ParentId)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+		public override int ParentId { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.Path)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Path)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
 		public string Path { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.CreateDate)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.CreateDate)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
 		public DateTime CreateDate { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.UpdateDate)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.UpdateDate)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
 		public DateTime UpdateDate { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(UmbracoBaseClassProperty.Url)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Url)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
 		public string Url { get; set; }
 
 		#region Constructors and Initalisation
@@ -102,7 +102,7 @@ namespace <#= Definition.Namespace #>
 			Init(content);
  		}
 
-		public void Init(int contentId)
+		public override void Init(int contentId)
 		{
 			IPublishedContent content = UmbracoContext.Current.<#= CacheName #>.GetById(contentId);
 
@@ -112,7 +112,7 @@ namespace <#= Definition.Namespace #>
 			Init(content);
 		}
 
-		public virtual void Init(IPublishedContent content)
+		public override void Init(IPublishedContent content)
 		{
 			this.Content = content;
 

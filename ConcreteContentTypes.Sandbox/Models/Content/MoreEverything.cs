@@ -7,7 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
 using System;
@@ -202,7 +202,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 		}
 
-		public MoreEverything(string name, IConcreteModel parent)
+		public MoreEverything(string name, ConcreteModel parent)
 			: this(name, parent.Id)
 		{
 		}

@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.Interfaces;
+﻿using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <typeparam name="T">The Type of Concrete Model to convert to</typeparam>
 		/// <param name="content">The IPublishedContent object to convert</param>
 		/// <returns>A strongly typed model representing the IPublishedContent object</returns>
-		public static T As<T>(this IPublishedContent content) where T : class, IConcreteModel, new()
+		public static T As<T>(this IPublishedContent content) where T : ConcreteModel, new()
 		{
 			T model = new T();
 			model.Init(content);
@@ -30,7 +30,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <typeparam name="T">The Type of Concrete Model to convert to</typeparam>
 		/// <param name="content">The collection of IPublishedContent objects</param>
 		/// <returns>A collection of strongly typed models representing the collection of IPublishedContent objects</returns>
-		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> content) where T : class, IConcreteModel, new()
+		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> content) where T : ConcreteModel, new()
 		{
 			List<T> contentList = new List<T>();
 

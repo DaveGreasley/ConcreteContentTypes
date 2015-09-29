@@ -8,7 +8,6 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
-using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
@@ -18,14 +17,11 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-		public abstract partial class UmbracoContent : IConcreteModel
+	public abstract partial class UmbracoContent : ConcreteModel
 	{
-		public abstract string ContentTypeAlias { get; }
-		public bool GetPropertiesRecursively { get; set; }
-
 		private IPublishedContent _content = null;
 		[JsonIgnore]
-		public IPublishedContent Content
+		public override IPublishedContent Content
 		{
 			get
 			{
@@ -41,45 +37,45 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		}
 
 		[Field("nodeName")]
-		public string Name { get; set; }
+		public override string Name { get; set; }
 
 		[Field("id")]
-		public int Id { get; set; }
-		
-		public int ParentId { get; set; }
-		
+		public override int Id { get; set; }
+
+		public override int ParentId { get; set; }
+
 		public string Path { get; set; }
-		
+
 		[Field("createDate")]
 		public DateTime CreateDate { get; set; }
-		
+
 		[Field("updateDate")]
 		public DateTime UpdateDate { get; set; }
-		
+
 		public string Url { get; set; }
 
 		#region Constructors and Initalisation
 
- 		public UmbracoContent()
+		public UmbracoContent()
 			: base()
- 		{
- 		}
- 
- 		public UmbracoContent(int contentId, bool getPropertiesRecursively = false)
- 		{
+		{
+		}
+
+		public UmbracoContent(int contentId, bool getPropertiesRecursively = false)
+		{
 			this.GetPropertiesRecursively = getPropertiesRecursively;
 
 			Init(contentId);
- 		}
- 
- 		public UmbracoContent(IPublishedContent content, bool getPropertiesRecursively = false)
- 		{
+		}
+
+		public UmbracoContent(IPublishedContent content, bool getPropertiesRecursively = false)
+		{
 			this.GetPropertiesRecursively = getPropertiesRecursively;
 
 			Init(content);
- 		}
+		}
 
-		public void Init(int contentId)
+		public override void Init(int contentId)
 		{
 			IPublishedContent content = UmbracoContext.Current.ContentCache.GetById(contentId);
 
@@ -89,7 +85,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			Init(content);
 		}
 
-		public virtual void Init(IPublishedContent content)
+		public override void Init(IPublishedContent content)
 		{
 			this.Content = content;
 
@@ -116,10 +112,10 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			}
 
 			//If that doesn't work then get it from the parent content object. 
-			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; 
+			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1;
 		}
 
 		#endregion
 
- 	}
-} 
+	}
+}

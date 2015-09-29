@@ -1,5 +1,4 @@
-﻿using ConcreteContentTypes.Core.Interfaces;
-using ConcreteContentTypes.Core.Models;
+﻿using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,7 +12,7 @@ using ConcreteContentTypes.Core.Extensions;
 
 namespace ConcreteContentTypes.Core.ViewTemplates
 {
-	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : class, IConcreteModel, new()
+	public class ConcreteViewPage<T> : UmbracoTemplatePage where T : ConcreteModel, new()
 	{
 		/// <summary>
 		/// The <typeparam name="T">Concrete Model</typeparam> that represents the Current Page

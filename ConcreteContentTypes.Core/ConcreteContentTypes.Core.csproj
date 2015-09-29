@@ -227,11 +227,10 @@
     <Compile Include="GenerationError.cs" />
     <Compile Include="Helpers\PropertyValueConverterHelper.cs" />
     <Compile Include="Configuration\IConcreteSettings.cs" />
-    <Compile Include="Interfaces\ICSharpWriterSettings.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
-    <Compile Include="Interfaces\ConcreteModel.cs" />
+    <Compile Include="Models\ConcreteModel.cs" />
     <Compile Include="Models\Definitions\IAttributeDefintion.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
     <Compile Include="Models\Definitions\ModelClassDefinition.cs" />
@@ -281,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeGeneration\CSharp\Properties\Models\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

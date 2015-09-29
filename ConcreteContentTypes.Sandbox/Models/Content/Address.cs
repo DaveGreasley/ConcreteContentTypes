@@ -7,7 +7,6 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Interfaces;
 using Newtonsoft.Json;
 
 using System;
@@ -58,7 +57,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 		}
 
-		public Address(string name, IConcreteModel parent)
+		public Address(string name, ConcreteModel parent)
 			: this(name, parent.Id)
 		{
 		}

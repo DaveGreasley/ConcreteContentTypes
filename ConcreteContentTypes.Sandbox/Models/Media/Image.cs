@@ -7,7 +7,7 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Interfaces;
+using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
 using System;
@@ -67,7 +67,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 		{
 		}
 
-		public Image(string name, IConcreteModel parent)
+		public Image(string name, ConcreteModel parent)
 			: this(name, parent.Id)
 		{
 		}
