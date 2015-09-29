@@ -4,6 +4,10 @@ version: 0.1.0.{build}
 environment:
   EnableNuGetPackageRestore: true
 
+branches:
+  only:
+    - /addon-.*/
+
 # UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds
 # example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
 install:
@@ -29,5 +33,5 @@ deploy:
   api_key:
     secure: 1kymiGZ5/Dp9GK6NAYdpFy4Ok73z5NrBNN0GfBHPDhtkOKcCOXY1AheqzIys3Nz0
   on:
-    branch: release-addon-webblocks
+    branch: addon-webblocks-release
   artifact: /.*\.nupkg/
