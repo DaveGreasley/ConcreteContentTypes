@@ -18,7 +18,6 @@ namespace ConcreteContentTypes.Tests
 			var sut = new BaseClassPropertyDefinition(BaseClassProperty.Name);
 
 			Assert.AreEqual(BaseClassProperty.Name, sut.Property, "Property is not set correctly");
-			Assert.AreEqual("String", sut.ClrType, "ClrType is not set correctly");
 			Assert.AreEqual("Name", sut.Name, "Name is not set correctly");
 		}
 	}

@@ -9,11 +9,13 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	public class ModelClassDefinition : ClassDefinitionBase
 	{
 		public List<ModelClassPropertyDefinition> Properties { get; set; }
+		public string ChildType { get; set; }
 
 		public ModelClassDefinition(string name, string nameSpace)
 			: base(name, nameSpace)
 		{
 			this.Properties = new List<ModelClassPropertyDefinition>();
+			this.ChildType = typeof(SimpleConcreteModel).Name; //TODO: Set as constant
 		}
 
 		public override List<string> GetUsingNamespaces()

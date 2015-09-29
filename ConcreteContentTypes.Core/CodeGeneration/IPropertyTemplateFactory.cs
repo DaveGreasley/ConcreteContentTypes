@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConcreteContentTypes.Core.Models.Definitions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	public interface IPropertyTemplateFactory
 	{
+		IPropertyTemplate GetTemplate(ModelClassPropertyDefinition classDefinition);
 	}
 }

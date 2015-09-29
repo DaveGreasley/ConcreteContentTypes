@@ -15,6 +15,7 @@ namespace ConcreteContentTypes.Core.Models.Enums
 		Path,
 		CreateDate,
 		UpdateDate,
-		Url
+		Url,
+		Children
 	}
 }

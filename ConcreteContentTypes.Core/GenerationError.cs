@@ -16,7 +16,7 @@ namespace ConcreteContentTypes.Core
 		/// </summary>
 		public bool Fatal { get; set; }
 
-		public GenerationError(string message, Exception exception, bool fatal = false)
+		public GenerationError(string message, Exception exception = null, bool fatal = false)
 		{
 			this.Message = message;
 			this.Exception = exception;

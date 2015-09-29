@@ -75,6 +75,7 @@ namespace ConcreteContentTypes.Tests
 			testContentType.Setup(x => x.ParentId).Returns(-1);
 			testContentType.Setup(x => x.Id).Returns(1234);
 			testContentType.Setup(x => x.ContentTypeComposition).Returns(new List<IContentTypeComposition>());
+			testContentType.Setup(x => x.AllowedContentTypes).Returns(new List<ContentTypeSort>());
 
 			var eventsMock = new Mock<IConcreteEvents>();
 

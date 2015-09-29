@@ -20,7 +20,24 @@ namespace ConcreteContentTypes.Core.Models
 		public abstract IPublishedContent Content { get; set; }
 
 		public abstract void Init(IPublishedContent content);
+		public abstract void Init(ConcreteModel model);
 		public abstract void Init(int id);
 
+		protected int GetParentId(string path)
+		{
+			//First try and get parent id from the path
+			var pathElements = path.Split(',');
+
+			if (pathElements != null && pathElements.Count() >= 2)
+			{
+				var parentId = pathElements[pathElements.Length - 2];
+
+				if (!string.IsNullOrWhiteSpace(parentId))
+					return Convert.ToInt32(parentId);
+			}
+
+			//If that doesn't work then get it from the parent content object. 
+			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1;
+		}
 	}
 }

@@ -17,7 +17,25 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	public abstract partial class UmbracoContent : ConcreteModel
+	public abstract partial class UmbracoContent : UmbracoContent<SimpleConcreteModel>
+	{
+		public UmbracoContent()
+			: base()
+		{
+		}
+
+		public UmbracoContent(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
+		{
+		}
+
+		public UmbracoContent(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
+		{
+		}
+	}
+
+	public abstract partial class UmbracoContent<TChild> : ConcreteModel where TChild : ConcreteModel, new()
 	{
 		private IPublishedContent _content = null;
 		[JsonIgnore]
@@ -85,6 +103,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			Init(content);
 		}
 
+		public override void Init(ConcreteModel model)
+		{
+			this.Init(model.Content);
+		}
+
 		public override void Init(IPublishedContent content)
 		{
 			this.Content = content;
@@ -98,24 +121,22 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 			this.Url = this.Content.Url;
 		}
 
-		private int GetParentId(string path)
-		{
-			//First try and get parent id from the path
-			var pathElements = path.Split(',');
-
-			if (pathElements != null && pathElements.Count() >= 2)
-			{
-				var parentId = pathElements[pathElements.Length - 2];
-
-				if (!string.IsNullOrWhiteSpace(parentId))
-					return Convert.ToInt32(parentId);
-			}
-
-			//If that doesn't work then get it from the parent content object. 
-			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1;
-		}
-
 		#endregion
+
+		private IEnumerable<TChild> _children = null;
+		public IEnumerable<TChild> Children
+		{
+			get
+			{
+				if (_children == null && this.Content != null)
+					_children = this.Content.Children.As<TChild>();
+				else
+					_children = new List<TChild>();
+
+
+				return _children;
+			}
+		}
 
 	}
 }

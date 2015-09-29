@@ -22,12 +22,12 @@ namespace ConcreteContentTypes.Core
 
 		public IFileWriter FileWriter { get; set; }
 
-		public List<GenerationError> GenerationErrors { get; set; }
+		public IErrorTracker ErrorTracker { get; set; }
+
 		public int ContentModelCount { get; set; }
 		public int MediaModelCount { get; set; }
 		public int FilesWritten { get; set; }
 
-		public bool FatalErrorHasOccured { get { return this.GenerationErrors.Any(x => x.Fatal); } }
 		public string ContentOutputFolder { get { return string.Format("{0}\\Content", Settings.CSharpOutputFolder); } }
 		public string MediaOutputFolder { get { return string.Format("{0}\\Media", Settings.CSharpOutputFolder); } }
 
@@ -37,7 +37,8 @@ namespace ConcreteContentTypes.Core
 			ISourceModelMapper mediaSourceModelMapper,
 			ICodeGenerator contentCodeGenerator,
 			ICodeGenerator mediaCodeGenerator,
-			IFileWriter fileWriter
+			IFileWriter fileWriter,
+			IErrorTracker errorTracker
 			)
 		{
 			this.Settings = settings;
@@ -50,7 +51,8 @@ namespace ConcreteContentTypes.Core
 
 			this.FileWriter = fileWriter;
 
-			this.GenerationErrors = new List<GenerationError>();
+			this.ErrorTracker = errorTracker;
+
 			this.ContentModelCount = 0;
 			this.MediaModelCount = 0;
 			this.FilesWritten = 0;
@@ -65,14 +67,14 @@ namespace ConcreteContentTypes.Core
 			GenerateMediaModels();
 
 			//Code files aren't written to disk until the end of the generation. While generation is in progress the write operations 
-			//are  queued in the FileWriter. This ensures that we don't overwrite existing working files if there were any fatal errors 
+			//are  queued in the FileWriter. This ensures that we don't overwrite existing working files if there any fatal errors 
 			//in the generation. 
 			WriteAllFiles();
 		}
 
 		private void GenerateContentBaseClass()
 		{
-			if (!this.FatalErrorHasOccured)
+			if (!this.ErrorTracker.FatalErrorHasOccurred)
 			{
 				try
 				{
@@ -85,14 +87,14 @@ namespace ConcreteContentTypes.Core
 				catch (Exception ex)
 				{
 					//This is a fatal error. If the base class doesn't generate properly our models will never compile!
-					this.GenerationErrors.Add(new GenerationError("Error generating content base class.", ex, true));
+					this.ErrorTracker.Fatal("Error generating content base class.", ex);
 				}
 			}
 		}
 
 		private void GenerateContentModels()
 		{
-			if (!this.FatalErrorHasOccured)
+			if (!this.ErrorTracker.FatalErrorHasOccurred)
 			{
 				try
 				{
@@ -111,14 +113,14 @@ namespace ConcreteContentTypes.Core
 				{
 					//This *could* be a fatal error, so we treat as such. If a model failed to generate and another model relied on it
 					//then we wouldn't be able to compile.
-					this.GenerationErrors.Add(new GenerationError("Error generating content model classes", ex, true));
+					this.ErrorTracker.Fatal("Error generating content model classes", ex);
 				}
 			}
 		}
 
 		private void GenerateMediaBaseClass()
 		{
-			if (!this.FatalErrorHasOccured)
+			if (!this.ErrorTracker.FatalErrorHasOccurred)
 			{
 				try
 				{
@@ -131,14 +133,14 @@ namespace ConcreteContentTypes.Core
 				catch (Exception ex)
 				{
 					//This is a fatal error. If the base class doesn't generate properly our models will never compile!
-					this.GenerationErrors.Add(new GenerationError("Error generating media base class", ex, true));
+					this.ErrorTracker.Fatal("Error generating media base class", ex);
 				}
 			}
 		}
 
 		private void GenerateMediaModels()
 		{
-			if (!this.FatalErrorHasOccured)
+			if (!this.ErrorTracker.FatalErrorHasOccurred)
 			{
 				try
 				{
@@ -157,14 +159,14 @@ namespace ConcreteContentTypes.Core
 				{
 					//This *could* be a fatal error, so we treat as such. If a model failed to generate and another model relied on it
 					//then we wouldn't be able to compile.
-					this.GenerationErrors.Add(new GenerationError("Error generating media model classes", ex, true));
+					this.ErrorTracker.Fatal("Error generating media model classes", ex);
 				}
 			}
 		}
 
 		private void WriteAllFiles()
 		{
-			if (!this.FatalErrorHasOccured)
+			if (!this.ErrorTracker.FatalErrorHasOccurred)
 			{
 				try
 				{

@@ -34,6 +34,30 @@ using <#= nameSpace #>;
 namespace <#= Definition.Namespace #>
 {
 	<# foreach (var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
+	public partial class <#= Definition.Name #> : <#= Definition.BaseClass #><<#= Definition.ChildType #>>
+	{
+		public <#= Definition.Name #>()
+			: base()
+		{ }
+
+		public <#= Definition.Name #>(string name, ConcreteModel parent)
+			: this(name, parent.Id)
+		{ }
+		
+		public <#= Definition.Name #>(string name, int parentId)
+			: base(name, parentId)
+		{ }
+
+		public <#= Definition.Name #>(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
+		{ }
+
+		public <#=Definition.Name#>(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
+		{ }
+	}
+
+	<# foreach (var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
 	public partial class <#= Definition.Name #> : <#= Definition.BaseClass #>
 	{
 		public override string ContentTypeAlias { get { return "<#= Definition.Name #>"; } }
@@ -45,7 +69,7 @@ namespace <#= Definition.Namespace #>
 		{
 		}
 
-		public <#= Definition.Name #>(string name, IConcreteModel parent)
+		public <#= Definition.Name #>(string name, ConcreteModel parent)
 			: this(name, parent.Id)
 		{
 		}

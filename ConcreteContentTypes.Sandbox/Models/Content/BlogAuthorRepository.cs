@@ -17,24 +17,37 @@ using ConcreteContentTypes.Core.Extensions;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	 [NodeTypeAlias("BlogAuthorRepository")]
- 	public partial class BlogAuthorRepository : UmbracoContent
+	public partial class BlogAuthorRepository : BlogAuthorRepository<BlogAuthor>
+	{
+		public BlogAuthorRepository()
+			: base()
+		{ }
+
+		public BlogAuthorRepository(string name, ConcreteModel parent)
+			: base(name, parent.Id)
+		{ }
+
+		public BlogAuthorRepository(string name, int parentId)
+			: base(name, parentId)
+		{ }
+
+		public BlogAuthorRepository(int contentId, bool getPropertiesRecursively = false)
+			: base(contentId, getPropertiesRecursively)
+		{
+		}
+
+		public BlogAuthorRepository(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
+		{
+		}
+	}
+
+	[NodeTypeAlias("BlogAuthorRepository")]
+	public partial class BlogAuthorRepository<TChild> : UmbracoContent<TChild> where TChild : ConcreteModel, new()
 	{
 		public override string ContentTypeAlias { get { return "BlogAuthorRepository"; } }
 
-		
-		
-		private IEnumerable<BlogAuthor> _children = null;
-		public IEnumerable<BlogAuthor> Children
-		{
-			get
-			{
-				if (_children == null && this.Content != null)
-					_children = this.Content.Children.Select(x => new BlogAuthor(x));
 
-				return _children;
-			}
-		}
 
 		public BlogAuthorRepository()
 			: base()
@@ -66,7 +79,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		public override void Init(IPublishedContent content)
 		{
 			base.Init(content);
-			
+
 		}
 
 	}

@@ -16,7 +16,6 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
-using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
@@ -37,7 +36,34 @@ using <#= nameSpace #>;
 namespace <#= Definition.Namespace #>
 {
 	<# foreach(var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
-	public abstract partial class <#= Definition.Name #> : ConcreteModel
+	public abstract partial class <#= Definition.Name #> : <#= Definition.Name #><SimpleConcreteModel>
+	{
+		public <#= Definition.Name #>()
+ 		{
+ 		}
+
+ 		public <#= Definition.Name #>(ConcreteModel model, bool getPropertiesRecursively = false)
+			: this(model.Content, getPropertiesRecursively)
+ 		{
+ 		}
+ 
+ 		public <#= Definition.Name #>(int contentId, bool getPropertiesRecursively = false)
+ 		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
+			Init(contentId);
+ 		}
+ 
+ 		public <#= Definition.Name #>(IPublishedContent content, bool getPropertiesRecursively = false)
+ 		{
+			this.GetPropertiesRecursively = getPropertiesRecursively;
+
+			Init(content);
+ 		}
+	}
+
+	<# foreach(var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
+	public abstract partial class <#= Definition.Name #><TChild> : ConcreteModel where TChild : ConcreteModel, new()
 	{
 		public abstract string ContentTypeAlias { get; }
 		public bool GetPropertiesRecursively { get; set; }
@@ -81,10 +107,32 @@ namespace <#= Definition.Namespace #>
 <# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Url)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
 		public string Url { get; set; }
 
+
+		private IEnumerable<TChild> _children = null;
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Children)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+		[JsonIgnore]
+		public IEnumerable<TChild> Children
+		{
+			get
+			{
+				if (_children == null && this.Content != null)
+					_children = this.Content.Children.As<TChild>();
+				else
+					_children = new List<TChild>();
+
+
+				return _children;
+			}
+		}
+
 		#region Constructors and Initalisation
 
  		public <#= Definition.Name #>()
-			: base()
+ 		{
+ 		}
+
+ 		public <#= Definition.Name #>(ConcreteModel model, bool getPropertiesRecursively = false)
+			: this(model.Content, getPropertiesRecursively)
  		{
  		}
  

@@ -50,6 +50,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 				definition.Properties = GetProperties(definition, contentType, PublishedItemType.Content);
 				definition.BaseClass = GetBaseClass(contentType, GetParent(contentType), "UmbracoContent");
+				definition.ChildType = GetChildType(contentType);
 
 				this.Events.RaiseContentModelClassGenerating(definition);
 

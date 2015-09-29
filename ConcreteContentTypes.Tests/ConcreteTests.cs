@@ -31,13 +31,16 @@ namespace ConcreteContentTypes.Tests
 
 			var fileWriterMock = new Mock<IFileWriter>();
 
+			var errorTrackerMock = new Mock<IErrorTracker>();
+
 			var sut = new Concrete(
 				concreteSettingsMock.Object,
 				contentTypeMapperMock.Object,
 				mediaTypeMapperMock.Object,
 				contentTypeCodeGeneratorMock.Object,
 				mediaTypeCodeGeneratorMock.Object,
-				fileWriterMock.Object);
+				fileWriterMock.Object,
+				errorTrackerMock.Object);
 
 			Assert.IsNotNull(sut.Settings, "Settings is null");
 			Assert.AreSame(sut.Settings, concreteSettingsMock.Object);
@@ -55,9 +58,11 @@ namespace ConcreteContentTypes.Tests
 			Assert.AreSame(sut.MediaTypeCodeGenerator, mediaTypeCodeGeneratorMock.Object, "MediaCodeGenerator set to incorrect instance");
 
 			Assert.IsNotNull(sut.FileWriter, "FileWriter is null");
-			Assert.AreSame(sut.FileWriter, fileWriterMock.Object);
+			Assert.AreSame(sut.FileWriter, fileWriterMock.Object, "FileWriter set to incorrect instance");
 
-			Assert.AreEqual(0, sut.GenerationErrors.Count(), "GenerationErrorCount is not initialised to 0");
+			Assert.IsNotNull(sut.ErrorTracker, "ErrorTracker is null");
+			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker set to incorrect instance");
+
 			Assert.AreEqual(0, sut.ContentModelCount, "ContentModelCount is not initialised to 0");
 			Assert.AreEqual(0, sut.MediaModelCount, "MediaModelCount is not initialised to 0");
 			Assert.AreEqual(0, sut.FilesWritten, "FilesWritten is not initialised to 0");
@@ -117,6 +122,10 @@ namespace ConcreteContentTypes.Tests
 				.Callback(() => writeOperations++);
 			fileWriterMock.Setup(x => x.WriteQueue()).Returns(() => writeOperations);
 
+			//Setup ErrorTracker
+			bool fatalErrorOccurred = false;
+			var errorTrackerMock = new Mock<IErrorTracker>();
+			errorTrackerMock.Setup(x => x.Fatal(It.IsAny<string>(), It.IsAny<Exception>())).Callback(() => { fatalErrorOccurred = true; });
 
 			//Create concrete object using Mock objects
 			var sut = new Concrete(
@@ -125,12 +134,14 @@ namespace ConcreteContentTypes.Tests
 				mediaTypeSourceModelMapper.Object,
 				contentTypeCodeGeneratorMock.Object,
 				mediaTypeCodeGeneratorMock.Object,
-				fileWriterMock.Object);
+				fileWriterMock.Object,
+				errorTrackerMock.Object);
 
 			//Generate the models
 			sut.Generate();
 
-			//
+			Assert.IsFalse(fatalErrorOccurred, "Fatal error was reported by errorTracker");
+
 			contentTypeSourceModelMapper.Verify(x => x.GetModelClassDefinitions(), Times.Once, "GetModelClassDefinitions() not called on ContentSourceModelMapper");
 			mediaTypeSourceModelMapper.Verify(x => x.GetModelClassDefinitions(), Times.Once, "GetModelClassDefinitions() not called on MediaSourceModelMapper");
 
@@ -163,7 +174,6 @@ namespace ConcreteContentTypes.Tests
 			Assert.AreEqual(1, sut.ContentModelCount, "The Content Model was not generated");
 			Assert.AreEqual(1, sut.MediaModelCount, "The Media Model was not generated");
 			Assert.AreEqual(4, sut.FilesWritten, "Should have written 4 files");
-			Assert.AreEqual(0, sut.GenerationErrors.Count(), "There were errors in the generation!");
 		}
 	}
 }

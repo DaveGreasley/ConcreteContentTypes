@@ -28,13 +28,13 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// Converts the collection of IPublishedContent objects to a collection of Concrete Models
 		/// </summary>
 		/// <typeparam name="T">The Type of Concrete Model to convert to</typeparam>
-		/// <param name="content">The collection of IPublishedContent objects</param>
+		/// <param name="collection">The collection of IPublishedContent objects</param>
 		/// <returns>A collection of strongly typed models representing the collection of IPublishedContent objects</returns>
-		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> content) where T : ConcreteModel, new()
+		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> collection) where T : ConcreteModel, new()
 		{
 			List<T> contentList = new List<T>();
 
-			foreach (var c in content)
+			foreach (var c in collection)
 				contentList.Add(c.As<T>());
 
 			return contentList;

@@ -7,10 +7,8 @@ using System.Web;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
-using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
 
-using System;
 using Umbraco.Examine.Linq.Attributes;
 using ConcreteContentTypes.Core.Extensions;
 

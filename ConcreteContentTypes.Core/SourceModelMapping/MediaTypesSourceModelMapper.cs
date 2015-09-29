@@ -49,6 +49,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 					);
 				definition.Properties = GetProperties(definition, mediaType, PublishedItemType.Media);
 				definition.BaseClass = GetBaseClass(mediaType, GetParent(mediaType), "UmbracoMedia");
+				definition.ChildType = GetChildType(mediaType);
 
 				this.Events.RaiseMediaModelClassGenerating(definition);
 

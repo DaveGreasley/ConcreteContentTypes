@@ -213,6 +213,7 @@
     </Compile>
     <Compile Include="CodeGeneration\IAttributeTemplate.cs" />
     <Compile Include="CodeGeneration\ICodeGenerator.cs" />
+    <Compile Include="CodeGeneration\IErrorTracker.cs" />
     <Compile Include="CodeGeneration\IPropertyTemplate.cs" />
     <Compile Include="CodeGeneration\IBaseClassTemplate.cs" />
     <Compile Include="CodeGeneration\IModelClassTemplate.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Events\IConcreteEvents.cs" />
     <Compile Include="Extensions\IContentServiceExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
+    <Compile Include="Extensions\SimpleConcreteModelExtensions.cs" />
     <Compile Include="FileWriters\FileWriter.cs" />
     <Compile Include="FileWriters\IFileWriter.cs" />
     <Compile Include="FileWriters\WriteOperation.cs" />
@@ -230,6 +232,8 @@
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
+    <Compile Include="Models\Definitions\TypedPropertyDefinition.cs" />
+    <Compile Include="Models\SimpleConcreteModel.cs" />
     <Compile Include="Models\ConcreteModel.cs" />
     <Compile Include="Models\Definitions\IAttributeDefintion.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
@@ -280,7 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeGeneration\CSharp\Properties\Models\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

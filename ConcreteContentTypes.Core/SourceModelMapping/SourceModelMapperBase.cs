@@ -1,6 +1,7 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Helpers;
+using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
 using System;
@@ -63,6 +64,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.Path));
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.UpdateDate));
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.Url));
+			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.Children));
 
 			return propertyDefinitions;
 		}
@@ -95,6 +97,17 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 				return defaultBaseClass;
 
 			return parent.Alias;
+		}
+
+		protected string GetChildType(IContentTypeBase contentType)
+		{
+			if (contentType.AllowedContentTypes.Count() > 1)
+				return typeof(SimpleConcreteModel).Name;
+
+			if (contentType.AllowedContentTypes.Count() == 1)
+				return contentType.AllowedContentTypes.First().Alias;
+
+			return string.Empty;
 		}
 	}
 }

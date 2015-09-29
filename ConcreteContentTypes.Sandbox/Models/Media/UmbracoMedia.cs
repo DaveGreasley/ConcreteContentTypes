@@ -17,7 +17,7 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Media
 {
-		public abstract partial class UmbracoMedia : ConcreteModel
+	public abstract partial class UmbracoMedia : ConcreteModel
 	{
 		private IPublishedContent _content = null;
 		[JsonIgnore]
@@ -41,39 +41,39 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 
 		[Field("id")]
 		public override int Id { get; set; }
-		
+
 		public override int ParentId { get; set; }
-		
+
 		public string Path { get; set; }
-		
+
 		[Field("createDate")]
 		public DateTime CreateDate { get; set; }
-		
+
 		[Field("updateDate")]
 		public DateTime UpdateDate { get; set; }
-		
+
 		public string Url { get; set; }
 
 		#region Constructors and Initalisation
 
- 		public UmbracoMedia()
+		public UmbracoMedia()
 			: base()
- 		{
- 		}
- 
- 		public UmbracoMedia(int contentId, bool getPropertiesRecursively = false)
- 		{
+		{
+		}
+
+		public UmbracoMedia(int contentId, bool getPropertiesRecursively = false)
+		{
 			this.GetPropertiesRecursively = getPropertiesRecursively;
 
 			Init(contentId);
- 		}
- 
- 		public UmbracoMedia(IPublishedContent content, bool getPropertiesRecursively = false)
- 		{
+		}
+
+		public UmbracoMedia(IPublishedContent content, bool getPropertiesRecursively = false)
+		{
 			this.GetPropertiesRecursively = getPropertiesRecursively;
 
 			Init(content);
- 		}
+		}
 
 		public override void Init(int contentId)
 		{
@@ -83,6 +83,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 				throw new InvalidOperationException(string.Format("Content Id {0} not found in Umbraco Cache", contentId));
 
 			Init(content);
+		}
+
+		public override void Init(ConcreteModel model)
+		{
+			this.Init(model.Content);
 		}
 
 		public override void Init(IPublishedContent content)
@@ -112,10 +117,10 @@ namespace ConcreteContentTypes.Sandbox.Models.Media
 			}
 
 			//If that doesn't work then get it from the parent content object. 
-			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1; 
+			return this.Content != null && this.Content.Parent != null ? this.Content.Parent.Id : -1;
 		}
 
 		#endregion
 
- 	}
-} 
+	}
+}

@@ -13,34 +13,9 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public BaseClassProperty Property { get; set; }
 
 		public BaseClassPropertyDefinition(BaseClassProperty property)
-			: base(property.ToString(), GetType(property))
+			: base(property.ToString())
 		{
 			this.Property = property;
-		}
-
-		private static Type GetType(BaseClassProperty property)
-		{
-			switch (property)
-			{
-				case BaseClassProperty.Content:
-					return typeof(IPublishedContent);
-				case BaseClassProperty.CreateDate:
-					return typeof(DateTime);
-				case BaseClassProperty.Id:
-					return typeof(int);
-				case BaseClassProperty.Name:
-					return typeof(string);
-				case BaseClassProperty.ParentId:
-					return typeof(int);
-				case BaseClassProperty.Path:
-					return typeof(string);
-				case BaseClassProperty.UpdateDate:
-					return typeof(DateTime);
-				case BaseClassProperty.Url:
-					return typeof(string);
-				default:
-					throw new ArgumentOutOfRangeException("property", "Unknown property");
-			}
 		}
 	}
 }

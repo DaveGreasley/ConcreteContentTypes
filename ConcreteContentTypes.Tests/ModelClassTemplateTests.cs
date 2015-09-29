@@ -19,11 +19,13 @@ namespace ConcreteContentTypes.Tests
 		{
 			var attributeTemplateMock = new Mock<IAttributeTemplate>();
 			var ptfMock = new Mock<IPropertyTemplateFactory>();
+			var errorTrackerMock = new Mock<IErrorTracker>();
 
-			var sut = new ModelClassTemplate(attributeTemplateMock.Object, ptfMock.Object);
+			var sut = new ModelClassTemplate(attributeTemplateMock.Object, ptfMock.Object, errorTrackerMock.Object);
 
 			Assert.IsNull(sut.Definition, "ClassDefinition should be initialised to null");
 			Assert.AreSame(attributeTemplateMock.Object, sut.AttributeTemplate, "AttributeTemplate not set properly");
+			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker);
 		}
 	}
 }

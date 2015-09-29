@@ -40,28 +40,27 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ConcreteContentTypes.Core.Models;
 using Newtonsoft.Json;
-using ConcreteContentTypes.Core.Interfaces;
 using ConcreteContentTypes.Core.Models.Enums;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 
 ");
             
-            #line 24 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 23 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(string nameSpace in UsingNamespaces) { 
             
             #line default
             #line hidden
             this.Write("using ");
             
-            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 24 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 26 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 25 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  } 
             
             #line default
@@ -78,214 +77,64 @@ using Umbraco.Core.Services;
 
 namespace ");
             
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Namespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\t");
             
-            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 38 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(var attribute in Definition.Attributes) { 
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 38 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(AttributeTemplate.TransformText(attribute)));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 38 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\tpublic abstract partial class ");
             
-            #line 40 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
-            this.Write(" : ConcreteModel\r\n\t{\r\n\t\tpublic abstract string ContentTypeAlias { get; }\r\n\t\tpubli" +
-                    "c bool GetPropertiesRecursively { get; set; }\r\n\r\n\t\tprivate IPublishedContent _co" +
-                    "ntent = null;\r\n");
+            this.Write(" : ");
             
-            #line 46 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 46 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 46 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\t[JsonIgnore]\r\n\t\tpublic override IPublishedContent Content\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t" +
-                    "\t\t\tif (_content == null && this.Id != 0)\r\n\t\t\t\t\t_content = UmbracoContext.Current" +
-                    ".");
-            
-            #line 53 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(CacheName));
-            
-            #line default
-            #line hidden
-            this.Write(".GetById(this.Id);\r\n\r\n\t\t\t\treturn _content;\r\n\t\t\t}\r\n\t\t\tset\r\n\t\t\t{\r\n\t\t\t\t_content = va" +
-                    "lue;\r\n\t\t\t}\r\n\t\t}\r\n\r\n");
-            
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Name)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic override string Name { get; set; }\r\n\r\n");
-            
-            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Id)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic override int Id { get; set; }\r\n\t\t\r\n");
-            
-            #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.ParentId)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 69 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic override int ParentId { get; set; }\r\n\t\t\r\n");
-            
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Path)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic string Path { get; set; }\r\n\t\t\r\n");
-            
-            #line 75 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.CreateDate)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 75 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 75 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic DateTime CreateDate { get; set; }\r\n\t\t\r\n");
-            
-            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.UpdateDate)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 78 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic DateTime UpdateDate { get; set; }\r\n\t\t\r\n");
-            
-            #line 81 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Url)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 81 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
-            
-            #line default
-            #line hidden
-            
-            #line 81 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic string Url { get; set; }\r\n\r\n\t\t#region Constructors and Initalisation\r\n\r\n" +
-                    " \t\tpublic ");
-            
-            #line 86 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
-            this.Write("()\r\n\t\t\t: base()\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
+            this.Write("<SimpleConcreteModel>\r\n\t{\r\n\t\tpublic ");
             
-            #line 91 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 41 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("()\r\n \t\t{\r\n \t\t}\r\n\r\n \t\tpublic ");
+            
+            #line 45 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(ConcreteModel model, bool getPropertiesRecursively = false)\r\n\t\t\t: this(model.Con" +
+                    "tent, getPropertiesRecursively)\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
+            
+            #line 50 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -294,7 +143,269 @@ namespace ");
                     "esRecursively = getPropertiesRecursively;\r\n\r\n\t\t\tInit(contentId);\r\n \t\t}\r\n \r\n \t\tpu" +
                     "blic ");
             
+            #line 57 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(IPublishedContent content, bool getPropertiesRecursively = false)\r\n \t\t{\r\n\t\t\tthis" +
+                    ".GetPropertiesRecursively = getPropertiesRecursively;\r\n\r\n\t\t\tInit(content);\r\n \t\t}" +
+                    "\r\n\t}\r\n\r\n\t");
+            
+            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in Definition.Attributes) { 
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\tpublic abstract partial class ");
+            
+            #line 66 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("<TChild> : ConcreteModel where TChild : ConcreteModel, new()\r\n\t{\r\n\t\tpublic abstra" +
+                    "ct string ContentTypeAlias { get; }\r\n\t\tpublic bool GetPropertiesRecursively { ge" +
+                    "t; set; }\r\n\r\n\t\tprivate IPublishedContent _content = null;\r\n");
+            
+            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\t[JsonIgnore]\r\n\t\tpublic override IPublishedContent Content\r\n\t\t{\r\n\t\t\tget\r\n\t\t\t{\r\n\t" +
+                    "\t\t\tif (_content == null && this.Id != 0)\r\n\t\t\t\t\t_content = UmbracoContext.Current" +
+                    ".");
+            
+            #line 79 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(CacheName));
+            
+            #line default
+            #line hidden
+            this.Write(".GetById(this.Id);\r\n\r\n\t\t\t\treturn _content;\r\n\t\t\t}\r\n\t\t\tset\r\n\t\t\t{\r\n\t\t\t\t_content = va" +
+                    "lue;\r\n\t\t\t}\r\n\t\t}\r\n\r\n");
+            
+            #line 89 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Name)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 89 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 89 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic override string Name { get; set; }\r\n\r\n");
+            
+            #line 92 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Id)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 92 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 92 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic override int Id { get; set; }\r\n\t\t\r\n");
+            
+            #line 95 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.ParentId)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 95 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 95 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic override int ParentId { get; set; }\r\n\t\t\r\n");
+            
             #line 98 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Path)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 98 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 98 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic string Path { get; set; }\r\n\t\t\r\n");
+            
+            #line 101 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.CreateDate)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 101 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 101 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic DateTime CreateDate { get; set; }\r\n\t\t\r\n");
+            
+            #line 104 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.UpdateDate)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 104 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 104 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic DateTime UpdateDate { get; set; }\r\n\t\t\r\n");
+            
+            #line 107 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Url)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 107 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 107 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tpublic string Url { get; set; }\r\n\r\n\r\n\t\tprivate IEnumerable<TChild> _children = " +
+                    "null;\r\n");
+            
+            #line 112 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Children)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 112 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            
+            #line default
+            #line hidden
+            
+            #line 112 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write(@"		[JsonIgnore]
+		public IEnumerable<TChild> Children
+		{
+			get
+			{
+				if (_children == null && this.Content != null)
+					_children = this.Content.Children.As<TChild>();
+				else
+					_children = new List<TChild>();
+
+
+				return _children;
+			}
+		}
+
+		#region Constructors and Initalisation
+
+ 		public ");
+            
+            #line 130 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("()\r\n \t\t{\r\n \t\t}\r\n\r\n \t\tpublic ");
+            
+            #line 134 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(ConcreteModel model, bool getPropertiesRecursively = false)\r\n\t\t\t: this(model.Con" +
+                    "tent, getPropertiesRecursively)\r\n \t\t{\r\n \t\t}\r\n \r\n \t\tpublic ");
+            
+            #line 139 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(int contentId, bool getPropertiesRecursively = false)\r\n \t\t{\r\n\t\t\tthis.GetProperti" +
+                    "esRecursively = getPropertiesRecursively;\r\n\r\n\t\t\tInit(contentId);\r\n \t\t}\r\n \r\n \t\tpu" +
+                    "blic ");
+            
+            #line 146 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -310,7 +421,7 @@ namespace ");
 		{
 			IPublishedContent content = UmbracoContext.Current.");
             
-            #line 107 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
+            #line 155 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CacheName));
             
             #line default
