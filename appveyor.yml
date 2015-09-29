@@ -5,10 +5,8 @@ environment:
   EnableNuGetPackageRestore: true
 
 branches:
-  only:
-    - master
-    - release
-    - rewrite
+  except:
+    - /addon-.*/
 
 skip_tags: true
 
