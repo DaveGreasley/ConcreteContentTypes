@@ -9,21 +9,21 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
 {
 	public class CSharpCodeGenerator : ICodeGenerator
 	{
-		public IUmbracoBaseClassTemplate BaseClassTemplate { get; private set; }
+		public IBaseClassTemplate BaseClassTemplate { get; private set; }
 		public IModelClassTemplate ModelClassTemplate { get; private set; }
 
-		public CSharpCodeGenerator(IUmbracoBaseClassTemplate baseClassTemplate, IModelClassTemplate modelClassTemplate)
+		public CSharpCodeGenerator(IBaseClassTemplate baseClassTemplate, IModelClassTemplate modelClassTemplate)
 		{
 			this.BaseClassTemplate = baseClassTemplate;
 			this.ModelClassTemplate = modelClassTemplate;
 		}
 
-		public string GenerateBaseClass(UmbracoBaseClassDefinition classDefinition)
+		public string GenerateBaseClass(BaseClassDefinition classDefinition)
 		{
 			return this.BaseClassTemplate.TransformText(classDefinition);
 		}
 
-		public string GenerateModelClass(UmbracoModelClassDefinition classDefinition)
+		public string GenerateModelClass(ModelClassDefinition classDefinition)
 		{
 			return this.ModelClassTemplate.TransformText(classDefinition);
 		}

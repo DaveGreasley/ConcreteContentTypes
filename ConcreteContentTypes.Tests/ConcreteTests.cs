@@ -79,20 +79,20 @@ namespace ConcreteContentTypes.Tests
 			};
 
 			//Setup ContentSourceModelMapper
-			var contentBaseClassDefinition = new UmbracoBaseClassDefinition("UmbracoContent", settings.Namespace + ".Content", PublishedItemType.Content);
-			var contentClassDefinition = new UmbracoModelClassDefinition("TestContentType", settings.Namespace + ".Content");
+			var contentBaseClassDefinition = new BaseClassDefinition("UmbracoContent", settings.Namespace + ".Content", PublishedItemType.Content);
+			var contentClassDefinition = new ModelClassDefinition("TestContentType", settings.Namespace + ".Content");
 
 			var contentTypeSourceModelMapper = new Mock<ISourceModelMapper>();
 			contentTypeSourceModelMapper.Setup(x => x.GetBaseClassDefinition()).Returns(contentBaseClassDefinition);
-			contentTypeSourceModelMapper.Setup(x => x.GetModelClassDefinitions()).Returns(new List<UmbracoModelClassDefinition>() { contentClassDefinition });
+			contentTypeSourceModelMapper.Setup(x => x.GetModelClassDefinitions()).Returns(new List<ModelClassDefinition>() { contentClassDefinition });
 
 			//Setup MediaSourceModelMapper
-			var mediaBaseClassDefinition = new UmbracoBaseClassDefinition("UmbracoMedia", settings.Namespace + ".Content", PublishedItemType.Media);
-			var mediaClassDefinition = new UmbracoModelClassDefinition("TestMediaType", settings.Namespace + ".Media");
+			var mediaBaseClassDefinition = new BaseClassDefinition("UmbracoMedia", settings.Namespace + ".Content", PublishedItemType.Media);
+			var mediaClassDefinition = new ModelClassDefinition("TestMediaType", settings.Namespace + ".Media");
 
 			var mediaTypeSourceModelMapper = new Mock<ISourceModelMapper>();
 			mediaTypeSourceModelMapper.Setup(x => x.GetBaseClassDefinition()).Returns(mediaBaseClassDefinition);
-			mediaTypeSourceModelMapper.Setup(x => x.GetModelClassDefinitions()).Returns(new List<UmbracoModelClassDefinition>() { mediaClassDefinition });
+			mediaTypeSourceModelMapper.Setup(x => x.GetModelClassDefinitions()).Returns(new List<ModelClassDefinition>() { mediaClassDefinition });
 
 			//Setup ContentTypeCodeGenerator
 			string contentBaseClassCode = "content base class";

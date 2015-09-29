@@ -14,9 +14,9 @@ namespace ConcreteContentTypes.Core.Events
 		//event Action<UmbracoBaseClassDefinition> MediaBaseClassGenerating;
 		//event Action<ModelClassDefinition> MediaModelClassGenerating;
 
-		void RaiseContentBaseClassGenerating(UmbracoBaseClassDefinition classDefinition);
-		void RaiseContentModelClassGenerating(UmbracoModelClassDefinition classDefinition);
-		void RaiseMediaBaseClassGenerating(UmbracoBaseClassDefinition classDefinition);
-		void RaiseMediaModelClassGenerating(UmbracoModelClassDefinition classDefinition);
+		void RaiseContentBaseClassGenerating(BaseClassDefinition classDefinition);
+		void RaiseContentModelClassGenerating(ModelClassDefinition classDefinition);
+		void RaiseMediaBaseClassGenerating(BaseClassDefinition classDefinition);
+		void RaiseMediaModelClassGenerating(ModelClassDefinition classDefinition);
 	}
 }

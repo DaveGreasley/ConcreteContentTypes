@@ -16,13 +16,13 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 		/// Generates the Code required to implement the base class for the current <see cref="ICodeGenerator"/>.
 		/// </summary>
 		/// <returns>A string containing the generated code.</returns>
-		string GenerateBaseClass(UmbracoBaseClassDefinition classDefinition);
+		string GenerateBaseClass(BaseClassDefinition classDefinition);
 
 		/// <summary>
-		/// Generates the Code required to implement a given <see cref="UmbracoModelClassDefinition" />
+		/// Generates the Code required to implement a given <see cref="ModelClassDefinition" />
 		/// </summary>
-		/// <param name="classDefinition">The <see cref="UmbracoModelClassDefinition" />to generate code for.</param>
+		/// <param name="classDefinition">The <see cref="ModelClassDefinition" />to generate code for.</param>
 		/// <returns>A string containing the generated code.</returns>
-		string GenerateModelClass(UmbracoModelClassDefinition classDefinition);
+		string GenerateModelClass(ModelClassDefinition classDefinition);
 	}
 }

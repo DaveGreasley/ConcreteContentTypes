@@ -9,11 +9,11 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	/// <summary>
 	/// Represents a C# attribute
 	/// </summary>
-	public class AttributeDefinition
+	public class AttributeDefinition : IAttributeDefinition
 	{
-		public string Type { get; set; }
-		public string Namespace { get; set; }
-		public List<object> Params { get; set; }
+		public string Type { get; private set; }
+		public string Namespace { get; private set; }
+		public List<object> Params { get; private set; }
 
 		public AttributeDefinition(Type type)
 			: this(type.Name.Replace("Attribute", ""), type.Namespace)
@@ -35,22 +35,13 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 		public void AddNonStringParameterValue(object paramValue)
 		{
+			if (paramValue == null)
+				throw new ArgumentNullException("paramValue");
+
+			if (!paramValue.GetType().IsPrimitive)
+				throw new InvalidOperationException("Can only use primitive types as Attribute Parameters");
+
 			this.Params.Add(paramValue);
-		}
-
-		public string GetParametersValuesString()
-		{
-			var parameters = new StringBuilder();
-
-			foreach (var param in this.Params)
-			{
-				parameters.Append(param);
-
-				if (this.Params.Last() != param)
-					parameters.Append(", ");
-			}
-
-			return parameters.ToString();
 		}
 	}
 }

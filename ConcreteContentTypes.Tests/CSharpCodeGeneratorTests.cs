@@ -18,7 +18,7 @@ namespace ConcreteContentTypes.Tests
 		[TestMethod]
 		public void CSharpCodeGenerator_Construct()
 		{
-			var baseClassTemplate = new Mock<IUmbracoBaseClassTemplate>();
+			var baseClassTemplate = new Mock<IBaseClassTemplate>();
 			var modelClassTemplate = new Mock<IModelClassTemplate>();
 
 			var sut = new CSharpCodeGenerator(baseClassTemplate.Object, modelClassTemplate.Object);
@@ -30,11 +30,11 @@ namespace ConcreteContentTypes.Tests
 		[TestMethod]
 		public void CSharpCodeGenerator_GenerateBaseClass()
 		{
-			var baseClassDefinition = new UmbracoBaseClassDefinition("BaseClass", "TestNameSpace", PublishedItemType.Content);
+			var baseClassDefinition = new BaseClassDefinition("BaseClass", "TestNameSpace", PublishedItemType.Content);
 
 			var baseClassCode = "SomeCode...";
 
-			var baseClassTemplateMock = new Mock<IUmbracoBaseClassTemplate>();
+			var baseClassTemplateMock = new Mock<IBaseClassTemplate>();
 			baseClassTemplateMock.Setup(x => x.TransformText(baseClassDefinition)).Returns(baseClassCode);
 
 			var modelClassTemplateMock = new Mock<IModelClassTemplate>();
@@ -51,11 +51,11 @@ namespace ConcreteContentTypes.Tests
 		[TestMethod]
 		public void CSharpCodeGenerator_GenerateModelClass()
 		{
-			var modelClassDefinition = new UmbracoModelClassDefinition("ModelClass", "TestNameSpace");
+			var modelClassDefinition = new ModelClassDefinition("ModelClass", "TestNameSpace");
 
 			var modelClassCode = "SomeCode...";
 
-			var baseClassTemplateMock = new Mock<IUmbracoBaseClassTemplate>();
+			var baseClassTemplateMock = new Mock<IBaseClassTemplate>();
 
 			var modelClassTemplateMock = new Mock<IModelClassTemplate>();
 			modelClassTemplateMock.Setup(x => x.TransformText(modelClassDefinition)).Returns(modelClassCode);

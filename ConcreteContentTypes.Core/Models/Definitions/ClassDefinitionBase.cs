@@ -13,9 +13,10 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public string Name { get; internal set; }
 		public string Namespace { get; set; }
 		public List<AttributeDefinition> Attributes { get; set; }
-		public List<string> UsingNamespaces { get; set; }
 		public List<string> DependantAssemblies { get; set; }
 		public string BaseClass { get; set; }
+
+		protected List<string> UsingNamespaces { get; set; }
 
 		public ClassDefinitionBase(string name, string nameSpace)
 		{

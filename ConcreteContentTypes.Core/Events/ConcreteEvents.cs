@@ -24,35 +24,35 @@ namespace ConcreteContentTypes.Core.Events
 			}
 		}
 
-		public static event Action<UmbracoBaseClassDefinition> ContentBaseClassGenerating;
-		public static event Action<UmbracoModelClassDefinition> ContentModelClassGenerating;
-		public static event Action<UmbracoBaseClassDefinition> MediaBaseClassGenerating;
-		public static event Action<UmbracoModelClassDefinition> MediaModelClassGenerating;
+		public static event Action<BaseClassDefinition> ContentBaseClassGenerating;
+		public static event Action<ModelClassDefinition> ContentModelClassGenerating;
+		public static event Action<BaseClassDefinition> MediaBaseClassGenerating;
+		public static event Action<ModelClassDefinition> MediaModelClassGenerating;
 
 		public ConcreteEvents()
 		{
 
 		}
 
-		public void RaiseContentBaseClassGenerating(UmbracoBaseClassDefinition classDefinition)
+		public void RaiseContentBaseClassGenerating(BaseClassDefinition classDefinition)
 		{
 			if (ContentBaseClassGenerating != null)
 				ContentBaseClassGenerating(classDefinition);
 		}
 
-		public void RaiseContentModelClassGenerating(UmbracoModelClassDefinition classDefinition)
+		public void RaiseContentModelClassGenerating(ModelClassDefinition classDefinition)
 		{
 			if (ContentModelClassGenerating != null)
 				ContentModelClassGenerating(classDefinition);
 		}
 
-		public void RaiseMediaBaseClassGenerating(UmbracoBaseClassDefinition classDefinition)
+		public void RaiseMediaBaseClassGenerating(BaseClassDefinition classDefinition)
 		{
 			if (MediaBaseClassGenerating != null)
 				MediaBaseClassGenerating(classDefinition);
 		}
 
-		public void RaiseMediaModelClassGenerating(UmbracoModelClassDefinition classDefinition)
+		public void RaiseMediaModelClassGenerating(ModelClassDefinition classDefinition)
 		{
 			if (MediaModelClassGenerating != null)
 				MediaModelClassGenerating(classDefinition);

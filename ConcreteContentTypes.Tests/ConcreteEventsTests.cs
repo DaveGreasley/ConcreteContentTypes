@@ -17,11 +17,11 @@ namespace ConcreteContentTypes.Tests
 		public void ConcreteEvents_RaiseContentBaseClassGenerating_Fires_ContentBaseClassGenerating()
 		{
 			bool eventFired = false;
-			UmbracoBaseClassDefinition notifiedClassDefinition = null;
+			BaseClassDefinition notifiedClassDefinition = null;
 
 			ConcreteEvents.ContentBaseClassGenerating += (cd) => { eventFired = true; notifiedClassDefinition = cd; };
 
-			var baseClassDefinition = new UmbracoBaseClassDefinition("ContentBaseClass", "TestNamespace", PublishedItemType.Content);
+			var baseClassDefinition = new BaseClassDefinition("ContentBaseClass", "TestNamespace", PublishedItemType.Content);
 
 			var sut = new ConcreteEvents();
 			sut.RaiseContentBaseClassGenerating(baseClassDefinition);
@@ -35,11 +35,11 @@ namespace ConcreteContentTypes.Tests
 		public void ConcreteEvents_RaiseContentModelClassGenerating_Fires_ContentModelClassGenerating()
 		{
 			bool eventFired = false;
-			UmbracoModelClassDefinition notifiedClassDefinition = null;
+			ModelClassDefinition notifiedClassDefinition = null;
 
 			ConcreteEvents.ContentModelClassGenerating += (cd) => { eventFired = true; notifiedClassDefinition = cd; };
 
-			var modelClassDefiniton = new UmbracoModelClassDefinition("ContentModelClass", "TestNamespace");
+			var modelClassDefiniton = new ModelClassDefinition("ContentModelClass", "TestNamespace");
 
 			var sut = new ConcreteEvents();
 			sut.RaiseContentModelClassGenerating(modelClassDefiniton);
@@ -53,11 +53,11 @@ namespace ConcreteContentTypes.Tests
 		public void ConcreteEvents_RaiseMediaBaseClassGenerating_Fires_MediaBaseClassGenerating()
 		{
 			bool eventFired = false;
-			UmbracoBaseClassDefinition notifiedClassDefinition = null;
+			BaseClassDefinition notifiedClassDefinition = null;
 
 			ConcreteEvents.MediaBaseClassGenerating += (cd) => { eventFired = true; notifiedClassDefinition = cd; };
 
-			var baseClassDefinition = new UmbracoBaseClassDefinition("MediaBaseClass", "TestNamespace", PublishedItemType.Media);
+			var baseClassDefinition = new BaseClassDefinition("MediaBaseClass", "TestNamespace", PublishedItemType.Media);
 
 			var sut = new ConcreteEvents();
 			sut.RaiseMediaBaseClassGenerating(baseClassDefinition);
@@ -72,11 +72,11 @@ namespace ConcreteContentTypes.Tests
 		public void ConcreteEvents_RaiseMediaModelClassGenerating_Fires_MediaModelClassGenerating()
 		{
 			bool eventFired = false;
-			UmbracoModelClassDefinition notifiedClassDefinition = null;
+			ModelClassDefinition notifiedClassDefinition = null;
 
 			ConcreteEvents.MediaModelClassGenerating += (cd) => { eventFired = true; notifiedClassDefinition = cd; };
 
-			var modelClassDefiniton = new UmbracoModelClassDefinition("MediaModelClass", "TestNamespace");
+			var modelClassDefiniton = new ModelClassDefinition("MediaModelClass", "TestNamespace");
 
 			var sut = new ConcreteEvents();
 			sut.RaiseMediaModelClassGenerating(modelClassDefiniton);
