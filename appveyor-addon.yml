@@ -4,6 +4,10 @@ version: 0.1.0.{build}
 environment:
   EnableNuGetPackageRestore: true
 
+branches:
+  only:
+    - /addon-.*/
+
 # UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds
 # example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
 install:
