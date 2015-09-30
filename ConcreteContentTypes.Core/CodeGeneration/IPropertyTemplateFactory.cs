@@ -9,6 +9,6 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	public interface IPropertyTemplateFactory
 	{
-		IPropertyTemplate GetTemplate(ModelClassPropertyDefinition classDefinition);
+		IPropertyTemplate GetTemplate(IModelClassPropertyDefinition classDefinition);
 	}
 }

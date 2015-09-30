@@ -26,8 +26,8 @@ namespace ConcreteContentTypes.Tests
 			var contentTypeMapperMock = new Mock<ISourceModelMapper>();
 			var mediaTypeMapperMock = new Mock<ISourceModelMapper>();
 
-			var contentTypeCodeGeneratorMock = new Mock<ICodeGenerator>();
-			var mediaTypeCodeGeneratorMock = new Mock<ICodeGenerator>();
+			var contentTypeCodeGeneratorMock = new Mock<ICodeGeneratorFacade>();
+			var mediaTypeCodeGeneratorMock = new Mock<ICodeGeneratorFacade>();
 
 			var fileWriterMock = new Mock<IFileWriter>();
 
@@ -103,7 +103,7 @@ namespace ConcreteContentTypes.Tests
 			string contentBaseClassCode = "content base class";
 			string contentModelClassCode = "content model class";
 
-			var contentTypeCodeGeneratorMock = new Mock<ICodeGenerator>();
+			var contentTypeCodeGeneratorMock = new Mock<ICodeGeneratorFacade>();
 			contentTypeCodeGeneratorMock.Setup(x => x.GenerateBaseClass(contentBaseClassDefinition)).Returns(contentBaseClassCode);
 			contentTypeCodeGeneratorMock.Setup(x => x.GenerateModelClass(contentClassDefinition)).Returns(contentModelClassCode);
 
@@ -111,7 +111,7 @@ namespace ConcreteContentTypes.Tests
 			string mediaBaseClassCode = "media base class";
 			string mediaModelClassCode = "media model class";
 
-			var mediaTypeCodeGeneratorMock = new Mock<ICodeGenerator>();
+			var mediaTypeCodeGeneratorMock = new Mock<ICodeGeneratorFacade>();
 			mediaTypeCodeGeneratorMock.Setup(x => x.GenerateBaseClass(mediaBaseClassDefinition)).Returns(mediaBaseClassCode);
 			mediaTypeCodeGeneratorMock.Setup(x => x.GenerateModelClass(mediaClassDefinition)).Returns(mediaModelClassCode);
 

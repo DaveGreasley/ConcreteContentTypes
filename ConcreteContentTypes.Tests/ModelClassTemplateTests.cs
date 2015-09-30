@@ -25,7 +25,7 @@ namespace ConcreteContentTypes.Tests
 
 			Assert.IsNull(sut.Definition, "ClassDefinition should be initialised to null");
 			Assert.AreSame(attributeTemplateMock.Object, sut.AttributeTemplate, "AttributeTemplate not set properly");
-			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker);
+			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker not properly set");
 		}
 	}
 }

@@ -187,7 +187,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGeneration\CSharp\CSharpCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CSharp\Attributes\AttributeCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CSharp\Classes\BaseClassCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CSharp\CSharpCodeGeneratorFacade.cs" />
     <Compile Include="CodeGeneration\CSharp\Attributes\AttributeTemplate.cs">
       <DependentUpon>AttributeTemplate.tt</DependentUpon>
       <SubType>Code</SubType>
@@ -212,8 +214,10 @@
       <DependentUpon>ModelClassTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="CodeGeneration\IAttributeTemplate.cs" />
-    <Compile Include="CodeGeneration\ICodeGenerator.cs" />
+    <Compile Include="CodeGeneration\IBaseClassCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\ICodeGeneratorFacade.cs" />
     <Compile Include="CodeGeneration\IErrorTracker.cs" />
+    <Compile Include="CodeGeneration\IModelClassCodeGenerator.cs" />
     <Compile Include="CodeGeneration\IPropertyTemplate.cs" />
     <Compile Include="CodeGeneration\IBaseClassTemplate.cs" />
     <Compile Include="CodeGeneration\IModelClassTemplate.cs" />
@@ -232,6 +236,14 @@
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
+    <Compile Include="CodeGeneration\IAttributeCodeGenerator.cs" />
+    <Compile Include="Models\Definitions\IBaseClassDefinition.cs" />
+    <Compile Include="Models\Definitions\IBaseClassPropertyDefinition.cs" />
+    <Compile Include="Models\Definitions\IClassDefinition.cs" />
+    <Compile Include="Models\Definitions\IModelClassDefinition.cs" />
+    <Compile Include="Models\Definitions\IModelClassPropertyDefinition.cs" />
+    <Compile Include="Models\Definitions\IPropertyDefinition.cs" />
+    <Compile Include="Models\Definitions\ITypedPropertyDefinition.cs" />
     <Compile Include="Models\Definitions\TypedPropertyDefinition.cs" />
     <Compile Include="Models\SimpleConcreteModel.cs" />
     <Compile Include="Models\ConcreteModel.cs" />

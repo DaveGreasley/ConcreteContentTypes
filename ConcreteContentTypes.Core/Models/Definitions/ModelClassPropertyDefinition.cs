@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class ModelClassPropertyDefinition : TypedPropertyDefinition
+	public class ModelClassPropertyDefinition : TypedPropertyDefinition, IModelClassPropertyDefinition
 	{
 		public string PropertyAlias { get; set; }
 

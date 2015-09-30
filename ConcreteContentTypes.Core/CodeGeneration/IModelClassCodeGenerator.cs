@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.CodeGeneration
 {
-	public interface IModelClassTemplate
+	public interface IModelClassCodeGenerator
 	{
-		string TransformText(IModelClassDefinition classDefinition);
+		string GenerateModelClass(IModelClassDefinition definition);
 	}
 }

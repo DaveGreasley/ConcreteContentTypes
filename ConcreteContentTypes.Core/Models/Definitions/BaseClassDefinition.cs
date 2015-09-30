@@ -8,19 +8,19 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class BaseClassDefinition : ClassDefinitionBase
+	public class BaseClassDefinition : ClassDefinitionBase, IBaseClassDefinition
 	{
-		public List<BaseClassPropertyDefinition> Properties { get; set; }
+		public List<IBaseClassPropertyDefinition> Properties { get; set; }
 		public PublishedItemType PublishedItemType { get; set; }
 
 		public BaseClassDefinition(string name, string nameSpace, PublishedItemType publishedItemType)
 			: base(name, nameSpace)
 		{
-			this.Properties = new List<BaseClassPropertyDefinition>();
+			this.Properties = new List<IBaseClassPropertyDefinition>();
 			this.PublishedItemType = publishedItemType;
 		}
 
-		public override List<string> GetUsingNamespaces()
+		public override IEnumerable<string> GetUsingNamespaces()
 		{
 			foreach (var property in this.Properties)
 			{

@@ -17,8 +17,8 @@ namespace ConcreteContentTypes.Core
 		public ISourceModelMapper ContentTypeSourceModelMapper { get; set; }
 		public ISourceModelMapper MediaTypeSourceModelMapper { get; set; }
 
-		public ICodeGenerator ContentTypeCodeGenerator { get; set; }
-		public ICodeGenerator MediaTypeCodeGenerator { get; set; }
+		public ICodeGeneratorFacade ContentTypeCodeGenerator { get; set; }
+		public ICodeGeneratorFacade MediaTypeCodeGenerator { get; set; }
 
 		public IFileWriter FileWriter { get; set; }
 
@@ -35,8 +35,8 @@ namespace ConcreteContentTypes.Core
 			IConcreteSettings settings,
 			ISourceModelMapper contentSourceModelMapper,
 			ISourceModelMapper mediaSourceModelMapper,
-			ICodeGenerator contentCodeGenerator,
-			ICodeGenerator mediaCodeGenerator,
+			ICodeGeneratorFacade contentCodeGenerator,
+			ICodeGeneratorFacade mediaCodeGenerator,
 			IFileWriter fileWriter,
 			IErrorTracker errorTracker
 			)

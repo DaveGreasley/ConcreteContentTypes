@@ -12,12 +12,12 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 	/// </summary>
 	public interface ISourceModelMapper
 	{
-		BaseClassDefinition GetBaseClassDefinition();
+		IBaseClassDefinition GetBaseClassDefinition();
 
 		/// <summary>
 		/// Maps the data source items to our <see cref="ModelClassDefinition"/> type.
 		/// </summary>
 		/// <returns>A list of <see cref="ModelClassDefinition"/>s</returns>
-		IEnumerable<ModelClassDefinition> GetModelClassDefinitions();
+		IEnumerable<IModelClassDefinition> GetModelClassDefinitions();
 	}
 }

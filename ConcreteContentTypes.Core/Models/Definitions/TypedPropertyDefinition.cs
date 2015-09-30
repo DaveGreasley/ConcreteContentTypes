@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class TypedPropertyDefinition : PropertyDefinition
+	public class TypedPropertyDefinition : PropertyDefinition, ITypedPropertyDefinition
 	{
 		public string ClrType { get; set; }
 

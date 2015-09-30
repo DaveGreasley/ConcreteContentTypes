@@ -11,8 +11,8 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 {
 	public partial class ModelClassTemplate : IModelClassTemplate
 	{
-		public ModelClassDefinition Definition { get; private set; }
-		public List<string> UsingNamespaces { get; private set; }
+		public IModelClassDefinition Definition { get; private set; }
+		public IEnumerable<string> UsingNamespaces { get; private set; }
 
 
 		public IAttributeTemplate AttributeTemplate { get; private set; }
@@ -32,7 +32,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 			this.UsingNamespaces = new List<string>();
 		}
 
-		public string TransformText(ModelClassDefinition classDefinition)
+		public string TransformText(IModelClassDefinition classDefinition)
 		{
 			if (classDefinition == null)
 				throw new ArgumentNullException("classDefinition");
@@ -43,7 +43,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 			return TransformText();
 		}
 
-		private string WriteProperty(ModelClassPropertyDefinition propertyDefintion)
+		private string WriteProperty(IModelClassPropertyDefinition propertyDefintion)
 		{
 			try
 			{

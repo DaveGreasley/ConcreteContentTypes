@@ -27,7 +27,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			this.MediaTypes = mediaTypes;
 		}
 
-		public BaseClassDefinition GetBaseClassDefinition()
+		public IBaseClassDefinition GetBaseClassDefinition()
 		{
 			var baseClassDefinition = new BaseClassDefinition("UmbracoMedia", this.Namespace, PublishedItemType.Media);
 			baseClassDefinition.Properties = GetBaseClassProperties();
@@ -37,9 +37,9 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			return baseClassDefinition;
 		}
 
-		public IEnumerable<ModelClassDefinition> GetModelClassDefinitions()
+		public IEnumerable<IModelClassDefinition> GetModelClassDefinitions()
 		{
-			List<ModelClassDefinition> classDefinitions = new List<ModelClassDefinition>();
+			List<IModelClassDefinition> classDefinitions = new List<IModelClassDefinition>();
 
 			foreach (var mediaType in this.MediaTypes)
 			{

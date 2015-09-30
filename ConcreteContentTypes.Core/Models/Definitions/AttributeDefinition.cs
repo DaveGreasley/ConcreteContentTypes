@@ -16,13 +16,13 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public List<object> Params { get; private set; }
 
 		public AttributeDefinition(Type type)
-			: this(type.Name.Replace("Attribute", ""), type.Namespace)
+			: this(type.Name, type.Namespace)
 		{
 		}
 
 		public AttributeDefinition(string type, string nameSpace)
 		{
-			this.Type = type;
+			this.Type = type.Replace("Attribute", "");
 			this.Namespace = nameSpace;
 
 			this.Params = new List<object>();

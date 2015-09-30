@@ -8,11 +8,11 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public abstract class ClassDefinitionBase
+	public abstract class ClassDefinitionBase : IClassDefinition
 	{
 		public string Name { get; internal set; }
 		public string Namespace { get; set; }
-		public List<AttributeDefinition> Attributes { get; set; }
+		public List<IAttributeDefinition> Attributes { get; set; }
 		public List<string> DependantAssemblies { get; set; }
 		public string BaseClass { get; set; }
 
@@ -22,12 +22,12 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		{
 			this.Name = name;
 			this.Namespace = nameSpace;
-			this.Attributes = new List<AttributeDefinition>();
+			this.Attributes = new List<IAttributeDefinition>();
 			this.DependantAssemblies = new List<string>();
 			this.UsingNamespaces = new List<string>();
 		}
 
-		public virtual List<string> GetUsingNamespaces()
+		public virtual IEnumerable<string> GetUsingNamespaces()
 		{
 			foreach (var attribute in this.Attributes)
 			{

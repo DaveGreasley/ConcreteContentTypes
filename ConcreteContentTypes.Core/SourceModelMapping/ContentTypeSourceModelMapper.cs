@@ -28,7 +28,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			this.ContentTypes = contentTypes;
 		}
 
-		public BaseClassDefinition GetBaseClassDefinition()
+		public IBaseClassDefinition GetBaseClassDefinition()
 		{
 			var baseClassDefinition = new BaseClassDefinition("UmbracoContent", this.Namespace, PublishedItemType.Content);
 			baseClassDefinition.Properties = GetBaseClassProperties();
@@ -38,7 +38,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			return baseClassDefinition;
 		}
 
-		public IEnumerable<ModelClassDefinition> GetModelClassDefinitions()
+		public IEnumerable<IModelClassDefinition> GetModelClassDefinitions()
 		{
 			List<ModelClassDefinition> classDefinitions = new List<ModelClassDefinition>();
 

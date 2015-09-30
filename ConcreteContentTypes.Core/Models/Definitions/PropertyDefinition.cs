@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class PropertyDefinition
+	public class PropertyDefinition : IPropertyDefinition
 	{
 		public string Name { get; set; }
-		public List<AttributeDefinition> Attributes { get; set; }
+		public List<IAttributeDefinition> Attributes { get; set; }
 		public string Description { get; set; }
 
 		public PropertyDefinition(string name)
 		{
 			this.Name = NamingConventionHelper.GetConventionalName(name);
-			this.Attributes = new List<AttributeDefinition>();
+			this.Attributes = new List<IAttributeDefinition>();
 			this.Description = "";
 		}
 	}

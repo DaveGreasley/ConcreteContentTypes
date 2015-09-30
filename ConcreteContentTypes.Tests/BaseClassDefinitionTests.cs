@@ -31,7 +31,7 @@ namespace ConcreteContentTypes.Tests
 
 			var usingNamespaces = sut.GetUsingNamespaces();
 			Assert.IsNotNull(usingNamespaces, "UsingNamespaces is null");
-			Assert.AreEqual(1, usingNamespaces.Count, "There should only be one namespace configured by default.");
+			Assert.AreEqual(1, usingNamespaces.Count(), "There should only be one namespace configured by default.");
 			Assert.IsTrue(usingNamespaces.Contains("ConcreteContentTypes.Core.Extensions"), "ConcreteContentTypes.Core.Extensions are not referenced");
 		}
 
@@ -49,7 +49,7 @@ namespace ConcreteContentTypes.Tests
 
 
 			Assert.IsNotNull(usingNamespaces, "UsingNamespaces is null");
-			Assert.AreEqual(2, usingNamespaces.Count, "There should be 2 namespaces: ConcreteContentTypes.Core.Extensions and AttributeNamespace");
+			Assert.AreEqual(2, usingNamespaces.Count(), "There should be 2 namespaces: ConcreteContentTypes.Core.Extensions and AttributeNamespace");
 			Assert.IsTrue(usingNamespaces.Contains("ConcreteContentTypes.Core.Extensions"), "ConcreteContentTypes.Core.Extensions are not referenced");
 		}
 
@@ -72,7 +72,7 @@ namespace ConcreteContentTypes.Tests
 
 
 			Assert.IsNotNull(usingNamespaces, "UsingNamespaces is null");
-			Assert.AreEqual(3, usingNamespaces.Count, "There should be 3 namespaces: ConcreteContentTypes.Core.Extensions, AttributeNamespace, PropertyAttributeTest");
+			Assert.AreEqual(3, usingNamespaces.Count(), "There should be 3 namespaces: ConcreteContentTypes.Core.Extensions, AttributeNamespace, PropertyAttributeTest");
 			Assert.IsTrue(usingNamespaces.Contains("ConcreteContentTypes.Core.Extensions"), "ConcreteContentTypes.Core.Extensions are not referenced");
 		}
 	}

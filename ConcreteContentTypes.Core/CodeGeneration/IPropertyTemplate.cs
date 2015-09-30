@@ -9,6 +9,6 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	public interface IPropertyTemplate
 	{
-		string TransformText(ModelClassPropertyDefinition propertyDefinition);
+		string TransformText(IModelClassPropertyDefinition propertyDefinition);
 	}
 }

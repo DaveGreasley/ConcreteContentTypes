@@ -8,7 +8,7 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Models.Definitions
 {
-	public class BaseClassPropertyDefinition : PropertyDefinition
+	public class BaseClassPropertyDefinition : PropertyDefinition, IBaseClassPropertyDefinition
 	{
 		public BaseClassProperty Property { get; set; }
 

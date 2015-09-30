@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 	{
 		public BaseClassDefinition Definition { get; private set; }
 		public IAttributeTemplate AttributeTemplate { get; private set; }
-		public List<string> UsingNamespaces { get; private set; }
+		public IEnumerable<string> UsingNamespaces { get; private set; }
 		public string CacheName { get; private set; }
 
 		public BaseClassTemplate(IAttributeTemplate attributeTemplate)
@@ -39,11 +39,11 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 			return TransformText();
 		}
 
-		protected IEnumerable<AttributeDefinition> GetPropertyAttributes(BaseClassProperty property)
+		protected IEnumerable<IAttributeDefinition> GetPropertyAttributes(BaseClassProperty property)
 		{
 			return this.Definition.Properties.Any(x => x.Property == property)
 				? this.Definition.Properties.Single().Attributes
-				: new List<AttributeDefinition>();
+				: new List<IAttributeDefinition>();
 		}
 
 		//private IEnumerable<AttributeTemplate> GetAttributeTemplates()

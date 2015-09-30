@@ -31,9 +31,9 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			this.Events = events;
 		}
 
-		protected List<ModelClassPropertyDefinition> GetProperties(ModelClassDefinition classDefinition, IContentTypeComposition contentType, PublishedItemType publishedItemType)
+		protected List<IModelClassPropertyDefinition> GetProperties(IModelClassDefinition classDefinition, IContentTypeComposition contentType, PublishedItemType publishedItemType)
 		{
-			List<ModelClassPropertyDefinition> propertyDefinitions = new List<ModelClassPropertyDefinition>();
+			List<IModelClassPropertyDefinition> propertyDefinitions = new List<IModelClassPropertyDefinition>();
 
 			var propertiesTypesToGenerate = GetPropertyTypesNotDeclaredOnParent(contentType);
 
@@ -53,9 +53,9 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			return propertyDefinitions;
 		}
 
-		protected List<BaseClassPropertyDefinition> GetBaseClassProperties()
+		protected List<IBaseClassPropertyDefinition> GetBaseClassProperties()
 		{
-			List<BaseClassPropertyDefinition> propertyDefinitions = new List<BaseClassPropertyDefinition>();
+			List<IBaseClassPropertyDefinition> propertyDefinitions = new List<IBaseClassPropertyDefinition>();
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.Content));
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.CreateDate));
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.Id));

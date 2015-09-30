@@ -23,6 +23,23 @@ namespace ConcreteContentTypes.Tests
 		}
 
 		[TestMethod]
+		public void AttributeTemplate_TransformText_NullDefinition()
+		{
+			var sut = new AttributeTemplate();
+			try
+			{
+				sut.TransformText(null);
+			}
+			catch (ArgumentNullException argnEx)
+			{
+				Assert.AreEqual("attributeDefinition", argnEx.ParamName, "Exception ParamName should be attributeDefinition");
+				return;
+			}
+
+			Assert.Fail("Did not throw ArgumentNullException");
+		}
+
+		[TestMethod]
 		public void AttributeTemplate_TransformText_NoAttributeParams()
 		{
 			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
