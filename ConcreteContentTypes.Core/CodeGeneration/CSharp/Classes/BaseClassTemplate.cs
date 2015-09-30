@@ -178,9 +178,9 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write("<TChild> : ConcreteModel where TChild : ConcreteModel, new()\r\n\t{\r\n\t\tpublic abstra" +
-                    "ct string ContentTypeAlias { get; }\r\n\t\tpublic bool GetPropertiesRecursively { ge" +
-                    "t; set; }\r\n\r\n\t\tprivate IPublishedContent _content = null;\r\n");
+            this.Write("<TChild> : ConcreteModel where TChild : ConcreteModel\r\n\t{\r\n\t\tpublic abstract stri" +
+                    "ng ContentTypeAlias { get; }\r\n\t\tpublic bool GetPropertiesRecursively { get; set;" +
+                    " }\r\n\r\n\t\tprivate IPublishedContent _content = null;\r\n");
             
             #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
  foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { 

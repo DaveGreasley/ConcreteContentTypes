@@ -33,11 +33,11 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
 		{
 			var parameters = new StringBuilder();
 
-			foreach (var param in this.Definition.Params)
+			foreach (var param in this.Definition.ConstructorParameters)
 			{
 				parameters.Append(param);
 
-				if (this.Definition.Params.Last() != param)
+				if (this.Definition.ConstructorParameters.Last() != param)
 					parameters.Append(", ");
 			}
 

@@ -189,6 +189,7 @@
   <ItemGroup>
     <Compile Include="CodeGeneration\CSharp\Attributes\AttributeCodeGenerator.cs" />
     <Compile Include="CodeGeneration\CSharp\Classes\BaseClassCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CSharp\Classes\ModelClassCodeGenerator.cs" />
     <Compile Include="CodeGeneration\CSharp\CSharpCodeGeneratorFacade.cs" />
     <Compile Include="CodeGeneration\CSharp\Attributes\AttributeTemplate.cs">
       <DependentUpon>AttributeTemplate.tt</DependentUpon>

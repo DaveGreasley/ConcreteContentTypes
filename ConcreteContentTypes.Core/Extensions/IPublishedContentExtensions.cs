@@ -16,9 +16,9 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <typeparam name="T">The Type of Concrete Model to convert to</typeparam>
 		/// <param name="content">The IPublishedContent object to convert</param>
 		/// <returns>A strongly typed model representing the IPublishedContent object</returns>
-		public static T As<T>(this IPublishedContent content) where T : ConcreteModel, new()
+		public static T As<T>(this IPublishedContent content) where T : ConcreteModel
 		{
-			T model = new T();
+			var model = Activator.CreateInstance<T>();
 			model.Init(content);
 
 			return model;
@@ -30,7 +30,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <typeparam name="T">The Type of Concrete Model to convert to</typeparam>
 		/// <param name="collection">The collection of IPublishedContent objects</param>
 		/// <returns>A collection of strongly typed models representing the collection of IPublishedContent objects</returns>
-		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> collection) where T : ConcreteModel, new()
+		public static IEnumerable<T> As<T>(this IEnumerable<IPublishedContent> collection) where T : ConcreteModel
 		{
 			List<T> contentList = new List<T>();
 

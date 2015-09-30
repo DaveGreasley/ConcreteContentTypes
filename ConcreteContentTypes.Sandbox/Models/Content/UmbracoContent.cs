@@ -17,7 +17,7 @@ using Umbraco.Examine.Linq.Attributes;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	public abstract partial class UmbracoContent : UmbracoContent<SimpleConcreteModel>
+	public abstract partial class UmbracoContent : UmbracoContent<ConcreteModel>
 	{
 		public UmbracoContent()
 			: base()
@@ -35,7 +35,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		}
 	}
 
-	public abstract partial class UmbracoContent<TChild> : ConcreteModel where TChild : ConcreteModel, new()
+	public abstract partial class UmbracoContent<TChild> : ConcreteModel where TChild : ConcreteModel
 	{
 		private IPublishedContent _content = null;
 		[JsonIgnore]

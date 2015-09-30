@@ -63,7 +63,7 @@ namespace <#= Definition.Namespace #>
 	}
 
 	<# foreach(var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
-	public abstract partial class <#= Definition.Name #><TChild> : ConcreteModel where TChild : ConcreteModel, new()
+	public abstract partial class <#= Definition.Name #><TChild> : ConcreteModel where TChild : ConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
 		public bool GetPropertiesRecursively { get; set; }

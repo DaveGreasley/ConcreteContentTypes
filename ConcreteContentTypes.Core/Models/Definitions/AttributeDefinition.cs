@@ -13,7 +13,9 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	{
 		public string Type { get; private set; }
 		public string Namespace { get; private set; }
-		public List<object> Params { get; private set; }
+
+		private List<object> _constructorParameters;
+		public IEnumerable<object> ConstructorParameters { get { return _constructorParameters; } }
 
 		public AttributeDefinition(Type type)
 			: this(type.Name, type.Namespace)
@@ -25,23 +27,31 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			this.Type = type.Replace("Attribute", "");
 			this.Namespace = nameSpace;
 
-			this.Params = new List<object>();
+			_constructorParameters = new List<object>();
 		}
 
-		public void AddStringParameterValue(string paramValue)
-		{
-			this.Params.Add(string.Format("\"{0}\"", paramValue));
-		}
-
-		public void AddNonStringParameterValue(object paramValue)
+		public void AddConstructorParameter(object paramValue)
 		{
 			if (paramValue == null)
 				throw new ArgumentNullException("paramValue");
 
-			if (!paramValue.GetType().IsPrimitive)
-				throw new InvalidOperationException("Can only use primitive types as Attribute Parameters");
+			if (paramValue.GetType() == typeof(string))
+				AddStringParameterValue(paramValue.ToString());
+			else
+				AddNonStringParameterValue(paramValue);
+		}
 
-			this.Params.Add(paramValue);
+		private void AddStringParameterValue(string paramValue)
+		{
+			_constructorParameters.Add(string.Format("\"{0}\"", paramValue));
+		}
+
+		private void AddNonStringParameterValue(object paramValue)
+		{
+			if (!paramValue.GetType().IsValueType)
+				throw new ArgumentOutOfRangeException("paramValue", paramValue, paramValue.GetType().Name + "Is not a ValueType or String!");
+
+			_constructorParameters.Add(paramValue);
 		}
 	}
 }

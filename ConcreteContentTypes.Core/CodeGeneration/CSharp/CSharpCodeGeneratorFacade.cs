@@ -25,8 +25,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
 
 		public string GenerateModelClass(IModelClassDefinition classDefinition)
 		{
-			//return this.ModelClassTemplate.TransformText(classDefinition);
-			return "";
+			return this.ModelClassGenerator.GenerateModelClass(classDefinition);
 		}
 	}
 }

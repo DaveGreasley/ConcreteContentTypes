@@ -30,7 +30,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
         {
             
             #line 7 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Attributes\AttributeTemplate.tt"
- if (Definition.Params.Count() > 0) { 
+ if (Definition.ConstructorParameters.Count() > 0) { 
             
             #line default
             #line hidden

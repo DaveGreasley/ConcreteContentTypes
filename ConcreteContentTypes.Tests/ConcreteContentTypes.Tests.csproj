@@ -223,6 +223,7 @@
     <Compile Include="AttributeDefinitionTests.cs" />
     <Compile Include="AttributeTemplateTests.cs" />
     <Compile Include="ConcreteEventsTests.cs" />
+    <Compile Include="ModelClassCodeGeneratorTests.cs" />
     <Compile Include="PropertyDefinitionTests.cs" />
     <Compile Include="BaseClassDefinitionTests.cs" />
     <Compile Include="BaseClassPropertyDefinitionTests.cs" />

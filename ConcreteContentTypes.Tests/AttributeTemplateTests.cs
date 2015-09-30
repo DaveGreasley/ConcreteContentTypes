@@ -40,12 +40,12 @@ namespace ConcreteContentTypes.Tests
 		}
 
 		[TestMethod]
-		public void AttributeTemplate_TransformText_NoAttributeParams()
+		public void AttributeTemplate_TransformText_ParametersIsEmptyString()
 		{
 			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
 			attributeDefinitionMock.Setup(x => x.Type).Returns("TestAttribute");
 			attributeDefinitionMock.Setup(x => x.Namespace).Returns("TestNamespace");
-			attributeDefinitionMock.Setup(x => x.Params).Returns(new List<object>());
+			attributeDefinitionMock.Setup(x => x.ConstructorParameters).Returns(new List<object>());
 
 			var sut = new AttributeTemplate();
 			string generatedCode = sut.TransformText(attributeDefinitionMock.Object);
@@ -61,7 +61,7 @@ namespace ConcreteContentTypes.Tests
 			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
 			attributeDefinitionMock.Setup(x => x.Type).Returns("TestAttribute");
 			attributeDefinitionMock.Setup(x => x.Namespace).Returns("TestNamespace");
-			attributeDefinitionMock.Setup(x => x.Params).Returns(new List<object>() { 1 });
+			attributeDefinitionMock.Setup(x => x.ConstructorParameters).Returns(new List<object>() { 1 });
 
 			var sut = new AttributeTemplate();
 			string generatedCode = sut.TransformText(attributeDefinitionMock.Object);
@@ -77,7 +77,7 @@ namespace ConcreteContentTypes.Tests
 			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
 			attributeDefinitionMock.Setup(x => x.Type).Returns("TestAttribute");
 			attributeDefinitionMock.Setup(x => x.Namespace).Returns("TestNamespace");
-			attributeDefinitionMock.Setup(x => x.Params).Returns(new List<object>() { 1, true, 0.0D });
+			attributeDefinitionMock.Setup(x => x.ConstructorParameters).Returns(new List<object>() { 1, true, 0.0D });
 
 			var sut = new AttributeTemplate();
 			string generatedCode = sut.TransformText(attributeDefinitionMock.Object);
@@ -93,7 +93,7 @@ namespace ConcreteContentTypes.Tests
 			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
 			attributeDefinitionMock.Setup(x => x.Type).Returns("TestAttribute");
 			attributeDefinitionMock.Setup(x => x.Namespace).Returns("TestNamespace");
-			attributeDefinitionMock.Setup(x => x.Params).Returns(new List<object>() { "\"StringValue\"" });
+			attributeDefinitionMock.Setup(x => x.ConstructorParameters).Returns(new List<object>() { "\"StringValue\"" });
 
 			var sut = new AttributeTemplate();
 			string generatedCode = sut.TransformText(attributeDefinitionMock.Object);
@@ -109,7 +109,7 @@ namespace ConcreteContentTypes.Tests
 			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
 			attributeDefinitionMock.Setup(x => x.Type).Returns("TestAttribute");
 			attributeDefinitionMock.Setup(x => x.Namespace).Returns("TestNamespace");
-			attributeDefinitionMock.Setup(x => x.Params).Returns(new List<object>() { "\"StringValue\"", "\"AnotherString\"" });
+			attributeDefinitionMock.Setup(x => x.ConstructorParameters).Returns(new List<object>() { "\"StringValue\"", "\"AnotherString\"" });
 
 			var sut = new AttributeTemplate();
 			string generatedCode = sut.TransformText(attributeDefinitionMock.Object);
