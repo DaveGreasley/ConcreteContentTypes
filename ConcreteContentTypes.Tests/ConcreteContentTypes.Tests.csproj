@@ -228,7 +228,7 @@
     <Compile Include="BaseClassPropertyDefinitionTests.cs" />
     <Compile Include="BaseClassTemplateTests.cs" />
     <Compile Include="ConcreteTests.cs" />
-    <Compile Include="CSharpCodeGeneratorTests.cs" />
+    <Compile Include="CSharpCodeGeneratorFacadeTests.cs" />
     <Compile Include="ContentTypesSourceModelMapperTests.cs" />
     <Compile Include="FileWriterTests.cs" />
     <Compile Include="MediaTypesSourceModelMapperTests.cs" />
