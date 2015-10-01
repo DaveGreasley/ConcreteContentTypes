@@ -224,6 +224,8 @@
     <Compile Include="CodeGeneration\IModelClassTemplate.cs" />
     <Compile Include="CodeGeneration\IPropertyTemplateFactory.cs" />
     <Compile Include="Concrete.cs" />
+    <Compile Include="ConcreteModelFactory.cs" />
+    <Compile Include="Mvc\ConcreteModelBinder.cs" />
     <Compile Include="Events\IConcreteEvents.cs" />
     <Compile Include="Extensions\IContentServiceExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
@@ -274,7 +276,7 @@
     <Compile Include="SourceModelMapping\ISourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\MediaTypesSourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\SourceModelMapperBase.cs" />
-    <Compile Include="ViewTemplates\ConcreteViewPage.cs" />
+    <Compile Include="Mvc\ConcreteViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

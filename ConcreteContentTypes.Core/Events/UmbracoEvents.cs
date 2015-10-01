@@ -12,6 +12,8 @@ using Umbraco.Web.Routing;
 using System.Reflection;
 using System.IO;
 using System.Web.Configuration;
+using ConcreteContentTypes.Core.Models;
+using ConcreteContentTypes.Core.Mvc;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -21,16 +23,12 @@ namespace ConcreteContentTypes.Core.Events
 		{
 			base.ApplicationStarted(umbracoApplication, applicationContext);
 
-			LoadModelsDll(applicationContext);
+			//Setup our ModelBinder
+			System.Web.Mvc.ModelBinders.Binders.Add(typeof(ConcreteModel), new ConcreteModelBinder());
 
 			//Attach to ContentTypeService events for Model creation
 			AttachToContentTypeServiceEvents();
 		}
-
-		private void LoadModelsDll(ApplicationContext applicationContext)
-		{
-		}
-
 
 
 		#region Content Type Service Events
