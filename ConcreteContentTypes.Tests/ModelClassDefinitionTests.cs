@@ -61,7 +61,7 @@ namespace ConcreteContentTypes.Tests
 
 			sut.Attributes.Add(new AttributeDefinition("AttributeType", "AttributeNamespace"));
 
-			var propertyDefinition = new ModelClassPropertyDefinition("Test Property", "TestProperty");
+			var propertyDefinition = new ModelClassPropertyDefinition("Test Property", "TestProperty", "TestPropertyEditorAlias");
 			propertyDefinition.Attributes.Add(new AttributeDefinition("PropertyAttributeTest", "PropertyAttributeNamespace"));
 
 			sut.Properties.Add(propertyDefinition);

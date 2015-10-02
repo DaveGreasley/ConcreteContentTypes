@@ -90,7 +90,7 @@ namespace ");
             this.Write(" ");
             
             #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -170,7 +170,7 @@ namespace ");
             this.Write(" ");
             
             #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(WriteAttribute(attribute)));
             
             #line default
             #line hidden

@@ -39,7 +39,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 			foreach (var propertyType in propertiesTypesToGenerate)
 			{
-				ModelClassPropertyDefinition propertyDefinition = new ModelClassPropertyDefinition(propertyType.Name, propertyType.Alias);
+				ModelClassPropertyDefinition propertyDefinition = new ModelClassPropertyDefinition(propertyType.Name, propertyType.Alias, propertyType.PropertyEditorAlias);
 
 				// See if we can work out the Clr Type from any configured PropertyValueConverter
 				PropertyValueConverterHelper pvc = new PropertyValueConverterHelper(contentType.Alias, propertyType.Alias, publishedItemType);
@@ -102,7 +102,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 		protected string GetChildType(IContentTypeBase contentType)
 		{
 			if (contentType.AllowedContentTypes.Count() > 1)
-				return typeof(SimpleConcreteModel).Name;
+				return typeof(ConcreteModel).Name;
 
 			if (contentType.AllowedContentTypes.Count() == 1)
 				return contentType.AllowedContentTypes.First().Alias;

@@ -9,41 +9,56 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 {
-	public partial class ModelClassTemplate : IModelClassTemplate
+	public partial class ModelClassTemplate : ICodeTemplate
 	{
 		public IModelClassDefinition Definition { get; private set; }
 		public IEnumerable<string> UsingNamespaces { get; private set; }
 
+		public ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; private set; }
+		public ICodeTemplateFactory<IModelClassPropertyDefinition> PropertyTemplateFactory { get; private set; }
 
-		public IAttributeTemplate AttributeTemplate { get; private set; }
-		public IPropertyTemplateFactory PropertyTemplateFactory { get; private set; }
 		public IErrorTracker ErrorTracker { get; private set; }
 
 		public ModelClassTemplate(
-			IAttributeTemplate attributeTemplate,
-			IPropertyTemplateFactory ptf,
+			IModelClassDefinition definition,
+			ICodeTemplateFactory<IAttributeDefinition> atf,
+			ICodeTemplateFactory<IModelClassPropertyDefinition> ptf,
 			IErrorTracker errorTracker)
 		{
-			this.AttributeTemplate = attributeTemplate;
+			this.AttributeTemplateFactory = atf;
 			this.PropertyTemplateFactory = ptf;
 			this.ErrorTracker = errorTracker;
 
-			this.Definition = null;
-			this.UsingNamespaces = new List<string>();
+			this.Definition = definition;
+			this.UsingNamespaces = definition.GetUsingNamespaces();
 		}
 
-		public string TransformText(IModelClassDefinition classDefinition)
+		public string GenerateCode()
 		{
-			if (classDefinition == null)
-				throw new ArgumentNullException("classDefinition");
-
-			this.Definition = classDefinition;
-			this.UsingNamespaces = classDefinition.GetUsingNamespaces();
-
-			return TransformText();
+			return this.GenerateCode();
 		}
 
-		private string WriteProperty(IModelClassPropertyDefinition propertyDefintion)
+		protected string WriteAttribute(IAttributeDefinition attributeDefinition)
+		{
+			try
+			{
+				if (attributeDefinition == null)
+				{
+					this.ErrorTracker.Error("AttributeDefinition passed to ModelClassTemplate.WriteAttribte() method is null. Current Class: " + this.Definition.Name);
+					return string.Empty;
+				}
+
+				var template = this.AttributeTemplateFactory.GetTemplate(attributeDefinition);
+				return template.GenerateCode();
+			}
+			catch (Exception ex)
+			{
+				this.ErrorTracker.Error("Error writing attribute " + attributeDefinition.Type + " in " + this.Definition.Name, ex);
+				return string.Empty;
+			}
+		}
+
+		protected string WriteProperty(IModelClassPropertyDefinition propertyDefintion)
 		{
 			try
 			{
@@ -54,11 +69,11 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 				}
 
 				var template = this.PropertyTemplateFactory.GetTemplate(propertyDefintion);
-				return template.TransformText(propertyDefintion);
+				return template.GenerateCode();
 			}
 			catch (Exception ex)
 			{
-				this.ErrorTracker.Error("Error writing property " + propertyDefintion.PropertyAlias + " in " + this.Definition.Name, ex);
+				this.ErrorTracker.Error("Error writing property " + propertyDefintion.Alias + " in " + this.Definition.Name, ex);
 				return string.Empty; //Don't write anything for broken properties
 			}
 		}

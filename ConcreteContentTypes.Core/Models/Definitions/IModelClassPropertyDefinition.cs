@@ -8,6 +8,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 {
 	public interface IModelClassPropertyDefinition : IPropertyDefinition
 	{
-		string PropertyAlias { get; set; }
+		string Alias { get; set; }
+		string PropertyEditorAlias { get; set; }
 	}
 }

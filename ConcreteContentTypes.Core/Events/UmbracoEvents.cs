@@ -14,6 +14,7 @@ using System.IO;
 using System.Web.Configuration;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Mvc;
+using ConcreteContentTypes.Core.CodeGeneration;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -77,7 +78,6 @@ namespace ConcreteContentTypes.Core.Events
 		//Currently we regenerate all Media and all Content models every time we save either.
 		void RegenerateAllModels()
 		{
-			
 		}
 
 		#endregion

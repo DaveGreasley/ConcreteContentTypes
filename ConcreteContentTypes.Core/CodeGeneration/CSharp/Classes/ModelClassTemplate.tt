@@ -33,7 +33,7 @@ using <#= nameSpace #>;
 
 namespace <#= Definition.Namespace #>
 {
-	<# foreach (var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
+	<# foreach (var attribute in Definition.Attributes) { #> <#= WriteAttribute(attribute) #> <# } #>
 	public partial class <#= Definition.Name #> : <#= Definition.BaseClass #><<#= Definition.ChildType #>>
 	{
 		public <#= Definition.Name #>()
@@ -57,7 +57,7 @@ namespace <#= Definition.Namespace #>
 		{ }
 	}
 
-	<# foreach (var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
+	<# foreach (var attribute in Definition.Attributes) { #> <#= WriteAttribute(attribute) #> <# } #>
 	public partial class <#= Definition.Name #> : <#= Definition.BaseClass #>
 	{
 		public override string ContentTypeAlias { get { return "<#= Definition.Name #>"; } }

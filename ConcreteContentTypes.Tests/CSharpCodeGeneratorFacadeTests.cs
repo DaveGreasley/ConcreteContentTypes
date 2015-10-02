@@ -18,40 +18,46 @@ namespace ConcreteContentTypes.Tests
 		[TestMethod]
 		public void CSharpCodeGeneratorFacade_Construct()
 		{
-			var baseClassGeneratorMock = new Mock<IBaseClassCodeGenerator>();
-			var modelClassGeneratorMock = new Mock<IModelClassCodeGenerator>();
+			var baseClassTemplateFactory = new Mock<ICodeTemplateFactory<IBaseClassDefinition>>();
+			var modelClassTemplateFactory = new Mock<ICodeTemplateFactory<IModelClassDefinition>>();
 
-			var sut = new CSharpCodeGeneratorFacade(baseClassGeneratorMock.Object, modelClassGeneratorMock.Object);
+			var sut = new CSharpCodeGeneratorFacade(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
 
-			Assert.AreSame(baseClassGeneratorMock.Object, sut.BaseClassGenerator, "BaseClassGenerator not set correctly");
-			Assert.AreSame(modelClassGeneratorMock.Object, sut.ModelClassGenerator, "ModelClassGenerator not set correctly");
+			Assert.AreSame(baseClassTemplateFactory.Object, sut.BaseClassTemplateFactory, "BaseClassGenerator not set correctly");
+			Assert.AreSame(modelClassTemplateFactory.Object, sut.ModelClassTemplateFactory, "ModelClassGenerator not set correctly");
 		}
 
 		[TestMethod]
 		public void CSharpCodeGeneratorFacade_GenerateBaseClass_CallsBaseClassCodeGenerator()
 		{
-			var modelClassCodeGeneratorMock = new Mock<IModelClassCodeGenerator>();
-			var baseClassCodeGeneratorMock = new Mock<IBaseClassCodeGenerator>();
+			var modelClassTemplateFactory = new Mock<ICodeTemplateFactory<IModelClassDefinition>>();
 			var baseClassDefinitionMock = new Mock<IBaseClassDefinition>();
+			var codeTemplateMock = new Mock<ICodeTemplate>();
 
-			var sut = new CSharpCodeGeneratorFacade(baseClassCodeGeneratorMock.Object, modelClassCodeGeneratorMock.Object);
+			var baseClassTemplateFactory = new Mock<ICodeTemplateFactory<IBaseClassDefinition>>();
+			baseClassTemplateFactory.Setup(x => x.GetTemplate(baseClassDefinitionMock.Object)).Returns(codeTemplateMock.Object);
+			
+			var sut = new CSharpCodeGeneratorFacade(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
 			sut.GenerateBaseClass(baseClassDefinitionMock.Object);
 
-			baseClassCodeGeneratorMock.Verify(x => x.GenerateBaseClass(baseClassDefinitionMock.Object),
+			baseClassTemplateFactory.Verify(x => x.GetTemplate(baseClassDefinitionMock.Object),
 				"Not calling BaseClassCodeGenerator correctly");
 		}
 
 		[TestMethod]
 		public void CSharpCodeGeneratorFacade_GenerateModelClass_CallsModelClassGeneratorCorrectly()
 		{
-			var baseClassCodeGenerator = new Mock<IBaseClassCodeGenerator>();
-			var modelClassCodeGeneratorMock = new Mock<IModelClassCodeGenerator>();
-			var modelClassDefintionMock = new Mock<IModelClassDefinition>();
+			var baseClassTemplateFactory = new Mock<ICodeTemplateFactory<IBaseClassDefinition>>();
+			var modelClassDefinitionMock = new Mock<IModelClassDefinition>();
+			var codeTemplateMock = new Mock<ICodeTemplate>();
 
-			var sut = new CSharpCodeGeneratorFacade(baseClassCodeGenerator.Object, modelClassCodeGeneratorMock.Object);
-			sut.GenerateModelClass(modelClassDefintionMock.Object);
+			var modelClassTemplateFactory = new Mock<ICodeTemplateFactory<IModelClassDefinition>>();
+			modelClassTemplateFactory.Setup(x => x.GetTemplate(modelClassDefinitionMock.Object)).Returns(codeTemplateMock.Object);
 
-			modelClassCodeGeneratorMock.Verify(x => x.GenerateModelClass(modelClassDefintionMock.Object), 
+			var sut = new CSharpCodeGeneratorFacade(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
+			sut.GenerateModelClass(modelClassDefinitionMock.Object);
+
+			modelClassTemplateFactory.Verify(x => x.GetTemplate(modelClassDefinitionMock.Object), 
 				"Not calling ModelClassCodeGenerator correctly");
 		}
 	}

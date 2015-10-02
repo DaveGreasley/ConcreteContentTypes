@@ -9,23 +9,28 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
 {
 	public class CSharpCodeGeneratorFacade : ICodeGeneratorFacade
 	{
-		public IBaseClassCodeGenerator BaseClassGenerator { get; private set; }
-		public IModelClassCodeGenerator ModelClassGenerator { get; private set; }
+		public ICodeTemplateFactory<IBaseClassDefinition> BaseClassTemplateFactory { get; private set; }
+		public ICodeTemplateFactory<IModelClassDefinition> ModelClassTemplateFactory { get; private set; }
 
-		public CSharpCodeGeneratorFacade(IBaseClassCodeGenerator baseClassGenerator, IModelClassCodeGenerator modelClassGenerator)
+		public CSharpCodeGeneratorFacade(ICodeTemplateFactory<IBaseClassDefinition> baseClassFactory, 
+			ICodeTemplateFactory<IModelClassDefinition> modelClassFactory)
 		{
-			this.BaseClassGenerator = baseClassGenerator;
-			this.ModelClassGenerator = modelClassGenerator;
+			this.BaseClassTemplateFactory = baseClassFactory;
+			this.ModelClassTemplateFactory = modelClassFactory;
 		}
 
 		public string GenerateBaseClass(IBaseClassDefinition classDefinition)
 		{
-			return this.BaseClassGenerator.GenerateBaseClass(classDefinition);
+			var baseClassTemplate = this.BaseClassTemplateFactory.GetTemplate(classDefinition);
+
+			return baseClassTemplate.GenerateCode();
 		}
 
 		public string GenerateModelClass(IModelClassDefinition classDefinition)
 		{
-			return this.ModelClassGenerator.GenerateModelClass(classDefinition);
+			var modelClassTemplate = this.ModelClassTemplateFactory.GetTemplate(classDefinition);
+
+			return modelClassTemplate.GenerateCode();
 		}
 	}
 }

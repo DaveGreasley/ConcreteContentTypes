@@ -9,12 +9,18 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 {
 	public class ModelClassPropertyDefinition : TypedPropertyDefinition, IModelClassPropertyDefinition
 	{
-		public string PropertyAlias { get; set; }
+		public string Alias { get; set; }
+		public string PropertyEditorAlias { get; set; }
 
-		public ModelClassPropertyDefinition(string propertyName, string propertyAlias, string clrType = "")
+		public ModelClassPropertyDefinition(string propertyName, 
+			string propertyAlias, 
+			string propertyEditorAlias,
+			string clrType = ""
+			)
 			: base(propertyName, clrType) 
 		{
-			this.PropertyAlias = propertyAlias;
+			this.Alias = propertyAlias;
+			this.PropertyEditorAlias = propertyEditorAlias;
 		}
 	}
 }

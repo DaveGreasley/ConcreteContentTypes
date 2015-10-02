@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
+namespace ConcreteContentTypes.Core.CodeGeneration
 {
-	public class AttributeCodeGenerator
+	public interface ICodeTemplate
 	{
+		string GenerateCode();
 	}
 }

@@ -17,7 +17,7 @@ using ConcreteContentTypes.Core.Extensions;
 
 namespace ConcreteContentTypes.Sandbox.Models.Content
 {
-	public partial class Address : Address<SimpleConcreteModel>
+	public partial class Address : Address<ConcreteModel>
 	{
 		public Address()
 			: base()
@@ -41,7 +41,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 	}
 
 	[NodeTypeAlias("Address")]
-	public partial class Address<TChild> : UmbracoContent<TChild> where TChild : ConcreteModel, new()
+	public partial class Address<TChild> : UmbracoContent<TChild> where TChild : ConcreteModel
 	{
 		public override string ContentTypeAlias { get { return "Address"; } }
 

@@ -92,7 +92,7 @@ namespace ");
             this.Write(" ");
             
             #line 38 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -160,7 +160,7 @@ namespace ");
             this.Write(" ");
             
             #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -189,7 +189,7 @@ namespace ");
             #line hidden
             
             #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -218,7 +218,7 @@ namespace ");
             #line hidden
             
             #line 89 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -237,7 +237,7 @@ namespace ");
             #line hidden
             
             #line 92 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -256,7 +256,7 @@ namespace ");
             #line hidden
             
             #line 95 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -275,7 +275,7 @@ namespace ");
             #line hidden
             
             #line 98 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -294,7 +294,7 @@ namespace ");
             #line hidden
             
             #line 101 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -313,7 +313,7 @@ namespace ");
             #line hidden
             
             #line 104 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -332,7 +332,7 @@ namespace ");
             #line hidden
             
             #line 107 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden
@@ -352,7 +352,7 @@ namespace ");
             #line hidden
             
             #line 112 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\BaseClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture("		" + AttributeTemplate.TransformText(attribute)));
+            this.Write(this.ToStringHelper.ToStringWithCulture("		" + WriteAttribute(attribute)));
             
             #line default
             #line hidden

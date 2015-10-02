@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Umbraco.Web.Models;
 using ConcreteContentTypes.Core.Extensions;
+using ConcreteContentTypes.Core.ModelFactory;
 
 namespace ConcreteContentTypes.Core.Mvc
 {
@@ -26,9 +27,8 @@ namespace ConcreteContentTypes.Core.Mvc
 				return null;
 
 			var renderModel = controllerContext.RouteData.DataTokens["umbraco"] as RenderModel;
-
 			if (renderModel != null)
-				return ConcreteModelFactory.CreateModel(renderModel.Content);
+				return ConcreteModelFactory.Current.CreateModel(renderModel.Content);
 
 			return null;
 		}

@@ -35,7 +35,7 @@ using <#= nameSpace #>;
 
 namespace <#= Definition.Namespace #>
 {
-	<# foreach(var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
+	<# foreach(var attribute in Definition.Attributes) { #> <#= WriteAttribute(attribute) #> <# } #>
 	public abstract partial class <#= Definition.Name #> : <#= Definition.Name #><SimpleConcreteModel>
 	{
 		public <#= Definition.Name #>()
@@ -62,14 +62,14 @@ namespace <#= Definition.Namespace #>
  		}
 	}
 
-	<# foreach(var attribute in Definition.Attributes) { #> <#= AttributeTemplate.TransformText(attribute) #> <# } #>
+	<# foreach(var attribute in Definition.Attributes) { #> <#= WriteAttribute(attribute) #> <# } #>
 	public abstract partial class <#= Definition.Name #><TChild> : ConcreteModel where TChild : ConcreteModel
 	{
 		public abstract string ContentTypeAlias { get; }
 		public bool GetPropertiesRecursively { get; set; }
 
 		private IPublishedContent _content = null;
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Content)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		[JsonIgnore]
 		public override IPublishedContent Content
 		{
@@ -86,30 +86,30 @@ namespace <#= Definition.Namespace #>
 			}
 		}
 
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Name)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Name)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public override string Name { get; set; }
 
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Id)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Id)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public override int Id { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.ParentId)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.ParentId)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public override int ParentId { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Path)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Path)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public string Path { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.CreateDate)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.CreateDate)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public DateTime CreateDate { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.UpdateDate)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.UpdateDate)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public DateTime UpdateDate { get; set; }
 		
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Url)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Url)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		public string Url { get; set; }
 
 
 		private IEnumerable<TChild> _children = null;
-<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Children)) { #><#= "		" + AttributeTemplate.TransformText(attribute) #><# } #>
+<# foreach(var attribute in GetPropertyAttributes(BaseClassProperty.Children)) { #><#= "		" + WriteAttribute(attribute) #><# } #>
 		[JsonIgnore]
 		public IEnumerable<TChild> Children
 		{

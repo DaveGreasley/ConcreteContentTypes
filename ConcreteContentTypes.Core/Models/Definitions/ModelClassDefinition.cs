@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 			: base(name, nameSpace)
 		{
 			this.Properties = new List<IModelClassPropertyDefinition>();
-			this.ChildType = typeof(SimpleConcreteModel).Name; //TODO: Set as constant
+			this.ChildType = typeof(ConcreteModel).Name; 
 		}
 
 		public override IEnumerable<string> GetUsingNamespaces()

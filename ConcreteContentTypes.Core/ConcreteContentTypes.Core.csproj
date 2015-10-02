@@ -187,9 +187,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGeneration\CSharp\Attributes\AttributeCodeGenerator.cs" />
-    <Compile Include="CodeGeneration\CSharp\Classes\BaseClassCodeGenerator.cs" />
-    <Compile Include="CodeGeneration\CSharp\Classes\ModelClassCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CSharp\Attributes\AttributeTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\CSharp\Classes\Factories\BaseClassTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\CSharp\Classes\Factories\ModelClassTemplateFactory.cs" />
     <Compile Include="CodeGeneration\CSharp\CSharpCodeGeneratorFacade.cs" />
     <Compile Include="CodeGeneration\CSharp\Attributes\AttributeTemplate.cs">
       <DependentUpon>AttributeTemplate.tt</DependentUpon>
@@ -214,32 +214,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="CodeGeneration\IAttributeTemplate.cs" />
-    <Compile Include="CodeGeneration\IBaseClassCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CSharp\TemplateTypeResolver.cs" />
+    <Compile Include="CodeGeneration\ITemplateTypeResolver.cs" />
+    <Compile Include="CodeGeneration\CSharp\Properties\PropertyTemplateFactory.cs" />
     <Compile Include="CodeGeneration\ICodeGeneratorFacade.cs" />
+    <Compile Include="CodeGeneration\ICodeTemplate.cs" />
+    <Compile Include="CodeGeneration\ICodeTemplateFactory.cs" />
     <Compile Include="CodeGeneration\IErrorTracker.cs" />
-    <Compile Include="CodeGeneration\IModelClassCodeGenerator.cs" />
-    <Compile Include="CodeGeneration\IPropertyTemplate.cs" />
-    <Compile Include="CodeGeneration\IBaseClassTemplate.cs" />
-    <Compile Include="CodeGeneration\IModelClassTemplate.cs" />
-    <Compile Include="CodeGeneration\IPropertyTemplateFactory.cs" />
-    <Compile Include="Concrete.cs" />
-    <Compile Include="ConcreteModelFactory.cs" />
+    <Compile Include="CodeGeneration\Concrete.cs" />
+    <Compile Include="Configuration\IPropertyTypeDefaultsSettings.cs" />
+    <Compile Include="Configuration\IPropertyTypeSettings.cs" />
+    <Compile Include="ModelFactory\ConcreteModelFactory.cs" />
+    <Compile Include="ModelFactory\ConcreteModelTypeResolver.cs" />
+    <Compile Include="ModelFactory\IConcreteModelFactory.cs" />
+    <Compile Include="ModelFactory\IConcreteModelTypeResolver.cs" />
     <Compile Include="Mvc\ConcreteModelBinder.cs" />
     <Compile Include="Events\IConcreteEvents.cs" />
     <Compile Include="Extensions\IContentServiceExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
-    <Compile Include="Extensions\SimpleConcreteModelExtensions.cs" />
     <Compile Include="FileWriters\FileWriter.cs" />
     <Compile Include="FileWriters\IFileWriter.cs" />
     <Compile Include="FileWriters\WriteOperation.cs" />
-    <Compile Include="GenerationError.cs" />
+    <Compile Include="CodeGeneration\GenerationError.cs" />
     <Compile Include="Helpers\PropertyValueConverterHelper.cs" />
     <Compile Include="Configuration\IConcreteSettings.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
     <Compile Include="Helpers\CacheNameHelper.cs" />
-    <Compile Include="CodeGeneration\IAttributeCodeGenerator.cs" />
     <Compile Include="Models\Definitions\IBaseClassDefinition.cs" />
     <Compile Include="Models\Definitions\IBaseClassPropertyDefinition.cs" />
     <Compile Include="Models\Definitions\IClassDefinition.cs" />
@@ -248,7 +249,6 @@
     <Compile Include="Models\Definitions\IPropertyDefinition.cs" />
     <Compile Include="Models\Definitions\ITypedPropertyDefinition.cs" />
     <Compile Include="Models\Definitions\TypedPropertyDefinition.cs" />
-    <Compile Include="Models\SimpleConcreteModel.cs" />
     <Compile Include="Models\ConcreteModel.cs" />
     <Compile Include="Models\Definitions\IAttributeDefintion.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
@@ -298,7 +298,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CodeGeneration\CSharp\ClrTypeResolvers\" />
     <Folder Include="CodeGeneration\CSharp\Properties\Models\" />
+    <Folder Include="CodeGeneration\CSharp\Properties\TemplateResolvers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

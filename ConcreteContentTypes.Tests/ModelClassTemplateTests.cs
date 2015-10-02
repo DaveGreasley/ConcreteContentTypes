@@ -17,15 +17,20 @@ namespace ConcreteContentTypes.Tests
 		[TestMethod]
 		public void UmbracoModelClassTemplate_Construct()
 		{
-			var attributeTemplateMock = new Mock<IAttributeTemplate>();
-			var ptfMock = new Mock<IPropertyTemplateFactory>();
+			var modelClassDefinitionMock = new Mock<IModelClassDefinition>();
+			var attributeTemplateFactoryMock = new Mock<ICodeTemplateFactory<IAttributeDefinition>>();
+			var propertyTemplateFactoryMock = new Mock<ICodeTemplateFactory<IModelClassPropertyDefinition>>();
 			var errorTrackerMock = new Mock<IErrorTracker>();
 
-			var sut = new ModelClassTemplate(attributeTemplateMock.Object, ptfMock.Object, errorTrackerMock.Object);
+			var sut = new ModelClassTemplate(modelClassDefinitionMock.Object,
+				attributeTemplateFactoryMock.Object,
+				propertyTemplateFactoryMock.Object,
+				errorTrackerMock.Object);
 
-			Assert.IsNull(sut.Definition, "ClassDefinition should be initialised to null");
-			Assert.AreSame(attributeTemplateMock.Object, sut.AttributeTemplate, "AttributeTemplate not set properly");
-			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker not properly set");
+			Assert.AreSame(modelClassDefinitionMock.Object, sut.Definition, "Definition not set properly");
+			Assert.AreSame(attributeTemplateFactoryMock.Object, sut.AttributeTemplateFactory, "AttributeTemplateFactory not set properly");
+			Assert.AreSame(propertyTemplateFactoryMock.Object, sut.PropertyTemplateFactory, "PropertyTemplateFactory not set correctly");
+			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker not set properly");
 		}
 	}
 }

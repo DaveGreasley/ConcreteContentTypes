@@ -1,5 +1,4 @@
-﻿using ConcreteContentTypes.Core.Models.Definitions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.CodeGeneration
 {
-	public interface IModelClassTemplate
+	public interface ICodeTemplateFactory<T>
 	{
-		string TransformText(IModelClassDefinition classDefinition);
+		ICodeTemplate GetTemplate(T definition);
 	}
 }

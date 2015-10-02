@@ -11,32 +11,31 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 {
-	public partial class BaseClassTemplate : IBaseClassTemplate
+	public partial class BaseClassTemplate : ICodeTemplate
 	{
-		public BaseClassDefinition Definition { get; private set; }
-		public IAttributeTemplate AttributeTemplate { get; private set; }
+		public IBaseClassDefinition Definition { get; private set; }
+
+		public ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; private set; }
+
 		public IEnumerable<string> UsingNamespaces { get; private set; }
 		public string CacheName { get; private set; }
 
-		public BaseClassTemplate(IAttributeTemplate attributeTemplate)
+		public IErrorTracker ErrorTracker { get; private set; }
+
+		public BaseClassTemplate(IBaseClassDefinition classDefinition,
+			ICodeTemplateFactory<IAttributeDefinition> atf,
+			IErrorTracker errorTracker)
 		{
-			this.AttributeTemplate = attributeTemplate;
-
-			this.Definition = null;
-			this.UsingNamespaces = new List<string>();
-			this.CacheName = string.Empty;
-		}
-
-		public string TransformText(BaseClassDefinition classDefinition)
-		{
-			if (classDefinition == null)
-				throw new ArgumentNullException("classDefinition");
-
 			this.Definition = classDefinition;
+			this.AttributeTemplateFactory = atf;
+
 			this.UsingNamespaces = classDefinition.GetUsingNamespaces();
 			this.CacheName = CacheNameHelper.GetCacheName(classDefinition.PublishedItemType);
+		}
 
-			return TransformText();
+		public string GenerateCode()
+		{
+			return this.TransformText();
 		}
 
 		protected IEnumerable<IAttributeDefinition> GetPropertyAttributes(BaseClassProperty property)
@@ -46,16 +45,25 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 				: new List<IAttributeDefinition>();
 		}
 
-		//private IEnumerable<AttributeTemplate> GetAttributeTemplates()
-		//{
-		//	List<AttributeTemplate> attributeTemplates = new List<AttributeTemplate>();
+		protected string WriteAttribute(IAttributeDefinition attributeDefinition)
+		{
+			try
+			{
+				if (attributeDefinition == null)
+				{
+					this.ErrorTracker.Error("AttributeDefinition passed to BaseClassTemplate.WriteAttribte() method is null. Current Class: " + this.Definition.Name);
+					return string.Empty;
+				}
 
-		//	foreach (var attributeDefinition in this.CurrentDefinition.Attributes)
-		//	{
-		//		attributeTemplates.Add(new AttributeTemplate(attributeDefinition));
-		//	}
+				var template = this.AttributeTemplateFactory.GetTemplate(attributeDefinition);
+				return template.GenerateCode();
+			}
+			catch (Exception ex)
+			{
+				this.ErrorTracker.Error("Error writing attribute " + attributeDefinition.Type + " in " + this.Definition.Name, ex);
+				return string.Empty;
+			}
+		}
 
-		//	return attributeTemplates;
-		//}
 	}
 }

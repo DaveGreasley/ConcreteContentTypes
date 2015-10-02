@@ -17,11 +17,13 @@ namespace ConcreteContentTypes.Tests
 			string originalName = "Property Name";
 			string conventionalName = "PropertyName";
 			string alias = "PropertyAlias";
+			string propertyEditorAlias = "PropertyEditorAlias";
 
-			var sut = new ModelClassPropertyDefinition(originalName, alias);
+			var sut = new ModelClassPropertyDefinition(originalName, alias, propertyEditorAlias);
 
 			Assert.AreEqual(conventionalName, sut.Name, "Name is not set correctly");
-			Assert.AreEqual(alias, sut.PropertyAlias, "PropertyAlias is not set correctly");
+			Assert.AreEqual(alias, sut.Alias, "Alias is not set correctly");
+			Assert.AreEqual(propertyEditorAlias, sut.PropertyEditorAlias, "PropertyEditorAlias is not set correctly");
 			Assert.AreEqual(string.Empty, sut.ClrType, "ClrType should be initialised to an empty string using this constructor");
 		}
 
@@ -31,12 +33,13 @@ namespace ConcreteContentTypes.Tests
 			string originalName = "Property Name";
 			string conventionalName = "PropertyName";
 			string alias = "PropertyAlias";
+			string propertyEditorAlias = "PropertyEditorAlias";
 			string clrType = "PropertyClrType";
 
-			var sut = new ModelClassPropertyDefinition(originalName, alias, clrType);
+			var sut = new ModelClassPropertyDefinition(originalName, alias, propertyEditorAlias, clrType);
 
 			Assert.AreEqual(conventionalName, sut.Name, "Name is not set correctly");
-			Assert.AreEqual(alias, sut.PropertyAlias, "PropertyAlias is not set correctly");
+			Assert.AreEqual(alias, sut.Alias, "PropertyAlias is not set correctly");
 			Assert.AreEqual(clrType, sut.ClrType, "ClrType is not set correctly");
 		}
 	}

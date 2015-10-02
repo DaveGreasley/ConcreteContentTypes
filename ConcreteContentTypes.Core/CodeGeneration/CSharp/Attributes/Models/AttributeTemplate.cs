@@ -7,26 +7,20 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
 {
-	public partial class AttributeTemplate : IAttributeTemplate
+	public partial class AttributeTemplate : ICodeTemplate
 	{
 		public IAttributeDefinition Definition { get; private set; }
 		public string Parameters { get; private set; }
 
-		public AttributeTemplate()
-		{
-			this.Definition = null;
-			this.Parameters = "";
-		}
+		public IErrorTracker ErrorTracker { get; private set; }
 
-		public string TransformText(IAttributeDefinition attributeDefinition)
+		public AttributeTemplate(IAttributeDefinition definition,
+			IErrorTracker errorTracker)
 		{
-			if (attributeDefinition == null)
-				throw new ArgumentNullException("attributeDefinition");
-
-			this.Definition = attributeDefinition;
+			this.Definition = definition;
 			this.Parameters = GetParametersValuesString();
 
-			return this.TransformText();
+			this.ErrorTracker = errorTracker;
 		}
 
 		private string GetParametersValuesString()
@@ -42,6 +36,19 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
 			}
 
 			return parameters.ToString();
+		}
+
+		public string GenerateCode()
+		{
+			try
+			{
+				return this.TransformText();
+			}
+			catch (Exception ex)
+			{
+				this.ErrorTracker.Error("Error generating attribute.", ex);
+				return "";
+			}
 		}
 	}
 }

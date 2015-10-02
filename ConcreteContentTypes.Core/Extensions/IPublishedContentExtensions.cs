@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.Models;
+﻿using ConcreteContentTypes.Core.ModelFactory;
+using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,7 @@ namespace ConcreteContentTypes.Core.Extensions
 		/// <returns>A strongly typed model representing the IPublishedContent object</returns>
 		public static T As<T>(this IPublishedContent content) where T : ConcreteModel
 		{
-			var model = Activator.CreateInstance<T>();
-			model.Init(content);
-
-			return model;
+			return ConcreteModelFactory.Current.CreateModel<T>(content);
 		}
 
 		/// <summary>
