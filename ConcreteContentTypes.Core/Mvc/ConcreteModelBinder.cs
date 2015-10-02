@@ -15,6 +15,9 @@ namespace ConcreteContentTypes.Core.Mvc
 	{
 		public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
+			if (controllerContext == null || bindingContext == null)
+				return null;
+
 			if (bindingContext.ModelType.IsAssignableFrom(typeof(ConcreteModel)))
 				return BindConcreteModel(controllerContext, bindingContext);
 

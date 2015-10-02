@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,27 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public IEnumerable<object> ConstructorParameters { get { return _constructorParameters; } }
 
 		public AttributeDefinition(Type type)
-			: this(type.Name, type.Namespace)
 		{
+			if (type == null)
+				throw new ArgumentNullException("type", "Cannot create AttributeDefinition from null type");
+
+			if (!typeof(Attribute).IsAssignableFrom(type))
+				throw new ArgumentOutOfRangeException("type", type, "Can only create AttributeDefintion from an AttributeType!");
+
+			this.Type = type.Name.Replace("Attribute", "");
+			this.Namespace = type.Namespace;
+
+			_constructorParameters = new List<object>();
 		}
 
 		public AttributeDefinition(string type, string nameSpace)
 		{
+			if (string.IsNullOrWhiteSpace(type))
+				throw new ArgumentNullException("type", "Type name cannot be null or empty");
+
+			if (string.IsNullOrWhiteSpace(nameSpace))
+				throw new ArgumentNullException("nameSpace", "Namespace cannot be null or empty");
+
 			this.Type = type.Replace("Attribute", "");
 			this.Namespace = nameSpace;
 
@@ -43,7 +59,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 
 		private void AddStringParameterValue(string paramValue)
 		{
-			_constructorParameters.Add(string.Format("\"{0}\"", paramValue));
+			_constructorParameters.Add(string.Format(CultureInfo.InvariantCulture, "\"{0}\"", paramValue));
 		}
 
 		private void AddNonStringParameterValue(object paramValue)

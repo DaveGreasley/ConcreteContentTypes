@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -224,6 +225,7 @@
     <Compile Include="AttributeTemplateFactoryTests.cs" />
     <Compile Include="AttributeTemplateTests.cs" />
     <Compile Include="BaseClassTemplateFactoryTests.cs" />
+    <Compile Include="PVCClrTypeResolverTests.cs" />
     <Compile Include="ConcreteEventsTests.cs" />
     <Compile Include="ModelClassTemplateFactoryTests.cs" />
     <Compile Include="PropertyDefinitionTests.cs" />

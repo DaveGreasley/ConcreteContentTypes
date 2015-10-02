@@ -9,8 +9,8 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 	{
 		string Name { get; }
 		string Namespace { get; }
-		List<IAttributeDefinition> Attributes { get; set; }
-		List<string> DependantAssemblies { get; set; }
+		List<IAttributeDefinition> Attributes { get; }
+		List<string> DependentAssemblies { get; }
 		string BaseClass { get; set; }
 
 		void AddUsingNamespace(string nameSpace);

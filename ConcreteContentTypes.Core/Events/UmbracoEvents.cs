@@ -43,7 +43,7 @@ namespace ConcreteContentTypes.Core.Events
 			}
 		}
 
-		private bool IsInDebugMode()
+		private static bool IsInDebugMode()
 		{
 			CompilationSection compilationSection = (CompilationSection)System.Configuration.ConfigurationManager.GetSection(@"system.web/compilation");
 			return compilationSection.Debug;

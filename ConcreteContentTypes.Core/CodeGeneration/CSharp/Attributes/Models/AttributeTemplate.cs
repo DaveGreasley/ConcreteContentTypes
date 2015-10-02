@@ -9,10 +9,10 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
 {
 	public partial class AttributeTemplate : ICodeTemplate
 	{
-		public IAttributeDefinition Definition { get; private set; }
-		public string Parameters { get; private set; }
+		protected IAttributeDefinition Definition { get; private set; }
+		protected string Parameters { get; private set; }
 
-		public IErrorTracker ErrorTracker { get; private set; }
+		IErrorTracker ErrorTracker { get; set; }
 
 		public AttributeTemplate(IAttributeDefinition definition,
 			IErrorTracker errorTracker)

@@ -16,6 +16,13 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 		/// </summary>
 		public bool Fatal { get; set; }
 
+		public GenerationError(string message, Exception exception = null)
+		{
+			this.Message = message;
+			this.Exception = exception;
+			this.Fatal = false;
+		}
+
 		public GenerationError(string message, Exception exception = null, bool fatal = false)
 		{
 			this.Message = message;

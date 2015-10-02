@@ -18,25 +18,6 @@ namespace ConcreteContentTypes.Tests
 	public class MediaTypesSourceModelMapperTests
 	{
 		[TestMethod]
-		public void UmbracoMediaTypesSourceModelMapper_Construct()
-		{
-			var settings = new ConcreteSettings()
-			{
-				Namespace = "TestNameSpace"
-			};
-
-			var mediaTypes = new List<IMediaType>();
-
-			var eventsMock = new Mock<IConcreteEvents>();
-
-			var sut = new MediaTypesSourceModelMapper(settings, eventsMock.Object, mediaTypes);
-
-			Assert.AreSame(settings, sut.Settings);
-			Assert.AreSame(mediaTypes, sut.MediaTypes);
-			Assert.AreEqual("TestNameSpace.Media", sut.Namespace);
-		}
-
-		[TestMethod]
 		public void UmbracoMediaTypesSourceModelMapper_GetBaseClassDefinition()
 		{
 			var settings = new ConcreteSettings()
@@ -82,8 +63,6 @@ namespace ConcreteContentTypes.Tests
 
 			var sut = new MediaTypesSourceModelMapper(settings, eventsMock.Object, new List<IMediaType>() { testContentType.Object });
 
-			Assert.AreEqual(1, sut.MediaTypes.Count(), "Should contain 1 IMediaType");
-
 			var definitions = sut.GetModelClassDefinitions();
 
 			Assert.AreEqual(1, definitions.Count(), "Map() Should return 1 class definition");
@@ -114,8 +93,6 @@ namespace ConcreteContentTypes.Tests
 			var eventsMock = new Mock<IConcreteEvents>();
 
 			var sut = new MediaTypesSourceModelMapper(settings, eventsMock.Object, new List<IMediaType>() { testMediaType.Object, testMediaType2.Object });
-
-			Assert.AreEqual(2, sut.MediaTypes.Count(), "Should contain 2 IMediaTypes");
 
 			var definitions = sut.GetModelClassDefinitions();
 

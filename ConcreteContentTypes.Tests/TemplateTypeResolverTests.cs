@@ -11,11 +11,5 @@ namespace ConcreteContentTypes.Tests
 	[TestClass]
 	public class TemplateTypeResolverTests
 	{
-		[TestMethod]
-		public void TemplateTypeResolver_Construct()
-		{
-			var sut = new TemplateTypeResolver();
-
-		}
 	}
 }

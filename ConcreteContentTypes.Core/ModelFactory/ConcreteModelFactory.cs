@@ -25,15 +25,21 @@ namespace ConcreteContentTypes.Core.ModelFactory
 
 		#endregion
 
-		public ConcreteModelTypeResolver TypeResolver { get; private set; }
+		ConcreteModelTypeResolver TypeResolver { get; set; }
 
 		public ConcreteModelFactory(ConcreteModelTypeResolver typeResolver)
 		{
+			if (typeResolver == null)
+				throw new ArgumentNullException("typeResolver", "Cannot specify a null TypeResolver");
+
 			this.TypeResolver = typeResolver;
 		}
 
 		public ConcreteModel CreateModel(IPublishedContent content)
 		{
+			if (content == null)
+				return null;
+
 			var modelType = this.TypeResolver.ResolveType(content.ContentType.Alias);
 
 			var model = Activator.CreateInstance(modelType, content) as ConcreteModel;

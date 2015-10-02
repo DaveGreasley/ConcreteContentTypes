@@ -53,7 +53,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			return propertyDefinitions;
 		}
 
-		protected List<IBaseClassPropertyDefinition> GetBaseClassProperties()
+		protected static List<IBaseClassPropertyDefinition> GetBaseClassProperties()
 		{
 			List<IBaseClassPropertyDefinition> propertyDefinitions = new List<IBaseClassPropertyDefinition>();
 			propertyDefinitions.Add(new BaseClassPropertyDefinition(BaseClassProperty.Content));
@@ -91,7 +91,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			return _types.FirstOrDefault(x => x.Id == childContentType.ParentId);
 		}
 
-		protected string GetBaseClass(IContentTypeBase contentType, IContentTypeBase parent, string defaultBaseClass = "")
+		protected static string GetBaseClass(IContentTypeBase contentType, IContentTypeBase parent, string defaultBaseClass = "")
 		{
 			if (contentType.ParentId == -1)
 				return defaultBaseClass;
@@ -99,7 +99,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 			return parent.Alias;
 		}
 
-		protected string GetChildType(IContentTypeBase contentType)
+		protected static string GetChildType(IContentTypeBase contentType)
 		{
 			if (contentType.AllowedContentTypes.Count() > 1)
 				return typeof(ConcreteModel).Name;

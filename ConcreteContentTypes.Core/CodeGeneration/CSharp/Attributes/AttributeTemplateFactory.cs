@@ -9,7 +9,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
 {
 	public class AttributeTemplateFactory : ICodeTemplateFactory<IAttributeDefinition>
 	{
-		public IErrorTracker ErrorTracker { get; private set; }
+		IErrorTracker ErrorTracker { get; set; }
 
 		public AttributeTemplateFactory(IErrorTracker errorTracker)
 		{

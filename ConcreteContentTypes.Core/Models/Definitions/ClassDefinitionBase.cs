@@ -10,20 +10,20 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 {
 	public abstract class ClassDefinitionBase : IClassDefinition
 	{
-		public string Name { get; internal set; }
-		public string Namespace { get; set; }
-		public List<IAttributeDefinition> Attributes { get; set; }
-		public List<string> DependantAssemblies { get; set; }
+		public string Name { get; private set; }
+		public string Namespace { get; private set; }
+		public List<IAttributeDefinition> Attributes { get; private set; }
+		public List<string> DependentAssemblies { get; private set; }
 		public string BaseClass { get; set; }
 
-		protected List<string> UsingNamespaces { get; set; }
+		protected List<string> UsingNamespaces { get; private set; }
 
-		public ClassDefinitionBase(string name, string nameSpace)
+		protected ClassDefinitionBase(string name, string nameSpace)
 		{
 			this.Name = name;
 			this.Namespace = nameSpace;
 			this.Attributes = new List<IAttributeDefinition>();
-			this.DependantAssemblies = new List<string>();
+			this.DependentAssemblies = new List<string>();
 			this.UsingNamespaces = new List<string>();
 		}
 

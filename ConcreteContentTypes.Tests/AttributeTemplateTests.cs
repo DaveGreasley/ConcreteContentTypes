@@ -14,18 +14,6 @@ namespace ConcreteContentTypes.Tests
 	[TestClass]
 	public class AttributeTemplateTests
 	{
-		[TestMethod]
-		public void AttributeTemplate_Construct()
-		{
-			var attributeDefinitionMock = new Mock<IAttributeDefinition>();
-			var errorTrackerMock = new Mock<IErrorTracker>();
-
-			var sut = new AttributeTemplate(attributeDefinitionMock.Object, errorTrackerMock.Object);
-
-			Assert.AreSame(attributeDefinitionMock.Object, sut.Definition, "Defintion not set properly");
-			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker not set properly");
-		}
-
 		//[TestMethod]
 		//public void AttributeTemplate_TransformText_NullDefinition()
 		//{

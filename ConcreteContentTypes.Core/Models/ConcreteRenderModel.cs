@@ -1,6 +1,7 @@
 ﻿using ConcreteContentTypes.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,21 +16,21 @@ namespace ConcreteContentTypes.Core.Models
 		public T Model { get; set; }
 
 		public ConcreteRenderModel()
-			: base(UmbracoContext.Current.PublishedContentRequest.PublishedContent)
+			: base(UmbracoContext.Current.PublishedContentRequest.PublishedContent, CultureInfo.CurrentCulture)
 		{
 			this.Model = new T();
 			this.Model.Init(this.Content);
 		}
 
 		public ConcreteRenderModel(IPublishedContent content)
-			: base(content)
+			: base(content, CultureInfo.CurrentCulture)
 		{
 			this.Model = new T();
 			this.Model.Init(content);
 		}
 
 		public ConcreteRenderModel(T content)
-			: base (content.Content)
+			: base (content.Content, CultureInfo.CurrentCulture)
 		{
 			this.Model = content;
 		}

@@ -4,6 +4,7 @@ using ConcreteContentTypes.Core.FileWriters;
 using ConcreteContentTypes.Core.SourceModelMapping;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +13,24 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	public class Concrete
 	{
-		public IConcreteSettings Settings { get; set; }
+		IConcreteSettings Settings { get; set; }
 
-		public ISourceModelMapper ContentTypeSourceModelMapper { get; set; }
-		public ISourceModelMapper MediaTypeSourceModelMapper { get; set; }
+		ISourceModelMapper ContentTypeSourceModelMapper { get; set; }
+		ISourceModelMapper MediaTypeSourceModelMapper { get; set; }
 
-		public ICodeGeneratorFacade ContentTypeCodeGenerator { get; set; }
-		public ICodeGeneratorFacade MediaTypeCodeGenerator { get; set; }
+		ICodeGeneratorFacade ContentTypeCodeGenerator { get; set; }
+		ICodeGeneratorFacade MediaTypeCodeGenerator { get; set; }
 
-		public IFileWriter FileWriter { get; set; }
+		IFileWriter FileWriter { get; set; }
 
-		public IErrorTracker ErrorTracker { get; set; }
+		IErrorTracker ErrorTracker { get; set; }
 
 		public int ContentModelCount { get; set; }
 		public int MediaModelCount { get; set; }
 		public int FilesWritten { get; set; }
 
-		public string ContentOutputFolder { get { return string.Format("{0}\\Content", Settings.CSharpOutputFolder); } }
-		public string MediaOutputFolder { get { return string.Format("{0}\\Media", Settings.CSharpOutputFolder); } }
+		string ContentOutputFolder { get { return string.Format(CultureInfo.InvariantCulture, "{0}\\Content", Settings.CSharpOutputFolder); } }
+		string MediaOutputFolder { get { return string.Format(CultureInfo.InvariantCulture, "{0}\\Media", Settings.CSharpOutputFolder); } }
 
 		public Concrete(
 			IConcreteSettings settings,
@@ -172,9 +173,10 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 				{
 					this.FilesWritten = this.FileWriter.WriteQueue();
 				}
-				catch (Exception ex)
+				catch (Exception)
 				{
 					//TODO: Not sure what to do here...
+					throw;
 				}
 			}
 		}

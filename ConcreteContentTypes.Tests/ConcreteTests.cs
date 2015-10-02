@@ -19,56 +19,6 @@ namespace ConcreteContentTypes.Tests
 	public class ConcreteTests
 	{
 		[TestMethod]
-		public void Concrete_Construct()
-		{
-			var concreteSettingsMock = new Mock<IConcreteSettings>();
-
-			var contentTypeMapperMock = new Mock<ISourceModelMapper>();
-			var mediaTypeMapperMock = new Mock<ISourceModelMapper>();
-
-			var contentTypeCodeGeneratorMock = new Mock<ICodeGeneratorFacade>();
-			var mediaTypeCodeGeneratorMock = new Mock<ICodeGeneratorFacade>();
-
-			var fileWriterMock = new Mock<IFileWriter>();
-
-			var errorTrackerMock = new Mock<IErrorTracker>();
-
-			var sut = new Concrete(
-				concreteSettingsMock.Object,
-				contentTypeMapperMock.Object,
-				mediaTypeMapperMock.Object,
-				contentTypeCodeGeneratorMock.Object,
-				mediaTypeCodeGeneratorMock.Object,
-				fileWriterMock.Object,
-				errorTrackerMock.Object);
-
-			Assert.IsNotNull(sut.Settings, "Settings is null");
-			Assert.AreSame(sut.Settings, concreteSettingsMock.Object);
-
-			Assert.IsNotNull(sut.ContentTypeSourceModelMapper, "ContentSourceModelMapper is null");
-			Assert.AreSame(sut.ContentTypeSourceModelMapper, contentTypeMapperMock.Object, "ContentSourceModelMapper set to incorrect instance");
-
-			Assert.IsNotNull(sut.MediaTypeSourceModelMapper, "MediaSourceModelMapper is null");
-			Assert.AreSame(sut.MediaTypeSourceModelMapper, mediaTypeMapperMock.Object, "MediaSourceModelMapper set to incorrect instance");
-
-			Assert.IsNotNull(sut.ContentTypeCodeGenerator, "ContentCodeGenerator is null");
-			Assert.AreSame(sut.ContentTypeCodeGenerator, contentTypeCodeGeneratorMock.Object, "ContentCodeGenerator set to incorrect instance");
-
-			Assert.IsNotNull(sut.MediaTypeCodeGenerator, "MediaCodeGenerator is null");
-			Assert.AreSame(sut.MediaTypeCodeGenerator, mediaTypeCodeGeneratorMock.Object, "MediaCodeGenerator set to incorrect instance");
-
-			Assert.IsNotNull(sut.FileWriter, "FileWriter is null");
-			Assert.AreSame(sut.FileWriter, fileWriterMock.Object, "FileWriter set to incorrect instance");
-
-			Assert.IsNotNull(sut.ErrorTracker, "ErrorTracker is null");
-			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker set to incorrect instance");
-
-			Assert.AreEqual(0, sut.ContentModelCount, "ContentModelCount is not initialised to 0");
-			Assert.AreEqual(0, sut.MediaModelCount, "MediaModelCount is not initialised to 0");
-			Assert.AreEqual(0, sut.FilesWritten, "FilesWritten is not initialised to 0");
-		}
-
-		[TestMethod]
 		public void Concrete_Generate_CallsCorrectMethods()
 		{
 			//This test ensures that the Generate() method of the Concrete class calls the correct methods on the correct objects.

@@ -13,15 +13,6 @@ namespace ConcreteContentTypes.Tests
 	public class FileWriterTests
 	{
 		[TestMethod]
-		public void FileWriter_Construct()
-		{
-			var sut = new FileWriter();
-
-			Assert.IsNotNull(sut.QueuedOperations, "QueuedOperations is null");
-			Assert.AreEqual(0, sut.QueuedOperations.Count(), "QueuedOperations should be an empty collection");
-		}
-
-		[TestMethod]
 		public void FileWriter_QueueWriteOperation_EmptyParameter_FileName()
 		{
 			var sut = new FileWriter();

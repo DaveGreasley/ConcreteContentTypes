@@ -5,6 +5,7 @@ using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,9 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 {
 	public class ContentTypeSourceModelMapper : SourceModelMapperBase, ISourceModelMapper
 	{
-		public string Namespace { get { return string.Format("{0}.Content", this.Settings.Namespace); } }
+		string Namespace { get { return string.Format(CultureInfo.InvariantCulture, "{0}.Content", this.Settings.Namespace); } }
 
-		public IEnumerable<IContentType> ContentTypes { get; set; }
+		IEnumerable<IContentType> ContentTypes { get; set; }
 
 		public ContentTypeSourceModelMapper(
 			IConcreteSettings settings,

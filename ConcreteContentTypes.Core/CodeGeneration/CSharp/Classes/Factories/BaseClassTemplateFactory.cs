@@ -9,8 +9,8 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes.Factories
 {
 	public class BaseClassTemplateFactory : ICodeTemplateFactory<IBaseClassDefinition>
 	{
-		public IErrorTracker ErrorTracker { get; private set; }
-		public ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; private set; }
+		IErrorTracker ErrorTracker { get; set; }
+		ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; set; }
 
 		public BaseClassTemplateFactory(IErrorTracker errorTracker,
 			ICodeTemplateFactory<IAttributeDefinition> atf)

@@ -11,13 +11,13 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 {
 	public partial class ModelClassTemplate : ICodeTemplate
 	{
-		public IModelClassDefinition Definition { get; private set; }
-		public IEnumerable<string> UsingNamespaces { get; private set; }
+		protected IModelClassDefinition Definition { get; set; }
+		protected IEnumerable<string> UsingNamespaces { get; set; }
 
-		public ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; private set; }
-		public ICodeTemplateFactory<IModelClassPropertyDefinition> PropertyTemplateFactory { get; private set; }
+		ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; set; }
+		ICodeTemplateFactory<IModelClassPropertyDefinition> PropertyTemplateFactory { get; set; }
 
-		public IErrorTracker ErrorTracker { get; private set; }
+		IErrorTracker ErrorTracker { get; set; }
 
 		public ModelClassTemplate(
 			IModelClassDefinition definition,

@@ -9,8 +9,8 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
 {
 	public class CSharpCodeGeneratorFacade : ICodeGeneratorFacade
 	{
-		public ICodeTemplateFactory<IBaseClassDefinition> BaseClassTemplateFactory { get; private set; }
-		public ICodeTemplateFactory<IModelClassDefinition> ModelClassTemplateFactory { get; private set; }
+		ICodeTemplateFactory<IBaseClassDefinition> BaseClassTemplateFactory { get; set; }
+		ICodeTemplateFactory<IModelClassDefinition> ModelClassTemplateFactory { get; set; }
 
 		public CSharpCodeGeneratorFacade(ICodeTemplateFactory<IBaseClassDefinition> baseClassFactory, 
 			ICodeTemplateFactory<IModelClassDefinition> modelClassFactory)

@@ -16,18 +16,6 @@ namespace ConcreteContentTypes.Tests
 	public class CSharpCodeGeneratorFacadeTests
 	{
 		[TestMethod]
-		public void CSharpCodeGeneratorFacade_Construct()
-		{
-			var baseClassTemplateFactory = new Mock<ICodeTemplateFactory<IBaseClassDefinition>>();
-			var modelClassTemplateFactory = new Mock<ICodeTemplateFactory<IModelClassDefinition>>();
-
-			var sut = new CSharpCodeGeneratorFacade(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
-
-			Assert.AreSame(baseClassTemplateFactory.Object, sut.BaseClassTemplateFactory, "BaseClassGenerator not set correctly");
-			Assert.AreSame(modelClassTemplateFactory.Object, sut.ModelClassTemplateFactory, "ModelClassGenerator not set correctly");
-		}
-
-		[TestMethod]
 		public void CSharpCodeGeneratorFacade_GenerateBaseClass_CallsBaseClassCodeGenerator()
 		{
 			var modelClassTemplateFactory = new Mock<ICodeTemplateFactory<IModelClassDefinition>>();

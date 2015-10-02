@@ -15,7 +15,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 		IBaseClassDefinition GetBaseClassDefinition();
 
 		/// <summary>
-		/// Maps the data source items to our <see cref="ModelClassDefinition"/> type.
+		/// Maps the data source items to our <see cref="IModelClassDefinition"/> type.
 		/// </summary>
 		/// <returns>A list of <see cref="ModelClassDefinition"/>s</returns>
 		IEnumerable<IModelClassDefinition> GetModelClassDefinitions();

@@ -9,7 +9,7 @@ using Umbraco.Core.PropertyEditors;
 
 namespace ConcreteContentTypes.Core.Helpers
 {
-	public class PropertyValueConverterHelper
+	public class PropertyValueConverterHelper : IPropertyValueConverterHelper
 	{
 		Type _resolvedType = null;
 
@@ -48,7 +48,7 @@ namespace ConcreteContentTypes.Core.Helpers
 
 				this.CanResolveType = true;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				this.CanResolveType = false;
 			}

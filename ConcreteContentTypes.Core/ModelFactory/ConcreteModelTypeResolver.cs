@@ -15,6 +15,9 @@ namespace ConcreteContentTypes.Core.ModelFactory
 
 		public ConcreteModelTypeResolver(IEnumerable<Type> modelTypes)
 		{
+			if (modelTypes == null)
+				throw new ArgumentNullException("modelTypes", "Don't pass null collection of types");
+
 			this.ModelTypes = new Dictionary<string, Type>();
 
 			foreach (var type in modelTypes)

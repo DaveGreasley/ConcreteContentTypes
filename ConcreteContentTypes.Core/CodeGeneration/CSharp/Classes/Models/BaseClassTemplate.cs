@@ -13,14 +13,14 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
 {
 	public partial class BaseClassTemplate : ICodeTemplate
 	{
-		public IBaseClassDefinition Definition { get; private set; }
+		protected IBaseClassDefinition Definition { get; private set; }
 
-		public ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; private set; }
+		protected ICodeTemplateFactory<IAttributeDefinition> AttributeTemplateFactory { get; private set; }
 
-		public IEnumerable<string> UsingNamespaces { get; private set; }
-		public string CacheName { get; private set; }
+		protected IEnumerable<string> UsingNamespaces { get; private set; }
+		protected string CacheName { get; private set; }
 
-		public IErrorTracker ErrorTracker { get; private set; }
+		IErrorTracker ErrorTracker { get; set; }
 
 		public BaseClassTemplate(IBaseClassDefinition classDefinition,
 			ICodeTemplateFactory<IAttributeDefinition> atf,

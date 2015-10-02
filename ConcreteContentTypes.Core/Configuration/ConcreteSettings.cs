@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,16 +30,16 @@ namespace ConcreteContentTypes.Core.Configuration
 		{
 			try
 			{
-				var configPath = string.Format(@"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
+				var configPath = string.Format(CultureInfo.CurrentCulture, @"{0}Config\ConcreteContentTypes.config", AppDomain.CurrentDomain.BaseDirectory);
 				ExeConfigurationFileMap map = new ExeConfigurationFileMap();
 				map.ExeConfigFilename = configPath;
 
 				var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
 				return (ConcreteSettings)config.GetSection("ConcreteSettings");
 			}
-			catch (Exception ex)
+			catch (ConfigurationErrorsException ceEx)
 			{
-				LogHelper.Error<ConcreteSettings>("Error loading Concrete Settings.", ex);
+				LogHelper.Error<ConcreteSettings>("Error loading Concrete Settings.", ceEx);
 				return null;
 			}
 		}

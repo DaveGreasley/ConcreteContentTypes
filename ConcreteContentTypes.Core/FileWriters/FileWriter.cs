@@ -9,7 +9,7 @@ namespace ConcreteContentTypes.Core.FileWriters
 {
 	public class FileWriter : IFileWriter
 	{
-		public List<WriteOperation> QueuedOperations { get; set; }
+		internal List<WriteOperation> QueuedOperations { get; set; }
 
 		public FileWriter()
 		{
@@ -55,7 +55,7 @@ namespace ConcreteContentTypes.Core.FileWriters
 
 					numFilesWritten++;
 				}
-				catch (Exception ex)
+				catch (Exception)
 				{
 					//TODO: Work out what to do here!
 				}

@@ -26,6 +26,9 @@ namespace ConcreteContentTypes.Core.Extensions
 		public static T CreateContentWithIdentity<T>(this IContentService contentService,
 			string name, int parentId, int userId = 0) where T : ConcreteModel, new()
 		{
+			if (contentService == null)
+				throw new ArgumentNullException("contentService", "Cannot create content without contentService");
+
 			T model = new T();
 
 			var content = contentService.CreateContentWithIdentity(name, parentId, model.ContentTypeAlias, userId);
@@ -48,6 +51,12 @@ namespace ConcreteContentTypes.Core.Extensions
 		public static T CreateContentWithIdentity<T>(this IContentService contentService,
 			string name, IContent parent, int userId = 0) where T : ConcreteModel, new()
 		{
+			if (contentService == null)
+				throw new ArgumentNullException("contentService", "Cannot create content without contentService");
+
+			if (parent == null)
+				throw new ArgumentNullException("parent", "Cannot use null as parent. ");
+
 			T model = new T();
 
 			var content = contentService.CreateContentWithIdentity(name, parent, model.ContentTypeAlias, userId);
@@ -70,6 +79,12 @@ namespace ConcreteContentTypes.Core.Extensions
 		public static T CreateContentWithIdentity<T>(this IContentService contentService,
 			string name, ConcreteModel parent, int userId = 0) where T : ConcreteModel, new()
 		{
+			if (contentService == null)
+				throw new ArgumentNullException("contentService", "Cannot create content without contentService");
+
+			if (parent == null)
+				throw new ArgumentNullException("parent", "Cannot use null as parent");
+
 			T model = new T();
 
 			var content = contentService.CreateContentWithIdentity(name, parent.Id, model.ContentTypeAlias, userId);

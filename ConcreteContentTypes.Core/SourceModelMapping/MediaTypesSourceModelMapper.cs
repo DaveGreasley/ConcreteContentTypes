@@ -13,9 +13,9 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 {
 	public class MediaTypesSourceModelMapper : SourceModelMapperBase, ISourceModelMapper
 	{
-		public string Namespace { get { return string.Format("{0}.Media", this.Settings.Namespace); } }
+		string Namespace { get { return string.Format("{0}.Media", this.Settings.Namespace); } }
 
-		public IEnumerable<IMediaType> MediaTypes { get; private set; }
+		IEnumerable<IMediaType> MediaTypes { get; set; }
 
 		public MediaTypesSourceModelMapper(
 			IConcreteSettings settings,

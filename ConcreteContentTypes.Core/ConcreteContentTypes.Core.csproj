@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -224,6 +225,8 @@
     <Compile Include="CodeGeneration\Concrete.cs" />
     <Compile Include="Configuration\IPropertyTypeDefaultsSettings.cs" />
     <Compile Include="Configuration\IPropertyTypeSettings.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\IPropertyValueConverterHelper.cs" />
     <Compile Include="ModelFactory\ConcreteModelFactory.cs" />
     <Compile Include="ModelFactory\ConcreteModelTypeResolver.cs" />
     <Compile Include="ModelFactory\IConcreteModelFactory.cs" />
@@ -275,6 +278,7 @@
     <Compile Include="SourceModelMapping\ContentTypeSourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\ISourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\MediaTypesSourceModelMapper.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\PVCTypeResolver.cs" />
     <Compile Include="SourceModelMapping\SourceModelMapperBase.cs" />
     <Compile Include="Mvc\ConcreteViewPage.cs" />
   </ItemGroup>

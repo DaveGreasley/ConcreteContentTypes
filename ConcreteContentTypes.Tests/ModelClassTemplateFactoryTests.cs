@@ -16,20 +16,6 @@ namespace ConcreteContentTypes.Tests
 	public class ModelClassTemplateFactoryTests
 	{
 		[TestMethod]
-		public void ModelClassTemplateFactory_Construct()
-		{
-			var errorTrackerMock = new Mock<IErrorTracker>();
-			var attributeTemplateFactoryMock = new Mock<ICodeTemplateFactory<IAttributeDefinition>>();
-			var propertyTemplateFactoryMock = new Mock<ICodeTemplateFactory<IModelClassPropertyDefinition>>();
-
-			var sut = new ModelClassTemplateFactory(errorTrackerMock.Object, attributeTemplateFactoryMock.Object, propertyTemplateFactoryMock.Object);
-
-			Assert.AreSame(errorTrackerMock.Object, sut.ErrorTracker, "ErrorTracker is not set properly");
-			Assert.AreSame(attributeTemplateFactoryMock.Object, sut.AttributeTemplateFactory, "AttributeTemplateFactory not set properly");
-			Assert.AreSame(propertyTemplateFactoryMock.Object, sut.PropertyTemplateFactory, "PropertyTemplateFactory not set properly");
-		}
-
-		[TestMethod]
 		public void ModelClassTemplateFactory_GetTemplate_ShouldReturnModelClassTemplate()
 		{
 			var errorTrackerMock = new Mock<IErrorTracker>();

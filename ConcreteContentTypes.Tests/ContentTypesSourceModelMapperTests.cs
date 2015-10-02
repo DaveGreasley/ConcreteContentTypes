@@ -18,24 +18,6 @@ namespace ConcreteContentTypes.Tests
 	public class ContentTypesSourceModelMapperTests
 	{
 		[TestMethod]
-		public void UmbracoContentTypesSourceModelMapper_Construct()
-		{
-			var settings = new ConcreteSettings() 
-			{
-				Namespace = "TestNameSpace"
-			};
-
-			var contentTypes = new List<IContentType>();
-			var eventsMock = new Mock<IConcreteEvents>();
-
-			var sut = new ContentTypeSourceModelMapper(settings, eventsMock.Object, contentTypes);
-
-			Assert.AreSame(settings, sut.Settings);
-			Assert.AreSame(contentTypes, sut.ContentTypes);
-			Assert.AreEqual("TestNameSpace.Content", sut.Namespace);
-		}
-
-		[TestMethod]
 		public void UmbracoContentTypesSourceModelMapper_GetBaseClassDefinition()
 		{
 			var settings = new ConcreteSettings()
@@ -81,8 +63,6 @@ namespace ConcreteContentTypes.Tests
 
 			var sut = new ContentTypeSourceModelMapper(settings, eventsMock.Object, new List<IContentType>() { testContentType.Object });
 
-			Assert.AreEqual(1, sut.ContentTypes.Count(), "Should contain 1 IContentType");
-
 			var definitions = sut.GetModelClassDefinitions();
 
 			Assert.AreEqual(1, definitions.Count(), "Map() Should return 1 class definition");
@@ -113,8 +93,6 @@ namespace ConcreteContentTypes.Tests
 			var eventsMock = new Mock<IConcreteEvents>();
 
 			var sut = new ContentTypeSourceModelMapper(settings, eventsMock.Object, new List<IContentType>() { testContentType.Object, testContentType2.Object });
-
-			Assert.AreEqual(2, sut.ContentTypes.Count(), "Should contain 2 IContentTypes");
 
 			var definitions = sut.GetModelClassDefinitions();
 
