@@ -1,6 +1,6 @@
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@inherits ConcreteContentTypes.Core.Mvc.ConcreteViewPage
 @{ 
-    var home = CurrentPage.Site();
+    var home = Model.Content.AncestorOrSelf(1);
 }
 
 @if (home.Children.Where("Visible").Any())
@@ -33,7 +33,7 @@
     </ul>
 </div>
 
-@helper childPages(dynamic pages)
+@helper childPages(IEnumerable<IPublishedContent> pages)
 {
     @* Ensure that we have a collection of pages *@
     if (pages.Any())

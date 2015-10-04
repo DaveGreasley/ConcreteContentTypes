@@ -37,6 +37,11 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		public BlogPostRepository(int contentId, bool getPropertiesRecursively = false)
 			: base(contentId, getPropertiesRecursively)
 		{ }
+
+		public BlogPostRepository(IPublishedContent content, bool getPropertiesRecursively = false)
+			: base(content, getPropertiesRecursively)
+		{
+		}
 	}
 
 	[NodeTypeAlias("BlogPostRepository")]

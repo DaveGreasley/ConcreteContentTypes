@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.CodeGeneration;
+﻿using ConcreteContentTypes.Core;
+using ConcreteContentTypes.Core.CodeGeneration;
 using ConcreteContentTypes.Core.CodeGeneration.Classes;
 using ConcreteContentTypes.Core.CodeGeneration.Classes.Factories;
 using ConcreteContentTypes.Core.Models.Definitions;

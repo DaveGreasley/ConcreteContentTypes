@@ -1,4 +1,5 @@
-﻿using ConcreteContentTypes.Core.CodeGeneration;
+﻿using ConcreteContentTypes.Core;
+using ConcreteContentTypes.Core.CodeGeneration;
 using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -42,7 +42,7 @@ namespace ConcreteContentTypes.Core.ModelFactory
 
 			var modelType = this.TypeResolver.ResolveType(content.ContentType.Alias);
 
-			var model = Activator.CreateInstance(modelType, content) as ConcreteModel;
+			var model = Activator.CreateInstance(modelType, content, false) as ConcreteModel;
 
 			return model;
 		}

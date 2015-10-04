@@ -22,6 +22,8 @@ using ConcreteContentTypes.Core.CodeGeneration.Classes.Factories;
 using ConcreteContentTypes.Core.CodeGeneration.Attributes;
 using ConcreteContentTypes.Core.CodeGeneration.Properties;
 using ConcreteContentTypes.Core.FileWriters;
+using log4net;
+using System.Web.Mvc;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -36,7 +38,8 @@ namespace ConcreteContentTypes.Core.Events
 			this.ApplicationContext = applicationContext;
 
 			//Setup our ModelBinder
-			System.Web.Mvc.ModelBinders.Binders.Add(typeof(ConcreteModel), new ConcreteModelBinder());
+			var modelBinderProvider = new ConcreteModelBinderProvider() { { typeof(ConcreteModel), new ConcreteModelBinder() } };
+			ModelBinderProviders.BinderProviders.Add(modelBinderProvider);
 
 			//Create singleton model factory instance
 			InitialiseConcreteFactory();
@@ -103,7 +106,7 @@ namespace ConcreteContentTypes.Core.Events
 			var mediaTypes = ApplicationContext.Services.ContentTypeService.GetAllMediaTypes();
 
 			var concreteSettings = ConcreteSettings.Current;
-			var errorTracker = (IErrorTracker)null; //TODO: Implement error tracker!
+			var errorTracker = new ErrorTracker(); 
 			var propertyTypeDefaultsSettings = (IPropertyTypeDefaultsSettings)null; //TODO: Implement property default settings
 			var concreteEvents = new ConcreteEvents();
 
@@ -141,6 +144,7 @@ namespace ConcreteContentTypes.Core.Events
 
 			var fileWriter = new FileWriter();
 
+			//Create Concrete app class
 			Concrete concrete = new Concrete(
 				concreteSettings,
 				contentTypeSourceModelMapper,
@@ -149,6 +153,14 @@ namespace ConcreteContentTypes.Core.Events
 				mediaTypeCodeGenerator,
 				fileWriter,
 				errorTracker);
+
+			//Regenerate all models
+			concrete.Generate();
+
+			if (errorTracker.FatalErrorHasOccurred)
+			{
+				//aah! how do we display the error to the users!?
+			}
 		}
 
 		#endregion

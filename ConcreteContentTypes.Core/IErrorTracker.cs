@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CodeGeneration
+namespace ConcreteContentTypes.Core
 {
 	public interface IErrorTracker
 	{

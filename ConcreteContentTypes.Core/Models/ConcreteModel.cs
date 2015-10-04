@@ -8,21 +8,32 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.Models
 {
-	public abstract class ConcreteModel
+	public class ConcreteModel
 	{
 		public bool GetPropertiesRecursively { get; set; }
 
-		public abstract string ContentTypeAlias { get; }
+		public virtual string ContentTypeAlias { get; protected set; }
 
-		public abstract string Name { get; set; }
-		public abstract int Id { get; set; }
-		public abstract int ParentId { get; set; }
+		public virtual string Name { get; set; }
+		public virtual int Id { get; set; }
+		public virtual int ParentId { get; set; }
 
-		public abstract IPublishedContent Content { get; set; }
+		public virtual IPublishedContent Content { get; set; }
 
-		public abstract void Init(IPublishedContent content);
-		public abstract void Init(ConcreteModel model);
-		public abstract void Init(int id);
+		public virtual void Init(IPublishedContent content)
+		{
+
+		}
+
+		public virtual void Init(ConcreteModel model)
+		{
+
+		}
+
+		public virtual void Init(int id)
+		{
+
+		}
 
 		protected int GetParentIdFromPath(string path)
 		{

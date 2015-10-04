@@ -1,9 +1,9 @@
-﻿@model Everything
+﻿@inherits ConcreteContentTypes.Core.Mvc.ConcreteViewPage<Everything>
 @{
     Layout = null;
 }
 
-Approved Colour: @Model.Approvedcolour <br />
+@*Approved Colour: @Model.Approvedcolour <br />*@
 <br />
 Blog Author: <a href="@Model.BlogAuthor.Url">@Model.BlogAuthor.Name</a><br />
 <br />

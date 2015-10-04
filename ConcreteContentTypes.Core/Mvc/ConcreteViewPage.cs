@@ -9,10 +9,13 @@ using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Extensions;
+using ConcreteContentTypes.Core.ModelFactory;
+using System.Web;
+using System.Web.Mvc;
 
-namespace ConcreteContentTypes.Core.ViewTemplates
+namespace ConcreteContentTypes.Core.Mvc
 {
-	public class ConcreteViewPage<TModel> : UmbracoViewPage<TModel> where TModel : ConcreteModel, new()
+	public class ConcreteViewPage : ConcreteViewPage<ConcreteModel>
 	{
 		public ConcreteViewPage()
 		{
