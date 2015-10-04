@@ -13,7 +13,7 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		public BaseClassProperty Property { get; set; }
 
 		public BaseClassPropertyDefinition(BaseClassProperty property)
-			: base(property.ToString())
+			: base(property.ToString(), null) //TODO: Resolve base class types?
 		{
 			this.Property = property;
 		}

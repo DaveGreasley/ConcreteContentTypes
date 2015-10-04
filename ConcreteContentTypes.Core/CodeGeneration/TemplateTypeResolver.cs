@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
+namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	public class TemplateTypeResolver : ITemplateTypeResolver
 	{
-		Dictionary<string, Type> _resolvedTypes;
+		Dictionary<string, Type> _resolvedTypes = null;
 
 		public TemplateTypeResolver()
 		{
-			_resolvedTypes = new Dictionary<string, Type>();
-
 			LoadResolvedTypes();
 		}
 
 		private void LoadResolvedTypes()
 		{
-			//use reflection to load all ICodeTemplate instances and cache them here.
-			//class will have to be assigned to a static somewhere on Appstart
-			//Perhaps we need the ConcreteContext after all?
+			_resolvedTypes = new Dictionary<string, Type>();
+
+			foreach (var templateType in PluginManager.Current.ResolveTypes<ICodeTemplate>(true))
+			{
+				_resolvedTypes.Add(templateType.Name, templateType);
+			}
 		}
 
 		public Type ResolveType(string templateName)

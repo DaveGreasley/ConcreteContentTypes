@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes;
+﻿using ConcreteContentTypes.Core.CodeGeneration.Attributes;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
+namespace ConcreteContentTypes.Core.CodeGeneration.Classes
 {
 	public partial class BaseClassTemplate : ICodeTemplate
 	{

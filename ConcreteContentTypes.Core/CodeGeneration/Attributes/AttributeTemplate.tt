@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-<# if (Definition.Params.Count() > 0) { #>
+<# if (Definition.ConstructorParameters.Count() > 0) { #>
 [<#= Definition.Type #>(<#= Parameters #>)]
 <# } else { #>
 [<#= Definition.Type #>]

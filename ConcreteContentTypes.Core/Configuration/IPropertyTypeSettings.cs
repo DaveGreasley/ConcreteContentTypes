@@ -9,6 +9,7 @@ namespace ConcreteContentTypes.Core.Configuration
 	{
 		string Alias { get; }
 		string ClrType { get; }
+		string TypeResolver { get; }
 		string Template { get; }
 	}
 }

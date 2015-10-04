@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.CodeGeneration.CSharp;
+﻿using ConcreteContentTypes.Core.CodeGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

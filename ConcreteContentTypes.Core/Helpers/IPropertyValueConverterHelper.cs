@@ -1,10 +1,9 @@
 ﻿using System;
+using Umbraco.Core.Models;
 namespace ConcreteContentTypes.Core.Helpers
 {
 	public interface IPropertyValueConverterHelper
 	{
-		bool CanResolveType { get; set; }
-		string GetNamespace();
-		string GetTypeName();
+		Type AttemptResolveType(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType);
 	}
 }

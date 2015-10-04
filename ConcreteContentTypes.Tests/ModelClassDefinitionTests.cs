@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Tests
 {
@@ -61,7 +62,7 @@ namespace ConcreteContentTypes.Tests
 
 			sut.Attributes.Add(new AttributeDefinition("AttributeType", "AttributeNamespace"));
 
-			var propertyDefinition = new ModelClassPropertyDefinition("Test Property", "TestProperty", "TestPropertyEditorAlias");
+			var propertyDefinition = new ModelClassPropertyDefinition("Test Property", "TestProperty", "TestPropertyEditorAlias", "string", PublishedItemType.Content);
 			propertyDefinition.Attributes.Add(new AttributeDefinition("PropertyAttributeTest", "PropertyAttributeNamespace"));
 
 			sut.Properties.Add(propertyDefinition);

@@ -1,5 +1,5 @@
 ﻿using ConcreteContentTypes.Core.CodeGeneration;
-using ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes;
+using ConcreteContentTypes.Core.CodeGeneration.Attributes;
 using ConcreteContentTypes.Core.Models.Definitions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

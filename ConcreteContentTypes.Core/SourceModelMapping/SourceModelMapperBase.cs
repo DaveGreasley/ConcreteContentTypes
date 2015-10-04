@@ -4,6 +4,7 @@ using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
+using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,25 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 	{
 		IEnumerable<IContentTypeComposition> _types;
 
-		public IConcreteSettings Settings { get; private set; }
-		public IConcreteEvents Events { get; private set; }
+		protected IConcreteSettings Settings { get; set; }
+		protected IConcreteEvents Events { get; set; }
+
+		IPropertyTypeResolverFactory PropertyTypeResolverFactory { get; set; }
+		IPropertyTypeDefaultsSettings PropertyTypeDefaultSettings { get; set; }
 
 		public SourceModelMapperBase(
 			IConcreteSettings settings,
 			IConcreteEvents events,
-			IEnumerable<IContentTypeComposition> types
+			IEnumerable<IContentTypeComposition> types,
+			IPropertyTypeResolverFactory propertyTypeResolverFactory,
+			IPropertyTypeDefaultsSettings propertySettings
 			)
 		{
 			_types = types;
 			this.Settings = settings;
 			this.Events = events;
+			this.PropertyTypeResolverFactory = propertyTypeResolverFactory;
+			this.PropertyTypeDefaultSettings = propertySettings;
 		}
 
 		protected List<IModelClassPropertyDefinition> GetProperties(IModelClassDefinition classDefinition, IContentTypeComposition contentType, PublishedItemType publishedItemType)
@@ -39,15 +47,28 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 			foreach (var propertyType in propertiesTypesToGenerate)
 			{
-				ModelClassPropertyDefinition propertyDefinition = new ModelClassPropertyDefinition(propertyType.Name, propertyType.Alias, propertyType.PropertyEditorAlias);
-
-				// See if we can work out the Clr Type from any configured PropertyValueConverter
-				PropertyValueConverterHelper pvc = new PropertyValueConverterHelper(contentType.Alias, propertyType.Alias, publishedItemType);
-				if (pvc.CanResolveType)
+				try
 				{
-					propertyDefinition.ClrType = pvc.GetTypeName();
-					classDefinition.AddUsingNamespace(pvc.GetNamespace());
-				}				 
+
+					var propertySettings = PropertyTypeDefaultSettings.PropertyTypes.FirstOrDefault(x => x.Alias == propertyType.PropertyEditorAlias);
+					if (propertySettings == null)
+						continue;
+
+					var propertyTypeResolver = PropertyTypeResolverFactory.GetTypeResolver(propertySettings.TypeResolver);
+					if (propertyTypeResolver == null)
+						continue;
+
+
+					var clrType = propertyTypeResolver.ResolveType(contentType.Alias, propertyType.Alias, publishedItemType);
+
+					ModelClassPropertyDefinition propertyDefinition = new ModelClassPropertyDefinition(propertyType.Name, propertyType.Alias, propertyType.PropertyEditorAlias, clrType, publishedItemType);
+
+					classDefinition.Properties.Add(propertyDefinition);
+				}
+				catch (Exception ex)
+				{
+					//TODO: Add to ErrorTracker
+				}
 			}
 
 			return propertyDefinitions;

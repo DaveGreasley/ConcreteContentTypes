@@ -11,32 +11,11 @@ namespace ConcreteContentTypes.Core.Helpers
 {
 	public class PropertyValueConverterHelper : IPropertyValueConverterHelper
 	{
-		Type _resolvedType = null;
-
-		public bool CanResolveType { get; set; }
-
-		public PropertyValueConverterHelper(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
+		public PropertyValueConverterHelper()
 		{
-			AttemptResolveType(contentTypeAlias, propertyTypeAlias, itemType);
 		}
 
-		public string GetTypeName()
-		{
-			if (_resolvedType != null)
-				return _resolvedType.Name;
-
-			return "";
-		}
-
-		public string GetNamespace()
-		{
-			if (_resolvedType != null)
-				return _resolvedType.Namespace;
-
-			return "";
-		}
-
-		private void AttemptResolveType(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
+		public Type AttemptResolveType(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
 		{
 			try
 			{
@@ -44,15 +23,13 @@ namespace ConcreteContentTypes.Core.Helpers
 
 				var publishedPropertyType = publishedContentType.GetPropertyType(propertyTypeAlias);
 
-				_resolvedType = publishedPropertyType.ClrType;
-
-				this.CanResolveType = true;
+				return publishedPropertyType.ClrType;
 			}
 			catch (Exception)
 			{
-				this.CanResolveType = false;
+				//TODO: Not sure what to do here
+				throw;
 			}
 		}
-
 	}
 }

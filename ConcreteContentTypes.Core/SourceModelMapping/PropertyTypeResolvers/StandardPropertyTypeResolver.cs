@@ -9,19 +9,15 @@ using Umbraco.Core.Models;
 
 namespace ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers
 {
-	public class PVCTypeResolver
+	public class StandardPropertyTypeResolver : PropertyTypeResolverBase
 	{
-		IPropertyTypeDefaultsSettings PropertyTypeDefaults { get; set; }
-		IPropertyValueConverterHelper PvcHelper { get; set; }
-
-		public PVCTypeResolver(IPropertyTypeDefaultsSettings propertyDefaultSettings,
+		public StandardPropertyTypeResolver(IPropertyTypeDefaultsSettings propertyDefaultSettings,
 			IPropertyValueConverterHelper pvcHelper)
+			: base(propertyDefaultSettings, pvcHelper)
 		{
-			this.PropertyTypeDefaults = propertyDefaultSettings;
-			this.PvcHelper = pvcHelper;
 		}
 
-		public string ResolveType(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
+		public override string ResolveType(string contentTypeAlias, string propertyTypeAlias, PublishedItemType itemType)
 		{
 			//Try and resolve using config override
 			var setting = PropertyTypeDefaults.PropertyTypes.FirstOrDefault(x => x.Alias == propertyTypeAlias);
@@ -30,11 +26,12 @@ namespace ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers
 				return setting.ClrType;
 
 			//If that fails then try and use the PropertyValueConverters
-			if (PvcHelper.CanResolveType)
-				return PvcHelper.GetTypeName();
+			var pvcType = PvcHelper.AttemptResolveType(contentTypeAlias, propertyTypeAlias, itemType);
 
-			//If that fails return fallback of Object as everything should work as an object
-			return "Object";
+			if (pvcType != null)
+				return pvcType.Name;
+
+			throw new InvalidOperationException("Could not determine Clr Type");
 		}
 	}
 }

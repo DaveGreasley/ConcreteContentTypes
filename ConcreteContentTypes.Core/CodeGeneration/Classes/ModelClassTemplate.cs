@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
+namespace ConcreteContentTypes.Core.CodeGeneration.Classes
 {
     using System.Linq;
     using System.Text;
@@ -19,7 +19,7 @@ namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+    #line 1 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class ModelClassTemplate : ModelClassTemplateBase
     {
@@ -43,21 +43,21 @@ using Newtonsoft.Json;
 
 ");
             
-            #line 20 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 20 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  foreach(string nameSpace in UsingNamespaces) { 
             
             #line default
             #line hidden
             this.Write("using ");
             
-            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 21 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 22 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  } 
             
             #line default
@@ -75,63 +75,63 @@ using Newtonsoft.Json;
 
 namespace ");
             
-            #line 34 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 34 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Namespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\t");
             
-            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  foreach (var attribute in Definition.Attributes) { 
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(WriteAttribute(attribute)));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 36 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\tpublic partial class ");
             
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
             this.Write(" : ");
             
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.BaseClass));
             
             #line default
             #line hidden
             this.Write("<");
             
-            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 37 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.ChildType));
             
             #line default
             #line hidden
             this.Write(">\r\n\t{\r\n\t\tpublic ");
             
-            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 39 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
             this.Write("()\r\n\t\t\t: base()\r\n\t\t{ }\r\n\r\n\t\tpublic ");
             
-            #line 43 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 43 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -139,14 +139,14 @@ namespace ");
             this.Write("(string name, ConcreteModel parent)\r\n\t\t\t: this(name, parent.Id)\r\n\t\t{ }\r\n\t\t\r\n\t\tpub" +
                     "lic ");
             
-            #line 47 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 47 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
             this.Write("(string name, int parentId)\r\n\t\t\t: base(name, parentId)\r\n\t\t{ }\r\n\r\n\t\tpublic ");
             
-            #line 51 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 51 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -154,7 +154,7 @@ namespace ");
             this.Write("(int contentId, bool getPropertiesRecursively = false)\r\n\t\t\t: base(contentId, getP" +
                     "ropertiesRecursively)\r\n\t\t{ }\r\n\r\n\t\tpublic ");
             
-            #line 55 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 55 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -162,77 +162,77 @@ namespace ");
             this.Write("(IPublishedContent content, bool getPropertiesRecursively = false)\r\n\t\t\t: base(con" +
                     "tent, getPropertiesRecursively)\r\n\t\t{ }\r\n\t}\r\n\r\n\t");
             
-            #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  foreach (var attribute in Definition.Attributes) { 
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(WriteAttribute(attribute)));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 60 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\tpublic partial class ");
             
-            #line 61 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 61 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
             this.Write(" : ");
             
-            #line 61 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 61 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.BaseClass));
             
             #line default
             #line hidden
             this.Write("\r\n\t{\r\n\t\tpublic override string ContentTypeAlias { get { return \"");
             
-            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 63 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
             this.Write("\"; } }\r\n\r\n\t\t");
             
-            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  foreach(var p in Definition.Properties) { 
             
             #line default
             #line hidden
             this.Write("\t");
             
-            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(WriteProperty(p)));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 65 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n\t\tpublic ");
             
-            #line 67 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 67 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
             #line hidden
             this.Write("()\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
             
-            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 72 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -240,7 +240,7 @@ namespace ");
             this.Write("(string name, ConcreteModel parent)\r\n\t\t\t: this(name, parent.Id)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpu" +
                     "blic ");
             
-            #line 77 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 77 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -248,7 +248,7 @@ namespace ");
             this.Write("(string name, int parentId)\r\n\t\t\t: base()\r\n\t\t{\r\n\t\t\tthis.Name = name;\r\n\t\t\tthis.Pare" +
                     "ntId = parentId;\r\n\t\t}\r\n\r\n\t\tpublic ");
             
-            #line 84 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 84 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default
@@ -256,7 +256,7 @@ namespace ");
             this.Write("(int contentId, bool getPropertiesRecursively = false)\r\n\t\t\t: base(contentId, getP" +
                     "ropertiesRecursively)\r\n\t\t{\r\n\t\t}\r\n\r\n\t\tpublic ");
             
-            #line 89 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\CSharp\Classes\ModelClassTemplate.tt"
+            #line 89 "C:\Users\Dave\Source\Repos\ConcreteContentTypes\ConcreteContentTypes.Core\CodeGeneration\Classes\ModelClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Definition.Name));
             
             #line default

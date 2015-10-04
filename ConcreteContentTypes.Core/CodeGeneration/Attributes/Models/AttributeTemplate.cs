@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes
+namespace ConcreteContentTypes.Core.CodeGeneration.Attributes
 {
 	public partial class AttributeTemplate : ICodeTemplate
 	{

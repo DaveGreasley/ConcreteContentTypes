@@ -2,6 +2,7 @@
 using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models.Definitions;
+using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 		public MediaTypesSourceModelMapper(
 			IConcreteSettings settings,
 			IConcreteEvents events,
-			IEnumerable<IMediaType> mediaTypes
+			IEnumerable<IMediaType> mediaTypes,
+			IPropertyTypeResolverFactory propertyTypeResolverFactory,
+			IPropertyTypeDefaultsSettings propertySettings
 			)
-			: base(settings, events, mediaTypes)
+			: base(settings, events, mediaTypes, propertyTypeResolverFactory, propertySettings)
 		{
 			this.MediaTypes = mediaTypes;
 		}

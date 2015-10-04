@@ -1,4 +1,4 @@
-﻿using ConcreteContentTypes.Core.CodeGeneration.CSharp.Attributes;
+﻿using ConcreteContentTypes.Core.CodeGeneration.Attributes;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp.Classes
+namespace ConcreteContentTypes.Core.CodeGeneration.Classes
 {
 	public partial class ModelClassTemplate : ICodeTemplate
 	{

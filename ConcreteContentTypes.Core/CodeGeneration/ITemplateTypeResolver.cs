@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
+namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	/// <summary>
 	/// Resolves a Template Name to the actual ClrType

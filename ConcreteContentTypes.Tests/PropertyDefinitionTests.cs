@@ -16,13 +16,15 @@ namespace ConcreteContentTypes.Tests
 		{
 			string originalName = "Property Name";
 			string conventionalName = "PropertyName";
+			string clrTypeName = "string";
 
-			var sut = new PropertyDefinition(originalName);
+			var sut = new PropertyDefinition(originalName, clrTypeName);
 
 			Assert.AreEqual(conventionalName, sut.Name, "Name set incorrectly");
 			Assert.IsNotNull(sut.Attributes, "Attributes collection is null");
 			Assert.AreEqual(0, sut.Attributes.Count, "Attributes should be initialised to an empty collection");
 			Assert.AreEqual(string.Empty, sut.Description, "Description should be initialised to an empty string");
+			Assert.AreEqual(clrTypeName, sut.ClrType, "ClrType not set correctly");
 		}
 
 		[TestMethod]
@@ -30,13 +32,15 @@ namespace ConcreteContentTypes.Tests
 		{
 			string originalName = "Property Name";
 			string conventionalName = "PropertyName";
+			string clrTypeName = "string";
 
-			var sut = new PropertyDefinition(originalName);
+			var sut = new PropertyDefinition(originalName, clrTypeName);
 
 			Assert.AreEqual(conventionalName, sut.Name);
 			Assert.IsNotNull(sut.Attributes, "Attributes collection is null");
 			Assert.AreEqual(0, sut.Attributes.Count, "Attributes should be initialised to an empty collection");
 			Assert.AreEqual(string.Empty, sut.Description, "Description should be initialised to an empty string");
+			Assert.AreEqual(clrTypeName, sut.ClrType, "ClrType not set correctly");
 		}
 	}
 }

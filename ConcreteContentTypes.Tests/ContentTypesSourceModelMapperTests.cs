@@ -3,6 +3,7 @@ using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
 using ConcreteContentTypes.Core.SourceModelMapping;
+using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -27,8 +28,16 @@ namespace ConcreteContentTypes.Tests
 
 			var contentTypes = new List<IContentType>();
 			var eventsMock = new Mock<IConcreteEvents>();
+			var propertyTypeResolverFactoryMock = new Mock<IPropertyTypeResolverFactory>();
+			var propertyDefaultSettings = new Mock<IPropertyTypeDefaultsSettings>();
 
-			var sut = new ContentTypeSourceModelMapper(settings, eventsMock.Object, contentTypes);
+			var sut = new ContentTypeSourceModelMapper(
+				settings, 
+				eventsMock.Object,
+				contentTypes, 
+				propertyTypeResolverFactoryMock.Object,
+				propertyDefaultSettings.Object
+				);
 
 			var baseClassDefinition = sut.GetBaseClassDefinition();
 
@@ -60,8 +69,16 @@ namespace ConcreteContentTypes.Tests
 			testContentType.Setup(x => x.AllowedContentTypes).Returns(new List<ContentTypeSort>());
 
 			var eventsMock = new Mock<IConcreteEvents>();
+			var propertyTypeResolverFactoryMock = new Mock<IPropertyTypeResolverFactory>();
+			var propertyDefaultSettings = new Mock<IPropertyTypeDefaultsSettings>();
 
-			var sut = new ContentTypeSourceModelMapper(settings, eventsMock.Object, new List<IContentType>() { testContentType.Object });
+			var sut = new ContentTypeSourceModelMapper(
+				settings,
+				eventsMock.Object,
+				new List<IContentType>() { testContentType.Object },
+				propertyTypeResolverFactoryMock.Object,
+				propertyDefaultSettings.Object
+				);
 
 			var definitions = sut.GetModelClassDefinitions();
 
@@ -91,8 +108,16 @@ namespace ConcreteContentTypes.Tests
 			testContentType2.Setup(x => x.ContentTypeComposition).Returns(new List<IContentTypeComposition>());
 
 			var eventsMock = new Mock<IConcreteEvents>();
+			var propertyTypeResolverFactoryMock = new Mock<IPropertyTypeResolverFactory>();
+			var propertyDefaultSettings = new Mock<IPropertyTypeDefaultsSettings>();
 
-			var sut = new ContentTypeSourceModelMapper(settings, eventsMock.Object, new List<IContentType>() { testContentType.Object, testContentType2.Object });
+			var sut = new ContentTypeSourceModelMapper(
+				settings,
+				eventsMock.Object,
+				new List<IContentType>() { testContentType.Object, testContentType2.Object },
+				propertyTypeResolverFactoryMock.Object,
+				propertyDefaultSettings.Object
+				);
 
 			var definitions = sut.GetModelClassDefinitions();
 

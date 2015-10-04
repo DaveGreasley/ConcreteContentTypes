@@ -3,6 +3,7 @@ using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
+using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -21,10 +22,12 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 		public ContentTypeSourceModelMapper(
 			IConcreteSettings settings,
-			IConcreteEvents events, 
-			IEnumerable<IContentType> contentTypes
+			IConcreteEvents events,
+			IEnumerable<IContentType> contentTypes,
+			IPropertyTypeResolverFactory propertyTypeResolverFactory,
+			IPropertyTypeDefaultsSettings propertySettings
 			)
-			: base(settings, events, contentTypes)
+			: base(settings, events, contentTypes, propertyTypeResolverFactory, propertySettings)
 		{
 			this.ContentTypes = contentTypes;
 		}

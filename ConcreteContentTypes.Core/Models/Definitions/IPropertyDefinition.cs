@@ -11,5 +11,6 @@ namespace ConcreteContentTypes.Core.Models.Definitions
 		string Name { get; set; }
 		List<IAttributeDefinition> Attributes { get; set; }
 		string Description { get; set; }
+		string ClrType { get; set; }
 	}
 }

@@ -188,36 +188,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGeneration\CSharp\Attributes\AttributeTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\CSharp\Classes\Factories\BaseClassTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\CSharp\Classes\Factories\ModelClassTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\CSharp\CSharpCodeGeneratorFacade.cs" />
-    <Compile Include="CodeGeneration\CSharp\Attributes\AttributeTemplate.cs">
+    <Compile Include="CodeGeneration\Attributes\AttributeTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\Classes\Factories\BaseClassTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\Classes\Factories\ModelClassTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\CSharpCodeGeneratorFacade.cs" />
+    <Compile Include="CodeGeneration\Attributes\AttributeTemplate.cs">
       <DependentUpon>AttributeTemplate.tt</DependentUpon>
       <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="CodeGeneration\CSharp\Attributes\Models\AttributeTemplate.cs">
+    <Compile Include="CodeGeneration\Attributes\Models\AttributeTemplate.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CodeGeneration\CSharp\Classes\Models\ModelClassTemplate.cs" />
-    <Compile Include="CodeGeneration\CSharp\Classes\Models\BaseClassTemplate.cs">
+    <Compile Include="CodeGeneration\Classes\Models\ModelClassTemplate.cs" />
+    <Compile Include="CodeGeneration\Classes\Models\BaseClassTemplate.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CodeGeneration\CSharp\Classes\BaseClassTemplate.cs">
+    <Compile Include="CodeGeneration\Classes\BaseClassTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="CodeGeneration\CSharp\Classes\ModelClassTemplate.cs">
+    <Compile Include="CodeGeneration\Classes\ModelClassTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="CodeGeneration\CSharp\TemplateTypeResolver.cs" />
+    <Compile Include="CodeGeneration\Properties\LazyLoadedPropertyTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LazyLoadedPropertyTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeGeneration\Properties\Models\LazyLoadedPropertyTemplate.cs" />
+    <Compile Include="CodeGeneration\TemplateTypeResolver.cs" />
     <Compile Include="CodeGeneration\ITemplateTypeResolver.cs" />
-    <Compile Include="CodeGeneration\CSharp\Properties\PropertyTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\Properties\PropertyTemplateFactory.cs" />
     <Compile Include="CodeGeneration\ICodeGeneratorFacade.cs" />
     <Compile Include="CodeGeneration\ICodeTemplate.cs" />
     <Compile Include="CodeGeneration\ICodeTemplateFactory.cs" />
@@ -250,8 +256,6 @@
     <Compile Include="Models\Definitions\IModelClassDefinition.cs" />
     <Compile Include="Models\Definitions\IModelClassPropertyDefinition.cs" />
     <Compile Include="Models\Definitions\IPropertyDefinition.cs" />
-    <Compile Include="Models\Definitions\ITypedPropertyDefinition.cs" />
-    <Compile Include="Models\Definitions\TypedPropertyDefinition.cs" />
     <Compile Include="Models\ConcreteModel.cs" />
     <Compile Include="Models\Definitions\IAttributeDefintion.cs" />
     <Compile Include="Models\Definitions\AttributeDefinition.cs" />
@@ -278,23 +282,32 @@
     <Compile Include="SourceModelMapping\ContentTypeSourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\ISourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\MediaTypesSourceModelMapper.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\PVCTypeResolver.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\ContentPickerTypeResolver.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\IPropertyTypeResolverFactory.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\ITypeResolver.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\PropertyTypeResolverBase.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\PropertyTypeResolverFactory.cs" />
+    <Compile Include="SourceModelMapping\PropertyTypeResolvers\StandardPropertyTypeResolver.cs" />
     <Compile Include="SourceModelMapping\SourceModelMapperBase.cs" />
     <Compile Include="Mvc\ConcreteViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CodeGeneration\CSharp\Attributes\AttributeTemplate.tt">
+    <None Include="CodeGeneration\Attributes\AttributeTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AttributeTemplate.cs</LastGenOutput>
     </None>
-    <None Include="CodeGeneration\CSharp\Classes\ModelClassTemplate.tt">
+    <None Include="CodeGeneration\Classes\ModelClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ModelClassTemplate.cs</LastGenOutput>
     </None>
-    <None Include="CodeGeneration\CSharp\Classes\BaseClassTemplate.tt">
+    <None Include="CodeGeneration\Classes\BaseClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>BaseClassTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\Properties\LazyLoadedPropertyTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LazyLoadedPropertyTemplate.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -302,9 +315,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CodeGeneration\CSharp\ClrTypeResolvers\" />
-    <Folder Include="CodeGeneration\CSharp\Properties\Models\" />
-    <Folder Include="CodeGeneration\CSharp\Properties\TemplateResolvers\" />
+    <Folder Include="CodeGeneration\Properties\TemplateResolvers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

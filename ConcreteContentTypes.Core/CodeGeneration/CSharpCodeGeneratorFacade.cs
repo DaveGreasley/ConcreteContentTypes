@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.CSharp
+namespace ConcreteContentTypes.Core.CodeGeneration
 {
 	public class CSharpCodeGeneratorFacade : ICodeGeneratorFacade
 	{

@@ -11,7 +11,7 @@ namespace ConcreteContentTypes.Core.ModelFactory
 {
 	public class ConcreteModelTypeResolver : IConcreteModelTypeResolver
 	{
-		public Dictionary<string, Type> ModelTypes { get; private set; }
+		Dictionary<string, Type> ModelTypes { get; set; }
 
 		public ConcreteModelTypeResolver(IEnumerable<Type> modelTypes)
 		{
