@@ -341,10 +341,6 @@
       <Name>ConcreteContentTypes.Core</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\ConcreteContentTypes.LinqToExamine\ConcreteContentTypes.LinqToExamine.csproj">
-      <Project>{11ce168c-3a47-4383-b5f4-33fd91348164}</Project>
-      <Name>ConcreteContentTypes.LinqToExamine</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

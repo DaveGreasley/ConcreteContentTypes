@@ -15,6 +15,7 @@ using System.Web.Configuration;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Mvc;
 using ConcreteContentTypes.Core.CodeGeneration;
+using ConcreteContentTypes.Core.ModelFactory;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -27,8 +28,18 @@ namespace ConcreteContentTypes.Core.Events
 			//Setup our ModelBinder
 			System.Web.Mvc.ModelBinders.Binders.Add(typeof(ConcreteModel), new ConcreteModelBinder());
 
+			//Create singleton model factory instance
+			InitialiseConcreteFactory();
+
 			//Attach to ContentTypeService events for Model creation
 			AttachToContentTypeServiceEvents();
+		}
+
+		private void InitialiseConcreteFactory()
+		{
+			var concreteTypes = PluginManager.Current.ResolveTypes<ConcreteModel>(false);
+			var modelTypeResolver = new ConcreteModelTypeResolver(concreteTypes);
+			ConcreteModelFactory.Current = new ConcreteModelFactory(modelTypeResolver);
 		}
 
 

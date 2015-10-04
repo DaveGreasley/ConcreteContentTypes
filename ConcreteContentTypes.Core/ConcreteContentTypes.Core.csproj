@@ -278,6 +278,7 @@
     <Compile Include="Configuration\ConcreteSettings.cs" />
     <Compile Include="Events\UmbracoEvents.cs" />
     <Compile Include="Exceptions\UnknownPropertyTypeException.cs" />
+    <Compile Include="Mvc\ConcreteTemplatePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SourceModelMapping\ContentTypeSourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\ISourceModelMapper.cs" />

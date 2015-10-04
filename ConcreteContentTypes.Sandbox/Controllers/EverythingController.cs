@@ -11,7 +11,7 @@ namespace ConcreteContentTypes.Sandbox.Controllers
 {
 	public class EverythingController : RenderMvcController
 	{
-		public ActionResult Index(ConcreteRenderModel<Everything> model)
+		public ActionResult Index(Everything model)
 		{
 			return View("Everything", model);
 		}
