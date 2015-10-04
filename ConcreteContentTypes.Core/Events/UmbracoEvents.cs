@@ -16,14 +16,24 @@ using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Mvc;
 using ConcreteContentTypes.Core.CodeGeneration;
 using ConcreteContentTypes.Core.ModelFactory;
+using ConcreteContentTypes.Core.SourceModelMapping;
+using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
+using ConcreteContentTypes.Core.CodeGeneration.Classes.Factories;
+using ConcreteContentTypes.Core.CodeGeneration.Attributes;
+using ConcreteContentTypes.Core.CodeGeneration.Properties;
+using ConcreteContentTypes.Core.FileWriters;
 
 namespace ConcreteContentTypes.Core.Events
 {
 	public class UmbracoEvents : ApplicationEventHandler
 	{
+		ApplicationContext ApplicationContext { get; set; }
+
 		protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
 		{
 			base.ApplicationStarted(umbracoApplication, applicationContext);
+
+			this.ApplicationContext = applicationContext;
 
 			//Setup our ModelBinder
 			System.Web.Mvc.ModelBinders.Binders.Add(typeof(ConcreteModel), new ConcreteModelBinder());
@@ -89,6 +99,56 @@ namespace ConcreteContentTypes.Core.Events
 		//Currently we regenerate all Media and all Content models every time we save either.
 		void RegenerateAllModels()
 		{
+			var contentTypes = ApplicationContext.Services.ContentTypeService.GetAllContentTypes();
+			var mediaTypes = ApplicationContext.Services.ContentTypeService.GetAllMediaTypes();
+
+			var concreteSettings = ConcreteSettings.Current;
+			var errorTracker = (IErrorTracker)null; //TODO: Implement error tracker!
+			var propertyTypeDefaultsSettings = (IPropertyTypeDefaultsSettings)null; //TODO: Implement property default settings
+			var concreteEvents = new ConcreteEvents();
+
+			var propertyTypeResolverFactory = new PropertyTypeResolverFactory(propertyTypeDefaultsSettings, errorTracker);
+			var contentTypeSourceModelMapper = new ContentTypeSourceModelMapper(
+				concreteSettings,
+				concreteEvents,
+				contentTypes,
+				propertyTypeResolverFactory,
+				propertyTypeDefaultsSettings
+				);
+
+			var mediaSourceModelMapper = new MediaTypesSourceModelMapper(
+				concreteSettings, 
+				concreteEvents, 
+				mediaTypes, 
+				propertyTypeResolverFactory,
+				propertyTypeDefaultsSettings
+				);
+
+			var templateTypeResolver = new TemplateTypeResolver();
+
+			var attributeTemplateFactory = new AttributeTemplateFactory(errorTracker);
+			var propertyTemplateFactory = new PropertyTemplateFactory(
+				errorTracker, 
+				concreteSettings, 
+				propertyTypeDefaultsSettings,
+				templateTypeResolver);
+
+			var baseClassTemplateFactory = new BaseClassTemplateFactory(errorTracker, attributeTemplateFactory);
+			var modelClassTemplateFactory = new ModelClassTemplateFactory(errorTracker, attributeTemplateFactory, propertyTemplateFactory);
+
+			var contentTypeCodeGenerator = new CSharpCodeGeneratorFacade(baseClassTemplateFactory, modelClassTemplateFactory);
+			var mediaTypeCodeGenerator = new CSharpCodeGeneratorFacade(baseClassTemplateFactory, modelClassTemplateFactory);
+
+			var fileWriter = new FileWriter();
+
+			Concrete concrete = new Concrete(
+				concreteSettings,
+				contentTypeSourceModelMapper,
+				mediaSourceModelMapper,
+				contentTypeCodeGenerator,
+				mediaTypeCodeGenerator,
+				fileWriter,
+				errorTracker);
 		}
 
 		#endregion

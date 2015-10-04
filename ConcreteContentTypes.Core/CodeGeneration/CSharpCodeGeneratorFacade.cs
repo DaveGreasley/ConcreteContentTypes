@@ -12,10 +12,10 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 		ICodeTemplateFactory<IBaseClassDefinition> BaseClassTemplateFactory { get; set; }
 		ICodeTemplateFactory<IModelClassDefinition> ModelClassTemplateFactory { get; set; }
 
-		public CSharpCodeGeneratorFacade(ICodeTemplateFactory<IBaseClassDefinition> baseClassFactory, 
+		public CSharpCodeGeneratorFacade(ICodeTemplateFactory<IBaseClassDefinition> baseClassTemplateFactory, 
 			ICodeTemplateFactory<IModelClassDefinition> modelClassFactory)
 		{
-			this.BaseClassTemplateFactory = baseClassFactory;
+			this.BaseClassTemplateFactory = baseClassTemplateFactory;
 			this.ModelClassTemplateFactory = modelClassFactory;
 		}
 
