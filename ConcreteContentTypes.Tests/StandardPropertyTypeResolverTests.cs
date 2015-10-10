@@ -1,6 +1,6 @@
 ﻿using ConcreteContentTypes.Core.Configuration;
 using ConcreteContentTypes.Core.Helpers;
-using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
+using ConcreteContentTypes.Core.SourceModelMapping.TypeResolution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

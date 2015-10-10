@@ -257,9 +257,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGeneration\Attributes\AttributeTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\Classes\Factories\BaseClassTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\Classes\Factories\ModelClassTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\CSharpCodeGeneratorFacade.cs" />
+    <Compile Include="CodeGeneration\Attributes\AttributeWriter.cs" />
+    <Compile Include="CodeGeneration\Classes\BaseClassTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\Classes\ModelClassTemplateFactory.cs" />
+    <Compile Include="CodeGeneration\CSharpCodeGenerator.cs" />
     <Compile Include="CodeGeneration\Attributes\AttributeTemplate.cs">
       <DependentUpon>AttributeTemplate.tt</DependentUpon>
       <SubType>Code</SubType>
@@ -292,17 +293,18 @@
     <Compile Include="CodeGeneration\TemplateTypeResolver.cs" />
     <Compile Include="CodeGeneration\ITemplateTypeResolver.cs" />
     <Compile Include="CodeGeneration\Properties\PropertyTemplateFactory.cs" />
-    <Compile Include="CodeGeneration\ICodeGeneratorFacade.cs" />
+    <Compile Include="CodeGeneration\ICodeGenerator.cs" />
     <Compile Include="CodeGeneration\ICodeTemplate.cs" />
     <Compile Include="CodeGeneration\ICodeTemplateFactory.cs" />
     <Compile Include="ErrorTracker.cs" />
+    <Compile Include="Extensions\ConcreteModelExtensions.cs" />
     <Compile Include="GenerationErrorLevel.cs" />
     <Compile Include="IErrorTracker.cs" />
     <Compile Include="Concrete.cs" />
     <Compile Include="Configuration\IPropertyTypeDefaultsSettings.cs" />
     <Compile Include="Configuration\IPropertyTypeSettings.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Helpers\IPropertyValueConverterHelper.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\IPropertyValueConverterHelper.cs" />
     <Compile Include="ModelFactory\ConcreteModelFactory.cs" />
     <Compile Include="ModelFactory\ConcreteModelTypeResolver.cs" />
     <Compile Include="ModelFactory\IConcreteModelFactory.cs" />
@@ -315,7 +317,7 @@
     <Compile Include="FileWriters\IFileWriter.cs" />
     <Compile Include="FileWriters\WriteOperation.cs" />
     <Compile Include="GenerationError.cs" />
-    <Compile Include="Helpers\PropertyValueConverterHelper.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\PropertyValueConverterHelper.cs" />
     <Compile Include="Configuration\IConcreteSettings.cs" />
     <Compile Include="Events\ConcreteEvents.cs" />
     <Compile Include="Extensions\ContentTypeServiceExtensions.cs" />
@@ -340,7 +342,6 @@
     <Compile Include="Configuration\SupportedTypesConfigurationCollection.cs" />
     <Compile Include="Configuration\CSharpWriterSettings.cs" />
     <Compile Include="Helpers\NamingConventionHelper.cs" />
-    <Compile Include="Models\ConcreteRenderModel.cs" />
     <Compile Include="Models\Definitions\ModelClassPropertyDefinition.cs" />
     <Compile Include="Models\Enums\BaseClassProperty.cs" />
     <Compile Include="Models\Enums\PickerType.cs" />
@@ -355,12 +356,12 @@
     <Compile Include="SourceModelMapping\ContentTypeSourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\ISourceModelMapper.cs" />
     <Compile Include="SourceModelMapping\MediaTypesSourceModelMapper.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\ContentPickerTypeResolver.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\IPropertyTypeResolverFactory.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\ITypeResolver.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\PropertyTypeResolverBase.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\PropertyTypeResolverFactory.cs" />
-    <Compile Include="SourceModelMapping\PropertyTypeResolvers\StandardPropertyTypeResolver.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\ContentPickerTypeResolver.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\IPropertyTypeResolverFactory.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\ITypeResolver.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\PropertyTypeResolverBase.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\PropertyTypeResolverFactory.cs" />
+    <Compile Include="SourceModelMapping\TypeResolution\StandardPropertyTypeResolver.cs" />
     <Compile Include="SourceModelMapping\SourceModelMapperBase.cs" />
     <Compile Include="Mvc\GenericConcreteViewPage.cs" />
   </ItemGroup>
@@ -389,9 +390,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CodeGeneration\Properties\TemplateResolvers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

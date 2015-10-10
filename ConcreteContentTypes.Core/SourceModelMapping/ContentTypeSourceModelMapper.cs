@@ -3,7 +3,7 @@ using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
-using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
+using ConcreteContentTypes.Core.SourceModelMapping.TypeResolution;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -48,7 +48,7 @@ namespace ConcreteContentTypes.Core.SourceModelMapping
 
 			foreach (var contentType in this.ContentTypes)
 			{
-				ModelClassDefinition definition = new ModelClassDefinition(
+				var definition = new ModelClassDefinition(
 					NamingConventionHelper.GetConventionalName(contentType.Name),
 					this.Namespace);
 

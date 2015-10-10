@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core;
 
-namespace ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers
+namespace ConcreteContentTypes.Core.SourceModelMapping.TypeResolution
 {
 	public class PropertyTypeResolverFactory : IPropertyTypeResolverFactory
 	{

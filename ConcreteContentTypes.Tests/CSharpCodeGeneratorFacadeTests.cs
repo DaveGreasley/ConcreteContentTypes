@@ -25,7 +25,7 @@ namespace ConcreteContentTypes.Tests
 			var baseClassTemplateFactory = new Mock<ICodeTemplateFactory<IBaseClassDefinition>>();
 			baseClassTemplateFactory.Setup(x => x.GetTemplate(baseClassDefinitionMock.Object)).Returns(codeTemplateMock.Object);
 			
-			var sut = new CSharpCodeGeneratorFacade(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
+			var sut = new CSharpCodeGenerator(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
 			sut.GenerateBaseClass(baseClassDefinitionMock.Object);
 
 			baseClassTemplateFactory.Verify(x => x.GetTemplate(baseClassDefinitionMock.Object),
@@ -42,7 +42,7 @@ namespace ConcreteContentTypes.Tests
 			var modelClassTemplateFactory = new Mock<ICodeTemplateFactory<IModelClassDefinition>>();
 			modelClassTemplateFactory.Setup(x => x.GetTemplate(modelClassDefinitionMock.Object)).Returns(codeTemplateMock.Object);
 
-			var sut = new CSharpCodeGeneratorFacade(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
+			var sut = new CSharpCodeGenerator(baseClassTemplateFactory.Object, modelClassTemplateFactory.Object);
 			sut.GenerateModelClass(modelClassDefinitionMock.Object);
 
 			modelClassTemplateFactory.Verify(x => x.GetTemplate(modelClassDefinitionMock.Object), 

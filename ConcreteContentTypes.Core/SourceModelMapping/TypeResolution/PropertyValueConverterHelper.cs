@@ -7,7 +7,7 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 
-namespace ConcreteContentTypes.Core.Helpers
+namespace ConcreteContentTypes.Core.SourceModelMapping.TypeResolution
 {
 	public class PropertyValueConverterHelper : IPropertyValueConverterHelper
 	{

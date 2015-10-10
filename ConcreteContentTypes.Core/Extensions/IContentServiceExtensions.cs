@@ -141,13 +141,14 @@ namespace ConcreteContentTypes.Core.Extensions
 
 		private static IContent GetOrCreateIContent<T>(IContentService contentService, T model, int userId) where T : ConcreteModel, new()
 		{
-			IContent content = null;
+			if (contentService == null)
+				throw new ArgumentNullException("contentService", "Cannot get or create content with a null ContentService");
+			
+			if (model == null)
+				throw new ArgumentNullException("model", "Cannot get or create IContent from null model");
 
 			if (model.Id > 0)
 				return contentService.GetById(model.Id);
-
-			if (content != null)
-				return content;
 
 			return contentService.CreateContentWithIdentity(model.Name, model.ParentId, model.ContentTypeAlias, userId);
 		}

@@ -17,13 +17,13 @@ using ConcreteContentTypes.Core.Mvc;
 using ConcreteContentTypes.Core.CodeGeneration;
 using ConcreteContentTypes.Core.ModelFactory;
 using ConcreteContentTypes.Core.SourceModelMapping;
-using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
-using ConcreteContentTypes.Core.CodeGeneration.Classes.Factories;
+using ConcreteContentTypes.Core.SourceModelMapping.TypeResolution;
 using ConcreteContentTypes.Core.CodeGeneration.Attributes;
 using ConcreteContentTypes.Core.CodeGeneration.Properties;
 using ConcreteContentTypes.Core.FileWriters;
 using log4net;
 using System.Web.Mvc;
+using ConcreteContentTypes.Core.CodeGeneration.Classes;
 
 namespace ConcreteContentTypes.Core.Events
 {
@@ -139,8 +139,8 @@ namespace ConcreteContentTypes.Core.Events
 			var baseClassTemplateFactory = new BaseClassTemplateFactory(errorTracker, attributeTemplateFactory);
 			var modelClassTemplateFactory = new ModelClassTemplateFactory(errorTracker, attributeTemplateFactory, propertyTemplateFactory);
 
-			var contentTypeCodeGenerator = new CSharpCodeGeneratorFacade(baseClassTemplateFactory, modelClassTemplateFactory);
-			var mediaTypeCodeGenerator = new CSharpCodeGeneratorFacade(baseClassTemplateFactory, modelClassTemplateFactory);
+			var contentTypeCodeGenerator = new CSharpCodeGenerator(baseClassTemplateFactory, modelClassTemplateFactory);
+			var mediaTypeCodeGenerator = new CSharpCodeGenerator(baseClassTemplateFactory, modelClassTemplateFactory);
 
 			var fileWriter = new FileWriter();
 

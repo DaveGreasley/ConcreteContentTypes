@@ -27,32 +27,28 @@ namespace ConcreteContentTypes.Core.Mvc
 		protected override void SetViewData(System.Web.Mvc.ViewDataDictionary viewData)
 		{
 			// if view data contains no model, nothing to do
-			var source = viewData.Model;
-			if (source == null)
+			if (viewData.Model == null)
 			{
 				base.SetViewData(viewData);
 				return;
 			}
 
-			if (HttpContext.Current.Items.Contains(RequestModelCache.HttpItemsKey))
+			if (typeof(RenderModel).IsAssignableFrom(viewData.Model.GetType()))
 			{
-				var requestModelCache = (RequestModelCache)HttpContext.Current.Items[RequestModelCache.HttpItemsKey];
-				viewData.Model = (TModel)requestModelCache.ConcreteModel;
+				var renderModel = (RenderModel)viewData.Model;
+				viewData.Model = ConcreteModelFactory.Current.CreateModel(renderModel.Content);
 			}
-			else
-			{
-				var sourceModelType = source.GetType();
 
-				if (typeof(RenderModel).IsAssignableFrom(sourceModelType))
+			if (typeof(ConcreteModel).IsAssignableFrom(viewData.Model.GetType()))
+			{
+				var concreteModel = (ConcreteModel)viewData.Model;
+
+				if (typeof(TModel) != viewData.Model.GetType() && typeof(TModel) != typeof(ConcreteModel))
 				{
-					var requestModelCache = new RequestModelCache((RenderModel)viewData.Model);
-					HttpContext.Current.Items.Add(RequestModelCache.HttpItemsKey, requestModelCache);
-					viewData.Model = (TModel)requestModelCache.ConcreteModel;
-				}
-				else if (typeof(ConcreteModel).IsAssignableFrom(sourceModelType))
-				{
-					var requestModelCache = new RequestModelCache((ConcreteModel)viewData.Model);
-					HttpContext.Current.Items.Add(RequestModelCache.HttpItemsKey, requestModelCache);
+					//We have a different Type of ConcreteModel to the one requested so try and convert
+					var convertedModel = concreteModel.TryConvertTo(typeof(TModel));
+					if (convertedModel != null)
+						viewData.Model = convertedModel;
 				}
 			}
 

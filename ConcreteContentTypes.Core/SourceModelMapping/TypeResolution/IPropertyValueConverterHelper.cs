@@ -1,6 +1,6 @@
 ﻿using System;
 using Umbraco.Core.Models;
-namespace ConcreteContentTypes.Core.Helpers
+namespace ConcreteContentTypes.Core.SourceModelMapping.TypeResolution
 {
 	public interface IPropertyValueConverterHelper
 	{

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Umbraco.Web.Models;
 using ConcreteContentTypes.Core.Extensions;
 using ConcreteContentTypes.Core.ModelFactory;
+using Umbraco.Web.Routing;
 
 namespace ConcreteContentTypes.Core.Mvc
 {
@@ -32,14 +33,24 @@ namespace ConcreteContentTypes.Core.Mvc
 
 		private object BindConcreteModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
-			if (!controllerContext.RouteData.DataTokens.ContainsKey("umbraco"))
-				return null;
+			//First lets check if there was a value passed in to the controller
+			if (controllerContext.RouteData.Values.ContainsKey(bindingContext.ModelName))
+			{
+				var paramValue = controllerContext.RouteData.Values[bindingContext.ModelName];
 
-			var renderModel = controllerContext.RouteData.DataTokens["umbraco"] as RenderModel;
-			if (renderModel != null)
-				return ConcreteModelFactory.Current.CreateModel(renderModel.Content);
+				if (paramValue != null)
+					return paramValue;
+			}
 
-			return null;
+			if (controllerContext.RouteData.DataTokens.ContainsKey("umbraco-doc-request"))
+			{
+				var publishedContentRequest = controllerContext.RouteData.DataTokens["umbraco-doc-request"] as PublishedContentRequest;
+				if (publishedContentRequest != null)
+					return ConcreteModelFactory.Current.CreateModel(publishedContentRequest.PublishedContent);
+			}
+
+			// Finally if all else fails, return a new instance of the requested type
+			return ConcreteModelFactory.Current.CreateModel(bindingContext.ModelType);
 		}
 	}
 }

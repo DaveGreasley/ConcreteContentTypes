@@ -4,7 +4,7 @@ using ConcreteContentTypes.Core.Helpers;
 using ConcreteContentTypes.Core.Models;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
-using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
+using ConcreteContentTypes.Core.SourceModelMapping.TypeResolution;
 using System;
 using System.Collections.Generic;
 using System.Linq;

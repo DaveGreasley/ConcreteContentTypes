@@ -10,10 +10,10 @@ namespace ConcreteContentTypes.Core.CodeGeneration
 	/// <summary>
 	/// A language agnostic interface for a code generator. Assumes language is OO and that we always want a BaseClass.
 	/// </summary>
-	public interface ICodeGeneratorFacade
+	public interface ICodeGenerator
 	{
 		/// <summary>
-		/// Generates the Code required to implement the base class for the current <see cref="ICodeGeneratorFacade"/>.
+		/// Generates the Code required to implement the base class for the current <see cref="ICodeGenerator"/>.
 		/// </summary>
 		/// <returns>A string containing the generated code.</returns>
 		string GenerateBaseClass(IBaseClassDefinition classDefinition);

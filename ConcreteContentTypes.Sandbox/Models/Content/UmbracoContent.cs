@@ -112,8 +112,8 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			this.Content = content;
 
-			this.Name = this.Content.Name;
 			this.Id = this.Content.Id;
+			this.Name = this.Content.Name;
 			this.Path = this.Content.Path;
 			this.ParentId = GetParentIdFromPath(this.Path);
 			this.CreateDate = this.Content.CreateDate;

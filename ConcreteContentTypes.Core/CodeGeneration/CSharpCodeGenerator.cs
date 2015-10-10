@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ConcreteContentTypes.Core.CodeGeneration
 {
-	public class CSharpCodeGeneratorFacade : ICodeGeneratorFacade
+	public class CSharpCodeGenerator : ICodeGenerator
 	{
 		ICodeTemplateFactory<IBaseClassDefinition> BaseClassTemplateFactory { get; set; }
 		ICodeTemplateFactory<IModelClassDefinition> ModelClassTemplateFactory { get; set; }
 
-		public CSharpCodeGeneratorFacade(ICodeTemplateFactory<IBaseClassDefinition> baseClassTemplateFactory, 
+		public CSharpCodeGenerator(ICodeTemplateFactory<IBaseClassDefinition> baseClassTemplateFactory, 
 			ICodeTemplateFactory<IModelClassDefinition> modelClassFactory)
 		{
 			this.BaseClassTemplateFactory = baseClassTemplateFactory;

@@ -35,6 +35,14 @@ namespace ConcreteContentTypes.Core.ModelFactory
 			this.TypeResolver = typeResolver;
 		}
 
+		public ConcreteModel CreateModel(IPublishedContent content, Type modelType)
+		{
+			var model = CreateModel(modelType);
+			model.Init(content);
+
+			return model;
+		}
+
 		public ConcreteModel CreateModel(IPublishedContent content)
 		{
 			if (content == null)
@@ -47,9 +55,23 @@ namespace ConcreteContentTypes.Core.ModelFactory
 			return model;
 		}
 
+		public ConcreteModel CreateModel(Type modelType)
+		{
+			var model = Activator.CreateInstance(modelType) as ConcreteModel;
+
+			return model;
+		}
+
 		public T CreateModel<T>(IPublishedContent content) where T : ConcreteModel
 		{
-			return (T)CreateModel(content);
+			var model = CreateModel(content, typeof(T));
+
+			return (T)model;
+		}
+
+		public T CreateModel<T>() where T : ConcreteModel, new()
+		{
+			return new T();
 		}
 	}
 }

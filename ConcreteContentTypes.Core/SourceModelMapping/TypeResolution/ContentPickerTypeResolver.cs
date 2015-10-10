@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers
+namespace ConcreteContentTypes.Core.SourceModelMapping.TypeResolution
 {
 	public class ContentPickerTypeResolver : PropertyTypeResolverBase
 	{

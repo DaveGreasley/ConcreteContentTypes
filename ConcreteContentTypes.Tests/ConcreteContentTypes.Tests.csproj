@@ -276,7 +276,7 @@
   <ItemGroup>
     <Compile Include="AttributeDefinitionTests.cs" />
     <Compile Include="AttributeTemplateFactoryTests.cs" />
-    <Compile Include="AttributeTemplateTests.cs" />
+    <Compile Include="AttributeWriterTests.cs" />
     <Compile Include="BaseClassTemplateFactoryTests.cs" />
     <Compile Include="PropertyTypeResolverFactoryTests.cs" />
     <Compile Include="StandardPropertyTypeResolverTests.cs" />
@@ -293,7 +293,6 @@
     <Compile Include="MediaTypesSourceModelMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelClassDefinitionTests.cs" />
-    <Compile Include="ModelClassTemplateTests.cs" />
     <Compile Include="TemplateTypeResolverTests.cs" />
     <Compile Include="WriteOperationTests.cs" />
   </ItemGroup>

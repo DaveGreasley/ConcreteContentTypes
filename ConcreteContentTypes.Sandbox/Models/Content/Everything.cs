@@ -36,7 +36,7 @@ namespace ConcreteContentTypes.Sandbox.Models.Content
 		{
 			get 
 			{
-				if (_blogAuthor == null)
+				if (_blogAuthor == null && Content != null)
 				{
 					int? contentId = Content.GetPropertyValue<int?>("blogAuthor", this.GetPropertiesRecursively);
 

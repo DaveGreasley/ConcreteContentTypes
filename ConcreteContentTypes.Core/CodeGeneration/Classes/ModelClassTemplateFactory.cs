@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcreteContentTypes.Core.CodeGeneration.Classes.Factories
+namespace ConcreteContentTypes.Core.CodeGeneration.Classes
 {
 	public class ModelClassTemplateFactory : ICodeTemplateFactory<IModelClassDefinition>
 	{

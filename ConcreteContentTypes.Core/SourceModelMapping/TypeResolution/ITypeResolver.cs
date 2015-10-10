@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers
+namespace ConcreteContentTypes.Core.SourceModelMapping.TypeResolution
 {
 	public interface ITypeResolver
 	{

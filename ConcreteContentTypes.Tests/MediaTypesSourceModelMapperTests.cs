@@ -3,7 +3,7 @@ using ConcreteContentTypes.Core.Events;
 using ConcreteContentTypes.Core.Models.Definitions;
 using ConcreteContentTypes.Core.Models.Enums;
 using ConcreteContentTypes.Core.SourceModelMapping;
-using ConcreteContentTypes.Core.SourceModelMapping.PropertyTypeResolvers;
+using ConcreteContentTypes.Core.SourceModelMapping.TypeResolution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
